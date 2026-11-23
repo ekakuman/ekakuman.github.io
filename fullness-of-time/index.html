@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fullness of Time — The Plan Before the Manger</title>
+<meta name="description" content="A purely scriptural study of the birth of Christ: God's plan from before the foundation of the world, myths vs. the text, and how human tradition grew around it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=Noto+Sans+Telugu:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0d1530; --night2:#16214a; --ink:#1d2333; --muted:#5b6275;
+  --parch:#fbf7ee; --card:#ffffff; --line:#e6dfcf;
+  --gold:#c99a2e; --gold2:#f2d27a; --red:#a63d40; --green:#3f7d5c; --blue:#3b5ba5; --plum:#6b4a8b;
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;font-family:Inter,"Noto Sans Telugu",system-ui,sans-serif;color:var(--ink);background:var(--parch);line-height:1.6;font-size:16px}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;line-height:1.2;margin:0 0 .4em}
+body.lang-te h1,body.lang-te h2,body.lang-te h3{font-family:"Noto Sans Telugu",Georgia,serif}
+a{color:var(--blue)}
+.te{display:none}
+body.lang-te .te{display:revert}
+body.lang-te .en.hasTe{display:none}
+.ref.te{display:none} body.lang-te .flip{height:360px} body.lang-te .front h3{font-size:22px} body.lang-te .ref.te{display:inline-block}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:50;background:rgba(13,21,48,.96);backdrop-filter:blur(6px);color:#fff}
+.bar-in{max-width:1080px;margin:auto;display:flex;align-items:center;gap:8px;padding:8px 12px}
+.bar nav{display:flex;gap:4px;overflow-x:auto;flex:1;scrollbar-width:none}
+.bar nav::-webkit-scrollbar{display:none}
+.bar nav a{color:#cfd6f3;text-decoration:none;font-size:13px;padding:6px 10px;border-radius:20px;white-space:nowrap}
+.bar nav a.active{background:var(--gold);color:var(--night);font-weight:600}
+.lang{background:transparent;border:1px solid var(--gold);color:var(--gold2);border-radius:20px;padding:5px 10px;font-size:13px;cursor:pointer;white-space:nowrap}
+.progress{height:3px;background:var(--gold);width:0}
+
+/* hero */
+.hero{background:radial-gradient(ellipse at 70% 10%,#2b3a78 0%,var(--night) 60%);color:#fff;padding:56px 18px 64px;position:relative;overflow:hidden}
+.hero-in{max-width:860px;margin:auto;position:relative;z-index:2}
+.hero .kicker{color:var(--gold2);letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+.hero h1{font-size:clamp(38px,7vw,64px);color:#fff}
+.hero .sub{font-family:"Cormorant Garamond",serif;font-size:clamp(20px,3.4vw,28px);color:var(--gold2);margin-bottom:22px}
+body.lang-te .hero .sub{font-family:"Noto Sans Telugu",serif}
+.thesis{background:rgba(255,255,255,.07);border-left:3px solid var(--gold);padding:16px 18px;border-radius:0 10px 10px 0;font-size:17px}
+.thesis b{color:var(--gold2)}
+.key{margin-top:18px;font-style:italic;color:#d8def5}
+#stars{position:absolute;inset:0;z-index:1}
+
+/* sections */
+section{max-width:1080px;margin:auto;padding:56px 16px 24px}
+.sec-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+.num{flex:none;width:44px;height:44px;border-radius:50%;background:var(--night);color:var(--gold2);display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:700}
+.sec-head h2{font-size:clamp(28px,4.5vw,40px)}
+.sec-head .tag{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold)}
+.intro{color:var(--muted);max-width:760px;margin:0 0 22px}
+
+/* verse */
+.verse{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:8px 0;font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;line-height:1.45}
+.verse cite{display:block;font-family:Inter,sans-serif;font-style:normal;font-size:12px;margin-top:4px}
+.ref{font-size:12px;font-weight:600;text-decoration:none;background:#eef1fa;color:var(--blue);padding:2px 7px;border-radius:12px;margin:2px 2px 2px 0;display:inline-block}
+.ref:hover{background:var(--blue);color:#fff}
+
+/* promise thread */
+.thread{position:relative;margin-left:10px;padding-left:28px}
+.thread:before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:3px;background:linear-gradient(var(--plum),var(--gold),var(--red));border-radius:3px}
+.pt{position:relative;margin-bottom:16px}
+.pt:before{content:"";position:absolute;left:-35px;top:10px;width:15px;height:15px;border-radius:50%;background:var(--parch);border:3px solid var(--c,var(--gold))}
+.pt .era{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--c,var(--gold))}
+.pt h3{font-size:22px;margin:.1em 0 .2em}
+.pt details summary{cursor:pointer;list-style:none}
+.pt details summary::-webkit-details-marker{display:none}
+.pt .lead{font-size:15px;color:var(--muted)}
+.pt .more{font-size:13px;color:var(--blue);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;margin-bottom:18px}
+.legend span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--c);margin-right:5px;vertical-align:-1px}
+
+/* sequence */
+.seq{display:flex;gap:12px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x mandatory}
+.step{flex:0 0 240px;scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;position:relative}
+.step .when{display:inline-block;font-size:11px;font-weight:600;background:var(--night);color:var(--gold2);border-radius:12px;padding:2px 9px;margin-bottom:6px}
+.step .src{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.step .src.mt{color:var(--red)} .step .src.lk{color:var(--green)}
+.step h3{font-size:20px}
+.step p{font-size:14px;margin:.3em 0}
+.hint{font-size:13px;color:var(--muted)}
+.note{background:#fff8e3;border:1px solid #efdca5;border-radius:10px;padding:12px 14px;font-size:14px;margin:14px 0}
+
+/* myth cards */
+.myths{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.flip{perspective:1000px;height:250px;cursor:pointer}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;overflow:auto}
+.front{background:var(--night);color:#fff}
+.front .lab{color:#f19a9c;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.front h3{font-size:24px;color:#fff;margin-top:8px}
+.front .tap{margin-top:auto;font-size:12px;color:var(--gold2)}
+.back{background:var(--card);border:2px solid var(--green);transform:rotateY(180deg)}
+.back .lab{color:var(--green);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.back p{font-size:14px;margin:.4em 0}
+.back .q{font-family:"Cormorant Garamond",serif;font-size:17px;font-style:italic}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.filters button,.btn{border:1px solid var(--line);background:var(--card);border-radius:20px;padding:6px 12px;font-size:13px;cursor:pointer;font-family:inherit}
+.filters button.on{background:var(--night);color:#fff;border-color:var(--night)}
+
+/* history */
+.hist{position:relative}
+.hrow{display:grid;grid-template-columns:90px 1fr;gap:14px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.hrow .yr{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:700;color:var(--night);text-align:right}
+.hrow .chip{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#fff;border-radius:10px;padding:1px 8px;margin-right:6px}
+.hrow h3{display:inline;font-family:Inter,sans-serif;font-size:16px;font-weight:600}
+.hrow p{margin:.3em 0 0;font-size:14px;color:var(--muted)}
+.c-church{background:var(--blue)} .c-culture{background:var(--plum)} .c-commerce{background:var(--red)} .c-reform{background:var(--green)} .c-none{background:#8a8f9c}
+.theories{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:22px}
+.theory{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.theory h3{font-size:22px}
+.theory ul{padding-left:18px;margin:.4em 0;font-size:14px}
+.verdict{background:var(--night);color:#fff;border-radius:var(--radius);padding:16px;margin-top:14px}
+.verdict b{color:var(--gold2)}
+
+/* wrapping */
+.wrap-grid{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:22px;align-items:center}
+@media(max-width:760px){.wrap-grid{grid-template-columns:1fr}}
+svg.layers{width:100%;height:auto}
+svg.layers circle{cursor:pointer;transition:opacity .2s,stroke-width .2s}
+svg.layers circle:hover,svg.layers circle.sel{stroke:#fff;stroke-width:3}
+svg.layers text{pointer-events:none;font-family:Inter,sans-serif;font-weight:600;fill:#fff;font-size:12px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;min-height:220px}
+.panel h3{font-size:24px}
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:26px}
+.pr{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--radius);padding:16px}
+.pr h3{font-size:21px}
+.pr p{font-size:14px}
+.balance{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--radius);overflow:hidden;margin-top:22px;border:1px solid var(--line)}
+.balance>div{padding:16px}
+.balance .l{background:#fdeeee}.balance .r{background:#eaf5ef}
+@media(max-width:600px){.balance{grid-template-columns:1fr}}
+
+/* practices */
+.practice{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-align:center}
+.pc .ico{font-size:34px}
+.pc h3{font-size:22px;margin-top:4px}
+.pc p{font-size:14px;margin:.3em 0}
+.discuss{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;margin-top:22px}
+.discuss ol{padding-left:20px}
+.discuss li{margin:6px 0}
+.closing{background:radial-gradient(ellipse at 50% 0,#2b3a78,var(--night));color:#fff;text-align:center;padding:54px 18px;margin-top:40px}
+.closing h2{font-size:clamp(28px,5vw,44px);color:var(--gold2)}
+footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 16px 40px;max-width:820px;margin:auto}
+@media print{.bar,.filters,#stars{display:none}.flip{height:auto}.flip-in{transform:none!important}.face{position:static;backface-visibility:visible}.back{transform:none;margin-top:6px}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="bar-in">
+    <nav id="nav">
+      <a href="#plan"><span class="en hasTe">1 · The Plan</span><span class="te">1 · ప్రణాళిక</span></a>
+      <a href="#text"><span class="en hasTe">2 · The Text</span><span class="te">2 · వాక్యము</span></a>
+      <a href="#myths"><span class="en hasTe">3 · Myths</span><span class="te">3 · అపోహలు</span></a>
+      <a href="#history"><span class="en hasTe">4 · History</span><span class="te">4 · చరిత్ర</span></a>
+      <a href="#entangled"><span class="en hasTe">5 · Entangled</span><span class="te">5 · చిక్కులు</span></a>
+      <a href="#practice"><span class="en hasTe">6 · Practice</span><span class="te">6 · ఆచరణ</span></a>
+    </nav>
+    <button class="lang" id="lang">తెలుగు</button>
+  </div>
+  <div class="progress" id="progress"></div>
+</div>
+
+<header class="hero">
+  <canvas id="stars"></canvas>
+  <div class="hero-in">
+    <div class="kicker"><span class="en hasTe">A purely scriptural study · Galatians 4:4</span><span class="te">లేఖనాధారిత అధ్యయనము · గలతీయులకు 4:4</span></div>
+    <h1><span class="en hasTe">The Fullness of Time</span><span class="te">కాలము పరిపూర్ణమైనప్పుడు</span></h1>
+    <div class="sub"><span class="en hasTe">The Plan Before the Manger</span><span class="te">తొట్టికి ముందే ఉన్న ప్రణాళిక</span></div>
+    <div class="thesis">
+      <span class="en hasTe"><b>Thesis.</b> The birth of Jesus wasn't a holiday event. It was the moment God had set to carry out a plan He made before the foundation of the world (1 Pet 1:20; Gal 4:4). Over the centuries, men wrapped that moment in borrowed dates, legends and customs that now hide what Scripture actually says. If we take the wrapping off and go back to the text, the real gift shows: a faithful God keeping His word from Genesis 3:15 to Bethlehem.</span>
+      <span class="te"><b>సారాంశము.</b> యేసు జననము ఒక పండుగ సంఘటన కాదు; జగత్తు పునాది వేయబడక మునుపే దేవుడు సంకల్పించిన ప్రణాళికను నెరవేర్చుటకు ఆయన నియమించిన సమయము (1 పేతురు 1:20; గలతీయులకు 4:4). శతాబ్దాలుగా మనుష్యులు ఆ సమయమును అరువు తెచ్చుకున్న తేదీలు, కల్పిత కథలు మరియు ఆచారములతో చుట్టివేశారు; అవి లేఖనము చెప్పేదానిని మరుగుచేస్తున్నాయి. ఆ చుట్టుకొనిన వాటిని తీసివేసి వాక్యమునకు తిరిగి వెళ్లినప్పుడు నిజమైన బహుమానము కనిపిస్తుంది: ఆదికాండము 3:15 నుండి బేత్లెహేము వరకు తన మాటను నిలబెట్టుకొనే నమ్మకమైన దేవుడు.</span>
+    </div>
+    <div class="key"><span class="en hasTe">“God didn't need December. He had the fullness of time.”</span><span class="te">“దేవునికి డిసెంబరు అవసరము లేదు. ఆయనకు కాలము యొక్క పరిపూర్ణత ఉంది.”</span></div>
+  </div>
+</header>
+
+<!-- 1 PLAN -->
+<section id="plan">
+  <div class="sec-head"><div class="num">1</div><div>
+    <div class="tag"><span class="en hasTe">Patterns</span><span class="te">మాదిరులు</span></div>
+    <h2><span class="en hasTe">The Plan Before the Manger</span><span class="te">తొట్టికి ముందే ఉన్న ప్రణాళిక</span></h2>
+  </div></div>
+  <p class="intro"><span class="en hasTe">Bethlehem was not Plan B. Follow the golden thread: planned in eternity, promised in the Torah, narrowed through the Prophets, and fulfilled “when the fullness of the time had come.” Tap any point to read the verse.</span><span class="te">బేత్లెహేము రెండవ ప్రణాళిక కాదు. బంగారు దారమును అనుసరించండి: నిత్యత్వములో ప్రణాళిక, ధర్మశాస్త్రములో వాగ్దానము, ప్రవక్తల ద్వారా స్పష్టత, “కాలము పరిపూర్ణమైనప్పుడు” నెరవేర్పు. వచనము చదువుటకు ప్రతి అంశమును నొక్కండి.</span></p>
+  <div class="legend">
+    <span style="--c:var(--plum)"><span class="en hasTe">Before time</span><span class="te">కాలమునకు ముందు</span></span>
+    <span style="--c:var(--gold)"><span class="en hasTe">Torah</span><span class="te">ధర్మశాస్త్రము</span></span>
+    <span style="--c:var(--blue)"><span class="en hasTe">Prophets & Writings</span><span class="te">ప్రవక్తలు & గ్రంథములు</span></span>
+    <span style="--c:var(--red)"><span class="en hasTe">Fulfilled in Christ</span><span class="te">క్రీస్తులో నెరవేర్పు</span></span>
+  </div>
+  <div class="thread" id="thread"></div>
+</section>
+
+<!-- 2 TEXT -->
+<section id="text">
+  <div class="sec-head"><div class="num">2</div><div>
+    <div class="tag"><span class="en hasTe">The record</span><span class="te">వృత్తాంతము</span></div>
+    <h2><span class="en hasTe">What the Text Actually Says</span><span class="te">వాక్యము నిజముగా ఏమి చెప్తుంది</span></h2>
+  </div></div>
+  <p class="intro"><span class="en hasTe">Matthew and Luke tell complementary halves of one account. Swipe through the events in order. The time markers come from the text itself (eighth day, forty days, “two years old and under”).</span><span class="te">మత్తయి మరియు లూకా ఒకే వృత్తాంతములోని రెండు భాగములను చెప్తారు. సంఘటనలను క్రమముగా జరపి చూడండి. కాల సూచనలు వాక్యము నుండే వచ్చినవి (ఎనిమిదవ దినము, నలుబది దినములు, “రెండు సంవత్సరములు మొదలుకొని తక్కువ వయస్సుగల”).</span></p>
+  <div class="hint">← <span class="en hasTe">swipe</span><span class="te">జరపండి</span> →  <span style="color:var(--red);font-weight:600">■ <span class="en hasTe">Matthew</span><span class="te">మత్తయి</span></span> &nbsp; <span style="color:var(--green);font-weight:600">■ <span class="en hasTe">Luke</span><span class="te">లూకా</span></span></div>
+  <div class="seq" id="seq"></div>
+  <div class="note">
+    <span class="en hasTe"><b>Harmony note:</b> Luke 2:39 moves straight from the temple to Nazareth, and Matthew 2 records the magi, Egypt and the return. Most harmonies put the magi's visit after the 40-day presentation, while the family was living in a house in Bethlehem (Mt 2:11), and before Herod's order covering “two years old and under” (Mt 2:16). Scripture doesn't give the exact gap, so we hold the order loosely and the facts firmly.</span>
+    <span class="te"><b>సమన్వయ గమనిక:</b> లూకా 2:39 దేవాలయము నుండి నేరుగా నజరేతుకు వెళ్తుంది; మత్తయి 2 జ్ఞానుల రాక, ఐగుప్తు ప్రయాణము మరియు తిరిగి రాకను నమోదు చేస్తుంది. చాలా సమన్వయములు జ్ఞానుల రాకను 40వ దినపు సమర్పణ తరువాత ఉంచుతాయి — కుటుంబము బేత్లెహేములో ఒక యింటిలో నివసిస్తున్నప్పుడు (మత్తయి 2:11), మరియు “రెండు సంవత్సరములు మొదలుకొని తక్కువ వయస్సుగల” అను హేరోదు ఆజ్ఞకు ముందు (మత్తయి 2:16). ఖచ్చితమైన కాల వ్యవధిని లేఖనము చెప్పదు, కాబట్టి క్రమమును సడలింపుగా, సత్యములను దృఢముగా పట్టుకొందము.</span>
+  </div>
+</section>
+
+<!-- 3 MYTHS -->
+<section id="myths">
+  <div class="sec-head"><div class="num">3</div><div>
+    <div class="tag"><span class="en hasTe">Scripture explaining Scripture</span><span class="te">లేఖనమే లేఖనమును వివరించును</span></div>
+    <h2><span class="en hasTe">Myths vs. Scripture</span><span class="te">అపోహలు మరియు లేఖనములు</span></h2>
+  </div></div>
+  <p class="intro"><span class="en hasTe">Many of these are harmless pictures. The goal isn't to mock the nativity scene. It's to train the eye to ask, “Is that in the text?” Tap a card to flip it.</span><span class="te">వీటిలో చాలా హానిలేని చిత్రాలే. ఉద్దేశ్యము జనన దృశ్యమును ఎగతాళి చేయుట కాదు; “ఇది వాక్యములో ఉందా?” అని అడుగుట నేర్చుకొనుటయే. కార్డును తిప్పుటకు నొక్కండి.</span></p>
+  <div class="filters" id="mfilters">
+    <button class="on" data-f="all"><span class="en hasTe">All</span><span class="te">అన్నీ</span></button>
+    <button data-f="people"><span class="en hasTe">People</span><span class="te">వ్యక్తులు</span></button>
+    <button data-f="place"><span class="en hasTe">Place</span><span class="te">స్థలము</span></button>
+    <button data-f="time"><span class="en hasTe">Time</span><span class="te">కాలము</span></button>
+    <button class="btn" id="flipall" style="margin-left:auto"><span class="en hasTe">Flip all</span><span class="te">అన్నీ తిప్పు</span></button>
+  </div>
+  <div class="myths" id="mythgrid"></div>
+</section>
+
+<!-- 4 HISTORY -->
+<section id="history">
+  <div class="sec-head"><div class="num">4</div><div>
+    <div class="tag"><span class="en hasTe">After the apostles</span><span class="te">అపొస్తలుల తరువాత</span></div>
+    <h2><span class="en hasTe">How the Tradition Took Shape</span><span class="te">సంప్రదాయము ఎలా రూపుదిద్దుకుంది</span></h2>
+  </div></div>
+  <p class="intro"><span class="en hasTe">The New Testament records no celebration of Jesus' birthday and no command to keep one. What follows is church and cultural history. It's useful for understanding, but it isn't Scripture.</span><span class="te">క్రొత్త నిబంధనలో యేసు జన్మదిన ఆచరణ గానీ, దానిని ఆచరించమని ఆజ్ఞ గానీ లేదు. క్రింది విషయములు సంఘ మరియు సాంస్కృతిక చరిత్ర — అర్థము చేసుకొనుటకు ఉపయోగపడును, కానీ లేఖనము కాదు.</span></p>
+  <div class="filters" id="hfilters">
+    <button class="on" data-f="all"><span class="en hasTe">All</span><span class="te">అన్నీ</span></button>
+    <button data-f="church"><span class="en hasTe">Church</span><span class="te">సంఘము</span></button>
+    <button data-f="culture"><span class="en hasTe">Culture</span><span class="te">సంస్కృతి</span></button>
+    <button data-f="reform"><span class="en hasTe">Pushback</span><span class="te">వ్యతిరేకత</span></button>
+    <button data-f="commerce"><span class="en hasTe">Commerce</span><span class="te">వ్యాపారము</span></button>
+  </div>
+  <div class="hist" id="hist"></div>
+
+  <h3 style="font-size:28px;margin-top:34px"><span class="en hasTe">Why December 25? Two theories</span><span class="te">డిసెంబరు 25 ఎందుకు? రెండు సిద్ధాంతములు</span></h3>
+  <div class="theories" id="theories"></div>
+  <div class="verdict">
+    <span class="en hasTe"><b>Bottom line:</b> both theories are human reasoning from centuries after the apostles. Scripture is silent on the date. That silence is itself a lesson: God put the weight on the <i>fact</i> and the <i>purpose</i> of the incarnation (1 Tim 3:16; Mt 1:21), not on an anniversary.</span>
+    <span class="te"><b>ముగింపు:</b> ఈ రెండు సిద్ధాంతములు అపొస్తలుల తరువాత శతాబ్దాలకు వచ్చిన మానవ తర్కమే. తేదీ విషయమై లేఖనము మౌనముగా ఉంది. ఆ మౌనమే ఒక పాఠము: దేవుడు ప్రాముఖ్యతను శరీరధారణ యొక్క <i>సత్యము</i> మీద మరియు <i>ఉద్దేశ్యము</i> మీద ఉంచాడు (1 తిమోతికి 3:16; మత్తయి 1:21) — వార్షికోత్సవము మీద కాదు.</span>
+  </div>
+</section>
+
+<!-- 5 ENTANGLED -->
+<section id="entangled">
+  <div class="sec-head"><div class="num">5</div><div>
+    <div class="tag"><span class="en hasTe">Principles</span><span class="te">సూత్రములు</span></div>
+    <h2><span class="en hasTe">Why We Are Entangled</span><span class="te">మనము ఎందుకు చిక్కుకున్నాము</span></h2>
+  </div></div>
+  <p class="intro"><span class="en hasTe">Picture the season as a gift wrapped layer on layer. Tap each layer, from the outside in, to see what it is, where it came from, and what Scripture says. At the center is the real gift.</span><span class="te">ఈ కాలమును పొరల మీద పొరలుగా చుట్టబడిన బహుమానముగా ఊహించండి. ప్రతి పొరను బయట నుండి లోపలికి నొక్కి, అది ఏమిటో, ఎక్కడ నుండి వచ్చిందో, లేఖనము ఏమి చెప్తుందో చూడండి. మధ్యలో నిజమైన బహుమానము ఉంది.</span></p>
+  <div class="wrap-grid">
+    <svg class="layers" viewBox="0 0 400 400" id="layers" role="img" aria-label="Layers of tradition around the Word made flesh"></svg>
+    <div class="panel" id="lpanel"></div>
+  </div>
+
+  <div class="principles" id="principles"></div>
+
+  <div class="balance">
+    <div class="l">
+      <h3 style="font-size:22px"><span class="en hasTe">The danger: entanglement</span><span class="te">ప్రమాదము: చిక్కుకొనుట</span></h3>
+      <p style="font-size:14px"><span class="en hasTe">When the tradition replaces the text, when the season crowds out the Savior, or when keeping the day becomes a measure of spirituality (Gal 4:9–11; Col 2:8).</span><span class="te">సంప్రదాయము వాక్యము స్థానమును ఆక్రమించినప్పుడు, ఈ కాలపు హడావిడి రక్షకుని ప్రక్కకు నెట్టినప్పుడు, లేదా దినమును ఆచరించుట ఆత్మీయతకు కొలమానముగా మారినప్పుడు (గలతీయులకు 4:9–11; కొలొస్సయులకు 2:8).</span></p>
+    </div>
+    <div class="r">
+      <h3 style="font-size:22px"><span class="en hasTe">The safeguard: liberty in Christ</span><span class="te">రక్షణ కవచము: క్రీస్తులో స్వాతంత్ర్యము</span></h3>
+      <p style="font-size:14px"><span class="en hasTe">Don't judge a brother over days (Col 2:16; Rom 14:5–6). Whatever we do, we do it to the Lord and for His glory (1 Cor 10:31). Use the open door to preach Christ, the way Paul used the altar “to the unknown God” (Acts 17:23).</span><span class="te">దినముల విషయమై సహోదరునికి తీర్పు తీర్చవద్దు (కొలొస్సయులకు 2:16; రోమీయులకు 14:5–6). మనమేమి చేసినను ప్రభువు కొరకు, ఆయన మహిమ కొరకు చేయుదుము (1 కొరింథీయులకు 10:31). పౌలు “తెలియబడని దేవునికి” అను బలిపీఠమును ఉపయోగించుకొనినట్లు, తెరువబడిన ద్వారమును క్రీస్తును ప్రకటించుటకు వినియోగించుము (అపొస్తలుల కార్యములు 17:23).</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 PRACTICE -->
+<section id="practice">
+  <div class="sec-head"><div class="num">6</div><div>
+    <div class="tag"><span class="en hasTe">Practices</span><span class="te">ఆచరణలు</span></div>
+    <h2><span class="en hasTe">Living It Out</span><span class="te">ఆచరణలో జీవించుట</span></h2>
+  </div></div>
+  <p class="intro"><span class="en hasTe">Every person around the birth of Christ models a response. Learn from them, not from the season.</span><span class="te">క్రీస్తు జనన సమయములోని ప్రతి వ్యక్తి ఒక స్పందనకు మాదిరి. ఈ కాలము నుండి కాదు, వారి నుండి నేర్చుకొనుము.</span></p>
+  <div class="practice" id="practices"></div>
+  <div class="discuss">
+    <h3 style="font-size:24px"><span class="en hasTe">Discussion questions</span><span class="te">చర్చా ప్రశ్నలు</span></h3>
+    <ol id="questions"></ol>
+  </div>
+</section>
+
+<div class="closing">
+  <h2><span class="en hasTe">God didn't need December.<br>He had the fullness of time.</span><span class="te">దేవునికి డిసెంబరు అవసరము లేదు.<br>ఆయనకు కాలము యొక్క పరిపూర్ణత ఉంది.</span></h2>
+  <div id="closingVerse" style="max-width:640px;margin:18px auto 0;color:var(--ink)"></div>
+</div>
+
+<footer>
+  <span class="en hasTe">Scripture taken from the New King James Version®. Copyright © 1982 by Thomas Nelson. Used by permission. All rights reserved. Reference chips open the full passage (NKJV) on BibleGateway. Historical notes reflect commonly cited sources; where scholars disagree, both views are shown.</span>
+  <span class="te">తెలుగు వచనములు: పరిశుద్ధ గ్రంథము (తెలుగు పాత అనువాదము, OV — పబ్లిక్ డొమైన్). వచన సూచికలు BibleGateway లో పూర్తి భాగమును (తెలుగు OV) తెరుచును. చారిత్రక గమనికలు సాధారణముగా ఉదహరించబడే ఆధారములను అనుసరించును; పండితుల మధ్య భేదాభిప్రాయములున్న చోట రెండు దృక్పథములు చూపబడినవి.</span>
+</footer>
+
+<script>
+/* ---------- bilingual helpers ---------- */
+const L = (en, te) => `<span class="en hasTe">${en}</span><span class="te">${te ?? en}</span>`;
+const BOOK_TE = {"Genesis":"ఆదికాండము","Leviticus":"లేవీయకాండము","Numbers":"సంఖ్యాకాండము","2 Samuel":"2 సమూయేలు","Psalm":"కీర్తనలు","Proverbs":"సామెతలు","Isaiah":"యెషయా","Jeremiah":"యిర్మీయా","Daniel":"దానియేలు","Hosea":"హోషేయ","Micah":"మీకా","Malachi":"మలాకీ","Matthew":"మత్తయి","Mark":"మార్కు","Luke":"లూకా","John":"యోహాను","Acts":"అపొ. కార్యములు","Romans":"రోమీయులకు","1 Corinthians":"1 కొరింథీయులకు","2 Corinthians":"2 కొరింథీయులకు","Galatians":"గలతీయులకు","Ephesians":"ఎఫెసీయులకు","Colossians":"కొలొస్సయులకు","1 Timothy":"1 తిమోతికి","2 Timothy":"2 తిమోతికి","Hebrews":"హెబ్రీయులకు","James":"యాకోబు","1 Peter":"1 పేతురు","Revelation":"ప్రకటన"};
+const teRef = r => { const m = r.match(/^(.*?)\s(\d.*)$/); return m ? (BOOK_TE[m[1]] || m[1]) + " " + m[2] : r; };
+const BG = (r, v) => "https://www.biblegateway.com/passage/?search=" + encodeURIComponent(r) + "&version=" + v;
+const chips = refs => refs.map(r =>
+  `<a class="ref en hasTe" target="_blank" rel="noopener" href="${BG(r,"NKJV")}">${r}</a><a class="ref te" target="_blank" rel="noopener" href="${BG(r,"OTSV")}">${teRef(r)}</a>`).join("");
+const verse = (en, te, ref, more=[]) =>
+  `<div class="verse">${L("“"+en+"”", "“"+te+"”")}<cite>${chips([ref])} ${chips(more)}</cite></div>`;
+
+/* ---------- 1. Promise thread ---------- */
+const P = "var(--plum)", T = "var(--gold)", PR = "var(--blue)", F = "var(--red)";
+const promises = [
+  {c:P, era:["Before time","కాలమునకు ముందు"], t:["The Lamb foreordained","ముందుగా నియమింపబడిన గొఱ్ఱెపిల్ల"],
+   lead:["The cross was planned before creation.","సృష్టికి ముందే సిలువ ప్రణాళిక చేయబడింది."],
+   v:"He indeed was foreordained before the foundation of the world, but was manifest in these last times for you.",
+   vt:"ఆయన జగత్తు పునాది వేయబడక మునుపే నియమింపబడెను గాని … మీ నిమిత్తము, కడవరి కాలములయందు ఆయన ప్రత్యక్షపరచబడెను.",
+   r:"1 Peter 1:20", x:["Revelation 13:8","Ephesians 1:4","2 Timothy 1:9"]},
+  {c:T, era:["Torah · Genesis","ధర్మశాస్త్రము · ఆదికాండము"], t:["The Seed of the woman","స్త్రీ సంతానము"],
+   lead:["The first gospel promise, spoken in the garden.","తోటలో పలుకబడిన మొదటి సువార్త వాగ్దానము."],
+   v:"And I will put enmity between you and the woman, and between your seed and her Seed; He shall bruise your head, and you shall bruise His heel.",
+   vt:"మరియు నీకును స్త్రీకిని నీ సంతానమునకును ఆమె సంతానమునకును వైరము కలుగజేసెదను. అది నిన్ను తలమీద కొట్టును; నీవు దానిని మడిమె మీద కొట్టుదువని చెప్పెను.",
+   r:"Genesis 3:15", x:["Galatians 4:4","Hebrews 2:14"]},
+  {c:T, era:["Torah · Genesis","ధర్మశాస్త్రము · ఆదికాండము"], t:["The Seed of Abraham","అబ్రాహాము సంతానము"],
+   lead:["Narrowed to one family, and through it a blessing to all nations.","ఒక కుటుంబమునకు పరిమితమై, దాని ద్వారా సకల జనములకు ఆశీర్వాదము."],
+   v:"In your seed all the nations of the earth shall be blessed.",
+   vt:"భూలోకములోని జనములన్నియు నీ సంతానమువలన ఆశీర్వదించబడును.",
+   r:"Genesis 22:18", x:["Genesis 12:3","Galatians 3:16","Matthew 1:1"]},
+  {c:T, era:["Torah · Genesis","ధర్మశాస్త్రము · ఆదికాండము"], t:["The scepter of Judah","యూదా రాజదండము"],
+   lead:["Narrowed to one tribe.","ఒక గోత్రమునకు పరిమితము."],
+   v:"The scepter shall not depart from Judah, nor a lawgiver from between his feet, until Shiloh comes; and to Him shall be the obedience of the people.",
+   vt:"షిలోహు వచ్చువరకు యూదా యొద్దనుండి దండము తొలగదు అతని కాళ్ల మధ్యనుండి రాజదండము తొలగదు ప్రజలు అతనికి విధేయులై యుందురు.",
+   r:"Genesis 49:10", x:["Hebrews 7:14","Revelation 5:5"]},
+  {c:T, era:["Torah · Numbers","ధర్మశాస్త్రము · సంఖ్యాకాండము"], t:["A Star out of Jacob","యాకోబులో ఉదయించు నక్షత్రము"],
+   lead:["Spoken through Balaam, a prophet from the East. Centuries later, wise men from the East follow a star.","తూర్పు దేశపు ప్రవక్తయైన బిలాము ద్వారా పలుకబడినది. శతాబ్దాల తరువాత తూర్పు దేశపు జ్ఞానులు ఒక నక్షత్రమును వెంబడించారు."],
+   v:"A Star shall come out of Jacob; a Scepter shall rise out of Israel.",
+   vt:"నక్షత్రము యాకోబులో ఉదయించును రాజదండము ఇశ్రాయేలులోనుండి లేచును.",
+   r:"Numbers 24:17", x:["Matthew 2:2"]},
+  {c:PR, era:["Writings · 2 Samuel","గ్రంథములు · 2 సమూయేలు"], t:["The throne of David","దావీదు సింహాసనము"],
+   lead:["Narrowed to one house, with an eternal kingdom.","ఒక వంశమునకు పరిమితము — నిత్య రాజ్యముతో."],
+   v:"I will set up your seed after you … and I will establish the throne of his kingdom forever.",
+   vt:"నీ గర్భములోనుండి వచ్చిన నీ సంతతిని హెచ్చించి, రాజ్యమును అతనికి స్థిరపరచెదను … అతని రాజ్య సింహాసనమును నేను నిత్యముగా స్థిరపరచెదను.",
+   r:"2 Samuel 7:12-13", x:["Luke 1:32-33","Psalm 89:3-4"]},
+  {c:PR, era:["Prophets · Isaiah","ప్రవక్తలు · యెషయా"], t:["Born of a virgin","కన్యక గర్భమున జననము"],
+   lead:["The manner of His coming: a sign from the Lord Himself.","ఆయన వచ్చు విధానము: ప్రభువు తానే ఇచ్చిన సూచన."],
+   v:"Therefore the Lord Himself will give you a sign: Behold, the virgin shall conceive and bear a Son, and shall call His name Immanuel.",
+   vt:"కాబట్టి ప్రభువు తానే యొక సూచన మీకు చూపును. ఆలకించుడి, కన్యక గర్భవతియై కుమారుని కని అతనికి ఇమ్మానుయేలను పేరు పెట్టును.",
+   r:"Isaiah 7:14", x:["Matthew 1:22-23","Luke 1:34-35"]},
+  {c:PR, era:["Prophets · Isaiah","ప్రవక్తలు · యెషయా"], t:["A Child born, a Son given","శిశువు పుట్టెను, కుమారుడు అనుగ్రహింపబడెను"],
+   lead:["Human child and divine Son, in one Person.","మానవ శిశువు మరియు దైవ కుమారుడు — ఒకే వ్యక్తిలో."],
+   v:"For unto us a Child is born, unto us a Son is given; and the government will be upon His shoulder.",
+   vt:"ఏలయనగా మనకు శిశువు పుట్టెను మనకు కుమారుడు అనుగ్రహింపబడెను ఆయన భుజముమీద రాజ్యభారముండును.",
+   r:"Isaiah 9:6-7", x:["Luke 2:11","John 3:16"]},
+  {c:PR, era:["Prophets · Micah","ప్రవక్తలు · మీకా"], t:["Out of Bethlehem","బేత్లెహేములోనుండి"],
+   lead:["The town is named about 700 years ahead, and the Ruler's origins are eternal.","సుమారు 700 సంవత్సరముల ముందే ఊరి పేరు చెప్పబడింది; ఆ పాలకుని ఉనికి నిత్యమైనది."],
+   v:"But you, Bethlehem Ephrathah, though you are little among the thousands of Judah, yet out of you shall come forth to Me the One to be Ruler in Israel, whose goings forth are from of old, from everlasting.",
+   vt:"బేత్లెహేము ఎఫ్రాతా, యూదావారి కుటుంబములలో నీవు స్వల్పగ్రామమైనను నాకొరకు ఇశ్రాయేలీయులను ఏలబోవువాడు నీలోనుండి వచ్చును; పురాతన కాలము మొదలుకొని శాశ్వతకాలము ఆయన ప్రత్యక్షమగుచుండెను.",
+   r:"Micah 5:2", x:["Matthew 2:5-6","John 7:42"]},
+  {c:PR, era:["Prophets · Daniel","ప్రవక్తలు · దానియేలు"], t:["Until Messiah the Prince","అభిషిక్తుడగు అధిపతి వచ్చువరకు"],
+   lead:["Even the timeline is set on God's calendar.","కాలక్రమము కూడా దేవుని క్యాలెండరులో నిర్ణయింపబడింది."],
+   v:"From the going forth of the command to restore and build Jerusalem until Messiah the Prince …",
+   vt:"యెరూషలేమును మరల కట్టించవచ్చునని ఆజ్ఞ బయలుదేరిన సమయము మొదలుకొని అభిషిక్తుడగు అధిపతి వచ్చువరకు …",
+   r:"Daniel 9:25", x:["Galatians 4:4","Mark 1:15"]},
+  {c:PR, era:["Prophets · Malachi","ప్రవక్తలు · మలాకీ"], t:["The messenger before Him","ఆయనకు ముందు దూత"],
+   lead:["The last Old Testament promise points to John and then to the Lord.","పాత నిబంధనలోని చివరి వాగ్దానము యోహానును, తరువాత ప్రభువును చూపుతుంది."],
+   v:"Behold, I send My messenger, and he will prepare the way before Me.",
+   vt:"ఇదిగో నాకు ముందుగా మార్గము సిద్ధపరచుటకై నేను నా దూతను పంపుచున్నాను.",
+   r:"Malachi 3:1", x:["Luke 1:76","Matthew 11:10"]},
+  {c:F, era:["Fulfilled","నెరవేర్పు"], t:["A body prepared","అమర్చబడిన శరీరము"],
+   lead:["The Son steps into time to do the Father's will.","తండ్రి చిత్తము నెరవేర్చుటకు కుమారుడు కాలములోనికి అడుగుపెట్టాడు."],
+   v:"Sacrifice and offering You did not desire, but a body You have prepared for Me.",
+   vt:"బలియు అర్పణయు నీవు కోరలేదుగాని నాకొక శరీరమును అమర్చితివి.",
+   r:"Hebrews 10:5", x:["Psalm 40:6-8","John 1:14"]},
+  {c:F, era:["Fulfilled","నెరవేర్పు"], t:["The fullness of the time","కాలము పరిపూర్ణమైనప్పుడు"],
+   lead:["Not late, not early. Exactly on time.","ఆలస్యముగా కాదు, ముందుగా కాదు — సరిగ్గా సమయానికే."],
+   v:"But when the fullness of the time had come, God sent forth His Son, born of a woman, born under the law.",
+   vt:"అయితే కాలము పరిపూర్ణమైనప్పుడు దేవుడు తన కుమారుని పంపెను; ఆయన స్త్రీయందు పుట్టి … ధర్మశాస్త్రమునకు లోబడినవాడాయెను.",
+   r:"Galatians 4:4", x:["Mark 1:15","Ephesians 1:10"]},
+];
+document.getElementById("thread").innerHTML = promises.map(p => `
+  <div class="pt" style="--c:${p.c}">
+    <div class="era">${L(...p.era)}</div>
+    <details><summary><h3>${L(...p.t)}</h3><div class="lead">${L(...p.lead)} <span class="more">${L("Read ▾","చదవండి ▾")}</span></div></summary>
+      ${verse(p.v, p.vt, p.r, p.x)}
+    </details>
+  </div>`).join("");
+
+/* ---------- 2. Sequence ---------- */
+const seq = [
+  {w:["~15 months before","సుమారు 15 నెలల ముందు"], s:"lk", t:["Gabriel to Zacharias","జెకర్యాకు గబ్రియేలు"],
+   p:["John's birth is announced. He is the messenger of Malachi 3:1.","యోహాను జననము ప్రకటింపబడింది — మలాకీ 3:1 లోని దూత అతడే."], r:["Luke 1:5-25"]},
+  {w:["6th month","ఆరవ నెల"], s:"lk", t:["Gabriel to Mary","మరియకు గబ్రియేలు"],
+   p:["“The Holy Spirit will come upon you … that Holy One who is to be born will be called the Son of God.”","“పరిశుద్ధాత్మ నీమీదికి వచ్చును … పుట్టబోవు శిశువు పరిశుద్ధుడై దేవుని కుమారుడనబడును.”"], r:["Luke 1:26-38"]},
+  {w:["Soon after","కొద్ది కాలములోనే"], s:"lk", t:["Mary visits Elizabeth","ఎలీసబెతును దర్శించిన మరియ"],
+   p:["John leaps in the womb. Mary's song recalls the promise “to Abraham and to his seed forever.”","గర్భములో యోహాను గంతులు వేశాడు. అబ్రాహామునకు మరియు అతని సంతానమునకు చేసిన వాగ్దానమును మరియ కీర్తన జ్ఞాపకము చేస్తుంది."], r:["Luke 1:39-56"]},
+  {w:["Before the birth","జననమునకు ముందు"], s:"mt", t:["Joseph's dream","యోసేపు స్వప్నము"],
+   p:["“You shall call His name JESUS, for He will save His people from their sins.” Joseph obeys.","“తన ప్రజలను వారి పాపములనుండి ఆయనే రక్షించును గనుక ఆయనకు యేసు అను పేరు పెట్టుదువు.” యోసేపు విధేయుడయ్యాడు."], r:["Matthew 1:18-25"]},
+  {w:["Census","జనసంఖ్య"], s:"lk", t:["Nazareth to Bethlehem","నజరేతు నుండి బేత్లెహేముకు"],
+   p:["A decree from Caesar Augustus moves the family to the city of David. Rome's paperwork serves Micah 5:2.","కైసరు ఔగుస్తు ఆజ్ఞ ఆ కుటుంబమును దావీదు ఊరికి తీసుకువెళ్లింది. రోమా ప్రభుత్వ కాగితపు పని మీకా 5:2 ను నెరవేర్చింది."], r:["Luke 2:1-5"]},
+  {w:["Birth","జననము"], s:"lk", t:["Laid in a manger","తొట్టిలో పరుండబెట్టబడెను"],
+   p:["Wrapped in swaddling cloths and laid in a manger, “because there was no room for them in the inn.”","పొత్తిగుడ్డలతో చుట్టి, “సత్రములో వారికి స్థలము లేనందున” పశువుల తొట్టిలో పరుండబెట్టబడెను."], r:["Luke 2:6-7"]},
+  {w:["Same night","అదే రాత్రి"], s:"lk", t:["Shepherds & the heavenly host","కాపరులు & పరలోక సైన్యము"],
+   p:["An angel announces “a Savior, who is Christ the Lord.” The host praises God, saying, “Glory to God in the highest.”","దూత “రక్షకుడు … ప్రభువైన క్రీస్తు” పుట్టియున్నాడని ప్రకటించాడు. పరలోక సైన్యము “సర్వోన్నతమైన స్థలములలో దేవునికి మహిమ” అని దేవుని స్తోత్రము చేసింది."], r:["Luke 2:8-20"]},
+  {w:["Day 8","8వ దినము"], s:"lk", t:["Circumcised & named","సున్నతి & నామకరణము"],
+   p:["He is named JESUS, “the name given by the angel.” He was born under the law (Gal 4:4).","దేవదూత పెట్టిన “యేసు” అను పేరు ఆయనకు పెట్టబడింది. ఆయన ధర్మశాస్త్రమునకు లోబడి పుట్టెను (గలతీయులకు 4:4)."], r:["Luke 2:21","Leviticus 12:3"]},
+  {w:["Day 40","40వ దినము"], s:"lk", t:["Presented in the temple","దేవాలయములో సమర్పణ"],
+   p:["A poor family's offering of birds. Simeon says, “my eyes have seen Your salvation.” Anna speaks of Him to all who looked for redemption.","బీద కుటుంబపు పక్షుల అర్పణ. సుమెయోను తన కన్నులు దేవుని రక్షణను చూచెనని కొనియాడాడు. విమోచన కొరకు కనిపెట్టుచున్నవారందరితో అన్న ఆయనను గూర్చి మాటలాడింది."], r:["Luke 2:22-38","Leviticus 12:6-8"]},
+  {w:["Later · up to ~2 yrs","తరువాత · ~2 సం. లోపు"], s:"mt", t:["Magi come to the house","జ్ఞానులు యింటికి వచ్చిరి"],
+   p:["They see “the young Child” in a house, worship Him, and give gold, frankincense and myrrh.","వారు యింటిలోనికి వచ్చి శిశువును చూచి, సాగిలపడి పూజించి, బంగారము, సాంబ్రాణి, బోళము సమర్పించిరి."], r:["Matthew 2:1-12"]},
+  {w:["That night","ఆ రాత్రే"], s:"mt", t:["Flight to Egypt","ఐగుప్తునకు పలాయనము"],
+   p:["Joseph is warned in a dream. “Out of Egypt I called My Son.”","స్వప్నములో యోసేపు హెచ్చరింపబడ్డాడు. “ఐగుప్తులోనుండి నా కుమారుని పిలిచితిని.”"], r:["Matthew 2:13-15","Hosea 11:1"]},
+  {w:["After","తరువాత"], s:"mt", t:["Herod's slaughter","హేరోదు చేసిన వధ"],
+   p:["Boys “from two years old and under,” based on the magi's timing. “A voice was heard in Ramah.”","జ్ఞానుల వలన తెలిసికొనిన కాలమును బట్టి “రెండు సంవత్సరములు మొదలుకొని తక్కువ వయస్సుగల” మగపిల్లలందరు. రామాలో రాహేలు యేడ్పు — యిర్మీయా మాట నెరవేరెను."], r:["Matthew 2:16-18","Jeremiah 31:15"]},
+  {w:["After Herod dies","హేరోదు మరణము తరువాత"], s:"mt", t:["Home to Nazareth","నజరేతుకు తిరిగి"],
+   p:["“He shall be called a Nazarene.” The Child grows, “filled with wisdom.”","“ఆయన నజరేయుడనబడును.” బాలుడు జ్ఞానముతో నిండుకొనుచు ఎదిగెను."], r:["Matthew 2:19-23","Luke 2:39-40"]},
+];
+document.getElementById("seq").innerHTML = seq.map((x,i) => `
+  <div class="step"><span class="when">${L(...x.w)}</span>
+   <div class="src ${x.s}">${x.s==="mt"?L("Matthew","మత్తయి"):L("Luke","లూకా")} · ${i+1}/${seq.length}</div>
+   <h3>${L(...x.t)}</h3><p>${L(...x.p)}</p>${chips(x.r)}</div>`).join("");
+
+/* ---------- 3. Myths ---------- */
+const myths = [
+  {k:"people", m:["Three kings came","ముగ్గురు రాజులు వచ్చారు"],
+   tr:["Matthew calls them <b>magi</b> (“wise men”) from the East. He gives no number and no royal title. We count <i>three gifts</i>, not three men.",
+       "మత్తయి వారిని తూర్పు దేశపు <b>జ్ఞానులు</b> అని పిలుస్తాడు. సంఖ్య గానీ, రాజ బిరుదు గానీ చెప్పడు. మనము లెక్కించేది <i>మూడు కానుకలు</i>, ముగ్గురు మనుష్యులు కాదు."],
+   q:["“…wise men from the East came to Jerusalem.”","“…తూర్పు దేశపు జ్ఞానులు యెరూషలేమునకు వచ్చి”"], r:["Matthew 2:1","Matthew 2:11"]},
+  {k:"place", m:["The magi visited the manger","జ్ఞానులు తొట్టి వద్దకు వచ్చారు"],
+   tr:["The shepherds found a <i>Babe</i> in a <i>manger</i>. The magi came to a <i>house</i> and found a <i>young Child</i>. Herod's “two years and under” points to a later visit.",
+       "కాపరులు <i>తొట్టిలో</i> పండుకొనియున్న <i>శిశువును</i> కనుగొన్నారు. జ్ఞానులు <i>యింటిలోనికి</i> వచ్చారు. హేరోదు ఆజ్ఞ “రెండు సంవత్సరములు మొదలుకొని తక్కువ వయస్సుగల” అనునది వారి రాక తరువాత జరిగినదని సూచిస్తుంది."],
+   q:["“…when they had come into the house, they saw the young Child…”","“…యింటిలోనికి వచ్చి, తల్లియైన మరియను ఆ శిశువును చూచి, సాగిలపడి, ఆయనను పూజించి…”"], r:["Luke 2:12","Matthew 2:10-11","Matthew 2:16"]},
+  {k:"people", m:["The cruel innkeeper","క్రూరమైన సత్రపు యజమాని"],
+   tr:["No innkeeper appears in the text. The word Luke uses for “inn” (2:7) is the same one he uses for the upper “guest room” where Jesus ate the Passover (22:11). Scripture explains Scripture: the guest space was full, and no villain is named.",
+       "వాక్యములో సత్రపు యజమాని కనిపించడు. లూకా 2:7 లో “సత్రము” అని అనువదించబడిన మూల పదమునే లూకా 22:11 లో యేసు పస్కాను భుజించిన “విడిది గది” కొరకు లూకా వాడాడు. లేఖనమే లేఖనమును వివరించును: అతిథుల గది నిండిపోయింది; ఏ దుర్మార్గుని పేరు చెప్పబడలేదు."],
+   q:["“…because there was no room for them in the inn.”","“…సత్రములో వారికి స్థలము లేనందున ఆయనను పశువుల తొట్టిలో పరుండబెట్టెను.”"], r:["Luke 2:7","Luke 22:11"]},
+  {k:"time", m:["Born on December 25","డిసెంబరు 25న జన్మించాడు"],
+   tr:["Scripture gives no date. The earliest firm record of Dec 25 is a Roman calendar list from AD 354. The Bible records the <i>fact</i> and the <i>purpose</i> of His birth, not the anniversary.",
+       "లేఖనము తేదీ చెప్పదు. డిసెంబరు 25 కు సంబంధించిన మొట్టమొదటి స్పష్టమైన నమోదు క్రీ.శ. 354 నాటి ఒక రోమా క్యాలెండరు జాబితా. బైబిలు ఆయన జననపు <i>సత్యమును</i> మరియు <i>ఉద్దేశ్యమును</i> నమోదు చేస్తుంది — వార్షికోత్సవమును కాదు."],
+   q:["“…when the fullness of the time had come…”","“అయితే కాలము పరిపూర్ణమైనప్పుడు…”"], r:["Galatians 4:4"]},
+  {k:"time", m:["A snowy winter night","మంచు కురిసే చలికాలపు రాత్రి"],
+   tr:["Luke says only that shepherds were living out in the fields, keeping watch by night. The season isn't stated. The snowy scene comes from European art and carols.",
+       "కాపరులు పొలములో ఉండి రాత్రివేళ మందను కాచుకొనుచున్నారని మాత్రమే లూకా చెప్తాడు. ఋతువు చెప్పబడలేదు. మంచు దృశ్యము యూరోపియన్ చిత్రకళ మరియు పాటల నుండి వచ్చినది."],
+   q:["“…shepherds living out in the fields, keeping watch over their flock by night.”","“ఆ దేశములో కొందరు గొఱ్ఱల కాపరులు పొలములో ఉండి రాత్రివేళ తమ మందను కాచుకొనుచుండగా”"], r:["Luke 2:8"]},
+  {k:"people", m:["The angels sang","దేవదూతలు పాట పాడారు"],
+   tr:["The heavenly host was <b>praising God and saying</b>. Worship, yes, but the text says “saying.” Let the text speak before the hymn does.",
+       "పరలోక సైన్య సమూహము <b>“… అని దేవుని స్తోత్రము చేయుచుండెను.”</b> ఆరాధనే — కానీ వాక్యము “అని” పలికిరని చెప్తుంది. పాట కంటే ముందు వాక్యము మాట్లాడనివ్వండి."],
+   q:["“…praising God and saying: ‘Glory to God in the highest…’”","“…సర్వోన్నతమైన స్థలములలో దేవునికి మహిమయు … కలుగునుగాక అని దేవుని స్తోత్రము చేయుచుండెను.”"], r:["Luke 2:13-14"]},
+  {k:"people", m:["The star led the shepherds","నక్షత్రము కాపరులను నడిపించింది"],
+   tr:["An <b>angel</b> guided the shepherds with a sign: the manger. The <b>star</b> guided the magi, and it stood over the place where the young Child was.",
+       "కాపరులను ఒక <b>దూత</b> ఆనవాలుతో నడిపించాడు — తొట్టి. జ్ఞానులను <b>నక్షత్రము</b> నడిపించింది; అది శిశువు ఉండిన చోటికి మీదుగా వచ్చి నిలిచింది."],
+   q:["“…the star … went before them, till it came and stood over where the young Child was.”","“…నక్షత్రము ఆ శిశువు ఉండిన చోటికి మీదుగా వచ్చి నిలుచువరకు వారికి ముందుగా నడిచెను.”"], r:["Luke 2:12","Matthew 2:9"]},
+  {k:"place", m:["Mary rode a donkey","మరియ గాడిద మీద ప్రయాణించింది"],
+   tr:["No donkey is mentioned. Luke says only that Joseph went up from Nazareth to Bethlehem “with Mary.”",
+       "గాడిద ప్రస్తావన లేదు. యోసేపు “మరియతోకూడ” నజరేతు నుండి బేత్లెహేముకు వెళ్లెనని మాత్రమే లూకా చెప్తాడు."],
+   q:["“…to be registered with Mary, his betrothed wife, who was with child.”","“…గర్భవతియై యుండిన మరియతోకూడ ఆ సంఖ్యలో వ్రాయబడుటకు…”"], r:["Luke 2:4-5"]},
+  {k:"place", m:["Born in a wooden stable","చెక్క పశువుల పాకలో జన్మించాడు"],
+   tr:["The text names only a <b>manger</b> (a feeding trough). The stable, barn or cave are later traditions; the cave idea appears around AD 150. Picture humility, not a particular building.",
+       "వాక్యము కేవలము <b>పశువుల తొట్టిని</b> (మేత తొట్టి) మాత్రమే పేర్కొంటుంది. పాక, కొట్టము లేదా గుహ తరువాతి సంప్రదాయములు; గుహ ఆలోచన సుమారు క్రీ.శ. 150 లో కనిపిస్తుంది. ఒక భవనమును కాదు, దీనత్వమును ఊహించుకొనండి."],
+   q:["“…and laid Him in a manger.”","“…ఆయనను పశువుల తొట్టిలో పరుండబెట్టెను.”"], r:["Luke 2:7","Luke 2:12","Luke 2:16"]},
+  {k:"time", m:["Jesus was born in AD 1","యేసు క్రీ.శ. 1లో జన్మించాడు"],
+   tr:["He was born “in the days of Herod the king,” and Herod died about 4 BC. A 6th-century monk's calendar miscounted, so the birth was likely around 6–4 BC.",
+       "ఆయన “రాజైన హేరోదు దినములయందు” పుట్టెను; హేరోదు సుమారు క్రీ.పూ. 4 లో మరణించాడు. 6వ శతాబ్దపు ఒక సన్యాసి క్యాలెండరు లెక్కలో పొరపాటు జరిగింది; కాబట్టి జననము సుమారు క్రీ.పూ. 6–4 మధ్య జరిగియుండవచ్చు."],
+   q:["“…in the days of Herod the king…”","“రాజైన హేరోదు దినములయందు…”"], r:["Matthew 2:1","Matthew 2:19"]},
+  {k:"people", m:["“No crying He makes”","“బిడ్డ ఏడవలేదు”"],
+   tr:["A carol line, not a verse. Scripture stresses that He shared fully in our flesh and blood and was made like His brethren in all things.",
+       "ఇది ఒక పాటలోని పంక్తి, వచనము కాదు. ఆయన మన రక్తమాంసములలో పూర్తిగా పాలుపొంది, అన్నివిషయములలో తన సహోదరుల వంటివాడాయెనని లేఖనము నొక్కి చెప్తుంది."],
+   q:["“…in all things He had to be made like His brethren…”","“…అన్నివిషయములలో ఆయన తన సహోదరుల వంటివాడు కావలసివచ్చెను.”"], r:["Hebrews 2:14","Hebrews 2:17"]},
+];
+const mg = document.getElementById("mythgrid");
+mg.innerHTML = myths.map(m => `
+  <div class="flip" data-k="${m.k}" tabindex="0">
+   <div class="flip-in">
+    <div class="face front"><div class="lab">${L("Myth","అపోహ")}</div><h3>${L(...m.m)}</h3><div class="tap">${L("Tap to see the text ↻","వాక్యము చూచుటకు నొక్కండి ↻")}</div></div>
+    <div class="face back"><div class="lab">${L("Scripture","లేఖనము")}</div><p>${L(...m.tr)}</p><p class="q">${L(...m.q)}</p><div>${chips(m.r)}</div></div>
+   </div></div>`).join("");
+mg.addEventListener("click", e => { if(e.target.closest("a")) return; const f=e.target.closest(".flip"); if(f) f.classList.toggle("on"); });
+mg.addEventListener("keydown", e => { if(e.key==="Enter"){const f=e.target.closest(".flip"); if(f) f.classList.toggle("on");} });
+let allOn=false;
+document.getElementById("flipall").onclick = () => { allOn=!allOn; mg.querySelectorAll(".flip").forEach(f=>f.classList.toggle("on",allOn)); };
+filterize("mfilters", ".flip", "k");
+
+/* ---------- 4. History ---------- */
+const hist = [
+  {y:["AD 30–200","క్రీ.శ. 30–200"], k:"none", t:["No birthday feast","జన్మదిన పండుగ లేదు"],
+   p:["The apostles preach the cross and resurrection. The church gathers on the first day of the week (Acts 20:7). No birth celebration is recorded.","అపొస్తలులు సిలువను, పునరుత్థానమును ప్రకటిస్తారు. సంఘము ఆదివారమున కూడుకొంటుంది (అపొ. కార్యములు 20:7). జనన ఉత్సవము ఎక్కడా నమోదు కాలేదు."]},
+  {y:["c. 200","సు. 200"], k:"church", t:["Dates debated","తేదీలపై వాదనలు"],
+   p:["Clement of Alexandria mentions several guesses at the birth date (including spring dates). There was no agreement.","అలెగ్జాండ్రియాకు చెందిన క్లెమెంట్ జనన తేదీ గురించి అనేక ఊహలను (వసంత ఋతువు తేదీలతో సహా) పేర్కొంటాడు. ఏకాభిప్రాయము లేదు."]},
+  {y:["c. 245","సు. 245"], k:"church", t:["Birthdays questioned","జన్మదినములపై ప్రశ్నలు"],
+   p:["Origen notes that in Scripture only Pharaoh and Herod are said to celebrate birthdays (Gen 40:20; Mt 14:6).","లేఖనములో జన్మదినములు జరుపుకొన్నవారు ఫరో మరియు హేరోదు మాత్రమేనని ఆరిజెన్ గమనిస్తాడు (ఆదికాండము 40:20; మత్తయి 14:6)."]},
+  {y:["274","274"], k:"culture", t:["Sol Invictus","సోల్ ఇన్విక్టస్"],
+   p:["Emperor Aurelian promotes the cult of the “Unconquered Sun.” Saturnalia (Dec 17–23) was already a popular feast.","చక్రవర్తి ఔరేలియన్ “జయింపబడని సూర్యుని” ఆరాధనను ప్రోత్సహిస్తాడు. సాటర్నేలియా (డిసెంబరు 17–23) అప్పటికే ప్రజాదరణ పొందిన పండుగ."]},
+  {y:["336 / 354","336 / 354"], k:"church", t:["First Dec 25 record","డిసెంబరు 25 మొదటి నమోదు"],
+   p:["A Roman calendar (the Chronograph of 354) lists Christ's birth on Dec 25, reflecting practice in Rome by 336.","ఒక రోమా క్యాలెండరు (354 నాటి క్రోనోగ్రాఫ్) క్రీస్తు జననమును డిసెంబరు 25 గా పేర్కొంటుంది — 336 నాటికే రోమాలో ఉన్న ఆచారమును ఇది సూచిస్తుంది."]},
+  {y:["c. 380s","సు. 380లు"], k:"church", t:["Spreads East","తూర్పునకు వ్యాపించుట"],
+   p:["Dec 25 spreads to Constantinople and Antioch. Many Eastern churches had kept Jan 6. Armenians still do.","డిసెంబరు 25 కాన్స్టాంటినోపుల్ మరియు అంతియొకయకు వ్యాపిస్తుంది. అనేక తూర్పు సంఘములు జనవరి 6 ను ఆచరించేవి; ఆర్మేనియన్లు ఇప్పటికీ అలాగే ఆచరిస్తారు."]},
+  {y:["800","800"], k:"church", t:["A crowning on Dec 25","డిసెంబరు 25న పట్టాభిషేకము"],
+   p:["Charlemagne is crowned emperor in Rome on Dec 25, tying the date to church-state power.","డిసెంబరు 25న రోమాలో షార్లెమేన్ చక్రవర్తిగా పట్టాభిషేకము పొందుతాడు — ఆ తేదీ సంఘ-రాజ్య అధికారముతో ముడిపడుతుంది."]},
+  {y:["1223","1223"], k:"church", t:["The nativity scene","జనన దృశ్యము"],
+   p:["Francis of Assisi stages a living nativity at Greccio. It's the start of the crèche, and of many of the visuals on the myth cards.","అస్సిసికి చెందిన ఫ్రాన్సిస్ గ్రెచ్చియోలో సజీవ జనన దృశ్యమును ప్రదర్శిస్తాడు — పశువుల పాక దృశ్యమునకు, అపోహ కార్డులలోని అనేక చిత్రములకు ఇదే ఆరంభము."]},
+  {y:["1500s","1500లు"], k:"culture", t:["The decorated tree","అలంకరించిన చెట్టు"],
+   p:["Decorated evergreens appear in German lands. The story of Luther adding candles is popular but unproven.","జర్మన్ ప్రాంతములలో అలంకరించిన సతత హరిత చెట్లు కనిపిస్తాయి. లూథర్ కొవ్వొత్తులు పెట్టాడనే కథ ప్రసిద్ధమైనది కానీ నిరూపితము కాదు."]},
+  {y:["1647–1660","1647–1660"], k:"reform", t:["Banned in England","ఇంగ్లాండులో నిషేధము"],
+   p:["The Puritan Parliament suppresses the feast as unscriptural and excessive.","ప్యూరిటన్ పార్లమెంటు ఈ పండుగను లేఖన విరుద్ధమైనదిగా, విచ్చలవిడిదిగా పరిగణించి అణచివేస్తుంది."]},
+  {y:["1659–1681","1659–1681"], k:"reform", t:["Banned in Massachusetts","మసాచుసెట్స్‌లో నిషేధము"],
+   p:["Celebrating is fined in the Massachusetts Bay Colony.","మసాచుసెట్స్ బే కాలనీలో ఈ పండుగ జరుపుకొంటే జరిమానా విధించబడేది."]},
+  {y:["1823","1823"], k:"culture", t:["“A Visit from St. Nicholas”","“సెయింట్ నికోలస్ సందర్శనము”"],
+   p:["The poem (“’Twas the night before Christmas”) reshapes the 4th-century bishop Nicholas of Myra into a reindeer-driven gift-giver.","ఈ కవిత 4వ శతాబ్దపు మూరా బిషప్ నికోలస్‌ను రెయిన్‌డీర్ బండిపై వచ్చే బహుమతుల దాతగా మార్చివేస్తుంది."]},
+  {y:["1843","1843"], k:"culture", t:["A Christmas Carol","డికెన్స్ కథ"],
+   p:["Dickens popularizes a family-and-charity holiday, largely without Christ at its center.","డికెన్స్ కుటుంబము మరియు దానధర్మముల పండుగను ప్రాచుర్యము చేస్తాడు — చాలావరకు క్రీస్తు కేంద్రములో లేకుండానే."]},
+  {y:["1863–1886","1863–1886"], k:"commerce", t:["Santa's image","శాంటా రూపము"],
+   p:["Thomas Nast's cartoons fix the jolly North Pole Santa in the American imagination.","థామస్ నాస్ట్ కార్టూన్లు ఉత్తర ధ్రువపు ఉల్లాసమైన శాంటాను అమెరికా ఊహలో స్థిరపరుస్తాయి."]},
+  {y:["1870","1870"], k:"culture", t:["U.S. federal holiday","అమెరికా జాతీయ సెలవు"],
+   p:["Congress makes Dec 25 a national holiday.","కాంగ్రెస్ డిసెంబరు 25 ను జాతీయ సెలవు దినముగా ప్రకటిస్తుంది."]},
+  {y:["1931 →","1931 →"], k:"commerce", t:["The modern market","ఆధునిక మార్కెట్"],
+   p:["Haddon Sundblom's Coca-Cola ads popularize (though didn't invent) the red-suited Santa. The season becomes retail's biggest quarter.","హాడన్ సన్‌డ్‌బ్లోమ్ గీసిన కోకా-కోలా ప్రకటనలు ఎర్ర దుస్తుల శాంటాను ప్రాచుర్యము చేశాయి (కనిపెట్టలేదు). ఈ కాలము వ్యాపారమునకు అతిపెద్ద త్రైమాసికముగా మారుతుంది."]},
+];
+const kname = {none:["Scripture era","లేఖన కాలము"],church:["Church","సంఘము"],culture:["Culture","సంస్కృతి"],reform:["Pushback","వ్యతిరేకత"],commerce:["Commerce","వ్యాపారము"]};
+document.getElementById("hist").innerHTML = hist.map(h => `
+  <div class="hrow" data-k="${h.k}"><div class="yr">${L(...h.y)}</div>
+   <div><span class="chip c-${h.k}">${L(...kname[h.k])}</span><h3>${L(...h.t)}</h3><p>${L(...h.p)}</p></div></div>`).join("");
+filterize("hfilters", ".hrow", "k");
+
+const theories = [
+  {c:"var(--plum)", t:["A · The “Pagan Festival” theory","A · “అన్యుల పండుగ” సిద్ధాంతము"], li:[
+    ["Rome kept <b>Saturnalia</b> (Dec 17–23), a week of feasting and gift-giving.","రోమా <b>సాటర్నేలియా</b> (డిసెంబరు 17–23) ను ఆచరించేది — విందులు, బహుమతుల వారము."],
+    ["Emperor Aurelian promoted the cult of <b>Sol Invictus</b> (“Unconquered Sun”) in 274. The calendar of 354 lists his birth festival on Dec 25.","చక్రవర్తి ఔరేలియన్ 274 లో <b>సోల్ ఇన్విక్టస్</b> (“జయింపబడని సూర్యుడు”) ఆరాధనను ప్రోత్సహించాడు. 354 నాటి క్యాలెండరు అతని జనన ఉత్సవమును డిసెంబరు 25 గా పేర్కొంటుంది."],
+    ["On this view, the church set Christ's birth against these feasts to redirect, or absorb, the popular celebration.","ఈ దృక్పథము ప్రకారము, ప్రజల వేడుకను మళ్లించుటకు లేదా తనలో కలుపుకొనుటకు సంఘము క్రీస్తు జననమును ఈ పండుగల సమయములో ఉంచింది."],
+    ["<i>Weakness:</i> clear evidence for a Dec 25 Sol festival comes from about the same time as the Christian date, so which influenced which is debated.","<i>బలహీనత:</i> డిసెంబరు 25 సూర్య పండుగకు స్పష్టమైన ఆధారము క్రైస్తవ తేదీ కాలము నుండే వస్తుంది; కాబట్టి ఏది దేనిని ప్రభావితము చేసిందో వివాదాస్పదము."]]},
+  {c:"var(--blue)", t:["B · The “Calculation” theory","B · “లెక్కింపు” సిద్ధాంతము"], li:[
+    ["Some early Christians held that Christ was <b>conceived</b> on the same calendar day He <b>died</b>.","క్రీస్తు ఏ దినమున <b>మరణించాడో</b> అదే దినమున <b>గర్భము ధరింపబడెనని</b> కొందరు ఆదిమ క్రైస్తవులు నమ్మారు."],
+    ["In the West, the Passion was dated to <b>March 25</b>. Nine months later is <b>December 25</b>.","పశ్చిమమున శ్రమల దినము <b>మార్చి 25</b> గా లెక్కించబడింది. తొమ్మిది నెలల తరువాత <b>డిసెంబరు 25</b>."],
+    ["In the East, a reckoning from April 6 gives <b>January 6</b>, which is still kept by the Armenian church.","తూర్పున ఏప్రిల్ 6 నుండి లెక్కిస్తే <b>జనవరి 6</b> వస్తుంది — ఆర్మేనియన్ సంఘము ఇప్పటికీ దీనిని ఆచరిస్తుంది."],
+    ["<i>Weakness:</i> it rests on a symbolic assumption, not on anything in Scripture.","<i>బలహీనత:</i> ఇది లేఖనము మీద కాదు, ఒక సంకేతాత్మక ఊహ మీద ఆధారపడియున్నది."]]},
+];
+document.getElementById("theories").innerHTML = theories.map(t=>`<div class="theory" style="border-top:4px solid ${t.c}"><h3>${L(...t.t)}</h3><ul>${t.li.map(x=>`<li>${L(...x)}</li>`).join("")}</ul></div>`).join("");
+
+/* ---------- 5. Layers ---------- */
+const layers = [
+  {n:["Commerce","వ్యాపారము"], c:"#a63d40", r:190,
+   d:["Shopping, sales, debt and pressure. The season's biggest message is often “buy.”","కొనుగోళ్లు, అమ్మకాలు, అప్పులు, ఒత్తిడి. ఈ కాలపు అతిపెద్ద సందేశము తరచుగా “కొనుము” అనేదే."],
+   s:"Take heed and beware of covetousness, for one's life does not consist in the abundance of the things he possesses.",
+   st:"మీరు ఏవిధమైన లోభమునకు ఎడమియ్యక జాగ్రత్తపడుడి; ఒకని కలిమి విస్తరించుట వాని జీవమునకు మూలము కాదు.", sr:"Luke 12:15", x:["1 Timothy 6:6-8"]},
+  {n:["Folklore","జానపద కథలు"], c:"#6b4a8b", r:155,
+   d:["Santa Claus, reindeer, elves, the North Pole. It grew from Nicholas of Myra through Dutch Sinterklaas and 19th-century America. An all-seeing gift-giver can quietly copy the attributes of God.","శాంటా క్లాజ్, రెయిన్‌డీర్లు, ఎల్వ్స్, ఉత్తర ధ్రువము. ఇది మూరాకు చెందిన నికోలస్ నుండి డచ్ సింటర్‌క్లాస్ ద్వారా 19వ శతాబ్దపు అమెరికా వరకు పెరిగింది. అన్నీ చూచే బహుమతుల దాత నిశ్శబ్దముగా దేవుని లక్షణములను అనుకరించవచ్చు."],
+   s:"Beware lest anyone cheat you through philosophy and empty deceit, according to the tradition of men … and not according to Christ.",
+   st:"ఆయనను అనుసరింపక మనుష్యుల పారంపర్యాచారమును … అనుసరించి మోసకరమైన నిరర్థక తత్వజ్ఞానముచేత మిమ్మును చెరపట్టుకొని పోవువాడెవడైన ఉండునేమో అని జాగ్రత్తగా ఉండుడి.", sr:"Colossians 2:8", x:["James 1:17"]},
+  {n:["Customs","ఆచారములు"], c:"#3b5ba5", r:120,
+   d:["Trees, lights, wreaths, mistletoe, yule logs. Mostly northern-European winter customs. Jeremiah 10 is often quoted here, but read in context (vv. 3–9) it describes a carved idol, not a decorated tree.","చెట్లు, దీపాలు, పూలదండలు, మిస్టిల్‌టో, యూల్ దుంగలు — చాలావరకు ఉత్తర యూరప్ చలికాలపు ఆచారములు. ఇక్కడ యిర్మీయా 10 తరచుగా ఉదహరించబడుతుంది; కానీ సందర్భములో (వ. 3–9) చదివితే అది చెక్కబడిన విగ్రహమును వర్ణిస్తుంది, అలంకరించిన చెట్టును కాదు."],
+   s:"For the customs of the peoples are futile; for one cuts a tree from the forest, the work of the hands of the workman, with the ax.",
+   st:"జనముల ఆచారములు వ్యర్థములు, అడవిలో నొకడు చెట్టు నరకునట్లు అది నరకబడును, అది పనివాడు గొడ్డలితో చేసినపని.", sr:"Jeremiah 10:3", x:["Jeremiah 10:5","Jeremiah 10:8-10"]},
+  {n:["The Date","తేదీ"], c:"#c99a2e", r:85,
+   d:["December 25 was set by the 4th-century church, by calculation or as a rival to Roman feasts. Scripture is silent, and it gives liberty about days.","డిసెంబరు 25 ను 4వ శతాబ్దపు సంఘము నిర్ణయించింది — లెక్కింపు ద్వారానో, రోమా పండుగలకు పోటీగానో. లేఖనము మౌనముగా ఉంది; దినముల విషయమై స్వాతంత్ర్యమును ఇస్తుంది."],
+   s:"One person esteems one day above another; another esteems every day alike. Let each be fully convinced in his own mind.",
+   st:"ఒకడు ఒక దినముకంటె మరియొక దినము మంచి దినమని యెంచుచున్నాడు; మరియొకడు ప్రతి దినమును సమానముగా ఎంచుచున్నాడు; ప్రతివాడు తనమట్టుకు తానే తన మనస్సులో రూఢిపరచుకొనవలెను.", sr:"Romans 14:5", x:["Colossians 2:16-17","Galatians 4:10"]},
+  {n:["Legends","కల్పనలు"], c:"#3f7d5c", r:52,
+   d:["Embellishments on the story itself: three kings, the innkeeper, snow, the donkey, the stable. They are the closest layer, and the hardest to notice.","వృత్తాంతమునకే చేర్చిన అలంకారములు: ముగ్గురు రాజులు, సత్రపు యజమాని, మంచు, గాడిద, పశువుల పాక. ఇవి అత్యంత సమీపమైన పొర — గుర్తించుటకు అత్యంత కష్టమైనవి."],
+   s:"For laying aside the commandment of God, you hold the tradition of men.",
+   st:"మీరు దేవుని ఆజ్ఞను విడిచిపెట్టి, మనుష్యుల పారంపర్యాచారమును గైకొనుచున్నారు.", sr:"Mark 7:8", x:["Proverbs 30:6"]},
+  {n:["The Gift","బహుమానము"], c:"#0d1530", r:26,
+   d:["<b>The Word became flesh.</b> Promised in Eden, named in the Prophets, and sent in the fullness of time to save His people from their sins. This is what every layer should point to, not cover up.","<b>వాక్యము శరీరధారియాయెను.</b> ఏదెనులో వాగ్దానము చేయబడి, ప్రవక్తలలో పేరు పెట్టబడి, తన ప్రజలను వారి పాపములనుండి రక్షించుటకు కాలము పరిపూర్ణమైనప్పుడు పంపబడెను. ప్రతి పొర దీనిని కప్పివేయక, దీనినే చూపవలెను."],
+   s:"And the Word became flesh and dwelt among us, and we beheld His glory, the glory as of the only begotten of the Father, full of grace and truth.",
+   st:"ఆ వాక్యము శరీరధారియై, కృపాసత్యసంపూర్ణుడుగా మనమధ్య నివసించెను; తండ్రివలన కలిగిన అద్వితీయకుమారుని మహిమవలె మనము ఆయన మహిమను కనుగొంటిమి.", sr:"John 1:14", x:["Matthew 1:21","1 Timothy 3:16","2 Corinthians 9:15"]},
+];
+const svg = document.getElementById("layers");
+function drawLayers(){
+  const te = document.body.classList.contains("lang-te");
+  svg.innerHTML = layers.map((l,i)=>`<circle cx="200" cy="200" r="${l.r}" fill="${l.c}" data-i="${i}" stroke="${i===5?'#f2d27a':'rgba(255,255,255,.35)'}" stroke-width="${i===5?3:1}"/>`).join("")
+    + layers.map((l,i)=> i<5 ? `<text x="200" y="${200-l.r+20}" text-anchor="middle">${l.n[te?1:0]}</text>` : `<text x="200" y="204" text-anchor="middle" style="fill:#f2d27a;font-size:11px">✦ ${te?"":"Gift"}</text>`).join("");
+  svg.querySelectorAll("circle").forEach(c=>c.classList.toggle("sel",+c.dataset.i===curLayer));
+}
+const lp = document.getElementById("lpanel");
+let curLayer = 0;
+function showLayer(i){
+  curLayer = i; const l=layers[i];
+  svg.querySelectorAll("circle").forEach(c=>c.classList.toggle("sel",+c.dataset.i===i));
+  lp.innerHTML = `<div style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:${l.c}">${L(`Layer ${i+1} of 6`,`పొర ${i+1} / 6`)}</div>
+   <h3>${L(...l.n)}</h3><p style="font-size:15px">${L(...l.d)}</p>
+   ${verse(l.s, l.st, l.sr, l.x)}
+   <div style="display:flex;gap:8px;margin-top:8px">${i>0?`<button class="btn" onclick="showLayer(${i-1})">${L("← Outer","← బయటి పొర")}</button>`:""}${i<5?`<button class="btn" onclick="showLayer(${i+1})">${L("Unwrap →","విప్పండి →")}</button>`:""}</div>`;
+}
+svg.addEventListener("click", e => { const c=e.target.closest("circle"); if(c) showLayer(+c.dataset.i); });
+drawLayers(); showLayer(0);
+
+const principles = [
+  {c:"var(--red)", t:["Tradition can displace the Word","సంప్రదాయము వాక్యమును తొలగించగలదు"],
+   p:["Jesus didn't condemn tradition in itself. He condemned tradition that sets God's commandment aside.","యేసు సంప్రదాయమునే ఖండించలేదు; దేవుని ఆజ్ఞను ప్రక్కనపెట్టే సంప్రదాయమును ఖండించాడు."], r:["Mark 7:7-9","Matthew 15:3"]},
+  {c:"var(--plum)", t:["The shadow and the substance","ఛాయ మరియు నిజ స్వరూపము"],
+   p:["Days and festivals are shadows. Christ is the substance. Don't trade the Person for the calendar.","దినములు, పండుగలు ఛాయలు; నిజ స్వరూపము క్రీస్తులో ఉన్నది. క్యాలెండరు కొరకు ఆ వ్యక్తిని వదులుకొనవద్దు."], r:["Colossians 2:16-17","Hebrews 10:1"]},
+  {c:"var(--gold)", t:["Liberty, not license or legalism","స్వాతంత్ర్యము — విచ్చలవిడితనము కాదు, ధర్మశాస్త్రవాదము కాదు"],
+   p:["Each one is fully convinced, and does it “to the Lord.” No one is to judge or despise another.","ప్రతివాడు తన మనస్సులో రూఢిపరచుకొని “ప్రభువు కొరకు” చేయవలెను. ఎవరును మరియొకనికి తీర్పు తీర్చరాదు, తృణీకరించరాదు."], r:["Romans 14:5-6","Romans 14:10-13"]},
+  {c:"var(--blue)", t:["Read verses in context","వచనములను సందర్భములో చదువుము"],
+   p:["Jeremiah 10 warns against idols carved from trees, not against a decoration. Accurate handling of the Word is itself a safeguard.","యిర్మీయా 10 చెట్ల నుండి చెక్కిన విగ్రహముల గురించి హెచ్చరిస్తుంది, అలంకరణ గురించి కాదు. వాక్యమును సరిగా విభజించుటయే ఒక రక్షణ."], r:["Jeremiah 10:1-16","2 Timothy 2:15"]},
+  {c:"var(--green)", t:["Redeem the open door","తెరువబడిన ద్వారమును సద్వినియోగము చేయుము"],
+   p:["Paul started from Athens' altar to preach the true God. Many people are open to the birth narrative only once a year.","సత్య దేవుని ప్రకటించుటకు పౌలు ఏథెన్సు బలిపీఠము నుండి ఆరంభించాడు. అనేకులు సంవత్సరమునకు ఒక్కసారే జనన వృత్తాంతము వినుటకు సిద్ధముగా ఉంటారు."], r:["Acts 17:22-31","Colossians 4:5-6"]},
+  {c:"var(--night)", t:["Everything to His glory","సమస్తము ఆయన మహిమ కొరకు"],
+   p:["The test for any practice: does it glorify God and point to Christ?","ఏ ఆచారమునకైనను పరీక్ష: ఇది దేవుని మహిమపరచి, క్రీస్తును చూపుతుందా?"], r:["1 Corinthians 10:31","Colossians 3:17"]},
+];
+document.getElementById("principles").innerHTML = principles.map(p=>`<div class="pr" style="--c:${p.c}"><h3>${L(...p.t)}</h3><p>${L(...p.p)}</p>${chips(p.r)}</div>`).join("");
+
+/* ---------- 6. Practices ---------- */
+const practices = [
+  {i:"👑", t:["Worship","ఆరాధించుము"], w:["like the magi","జ్ఞానులవలె"],
+   p:["They fell down and worshiped Him, then opened their treasures. Worship first, gifts second.","వారు సాగిలపడి ఆయనను పూజించి, తరువాత తమ పెట్టెలు విప్పిరి. మొదట ఆరాధన, తరువాత కానుకలు."], r:["Matthew 2:11"]},
+  {i:"📣", t:["Proclaim","ప్రకటించుము"], w:["like the shepherds","కాపరులవలె"],
+   p:["They made widely known what was told them, and they told it accurately.","తమతో చెప్పబడిన మాటలను వారు ప్రచురము చేసిరి — ఖచ్చితముగా."], r:["Luke 2:17-20"]},
+  {i:"💭", t:["Ponder","ధ్యానించుము"], w:["like Mary","మరియవలె"],
+   p:["She kept all these things and pondered them in her heart. Slow down and meditate.","ఆ మాటలన్నియు తన హృదయములో తలపోసికొనుచు భద్రము చేసికొనెను. నెమ్మదించి ధ్యానించుము."], r:["Luke 2:19","Luke 2:51"]},
+  {i:"⏳", t:["Wait","కనిపెట్టుము"], w:["like Simeon & Anna","సుమెయోను & అన్నవలె"],
+   p:["They waited a lifetime on God's promise and recognized Him when He came.","దేవుని వాగ్దానము కొరకు జీవితకాలమంతా కనిపెట్టి, ఆయన వచ్చినప్పుడు గుర్తించారు."], r:["Luke 2:25-38"]},
+  {i:"🛡️", t:["Obey","విధేయత చూపుము"], w:["like Joseph","యోసేపువలె"],
+   p:["He did as the angel of the Lord commanded, three times, at cost to himself.","ప్రభువు దూత ఆజ్ఞాపించిన ప్రకారము — మూడు సార్లు, తనకు నష్టమైనను — చేశాడు."], r:["Matthew 1:24","Matthew 2:14","Matthew 2:21"]},
+];
+document.getElementById("practices").innerHTML = practices.map(x=>`<div class="pc"><div class="ico">${x.i}</div>
+  <h3>${L(...x.t)}</h3><div style="font-size:13px;color:var(--gold);font-weight:600">${L(...x.w)}</div><p>${L(...x.p)}</p>${chips(x.r)}</div>`).join("");
+
+const questions = [
+  ["Read Genesis 3:15 and Galatians 4:4 together. What does the phrase “fullness of the time” say about God's control of history?","ఆదికాండము 3:15 మరియు గలతీయులకు 4:4 కలిపి చదవండి. “కాలము పరిపూర్ణమైనప్పుడు” అను మాట చరిత్రపై దేవుని అధికారము గురించి ఏమి చెప్తుంది?"],
+  ["Which “myth” card surprised you most? Why do you think that picture became so popular?","ఏ “అపోహ” కార్డు మిమ్మును ఎక్కువగా ఆశ్చర్యపరచింది? ఆ చిత్రము ఇంత ప్రాచుర్యము ఎందుకు పొందిందని మీరు అనుకొంటున్నారు?"],
+  ["Read Jeremiah 10:1–10 in full. What is the passage really describing? Why does context matter before we use a verse?","యిర్మీయా 10:1–10 పూర్తిగా చదవండి. ఈ భాగము నిజముగా దేనిని వర్ణిస్తుంది? ఒక వచనమును ఉపయోగించే ముందు సందర్భము ఎందుకు ముఖ్యము?"],
+  ["How do Romans 14:5–6 and Colossians 2:16–17 keep us from both pride and bondage about days?","దినముల విషయములో గర్వము నుండియు, బంధకము నుండియు రోమీయులకు 14:5–6 మరియు కొలొస్సయులకు 2:16–17 మనలను ఎలా కాపాడుతాయి?"],
+  ["Simeon waited his whole life for “the Consolation of Israel” (Lk 2:25). What promise of God are you waiting on right now?","సుమెయోను “ఇశ్రాయేలుయొక్క ఆదరణకొరకు” జీవితమంతా కనిపెట్టాడు (లూకా 2:25). మీరు ఇప్పుడు దేవుని ఏ వాగ్దానము కొరకు కనిపెట్టుచున్నారు?"],
+  ["This season, how could you tell the story “widely,” the way the shepherds did (Lk 2:17), and accurately?","ఈ కాలములో, కాపరులవలె (లూకా 2:17) ఈ వృత్తాంతమును విస్తారముగాను ఖచ్చితముగాను ఎలా ప్రచురము చేయగలరు?"],
+];
+document.getElementById("questions").innerHTML = questions.map(q=>`<li>${L(...q)}</li>`).join("");
+
+document.getElementById("closingVerse").innerHTML = verse(
+  "But when the fullness of the time had come, God sent forth His Son, born of a woman, born under the law, to redeem those who were under the law, that we might receive the adoption as sons.",
+  "అయితే కాలము పరిపూర్ణమైనప్పుడు దేవుడు తన కుమారుని పంపెను; ఆయన స్త్రీయందు పుట్టి, మనము దత్తపుత్రులము కావలెనని ధర్మశాస్త్రమునకు లోబడి యున్నవారిని విమోచించుటకై ధర్మశాస్త్రమునకు లోబడినవాడాయెను.",
+  "Galatians 4:4-5");
+
+/* ---------- helpers ---------- */
+function filterize(id, sel, key){
+  const box=document.getElementById(id);
+  box.addEventListener("click", e=>{
+    const b=e.target.closest("button[data-f]"); if(!b) return;
+    box.querySelectorAll("button[data-f]").forEach(x=>x.classList.toggle("on",x===b));
+    document.querySelectorAll(sel).forEach(el=>el.style.display=(b.dataset.f==="all"||el.dataset[key]===b.dataset.f)?"":"none");
+  });
+}
+
+/* language toggle */
+const lb=document.getElementById("lang");
+function setLang(te){
+  document.body.classList.toggle("lang-te",te); document.documentElement.lang=te?"te":"en";
+  lb.textContent=te?"English":"తెలుగు"; drawLayers();
+  try{localStorage.setItem("fot-lang",te?"te":"en")}catch(e){}
+}
+lb.onclick=()=>setLang(!document.body.classList.contains("lang-te"));
+try{ if(localStorage.getItem("fot-lang")==="te") setLang(true) }catch(e){}
+
+/* scroll progress + active nav */
+const links=[...document.querySelectorAll("#nav a")], secs=links.map(a=>document.querySelector(a.getAttribute("href")));
+const prog=document.getElementById("progress");
+addEventListener("scroll",()=>{
+  const h=document.documentElement; prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";
+  let cur=0; secs.forEach((s,i)=>{ if(s.getBoundingClientRect().top<120) cur=i; });
+  links.forEach((a,i)=>a.classList.toggle("active",i===cur && scrollY>200));
+},{passive:true});
+
+/* starfield with one bright star */
+const cv=document.getElementById("stars"), cx=cv.getContext("2d"); let st=[];
+function size(){cv.width=cv.offsetWidth*devicePixelRatio;cv.height=cv.offsetHeight*devicePixelRatio;st=Array.from({length:120},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.4*devicePixelRatio,p:Math.random()*6}))}
+function draw(t){cx.clearRect(0,0,cv.width,cv.height);
+  st.forEach(s=>{cx.globalAlpha=.35+.35*Math.sin(t/900+s.p);cx.fillStyle="#fff";cx.beginPath();cx.arc(s.x,s.y,s.r,0,7);cx.fill()});
+  const X=cv.width*.85,Y=cv.height*.2,g=cx.createRadialGradient(X,Y,0,X,Y,40*devicePixelRatio);
+  cx.globalAlpha=.85+.15*Math.sin(t/700);g.addColorStop(0,"#fff6d5");g.addColorStop(.25,"rgba(242,210,122,.6)");g.addColorStop(1,"rgba(242,210,122,0)");
+  cx.fillStyle=g;cx.beginPath();cx.arc(X,Y,40*devicePixelRatio,0,7);cx.fill();
+  if(!matchMedia("(prefers-reduced-motion: reduce)").matches) requestAnimationFrame(draw)}
+size();addEventListener("resize",size);requestAnimationFrame(draw);
+</script>
+</body>
+</html>
