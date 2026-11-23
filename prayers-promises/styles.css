@@ -1,5 +1,5 @@
-@font-face{font-family:"Noto Serif Telugu";src:url(fonts/NotoSerifTelugu.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0C00-0C7F,U+200C-200D,U+25CC}
-@font-face{font-family:"Noto Sans Telugu";src:url(fonts/NotoSansTelugu.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0C00-0C7F,U+200C-200D,U+25CC}
+@font-face{font-family:"Noto Serif Telugu";src:url(fonts/notoseriftelugu.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0C00-0C7F,U+200C-200D,U+25CC}
+@font-face{font-family:"Noto Sans Telugu";src:url(fonts/notosanstelugu.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0C00-0C7F,U+200C-200D,U+25CC}
 :root{
   --bg:#f7f1e6; --surface:#fffaf1; --ink:#2b2118; --muted:#6f5f4e; --line:#e6d9c3;
   --accent:#7a4e1d; --accent-2:#b5832a; --accent-soft:#f1e3c8; --verse:#fbf3e2;
