@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Four Traditions: A Theological Comparison</title>
+    <style>
+        :root {
+            /* Light Theme Variables */
+            --evangelical: #2b5c8f;
+            --lds: #c49a45;
+            --jw: #1a5c50;
+            --catholic: #8b2332;
+            --bg: #f4f6f8;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --header-bg: #111a22;
+            --search-bg: #ffffff;
+            --scripture-bg: #f8f9fa;
+            --scripture-border: #ccc;
+            --input-border: #ccc;
+            --btn-all-active: #333;
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme Variables */
+            --evangelical: #5c9be3;
+            --lds: #e8bd66;
+            --jw: #40c4a4;
+            --catholic: #e06c7c;
+            --bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --header-bg: #0a0f14;
+            --search-bg: #2a2a2a;
+            --scripture-bg: #2c2c2c;
+            --scripture-border: #444;
+            --input-border: #444;
+            --btn-all-active: #555;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            position: relative;
+        }
+        header h1 { margin: 0; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        header p { margin: 0.5rem 0 0 0; color: #aab4be; font-size: 1.1rem; }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover { background: rgba(255, 255, 255, 0.2); transform: scale(1.1); }
+
+        .image-container {
+            max-width: 1000px; 
+            margin: 2rem auto; 
+            padding: 0 1rem; 
+            text-align: center;
+        }
+        .poster-img {
+            max-width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25); 
+            border: 4px solid var(--card-bg);
+            cursor: zoom-in;
+            transition: transform 0.2s ease, border-color 0.3s;
+        }
+        .poster-img:hover {
+            transform: scale(1.02);
+        }
+
+        .container {
+            max-width: 1600px; 
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        /* Search Bar Styles */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+            display: flex;
+            justify-content: center;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            background-color: var(--search-bg);
+            color: var(--text-main);
+            border: 2px solid var(--input-border);
+            border-radius: 30px;
+            outline: none;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        #searchInput:focus { border-color: var(--evangelical); }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.2s;
+        }
+        .btn-evangelical { color: var(--evangelical); border-color: var(--evangelical); }
+        .btn-lds { color: var(--lds); border-color: var(--lds); }
+        .btn-jw { color: var(--jw); border-color: var(--jw); }
+        .btn-catholic { color: var(--catholic); border-color: var(--catholic); }
+        .btn-all { color: var(--text-main); border-color: var(--text-muted); }
+        
+        .btn-evangelical.active, .btn-evangelical:hover { background-color: var(--evangelical); color: #fff; }
+        .btn-lds.active, .btn-lds:hover { background-color: var(--lds); color: #111; }
+        .btn-jw.active, .btn-jw:hover { background-color: var(--jw); color: #fff; }
+        .btn-catholic.active, .btn-catholic:hover { background-color: var(--catholic); color: #fff; }
+        .btn-all.active, .btn-all:hover { background-color: var(--btn-all-active); color: #fff; border-color: var(--btn-all-active); }
+
+        /* 5-Column Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 1.5rem;
+        }
+        @media (max-width: 1200px) {
+            .grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .card[data-tradition="Evangelical Protestantism"] { border-top-color: var(--evangelical); }
+        .card[data-tradition="Latter-day Saints"] { border-top-color: var(--lds); }
+        .card[data-tradition="Jehovah's Witnesses"] { border-top-color: var(--jw); }
+        .card[data-tradition="Roman Catholicism"] { border-top-color: var(--catholic); }
+        
+        .tradition-badge {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        .card[data-tradition="Evangelical Protestantism"] .tradition-badge { color: var(--evangelical); }
+        .card[data-tradition="Latter-day Saints"] .tradition-badge { color: var(--lds); }
+        .card[data-tradition="Jehovah's Witnesses"] .tradition-badge { color: var(--jw); }
+        .card[data-tradition="Roman Catholicism"] .tradition-badge { color: var(--catholic); }
+
+        .card h3 { margin: 0 0 1rem 0; font-size: 1.2rem; border-bottom: 1px solid var(--input-border); padding-bottom: 0.5rem; }
+        .label { font-size: 0.85rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; margin-top: 1rem; }
+        .view-text { font-size: 1rem; margin-top: 0.25rem; font-weight: 500; }
+        .scripture-box { 
+            background: var(--scripture-bg); 
+            padding: 0.75rem; 
+            border-radius: 4px; 
+            font-family: monospace; 
+            font-size: 0.9rem; 
+            margin: 0.5rem 0; 
+            border-left: 3px solid var(--scripture-border);
+            transition: background 0.3s, border-color 0.3s;
+        }
+        .source { font-size: 0.85rem; margin-top: auto; padding-top: 1rem; color: var(--text-muted); }
+        .source a { color: var(--evangelical); text-decoration: none; font-weight: bold; }
+        .source a:hover { text-decoration: underline; }
+
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.85); 
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+        .modal-content {
+            max-width: 95%;
+            max-height: 95vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            cursor: default;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-btn:hover { color: #ccc; }
+        .no-results { text-align: center; font-size: 1.2rem; color: var(--text-muted); grid-column: 1 / -1; padding: 2rem; }
+    </style>
+</head>
+<body>
+
+<script>
+    // System Theme Detection & Local Storage Init
+    (function initTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+        }
+    })();
+</script>
+
+<header>
+    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌓</button>
+    <h1>Four Traditions</h1>
+    <p>A Theological Comparison of Evangelical, LDS, Jehovah's Witness, and Roman Catholic Beliefs</p>
+</header>
+
+<div class="image-container">
+    <img src="poster.jpg" 
+         alt="Theological Comparison Poster" 
+         class="poster-img"
+         onclick="openModal()">
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Click poster to enlarge</p>
+</div>
+
+<div class="container">
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search doctrines, verses, or keywords (e.g. 'Rapture', 'John 3:5')..." onkeyup="handleSearch()">
+    </div>
+
+    <div class="controls">
+        <button class="btn btn-all active" onclick="filterCards('All')">View All</button>
+        <button class="btn btn-evangelical" onclick="filterCards('Evangelical Protestantism')">Evangelical</button>
+        <button class="btn btn-lds" onclick="filterCards('Latter-day Saints')">Latter-day Saints</button>
+        <button class="btn btn-jw" onclick="filterCards('Jehovah\'s Witnesses')">Jehovah's Witnesses</button>
+        <button class="btn btn-catholic" onclick="filterCards('Roman Catholicism')">Catholicism</button>
+    </div>
+
+    <div class="grid" id="card-grid">
+        <!-- Cards injected by JS -->
+    </div>
+</div>
+
+<!-- Modal Overlay -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="zoomedImg" onclick="event.stopPropagation()">
+</div>
+
+<script>
+    // Theme Toggle Function
+    window.toggleTheme = function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    };
+
+    const data = [
+        // ---------------- EVANGELICAL ----------------
+        { tradition: "Evangelical Protestantism", topic: "Nature of God", view: "Trinitarian: One God in three co-equal persons. Pure spirit, no physical body.", scripture: "Deuteronomy 6:4; Matthew 28:19", sourceName: "Westminster Confession", sourceUrl: "https://www.pcaac.org/bco/westminster-confession/" },
+        { tradition: "Evangelical Protestantism", topic: "Ultimate Authority", view: "Sola Scriptura: The 66-book Bible is the sole, inerrant word of God.", scripture: "2 Timothy 3:16-17", sourceName: "Lausanne Covenant", sourceUrl: "https://lausanne.org/statement/the-lausanne-covenant" },
+        { tradition: "Evangelical Protestantism", topic: "Salvation", view: "By grace alone, through faith alone in Jesus Christ. No human works required.", scripture: "Ephesians 2:8-9", sourceName: "NAE Statement", sourceUrl: "https://www.nae.org/statement-of-faith/" },
+        { tradition: "Evangelical Protestantism", topic: "The Afterlife", view: "Eternal presence with God (Heaven) or eternal separation (Hell).", scripture: "Matthew 25:46", sourceName: "NAE Statement", sourceUrl: "https://www.nae.org/statement-of-faith/" },
+        { tradition: "Evangelical Protestantism", topic: "Eschatology", view: "Literal Rapture, Tribulation, battle of Armageddon, and 1,000-year reign.", scripture: "1 Thessalonians 4:17", sourceName: "Chicago Statement", sourceUrl: "https://www.etsjets.org/files/documents/Chicago_Statement.pdf" },
+
+        // ---------------- LDS ----------------
+        { tradition: "Latter-day Saints", topic: "Nature of God", view: "The Godhead: Three separate beings. Father & Son have physical bodies.", scripture: "D&C 130:22-23", sourceName: "Gospel Topics: Godhead", sourceUrl: "https://www.churchofjesuschrist.org/study/manual/gospel-topics/godhead" },
+        { tradition: "Latter-day Saints", topic: "Ultimate Authority", view: "Open Canon: Bible, Book of Mormon, D&C, Pearl of Great Price + prophets.", scripture: "Articles of Faith 1:8-9", sourceName: "Articles of Faith", sourceUrl: "https://www.churchofjesuschrist.org/study/scriptures/pgp/a-of-f/1" },
+        { tradition: "Latter-day Saints", topic: "Salvation", view: "Grace ensures resurrection; 'exaltation' requires faith, repentance, ordinances.", scripture: "2 Nephi 25:23", sourceName: "Plan of Salvation", sourceUrl: "https://www.churchofjesuschrist.org/study/manual/gospel-topics/plan-of-salvation" },
+        { tradition: "Latter-day Saints", topic: "The Afterlife", view: "Three Degrees of Glory (Celestial, Terrestrial, Telestial).", scripture: "D&C 76", sourceName: "Kingdoms of Glory", sourceUrl: "https://www.churchofjesuschrist.org/study/manual/gospel-topics/kingdoms-of-glory" },
+        { tradition: "Latter-day Saints", topic: "Eschatology", view: "Second Coming destroys wicked, inaugurates 1,000-year Millennium of peace.", scripture: "D&C 77", sourceName: "Second Coming", sourceUrl: "https://www.churchofjesuschrist.org/study/manual/gospel-topics/second-coming-of-jesus-christ" },
+
+        // ---------------- JEHOVAH'S WITNESSES ----------------
+        { tradition: "Jehovah's Witnesses", topic: "Nature of God", view: "Unitarian: Jehovah alone is Almighty God. Jesus is His first creation.", scripture: "Psalm 83:18", sourceName: "JW.org: Is Jesus God?", sourceUrl: "https://www.jw.org/en/bible-teachings/questions/is-jesus-god/" },
+        { tradition: "Jehovah's Witnesses", topic: "Ultimate Authority", view: "Bible (NWT) as interpreted by the Governing Body.", scripture: "Matthew 24:45-47", sourceName: "Faithful & Discreet Slave", sourceUrl: "https://www.jw.org/en/library/books/bible-study-lessons/faithful-and-discreet-slave/" },
+        { tradition: "Jehovah's Witnesses", topic: "Salvation", view: "Faith in Christ's ransom, maintained by obedience and door-to-door ministry.", scripture: "James 2:24", sourceName: "What is Salvation?", sourceUrl: "https://www.jw.org/en/bible-teachings/questions/what-is-salvation/" },
+        { tradition: "Jehovah's Witnesses", topic: "The Afterlife", view: "144,000 in heaven; others in earthly paradise. Wicked are annihilated.", scripture: "Revelation 14:1", sourceName: "The Resurrection", sourceUrl: "https://www.jw.org/en/bible-teachings/questions/what-is-the-resurrection/" },
+        { tradition: "Jehovah's Witnesses", topic: "Eschatology", view: "Armageddon executes wicked; survivors restore earth. No human rule.", scripture: "Revelation 16:14-16", sourceName: "Armageddon", sourceUrl: "https://wol.jw.org/ase/wol/d/r266/lp-asl/2019561" },
+
+        // ---------------- CATHOLICISM ----------------
+        { tradition: "Roman Catholicism", topic: "Nature of God", view: "Trinitarian: One God in three co-equal, co-eternal persons.", scripture: "Matthew 28:19", sourceName: "Catechism (CCC 253)", sourceUrl: "https://www.vatican.va/archive/ENG0015/__P17.HTM" },
+        { tradition: "Roman Catholicism", topic: "Ultimate Authority", view: "Scripture + Sacred Tradition + Magisterium (Pope/Bishops).", scripture: "2 Thessalonians 2:15", sourceName: "Dei Verbum", sourceUrl: "https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19651118_dei-verbum_en.html" },
+        { tradition: "Roman Catholicism", topic: "Salvation", view: "Grace mediated through Church, faith, good works, and sacraments.", scripture: "John 3:5; James 2:24", sourceName: "Catechism (CCC 1987)", sourceUrl: "https://www.vatican.va/archive/ENG0015/__P6Y.HTM" },
+        { tradition: "Roman Catholicism", topic: "The Afterlife", view: "Heaven (purified in Purgatory first) or eternal Hell. No annihilation.", scripture: "1 Corinthians 3:15", sourceName: "Catechism (CCC 1023)", sourceUrl: "https://www.vatican.va/content/catechism/en/part_one/section_two/chapter_three/article_12/ii_heaven.html" },
+        { tradition: "Roman Catholicism", topic: "Eschatology", view: "Symbolic 'Amillennial' view. Return of Christ, final judgment, new creation.", scripture: "Revelation 20-21", sourceName: "The Last Judgment", sourceUrl: "https://www.vatican.va/content/catechism/en/part_one/section_two/chapter_three/article_12/v_the_last_judgment.html" }
+    ];
+
+    const cardGrid = document.getElementById('card-grid');
+    const buttons = document.querySelectorAll('.controls .btn');
+    let currentTraditionFilter = 'All';
+
+    function renderCards() {
+        cardGrid.innerHTML = '';
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        
+        const filteredData = data.filter(item => {
+            const matchesTradition = currentTraditionFilter === 'All' || item.tradition === currentTraditionFilter;
+            const matchesSearch = item.topic.toLowerCase().includes(searchTerm) || 
+                                  item.view.toLowerCase().includes(searchTerm) || 
+                                  item.scripture.toLowerCase().includes(searchTerm) || 
+                                  item.tradition.toLowerCase().includes(searchTerm);
+            return matchesTradition && matchesSearch;
+        });
+        
+        if (filteredData.length === 0) {
+            cardGrid.innerHTML = '<div class="no-results">No doctrines or verses found matching your search.</div>';
+            return;
+        }
+
+        filteredData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.setAttribute('data-tradition', item.tradition);
+            
+            card.innerHTML = `
+                <div class="tradition-badge">${item.tradition}</div>
+                <h3>${item.topic}</h3>
+                <div class="label">Theological View</div>
+                <div class="view-text">${item.view}</div>
+                <div class="label">Scriptural Basis</div>
+                <div class="scripture-box">${item.scripture}</div>
+                <div class="source">
+                    Source: <a href="${item.sourceUrl}" target="_blank" rel="noopener noreferrer">${item.sourceName}</a>
+                </div>
+            `;
+            cardGrid.appendChild(card);
+        });
+    }
+
+    window.filterCards = function(tradition) {
+        currentTraditionFilter = tradition;
+        buttons.forEach(btn => btn.classList.remove('active'));
+        const activeBtn = Array.from(buttons).find(b => b.innerText.includes(tradition.split(' ')[0]) || (tradition === 'All' && b.innerText === 'View All'));
+        if(activeBtn) activeBtn.classList.add('active');
+        
+        renderCards();
+    };
+
+    window.handleSearch = function() {
+        renderCards();
+    };
+
+    // Modal logic
+    window.openModal = function() {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("zoomedImg");
+        modal.style.display = "flex";
+        modalImg.src = "poster.jpg"; 
+    };
+
+    window.closeModal = function() {
+        document.getElementById("imageModal").style.display = "none";
+    };
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") { closeModal(); }
+    });
+
+    // Initialize
+    renderCards();
+</script>
+
+</body>
+</html>

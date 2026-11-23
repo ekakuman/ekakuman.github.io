@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kings, Prophets & Priests of Israel and Judah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5efe3;--card:#fffcf6;--ink:#2a2118;--muted:#6e604f;--line:#e3d8c4;--soft:#efe6d5;
+  --good:#2e7a57;--evil:#a3322c;--mixed:#b9831a;--none:#8a8174;
+  --isr:#365d8c;--jud:#8b5a28;--uni:#5f6b3a;--pro:#5a4796;--pri:#1d7470;--pribad:#7a6a55;--prifalse:#5b2a22;--ev:#3d3328;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%}
+h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif}
+button{font:inherit;color:inherit;cursor:pointer}
+header{padding:18px 16px 6px;max-width:1100px;margin:0 auto}
+header h1{font-size:30px;line-height:1.05;margin:0 0 4px;font-weight:700}
+header p{margin:0;color:var(--muted);font-size:13.5px}
+nav.tabs{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.tabs .in{max-width:1100px;margin:0 auto;display:flex;gap:4px;padding:8px 12px}
+nav.tabs button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 4px;font-weight:600;font-size:12.5px;white-space:nowrap}
+nav.tabs button[data-v=vc]{border-color:#b8962e;color:#7a5c0a}
+nav.tabs button[data-v=vc].on{background:#7a5c0a;color:#fff;border-color:#7a5c0a}
+nav.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+main{max-width:1100px;margin:0 auto;padding:12px 12px 60px}
+.view{display:none}.view.on{display:block}
+.legend{display:flex;flex-wrap:wrap;gap:10px 14px;font-size:12.5px;color:var(--muted);margin:4px 2px 10px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-2px}
+.toolbar{display:flex;align-items:center;gap:8px;margin:0 2px 8px;flex-wrap:wrap}
+.toolbar .zoom{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+.toolbar .zoom button{border:0;background:none;padding:6px 12px;font-weight:700;font-size:16px}
+.toolbar .zoom button+button{border-left:1px solid var(--line)}
+.toolbar .hint{font-size:12.5px;color:var(--muted)}
+.jump{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:none}
+.jump::-webkit-scrollbar{display:none}
+.jump button{flex:none;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font-size:12.5px;font-weight:500}
+/* timeline */
+.tlwrap{overflow-x:auto;overflow-y:hidden;border:1px solid var(--line);border-radius:14px;background:var(--card);-webkit-overflow-scrolling:touch;position:relative}
+#tl{position:relative;min-height:200px}
+.lane{position:relative;border-top:1px solid var(--line)}
+.lane .lbl{position:sticky;left:0;z-index:5;width:68px;height:100%;background:var(--card);border-right:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;text-align:center;letter-spacing:.02em;text-transform:uppercase;line-height:1.15;padding:0 4px}
+.axis{height:30px;position:relative}
+.tick{position:absolute;top:0;height:100%;border-left:1px solid var(--line);font-size:11px;color:var(--muted);padding:6px 0 0 4px;white-space:nowrap}
+.tick.minor{height:8px;padding:0;top:22px;border-color:#d8ccb6}
+.bar{position:absolute;height:26px;border-radius:6px;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;padding:0 6px;white-space:nowrap;overflow:hidden;border:0;box-shadow:0 1px 0 rgba(0,0,0,.08);text-overflow:clip}
+.bar.good{background:var(--good)}.bar.evil{background:var(--evil)}.bar.mixed{background:var(--mixed)}.bar.none{background:var(--none)}
+.bar.pro{background:var(--pro)}
+.bar.pri{background:var(--pri)}.bar.pri.bad{background:var(--pribad)}.bar.pri.false{background:var(--prifalse)}
+.pc.pr{border-top-color:var(--pri)}.pc.pr.bad{border-top-color:var(--pribad)}.pc.pr.false{border-top-color:var(--prifalse)}
+.tag.P{background:#dcefed;color:var(--pri)}
+.pm.pri{border-left-color:var(--pri);background:#eef6f5}
+.bar .co{position:absolute;top:0;bottom:0;left:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.38) 0 4px,rgba(255,255,255,.12) 4px 8px)}
+.bar span{position:relative}
+.bar:focus-visible{outline:3px solid var(--ink);outline-offset:1px}
+.evt{position:absolute;height:22px;font-size:11.5px;font-weight:600;color:var(--ev);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:1px 8px;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.evt b{width:7px;height:7px;border-radius:50%;background:var(--ev);display:inline-block}
+.evline{position:absolute;top:30px;bottom:0;border-left:1px dashed rgba(61,51,40,.22);pointer-events:none}
+#cursor{position:absolute;top:0;bottom:0;width:0;border-left:2px solid var(--ink);z-index:4;pointer-events:none}
+#cursor::before{content:attr(data-y);position:absolute;top:2px;left:-26px;width:52px;text-align:center;background:var(--ink);color:#fff;font-size:10.5px;font-weight:700;border-radius:6px;padding:1px 0}
+/* year scrubber */
+.scrub{margin:12px 2px 0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.scrub .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.scrub .yr{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:700;line-height:1}
+.scrub .yrlbl{font-size:12px;color:var(--muted)}
+.scrub input{width:100%;margin:10px 0 6px;accent-color:var(--ink)}
+.scrub .step{display:flex;gap:6px}
+.scrub .step button{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:3px 9px;font-size:12.5px;font-weight:600}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.cgrid .col h4{margin:0 0 5px;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.cgrid .full{grid-column:1/-1}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:4px 10px;font-size:13px;font-weight:600;margin:0 5px 5px 0}
+.chip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.chip.empty{color:var(--muted);font-weight:400;cursor:default}
+/* parallel kings */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:0 2px 10px}
+.filters input{flex:1 1 180px;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:8px 10px;font:inherit}
+.filters button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 11px;font-size:12.5px;font-weight:600}
+.filters button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px}
+.par .hd{position:sticky;top:52px;z-index:3;background:var(--bg);padding:6px 2px;font-family:"Cormorant Garamond",serif;font-size:20px;font-weight:700;border-bottom:2px solid}
+.par .hd.i{color:var(--isr);border-color:var(--isr)}.par .hd.j{color:var(--jud);border-color:var(--jud)}
+.kc{background:var(--card);border:1px solid var(--line);border-left:5px solid;border-radius:12px;padding:9px 10px;text-align:left;width:100%}
+.kc.good{border-left-color:var(--good)}.kc.evil{border-left-color:var(--evil)}.kc.mixed{border-left-color:var(--mixed)}.kc.none{border-left-color:var(--none)}
+.kc .nm{font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:700;line-height:1.1}
+.kc .dt{font-size:12px;color:var(--muted);margin-top:2px}
+.kc .ln{font-size:12.5px;margin-top:5px;color:#43382c}
+.kc .ps{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px}
+.kc .ps span{font-size:11px;font-weight:600;color:var(--pro);background:#ece8f6;border-radius:999px;padding:1px 7px}
+.kc.U{grid-column:1/-1}
+.kc.I{grid-column:1}.kc.J{grid-column:2}
+.yrsep{grid-column:1/-1;font-size:11.5px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-top:6px}
+.yrsep::after{content:"";flex:1;border-top:1px solid var(--line)}
+/* prophets */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+.pc{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--pro);border-radius:12px;padding:11px 12px;text-align:left}
+.pc .nm{font-family:"Cormorant Garamond",serif;font-size:21px;font-weight:700;line-height:1.1}
+.pc .dt{font-size:12px;color:var(--muted)}
+.pc .q{font-size:13px;margin-top:7px;font-style:italic;color:#43382c}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-radius:5px;padding:1px 6px;margin-left:4px;vertical-align:2px}
+.tag.w{background:#ece8f6;color:var(--pro)}
+.tag.I{background:#e3ebf5;color:var(--isr)}.tag.J{background:#f3e8dc;color:var(--jud)}.tag.U{background:#ebeedd;color:var(--uni)}.tag.X{background:#eee;color:#555}
+/* sheet */
+#back{position:fixed;inset:0;background:rgba(30,22,14,.45);z-index:40;display:none}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:88vh;overflow-y:auto;background:var(--card);border-radius:18px 18px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.2);transform:translateY(105%);transition:transform .25s ease;max-width:760px;margin:0 auto;-webkit-overflow-scrolling:touch}
+#sheet.on{transform:none}
+#sheet .grab{position:sticky;top:0;background:var(--card);padding:8px 14px 6px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);z-index:2}
+#sheet .grab .nav{display:flex;gap:6px}
+#sheet .grab button{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:5px 10px;font-size:13px;font-weight:600}
+#sheet .body{padding:14px 16px 34px}
+#sheet h2{font-size:30px;margin:2px 0 0;line-height:1.05}
+#sheet .alt{color:var(--muted);font-size:13px;margin-top:2px}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:12px 0}
+.facts div{background:var(--bg);border-radius:10px;padding:7px 10px}
+.facts small{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+.facts b{font-size:14px}
+.vpill{display:inline-block;color:#fff;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;margin-top:8px}
+.vpill.good{background:var(--good)}.vpill.evil{background:var(--evil)}.vpill.mixed{background:var(--mixed)}.vpill.none{background:var(--none)}
+#sheet h3{font-size:21px;margin:18px 0 6px;border-bottom:1px solid var(--line);padding-bottom:3px}
+#sheet ul.did{margin:0;padding-left:18px}
+#sheet ul.did li{margin:0 0 6px}
+.pm{border-left:3px solid var(--pro);background:#f6f3fb;border-radius:0 10px 10px 0;padding:8px 11px;margin:0 0 8px}
+.pm .who{font-weight:700;font-size:13.5px;color:var(--pro)}
+.pm .who button{border:0;background:none;padding:0;font-weight:700;color:var(--pro);text-decoration:underline;text-underline-offset:2px}
+.pm .msg{font-size:14px;margin-top:2px}
+.pm .ref{font-size:12px;color:var(--muted);margin-top:2px}
+.note{font-size:13px;color:var(--muted);background:var(--bg);border-radius:10px;padding:8px 11px;margin-top:10px}
+
+/* in christ */
+.cx-hero{background:linear-gradient(160deg,#2a2118,#4a3a22);color:#f8f1e2;border-radius:16px;padding:20px 18px;margin-bottom:14px}
+.cx-hero h2{font-size:32px;margin:0 0 6px;line-height:1.05;color:#f3d98b}
+.cx-hero p{margin:0 0 8px;font-size:14.5px;color:#eadfca}
+.cx-hero .kv{font-family:"Cormorant Garamond",serif;font-size:21px;line-height:1.35;margin:12px 0 4px;color:#fff}
+.cx-hero .kv .ok{color:#f3d98b;font-weight:700}.cx-hero .kv .op{color:#c9b8ff;font-weight:700}.cx-hero .kv .or{color:#8fe0d6;font-weight:700}
+.cx-hero .ref{font-size:12.5px;color:#cbbd9f}
+.offices{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:900px){.offices{grid-template-columns:repeat(3,1fr)}}
+.off{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.off .oh{padding:12px 14px;color:#fff}
+.off .oh h3{margin:0;font-size:25px;line-height:1}
+.off .oh div{font-size:12.5px;opacity:.9;margin-top:3px}
+.off.k .oh{background:#7a5c0a}.off.p .oh{background:var(--pro)}.off.r .oh{background:var(--pri)}
+.off .ob{padding:6px 14px 12px}
+.off h4{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:12px 0 6px}
+.off ul{margin:0;padding-left:17px;font-size:13.5px}.off li{margin-bottom:5px}
+.vq{border-left:3px solid var(--line);padding:3px 0 3px 10px;margin:0 0 8px;font-size:13.5px}
+.vq b{display:block;font-size:11.5px;color:var(--muted);font-weight:600;margin-top:1px}
+.off.k .vq.f{border-color:#b8962e;background:#fbf4e1}.off.p .vq.f{border-color:var(--pro);background:#f6f3fb}.off.r .vq.f{border-color:var(--pri);background:#eef6f5}
+.vq.f{border-radius:0 8px 8px 0;padding:6px 10px}
+.sec-h{font-family:"Cormorant Garamond",serif;font-size:26px;margin:24px 2px 4px}
+.sec-p{font-size:13.5px;color:var(--muted);margin:0 2px 10px}
+.threads{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+.th{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+.th .n{font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:700;line-height:1.15}
+.th .arrow{display:grid;grid-template-columns:1fr;gap:6px;margin-top:8px;font-size:13.5px}
+.th .then,.th .now{border-radius:8px;padding:7px 9px}
+.th .then{background:var(--soft)}.th .now{background:#fbf4e1;border:1px solid #ecdcae}
+.th small{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:var(--muted);margin-bottom:2px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:6px}
+.trio>div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+.trio .g{font-family:"Cormorant Garamond",serif;font-size:17px;font-weight:700;line-height:1.15}
+.trio .r{font-size:11.5px;color:var(--muted);margin-top:3px}
+.trio .t{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.closing{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px}
+.closing .kv{font-family:"Cormorant Garamond",serif;font-size:20px;line-height:1.35}
+footer{max-width:1100px;margin:0 auto;padding:0 16px 40px;font-size:12px;color:var(--muted)}
+@media (min-width:760px){
+  header h1{font-size:40px}
+  #sheet{border-radius:18px;bottom:20px}
+  .facts{grid-template-columns:repeat(4,1fr)}
+  .par .hd{top:54px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Kings, Prophets &amp; Priests of Israel and Judah</h1>
+  <p style="margin-bottom:8px">From Saul to the fall of Jerusalem (c. 1050–586 BC): 3 kings of the united kingdom, 19 (+1 rival) of Israel, 20 rulers of Judah, the prophets God sent to them, and the priests who served alongside them. Tap any king, prophet or priest.</p>
+  <a id="genLink" href="#" style="display:inline-flex;font-size:13px;font-weight:600;color:#7a5c0a;background:#fbf4e1;border:1px solid #ecdcae;border-radius:999px;padding:5px 12px;text-decoration:none">Companion: Genealogies to Christ →</a>
+</header>
+<nav class="tabs"><div class="in">
+  <button data-v="vt" class="on">Timeline</button>
+  <button data-v="vk">Kings</button>
+  <button data-v="vp">Prophets</button>
+  <button data-v="vr">Priests</button>
+  <button data-v="vc">In Christ</button>
+</div></nav>
+<main>
+  <section id="vt" class="view on">
+    <div class="legend">
+      <span><i style="background:var(--good)"></i>Did right</span>
+      <span><i style="background:var(--mixed)"></i>Mixed</span>
+      <span><i style="background:var(--evil)"></i>Did evil</span>
+      <span><i style="background:var(--pro)"></i>Prophet</span>
+      <span><i style="background:var(--pri)"></i>Faithful priest</span>
+      <span><i style="background:var(--pribad)"></i>Compromised priest</span>
+      <span><i style="background:var(--prifalse)"></i>False / idol priests</span>
+      <span><i style="background:repeating-linear-gradient(135deg,#bbb 0 3px,#eee 3px 6px)"></i>Co-regency / rival rule</span>
+    </div>
+    <div class="toolbar">
+      <div class="zoom"><button id="zo" aria-label="Zoom out">−</button><button id="zi" aria-label="Zoom in">+</button></div>
+      <span class="hint">Scroll sideways · tap empty space to set the year</span>
+    </div>
+    <div class="jump" id="jump"></div>
+    <div class="tlwrap" id="wrap"><div id="tl"></div></div>
+    <div class="scrub">
+      <div class="top">
+        <div><div class="yr" id="yr">931 BC</div><div class="yrlbl" id="yrev">Who was reigning and prophesying this year</div></div>
+        <div class="step"><button id="ym">◀ 1 yr</button><button id="yp">1 yr ▶</button></div>
+      </div>
+      <input type="range" id="slider" aria-label="Year">
+      <div class="cgrid" id="contemp"></div>
+    </div>
+  </section>
+
+  <section id="vk" class="view">
+    <div class="filters" id="kf">
+      <input id="ks" placeholder="Search a king, prophet, event…">
+      <button data-f="all" class="on">All</button>
+      <button data-f="good">Did right</button>
+      <button data-f="evil">Did evil</button>
+      <button data-f="mixed">Mixed</button>
+    </div>
+    <div class="par" id="par"></div>
+  </section>
+
+  <section id="vc" class="view">
+    <div class="cx-hero">
+      <h2>Fulfilled in Christ</h2>
+      <p>Israel had three anointed offices: <b>king</b>, <b>prophet</b> and <b>priest</b>. Every one of them failed. By 586 BC the throne was empty, the temple burned and the prophets silenced. “Messiah” and “Christ” both mean <i>the Anointed One</i>: the one who would hold all three offices perfectly, and forever.</p>
+      <div class="kv">“God, who at sundry times and in divers manners spake in time past unto the fathers by the prophets, hath in these last days <span class="op">spoken unto us by his Son</span>, whom he hath <span class="ok">appointed heir of all things</span>… when he had <span class="or">by himself purged our sins</span>, sat down on the right hand of the Majesty on high.”</div>
+      <div class="ref">Hebrews 1:1–3 — <span style="color:#c9b8ff">Prophet</span> · <span style="color:#f3d98b">King</span> · <span style="color:#8fe0d6">Priest</span></div>
+    </div>
+
+    <div class="trio">
+      <div><div class="t" style="color:var(--pri)">Priest</div><div class="g">“One greater than the temple”</div><div class="r">Matt 12:6</div></div>
+      <div><div class="t" style="color:var(--pro)">Prophet</div><div class="g">“A greater than Jonas is here”</div><div class="r">Matt 12:41</div></div>
+      <div><div class="t" style="color:#7a5c0a">King</div><div class="g">“A greater than Solomon is here”</div><div class="r">Matt 12:42</div></div>
+    </div>
+    <p class="sec-p">In one chapter Jesus measured himself against all three offices, each one tied to a figure on this timeline.</p>
+
+    <div class="offices">
+      <div class="off k"><div class="oh"><h3>The King</h3><div>Rules for God over his people</div></div><div class="ob">
+        <h4>The pattern on the timeline</h4>
+        <ul><li>Saul was rejected for disobedience; David sinned; Solomon's heart turned to other gods.</li><li>All 19 kings of Israel “did evil.” Even Judah's best fell short: Hezekiah's pride, Josiah's death at Megiddo.</li><li>The last king, Zedekiah, was blinded and led away in chains, and the crown was removed.</li></ul>
+        <div data-c="saul,david,solomon,hezekiah,josiah,zedekiah"></div>
+        <h4>The promise</h4>
+        <div class="vq">“Thine house and thy kingdom shall be established for ever.”<b>2 Sam 7:16 — to David</b></div>
+        <div class="vq">“Of the increase of his government and peace there shall be no end, upon the throne of David.”<b>Isa 9:7</b></div>
+        <div class="vq">“I will raise unto David a righteous Branch… THE LORD OUR RIGHTEOUSNESS.”<b>Jer 23:5–6</b></div>
+        <div class="vq">“But thou, Beth-lehem Ephratah… out of thee shall he come forth… that is to be ruler in Israel.”<b>Mic 5:2</b></div>
+        <h4>Fulfilled in Jesus</h4>
+        <div class="vq f">“The Lord God shall give unto him the throne of his father David… and of his kingdom there shall be no end.”<b>Luke 1:32–33</b></div>
+        <div class="vq f">“KING OF KINGS, AND LORD OF LORDS.”<b>Rev 19:16</b></div>
+      </div></div>
+
+      <div class="off p"><div class="oh"><h3>The Prophet</h3><div>Speaks God's word to the people</div></div><div class="ob">
+        <h4>The pattern on the timeline</h4>
+        <ul><li>Elijah fled in despair; Jonah ran the other way.</li><li>Micaiah was jailed, Jeremiah thrown into a cistern and his scroll burned.</li><li>Zechariah son of Jehoiada was stoned in the temple court, and Uriah was killed by Jehoiakim.</li><li>False prophets like Hananiah told kings what they wanted to hear.</li></ul>
+        <div data-c="elijah,jonah,micaiah,jeremiah,zech_j,uriah"></div>
+        <h4>The promise</h4>
+        <div class="vq">“The LORD thy God will raise up unto thee a Prophet… like unto me; unto him ye shall hearken.”<b>Deut 18:15</b></div>
+        <div class="vq">“I… will put my words in his mouth; and he shall speak unto them all that I shall command him.”<b>Deut 18:18</b></div>
+        <div class="vq">“The Spirit of the Lord GOD is upon me; because the LORD hath anointed me to preach good tidings.”<b>Isa 61:1</b></div>
+        <h4>Fulfilled in Jesus</h4>
+        <div class="vq f">On the mount, with Moses and Elijah beside him: “This is my beloved Son… hear ye him.”<b>Matt 17:5 — echoing Deut 18:15</b></div>
+        <div class="vq f">“O Jerusalem, Jerusalem, thou that killest the prophets…”<b>Matt 23:37</b></div>
+        <div class="vq f">“The Word was made flesh, and dwelt among us.”<b>John 1:14</b></div>
+      </div></div>
+
+      <div class="off r"><div class="oh"><h3>The Priest</h3><div>Represents the people before God</div></div><div class="ob">
+        <h4>The pattern on the timeline</h4>
+        <ul><li>Eli's sons corrupted the priesthood; Abiathar was removed.</li><li>Jeroboam made priests “of the lowest of the people”; Urijah copied a pagan altar.</li><li>Pashhur beat Jeremiah; the last high priest, Seraiah, was executed and the temple burned.</li><li>Priests died and had to be replaced; sacrifices had to be repeated every day.</li></ul>
+        <div data-c="eli,abiathar,calfpriests,urijah,pashhur,seraiah"></div>
+        <h4>The promise</h4>
+        <div class="vq">To Eli: “I will raise me up a faithful priest, that shall do according to that which is in mine heart.”<b>1 Sam 2:35</b></div>
+        <div class="vq">“Thou art a priest for ever after the order of Melchizedek.”<b>Ps 110:4</b></div>
+        <div class="vq">“He bare the sin of many, and made intercession for the transgressors.”<b>Isa 53:12</b></div>
+        <h4>Fulfilled in Jesus</h4>
+        <div class="vq f">“He ever liveth to make intercession for them… this he did once, when he offered up himself.”<b>Heb 7:25–27</b></div>
+        <div class="vq f">“The veil of the temple was rent in twain from the top to the bottom.”<b>Matt 27:51</b></div>
+        <div class="vq f">“Destroy this temple, and in three days I will raise it up… he spake of the temple of his body.”<b>John 2:19–21</b></div>
+      </div></div>
+    </div>
+
+    <h3 class="sec-h">Threads on the timeline that point to him</h3>
+    <p class="sec-p">Moments in the history above that become signposts when read from the cross.</p>
+    <div class="threads">
+      <div class="th"><div class="n">King and priest kept apart — until one comes who is both</div>
+        <div class="arrow"><div class="then"><small>Then</small>Uzziah tried to burn incense as king and was struck with leprosy (2 Chr 26). No king could be a priest.</div>
+        <div class="now"><small>Pointing to</small>David's Lord would be “a priest for ever after the order of Melchizedek,” the king-priest of Salem (Ps 110:1–4). Hebrews 7 applies this to Jesus.</div></div>
+        <div data-c="uzziah,azariahU" style="margin-top:8px"></div></div>
+      <div class="th"><div class="n">“Until he come whose right it is”</div>
+        <div class="arrow"><div class="then"><small>Then</small>To Zedekiah: “Remove the diadem, and take off the crown… I will overturn, overturn, overturn it” (Ezek 21:26–27).</div>
+        <div class="now"><small>Pointing to</small>The throne sat empty for six centuries, held open “until he come whose right it is; and I will give it him.”</div></div>
+        <div data-c="zedekiah,ezekiel" style="margin-top:8px"></div></div>
+      <div class="th"><div class="n">The high priest crowned as a sign</div>
+        <div class="arrow"><div class="then"><small>Then</small>Seraiah, the last high priest, was executed in 586. His grandson Joshua returned from exile as high priest.</div>
+        <div class="now"><small>Pointing to</small>Zechariah crowned Joshua as a sign of “the BRANCH… he shall be a priest upon his throne: and the counsel of peace shall be between them both” (Zech 6:11–13). Joshua's name is the Hebrew form of <i>Jesus</i>.</div></div>
+        <div data-c="seraiah" style="margin-top:8px"></div></div>
+      <div class="th"><div class="n">The royal seed nearly wiped out — and hidden</div>
+        <div class="arrow"><div class="then"><small>Then</small>Athaliah killed the royal family; infant Joash, the last son of David, was hidden in the temple by the priest Jehoiada.</div>
+        <div class="now"><small>Pointing to</small>Herod slaughtered Bethlehem's children; the infant Jesus, Son of David, was hidden in Egypt (Matt 2:13–16). God guarded the line both times.</div></div>
+        <div data-c="athaliah,joashJ,jehoiada" style="margin-top:8px"></div></div>
+      <div class="th"><div class="n">A curse on Coniah's line</div>
+        <div class="arrow"><div class="then"><small>Then</small>“Write ye this man childless… no man of his seed shall prosper, sitting upon the throne of David” (Jer 22:30).</div>
+        <div class="now"><small>Pointing to</small>Jesus' legal line through Joseph runs through Jeconiah (Matt 1:11–12), yet he was not Joseph's son by blood. Many interpreters see his descent from David through Mary in Luke 3, via David's son Nathan.</div></div>
+        <div data-c="jehoiachin,jeremiah" style="margin-top:8px"></div></div>
+      <div class="th"><div class="n">A king named centuries ahead</div>
+        <div class="arrow"><div class="then"><small>Then</small>The man of God named Josiah about 300 years before he was born (1 Kgs 13:2), and it came true to the letter (2 Kgs 23).</div>
+        <div class="now"><small>Pointing to</small>Micah named Bethlehem as the Ruler's birthplace about 700 years ahead (Mic 5:2; Matt 2:4–6). The God who names Josiah keeps every word.</div></div>
+        <div data-c="manofgod,josiah,micah" style="margin-top:8px"></div></div>
+      <div class="th"><div class="n">Elijah must come first</div>
+        <div class="arrow"><div class="then"><small>Then</small>Elijah confronted Ahab and was taken up in a whirlwind; Malachi promised, “I will send you Elijah the prophet” (Mal 4:5).</div>
+        <div class="now"><small>Pointing to</small>John the Baptist came “in the spirit and power of Elias” (Luke 1:17); “this is Elias, which was for to come” (Matt 11:14), preparing the way for the King.</div></div>
+        <div data-c="elijah,ahab" style="margin-top:8px"></div></div>
+      <div class="th"><div class="n">One anointing for all three</div>
+        <div class="arrow"><div class="then"><small>Then</small>Samuel anointed Saul and David; priests were anointed with oil (Exod 29:7); Elijah was told to anoint Elisha (1 Kgs 19:16).</div>
+        <div class="now"><small>Pointing to</small>At Nazareth: “The Spirit of the Lord is upon me, because he hath anointed me” (Luke 4:18), the Christ, the Anointed One.</div></div>
+        <div data-c="samuel,elisha" style="margin-top:8px"></div></div>
+    </div>
+
+    <div class="closing">
+      <div class="kv">“Jesus Christ, who is <b style="color:var(--pro)">the faithful witness</b>, and the first begotten of the dead, and <b style="color:#7a5c0a">the prince of the kings of the earth</b>. Unto him that loved us, and <b style="color:var(--pri)">washed us from our sins in his own blood</b>, and hath made us kings and priests unto God and his Father.”</div>
+      <div class="ref" style="font-size:12.5px;color:var(--muted);margin-top:4px">Revelation 1:5–6</div>
+      <p style="font-size:14px;margin:10px 0 0">The story does not end with Christ alone holding the three offices. Through him his people share them: “a royal priesthood… that ye should shew forth the praises of him who hath called you out of darkness into his marvellous light” (1 Pet 2:9).</p>
+      <p style="font-size:14px;margin:10px 0 0"><a class="genL" href="#" style="color:#7a5c0a;font-weight:600">Trace the line from Adam to Christ — Genealogies to Christ →</a></p>
+    </div>
+  </section>
+
+  <section id="vr" class="view">
+    <div class="filters" id="rf">
+      <input id="rs" placeholder="Search priests…">
+      <button data-f="all" class="on">All</button>
+      <button data-f="faithful">Faithful</button>
+      <button data-f="bad">Compromised</button>
+      <button data-f="false">False / idol</button>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin:0 2px 10px">Judah kept the Levitical priesthood at the Jerusalem temple; Zadok's family held the high priesthood from Solomon on. Israel had no lawful priesthood after Jeroboam replaced the Levites with priests of his own choosing.</p>
+    <div class="pgrid" id="rgrid"></div>
+  </section>
+
+  <section id="vp" class="view">
+    <div class="filters" id="pf">
+      <input id="ps" placeholder="Search prophets or messages…">
+      <button data-f="all" class="on">All</button>
+      <button data-f="I">To Israel</button>
+      <button data-f="J">To Judah</button>
+      <button data-f="w">Wrote a book</button>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+  </section>
+</main>
+<footer>
+  <p><b>About the dates.</b> Reign dates follow Edwin Thiele's widely used chronology (<i>The Mysterious Numbers of the Hebrew Kings</i>); other systems differ by a few years. Striped portions show co-regencies or rival rule, which explain why reign lengths overlap. Prophets' dates are approximate; Joel and Obadiah are dated differently by scholars (early or post-exilic). Quotations are from the King James Version.</p>
+</footer>
+
+<div id="back"></div>
+<div id="sheet" role="dialog" aria-modal="true">
+  <div class="grab"><div class="nav"><button id="prev">◀ Prev</button><button id="next">Next ▶</button></div><button id="close">Close ✕</button></div>
+  <div class="body" id="sbody"></div>
+</div>
+
+<script>
+const GEN_URL="https://ekakuman.github.io/genealogies-to-christ/";
+/* ======================= DATA ======================= */
+const K=[
+/* ---------- UNITED KINGDOM ---------- */
+{id:"saul",k:"U",n:"Saul",alt:"Son of Kish, tribe of Benjamin",s:1050,e:1010,len:"40 years (Acts 13:21)",v:"mixed",dyn:"House of Kish",ref:"1 Samuel 9–31; 1 Chronicles 10",
+did:["Anointed privately by Samuel, then chosen by lot at Mizpah; began humbly, hiding among the baggage.","Rescued Jabesh-gilead from Nahash the Ammonite and was confirmed as king at Gilgal.","Grew impatient and offered the burnt offering himself instead of waiting for Samuel (1 Sam 13).","Spared King Agag and the best of Amalek's flocks against God's command (1 Sam 15) — the LORD rejected him as king.","Tormented by an evil spirit; became jealous of David and hunted him for years.","Massacred the priests of Nob; consulted the medium at En-dor; died with three sons on Mount Gilboa fighting the Philistines."],
+pr:[{p:"samuel",m:"“Behold, to obey is better than sacrifice… Because thou hast rejected the word of the LORD, he hath also rejected thee from being king.”",r:"1 Sam 15:22–23"},{p:"samuel",m:"After the unlawful sacrifice: “Thy kingdom shall not continue: the LORD hath sought him a man after his own heart.”",r:"1 Sam 13:13–14"}]},
+{id:"david",k:"U",n:"David",alt:"Son of Jesse, tribe of Judah",s:1010,e:970,len:"40 years (7½ in Hebron, 33 in Jerusalem)",v:"good",dyn:"House of David",ref:"1 Sam 16 – 1 Kgs 2; 1 Chr 11–29",
+did:["Anointed as a youth in Bethlehem; killed Goliath; served Saul, then lived as a fugitive.","King of Judah at Hebron, then over all Israel; captured Jerusalem from the Jebusites and made it the capital.","Brought the Ark of the Covenant to Jerusalem with dancing and worship.","Received God's covenant of an everlasting throne (2 Sam 7) — the root of the Messianic hope.","Committed adultery with Bathsheba and arranged Uriah's death; repented deeply (Psalm 51), yet his family suffered — Amnon, Absalom's revolt, Adonijah.","Took a proud census that brought a plague; bought Araunah's threshing floor, the future temple site, and gathered materials for the temple."],
+pr:[{p:"nathan",m:"“Thine house and thy kingdom shall be established for ever before thee: thy throne shall be established for ever.”",r:"2 Sam 7:16"},{p:"nathan",m:"“Thou art the man… the sword shall never depart from thine house.” Yet, on David's confession: “The LORD also hath put away thy sin; thou shalt not die.”",r:"2 Sam 12:7–13"},{p:"gad",m:"Offered three judgments after the census, then: “Rear an altar unto the LORD in the threshingfloor of Araunah.”",r:"2 Sam 24:13–18"}]},
+{id:"solomon",k:"U",n:"Solomon",alt:"Son of David and Bathsheba; also called Jedidiah",s:970,e:931,len:"40 years",v:"mixed",dyn:"House of David",ref:"1 Kings 1–11; 2 Chronicles 1–9",
+did:["Asked God at Gibeon for an understanding heart rather than riches — and received both.","Built the Temple in Jerusalem (begun 966 BC, 480 years after the Exodus) and dedicated it with a great prayer.","Brought unmatched wealth through trade; the Queen of Sheba visited; wrote 3,000 proverbs and 1,005 songs.","Married 700 wives and had 300 concubines, many foreign; in old age they turned his heart to other gods.","Built high places for Chemosh of Moab and Molech of Ammon on the hill east of Jerusalem.","Imposed heavy forced labor and taxes — the grievance that split the kingdom after his death."],
+pr:[{p:"nathan",m:"Worked with Bathsheba to secure Solomon's succession over Adonijah and anointed him at Gihon.",r:"1 Kgs 1:11–45"},{p:"ahijah",m:"Tore his new cloak into twelve pieces and gave ten to Jeroboam: “Behold, I will rend the kingdom out of the hand of Solomon… because they have forsaken me.”",r:"1 Kgs 11:29–33"}]},
+
+/* ---------- ISRAEL (NORTH) ---------- */
+{id:"jeroboam1",k:"I",n:"Jeroboam I",alt:"Son of Nebat, tribe of Ephraim",s:931,e:910,len:"22 years",v:"evil",dyn:"1st dynasty — Jeroboam",ref:"1 Kings 11:26–14:20",
+did:["Former overseer of Solomon's forced labor; fled to Egypt after Ahijah's prophecy.","Became king of the ten northern tribes after Rehoboam's harsh answer at Shechem.","To stop people going to Jerusalem, set up golden calves at Bethel and Dan: “Behold thy gods, O Israel.”","Appointed non-Levite priests and invented his own feast in the eighth month.","His hand withered when he pointed at the man of God at the Bethel altar.","“The sin of Jeroboam son of Nebat, who made Israel to sin” became the measure for nearly every northern king after him."],
+pr:[{p:"ahijah",m:"Promise: “If thou wilt hearken unto all that I command thee… I will build thee a sure house.”",r:"1 Kgs 11:38"},{p:"manofgod",m:"“O altar, altar… a child shall be born unto the house of David, Josiah by name; and upon thee shall he offer the priests of the high places.” The altar split apart.",r:"1 Kgs 13:2–5"},{p:"ahijah",m:"To Jeroboam's disguised wife: the sick son would die, and “I will take away the remnant of the house of Jeroboam, as a man taketh away dung”; Israel would be scattered beyond the River.",r:"1 Kgs 14:6–16"}]},
+{id:"nadab",k:"I",n:"Nadab",alt:"Son of Jeroboam",s:910,e:909,len:"2 years",v:"evil",dyn:"Jeroboam",ref:"1 Kings 15:25–31",
+did:["Walked in his father's sin with the calves.","Assassinated by Baasha while besieging the Philistine town of Gibbethon.","Baasha wiped out Jeroboam's entire family — exactly as Ahijah had foretold."],
+pr:[{p:"ahijah",m:"His prophecy against Jeroboam's house was fulfilled in Nadab's death.",r:"1 Kgs 15:29–30"}]},
+{id:"baasha",k:"I",n:"Baasha",alt:"Son of Ahijah, tribe of Issachar",s:909,e:886,len:"24 years",v:"evil",dyn:"2nd dynasty — Baasha",ref:"1 Kings 15:27–16:7; 2 Chr 16:1–6",
+did:["Seized the throne by murdering Nadab and all of Jeroboam's house.","Continued Jeroboam's calf worship.","Waged constant war with Asa of Judah; fortified Ramah to blockade Jerusalem.","Abandoned Ramah when Asa bribed Ben-hadad of Damascus to attack Israel's northern towns."],
+pr:[{p:"jehu_h",m:"“Forasmuch as I exalted thee out of the dust, and made thee prince over my people Israel; and thou hast walked in the way of Jeroboam… I will take away the posterity of Baasha.”",r:"1 Kgs 16:1–4"}]},
+{id:"elah",k:"I",n:"Elah",alt:"Son of Baasha",s:886,e:885,len:"2 years",v:"evil",dyn:"Baasha",ref:"1 Kings 16:8–14",
+did:["Was getting drunk in the house of his steward Arza at Tirzah.","Assassinated by Zimri, commander of half his chariots.","Zimri destroyed all of Baasha's family and friends."],
+pr:[{p:"jehu_h",m:"The word against Baasha's house was fulfilled “according to the word of the LORD, which he spake against Baasha by Jehu the prophet.”",r:"1 Kgs 16:12–13"}]},
+{id:"zimri",k:"I",n:"Zimri",alt:"Chariot commander",s:885,e:885,len:"7 days",v:"evil",dyn:"3rd dynasty — Zimri",ref:"1 Kings 16:9–20",
+did:["Killed Elah and the whole house of Baasha.","The army at Gibbethon refused him and proclaimed their commander Omri king.","Besieged at Tirzah, he went into the palace citadel and burned it down over himself."],pr:[]},
+{id:"tibni",k:"I",n:"Tibni",alt:"Son of Ginath — rival king",s:885,e:880,co:880,len:"c. 5 years (rival rule)",v:"none",dyn:"Rival claimant",ref:"1 Kings 16:21–22",
+did:["Half of Israel followed Tibni, half followed Omri — a four-to-five-year civil war.","Omri's faction prevailed; Tibni died and Omri reigned alone."],pr:[]},
+{id:"omri",k:"I",n:"Omri",alt:"Army commander",s:885,e:874,co:880,len:"12 years (6 at Tirzah)",v:"evil",dyn:"4th dynasty — Omri",ref:"1 Kings 16:16–28; Micah 6:16",
+did:["Won the civil war against Tibni.","Bought the hill of Samaria from Shemer for two talents of silver and built a new capital there.","Did “worse than all that were before him.”","Subdued Moab — confirmed by the Mesha Stele (Moabite Stone).","So powerful that Assyrian records called Israel “the House of Omri” for over a century.","Allied with Phoenicia, marrying his son Ahab to Jezebel; Micah later condemned “the statutes of Omri.”"],pr:[]},
+{id:"ahab",k:"I",n:"Ahab",alt:"Son of Omri; husband of Jezebel",s:874,e:853,len:"22 years",v:"evil",dyn:"Omri",ref:"1 Kings 16:29–22:40",
+did:["Married Jezebel, daughter of Ethbaal king of Sidon, and made Baal worship the state religion — temple and altar to Baal in Samaria, plus an Asherah.","Jezebel killed the LORD's prophets; Obadiah the steward hid 100 of them in caves.","Hiel rebuilt Jericho at the cost of his sons — Joshua's curse fulfilled (Josh 6:26).","Defeated Ben-hadad twice by God's help, then let him go with a treaty.","Coveted Naboth's vineyard; Jezebel had Naboth framed and stoned. When rebuked, Ahab humbled himself and the disaster was delayed.","Fought Shalmaneser III at Qarqar (853 BC) with 2,000 chariots, per Assyrian records.","Ignored Micaiah, went to Ramoth-gilead in disguise, was hit by a random arrow; dogs licked his blood in Samaria."],
+pr:[{p:"elijah",m:"“As the LORD God of Israel liveth… there shall not be dew nor rain these years, but according to my word.”",r:"1 Kgs 17:1"},{p:"elijah",m:"On Mount Carmel: “How long halt ye between two opinions? if the LORD be God, follow him: but if Baal, then follow him.” Fire fell; the people cried, “The LORD, he is the God.”",r:"1 Kgs 18:21–39"},{p:"elijah",m:"At Naboth's vineyard: “In the place where dogs licked the blood of Naboth shall dogs lick thy blood… The dogs shall eat Jezebel by the wall of Jezreel.”",r:"1 Kgs 21:19–23"},{u:"Unnamed prophets",m:"Promised victories over Ben-hadad so “ye shall know that I am the LORD,” then condemned the treaty: “Thy life shall go for his life.”",r:"1 Kgs 20:13–42"},{p:"micaiah",m:"“I saw all Israel scattered upon the hills, as sheep that have not a shepherd… the LORD hath put a lying spirit in the mouth of all these thy prophets.”",r:"1 Kgs 22:17–23"}]},
+{id:"ahaziahI",k:"I",n:"Ahaziah",alt:"Son of Ahab",s:853,e:852,len:"2 years",v:"evil",dyn:"Omri",ref:"1 Kings 22:51–2 Kings 1",
+did:["Served Baal like his parents.","Moab rebelled after Ahab's death.","His joint fleet with Jehoshaphat was wrecked at Ezion-geber.","Fell through a lattice in his upper room and sent to ask Baal-zebub, god of Ekron, whether he would recover.","Sent three captains with fifty men each to seize Elijah; fire from heaven consumed the first two groups.","Died without a son; his brother Joram succeeded him."],
+pr:[{p:"elijah",m:"“Is it not because there is not a God in Israel, that ye go to enquire of Baal-zebub the god of Ekron? … Thou shalt not come down from that bed… but shalt surely die.”",r:"2 Kgs 1:3–4, 16"}]},
+{id:"joramI",k:"I",n:"Joram (Jehoram)",alt:"Son of Ahab",s:852,e:841,len:"12 years",v:"evil",dyn:"Omri",ref:"2 Kings 3–9",
+did:["Removed Ahab's sacred pillar of Baal but kept Jeroboam's calves.","Campaigned with Jehoshaphat and Edom against Mesha of Moab; Mesha sacrificed his son on the wall and the allies withdrew.","Elisha repeatedly warned him of Aramean ambushes; he received the leper Naaman.","Samaria endured a siege so severe that mothers ate their children; he blamed Elisha and swore to kill him.","Wounded fighting Hazael at Ramoth-gilead; killed by Jehu's arrow, his body thrown onto Naboth's field."],
+pr:[{p:"elisha",m:"“Were it not that I regard the presence of Jehoshaphat… I would not look toward thee” — yet he promised water in the desert and victory over Moab.",r:"2 Kgs 3:13–18"},{p:"elisha",m:"At Dothan: “Fear not: for they that be with us are more than they that be with them.” In the famine: “To morrow… a measure of fine flour be sold for a shekel.”",r:"2 Kgs 6:16; 7:1"},{p:"elijah",m:"Elijah's word over Naboth's blood was fulfilled when Joram's body was cast onto Naboth's plot.",r:"2 Kgs 9:25–26"}]},
+{id:"jehu",k:"I",n:"Jehu",alt:"Son of Jehoshaphat, son of Nimshi",s:841,e:814,len:"28 years",v:"mixed",dyn:"5th dynasty — Jehu",ref:"2 Kings 9–10",
+did:["Army commander anointed by a son of the prophets sent by Elisha; known for driving “furiously.”","Killed Joram of Israel and Ahaziah of Judah in one day; had Jezebel thrown from a window — dogs ate her, as Elijah said.","Had the 70 sons of Ahab executed and wiped out the house of Ahab.","Gathered all the Baal worshippers in their temple and destroyed them; turned the temple into a latrine.","But he did not turn from Jeroboam's golden calves.","Lost all of Transjordan to Hazael of Damascus.","Shown (or his envoy) bowing to Shalmaneser III on the Black Obelisk — the earliest surviving image of an Israelite king."],
+pr:[{p:"elisha",m:"Through a son of the prophets: “Thou shalt smite the house of Ahab thy master, that I may avenge the blood of my servants the prophets.”",r:"2 Kgs 9:1–10"},{u:"The word of the LORD",m:"“Because thou hast done well… thy children of the fourth generation shall sit on the throne of Israel.”",r:"2 Kgs 10:30"},{p:"hosea",m:"A century later: “I will avenge the blood of Jezreel upon the house of Jehu” — his excess was judged too.",r:"Hos 1:4"}]},
+{id:"jehoahazI",k:"I",n:"Jehoahaz",alt:"Son of Jehu",s:814,e:798,len:"17 years",v:"evil",dyn:"Jehu",ref:"2 Kings 13:1–9",
+did:["Kept the calf worship; the Asherah stood in Samaria.","Hazael and Ben-hadad of Damascus crushed Israel until only 50 horsemen, 10 chariots and 10,000 foot soldiers remained.","He sought the LORD, who gave Israel “a saviour” — relief came as Assyria pressured Damascus."],
+pr:[{p:"elisha",m:"Elisha was still active in Israel, though no word to Jehoahaz is recorded.",r:"2 Kgs 13:14"}]},
+{id:"jehoashI",k:"I",n:"Jehoash (Joash)",alt:"Son of Jehoahaz",s:798,e:782,len:"16 years",v:"evil",dyn:"Jehu",ref:"2 Kings 13:10–25; 14:8–16",
+did:["Wept at dying Elisha's bedside: “O my father, the chariot of Israel, and the horsemen thereof.”","Struck the ground with arrows only three times — and won exactly three victories over Ben-hadad, recovering lost cities.","Answered Amaziah of Judah's challenge with the parable of the thistle and the cedar.","Defeated and captured Amaziah at Beth-shemesh, broke down 400 cubits of Jerusalem's wall and looted the temple."],
+pr:[{p:"elisha",m:"“The arrow of the LORD's deliverance… Thou shouldest have smitten five or six times; then hadst thou smitten Syria till thou hadst consumed it.”",r:"2 Kgs 13:17–19"}]},
+{id:"jeroboam2",k:"I",n:"Jeroboam II",alt:"Son of Jehoash",s:793,e:753,co:782,len:"41 years (incl. co-regency)",v:"evil",dyn:"Jehu",ref:"2 Kings 14:23–29; Amos; Hosea 1",
+did:["Israel's longest and most prosperous reign; restored the borders from Lebo-hamath to the Dead Sea, as Jonah prophesied.","Recovered Damascus and Hamath while Assyria was weak.","Wealth flowed: ivory houses, winter and summer houses, lavish feasts (Amos 3:15; 6:4).","Beneath the prosperity, the poor were sold “for a pair of shoes,” courts were corrupt, and worship at Bethel was empty ritual.","God showed mercy “because the LORD saw the affliction of Israel… and there was no helper.”"],
+pr:[{p:"jonah",m:"Foretold that Jeroboam would restore Israel's coast “according to the word of the LORD… by the hand of his servant Jonah.”",r:"2 Kgs 14:25"},{p:"amos",m:"“Let judgment run down as waters, and righteousness as a mighty stream.” And, as reported to the king: “Jeroboam shall die by the sword, and Israel shall surely be led away captive.”",r:"Amos 5:24; 7:10–11"},{p:"hosea",m:"“There is no truth, nor mercy, nor knowledge of God in the land… My people are destroyed for lack of knowledge.”",r:"Hos 4:1, 6"}]},
+{id:"zechariahI",k:"I",n:"Zechariah",alt:"Son of Jeroboam II",s:753,e:753,len:"6 months",v:"evil",dyn:"Jehu (4th generation — the last)",ref:"2 Kings 15:8–12",
+did:["Continued the calf worship.","Publicly assassinated by Shallum at Ibleam.","His death ended Jehu's dynasty in the fourth generation — exactly as God had said."],
+pr:[{u:"Word fulfilled",m:"“This was the word of the LORD which he spake unto Jehu… Thy sons shall sit on the throne of Israel unto the fourth generation.”",r:"2 Kgs 15:12"},{p:"hosea",m:"The judgment on Jehu's house announced in Hosea 1:4 came true.",r:"Hos 1:4"}]},
+{id:"shallum",k:"I",n:"Shallum",alt:"Son of Jabesh",s:752,e:752,len:"1 month",v:"evil",dyn:"6th dynasty — Shallum",ref:"2 Kings 15:13–15",
+did:["Murdered Zechariah and took the throne.","Was killed one month later by Menahem."],pr:[{p:"hosea",m:"“They have set up kings, but not by me: they have made princes, and I knew it not.”",r:"Hos 8:4"}]},
+{id:"menahem",k:"I",n:"Menahem",alt:"Son of Gadi",s:752,e:742,len:"10 years",v:"evil",dyn:"7th dynasty — Menahem",ref:"2 Kings 15:14–22",
+did:["Came from Tirzah and killed Shallum.","When Tiphsah refused to open its gates, he sacked it and ripped open its pregnant women.","Paid Pul (Tiglath-pileser III of Assyria) 1,000 talents of silver to secure his throne, taxing 50 shekels from every wealthy man.","Named as a tribute-payer in Tiglath-pileser's own annals."],
+pr:[{p:"hosea",m:"“Ephraim also is like a silly dove without heart: they call to Egypt, they go to Assyria.”",r:"Hos 7:11"}]},
+{id:"pekahiah",k:"I",n:"Pekahiah",alt:"Son of Menahem",s:742,e:740,len:"2 years",v:"evil",dyn:"Menahem",ref:"2 Kings 15:23–26",
+did:["Continued the calf worship.","Assassinated in the palace citadel of Samaria by his officer Pekah with fifty Gileadites."],pr:[{p:"hosea",m:"“They are all hot as an oven, and have devoured their judges; all their kings are fallen.”",r:"Hos 7:7"}]},
+{id:"pekah",k:"I",n:"Pekah",alt:"Son of Remaliah",s:752,e:732,co:740,len:"20 years (counted from his rival rule in Gilead)",v:"evil",dyn:"8th dynasty — Pekah",ref:"2 Kings 15:25–31; 16:5; 2 Chr 28:5–15; Isaiah 7",
+did:["Likely ruled as an anti-Assyrian rival in Gilead from 752 before seizing Samaria in 740.","Allied with Rezin of Damascus and invaded Judah (the Syro-Ephraimite war): killed 120,000 and took 200,000 captives.","Tried to replace Ahaz with a puppet, “the son of Tabeal.”","Tiglath-pileser III struck back (733 BC), seizing Galilee and Gilead and deporting their people.","Assassinated by Hoshea."],
+pr:[{p:"isaiah",m:"To Ahaz about Pekah and Rezin: “Fear not… for the two tails of these smoking firebrands… within threescore and five years shall Ephraim be broken.”",r:"Isa 7:4–8"},{p:"oded",m:"To Pekah's returning army: “Ye have slain them in a rage that reacheth up unto heaven… deliver the captives again.” They clothed, fed and returned them.",r:"2 Chr 28:9–15"},{p:"hosea",m:"“Ephraim is oppressed and broken in judgment.”",r:"Hos 5:11"}]},
+{id:"hoshea",k:"I",n:"Hoshea",alt:"Son of Elah — the last king of Israel",s:732,e:722,len:"9 years",v:"evil",dyn:"9th dynasty — Hoshea",ref:"2 Kings 17; 18:9–12",
+did:["Killed Pekah and reigned as an Assyrian vassal (Tiglath-pileser claims he installed him).","Did evil, “but not as the kings of Israel that were before him.”","Stopped paying tribute to Shalmaneser V and sought help from “So, king of Egypt.”","Was imprisoned; Samaria was besieged for three years and fell in 722 BC. Sargon II claims 27,290 people were deported.","Assyria resettled foreigners in the land; their mixed worship gave rise to the Samaritans.","2 Kings 17 explains why: they rejected God's covenant and ignored “all the prophets, and all the seers.”"],
+pr:[{p:"hosea",m:"“Samaria shall become desolate; for she hath rebelled against her God.” And still: “I will heal their backsliding, I will love them freely.”",r:"Hos 13:16; 14:4"},{p:"micah",m:"“I will make Samaria as an heap of the field… and I will discover the foundations thereof.”",r:"Mic 1:6"},{p:"isaiah",m:"“Woe to the crown of pride, to the drunkards of Ephraim, whose glorious beauty is a fading flower.”",r:"Isa 28:1"}]},
+
+/* ---------- JUDAH (SOUTH) ---------- */
+{id:"rehoboam",k:"J",n:"Rehoboam",alt:"Son of Solomon and Naamah the Ammonitess",s:931,e:913,len:"17 years",v:"evil",dyn:"House of David",ref:"1 Kings 12; 14:21–31; 2 Chronicles 10–12",
+did:["At Shechem rejected the elders' counsel: “My little finger shall be thicker than my father's loins.” Ten tribes broke away.","Built fifteen fortified cities; faithful priests and Levites from the north moved to Judah — three strong years.","Then forsook the law: high places, sacred pillars, Asherah poles and male cult prostitutes.","In his fifth year Pharaoh Shishak (Sheshonq I) invaded and carried off Solomon's gold shields; he replaced them with bronze.","Shishak's victory relief at Karnak lists the towns he took."],
+pr:[{p:"shemaiah",m:"“Ye shall not go up, nor fight against your brethren… for this thing is from me.”",r:"1 Kgs 12:22–24"},{p:"shemaiah",m:"“Ye have forsaken me, and therefore have I also left you in the hand of Shishak.” When they humbled themselves: “I will not destroy them… nevertheless they shall be his servants.”",r:"2 Chr 12:5–8"},{p:"iddo",m:"Recorded Rehoboam's acts and genealogies.",r:"2 Chr 12:15"}]},
+{id:"abijah",k:"J",n:"Abijah (Abijam)",alt:"Son of Rehoboam and Maacah",s:913,e:911,len:"3 years",v:"mixed",dyn:"House of David",ref:"1 Kings 15:1–8; 2 Chronicles 13",
+did:["Kings says “his heart was not perfect with the LORD,” walking in his father's sins.","Yet before battle on Mount Zemaraim he preached to Jeroboam's army: “God himself is with us for our captain… fight ye not against the LORD.”","Outnumbered two to one and ambushed, Judah cried to the LORD and won; Abijah took Bethel and other towns."],
+pr:[{p:"iddo",m:"“The rest of the acts of Abijah… are written in the story of the prophet Iddo.”",r:"2 Chr 13:22"}]},
+{id:"asa",k:"J",n:"Asa",alt:"Son of Abijah",s:911,e:870,len:"41 years",v:"good",dyn:"House of David",ref:"1 Kings 15:9–24; 2 Chronicles 14–16",
+did:["Removed foreign altars, idols and cult prostitutes; deposed his grandmother Maacah as queen mother and burned her Asherah image.","Faced Zerah the Cushite's vast army at Mareshah, prayed, “Help us, O LORD our God; for we rest on thee” — and won.","Led a great covenant renewal in his fifteenth year.","Later, when Baasha fortified Ramah, he paid Ben-hadad of Damascus with temple treasure instead of trusting God.","Put Hanani the seer in stocks for rebuking him and oppressed some of the people.","In his last years had a severe foot disease, yet “sought not to the LORD, but to the physicians.”"],
+pr:[{p:"azariah",m:"“The LORD is with you, while ye be with him; and if ye seek him, he will be found of you; but if ye forsake him, he will forsake you… Be ye strong.”",r:"2 Chr 15:1–7"},{p:"hanani",m:"“Because thou hast relied on the king of Syria, and not relied on the LORD… For the eyes of the LORD run to and fro throughout the whole earth, to shew himself strong in the behalf of them whose heart is perfect toward him. Herein thou hast done foolishly: therefore from henceforth thou shalt have wars.”",r:"2 Chr 16:7–9"}]},
+{id:"jehoshaphat",k:"J",n:"Jehoshaphat",alt:"Son of Asa",s:872,e:848,co:870,len:"25 years",v:"good",dyn:"House of David",ref:"1 Kings 22; 2 Kings 3; 2 Chronicles 17–20",
+did:["Sent officials, Levites and priests through every city to teach “the book of the law of the LORD.”","Appointed judges: “Take heed what ye do: for ye judge not for man, but for the LORD.”","Allied with Ahab by marrying his son Jehoram to Athaliah — a decision that nearly destroyed David's line.","Almost died at Ramoth-gilead when mistaken for Ahab; “cried out, and the LORD helped him.”","When Moab, Ammon and Edom invaded, he proclaimed a fast and prayed: “We know not what to do: but our eyes are upon thee.” Singers led the army; the enemies destroyed each other (Valley of Beracah).","Built a fleet with Ahaziah of Israel; it was wrecked at Ezion-geber.","Joined Joram of Israel against Moab, where Elisha prophesied for his sake."],
+pr:[{p:"micaiah",m:"At Jehoshaphat's request — “Is there not here a prophet of the LORD besides?” — Micaiah was called and foretold Ahab's death.",r:"1 Kgs 22:7–28"},{p:"jehu_h",m:"“Shouldest thou help the ungodly, and love them that hate the LORD? … Nevertheless there are good things found in thee.”",r:"2 Chr 19:2–3"},{p:"jahaziel",m:"“Be not afraid nor dismayed… for the battle is not yours, but God's… stand ye still, and see the salvation of the LORD.”",r:"2 Chr 20:15–17"},{p:"eliezer",m:"“Because thou hast joined thyself with Ahaziah, the LORD hath broken thy works.” The ships were broken.",r:"2 Chr 20:37"},{p:"elisha",m:"“Make this valley full of ditches… ye shall not see wind, neither shall ye see rain; yet that valley shall be filled with water.”",r:"2 Kgs 3:14–18"}]},
+{id:"jehoramJ",k:"J",n:"Jehoram (Joram)",alt:"Son of Jehoshaphat; husband of Athaliah",s:853,e:841,co:848,len:"8 years (sole reign)",v:"evil",dyn:"House of David",ref:"2 Kings 8:16–24; 2 Chronicles 21",
+did:["On becoming sole king, murdered all six of his brothers and some princes.","“Walked in the way of the kings of Israel, as did the house of Ahab: for the daughter of Ahab was his wife.”","Edom and Libnah revolted.","Philistines and Arabs raided the palace, taking his wives and all his sons except the youngest.","Died of an incurable bowel disease “without being desired,” and was not buried in the royal tombs.","God spared Judah only “because of the covenant that he had made with David.”"],
+pr:[{p:"elijah",m:"A letter: “Because thou hast not walked in the ways of Jehoshaphat… behold, with a great plague will the LORD smite thy people… and thou shalt have great sickness by disease of thy bowels.”",r:"2 Chr 21:12–15"},{p:"obadiah",m:"If Obadiah is dated early, his oracle against Edom fits the Edomite revolt and the raid on Jerusalem in Jehoram's day.",r:"Obad 10–14; 2 Chr 21:16–17"}]},
+{id:"ahaziahJ",k:"J",n:"Ahaziah",alt:"Son of Jehoram and Athaliah; also Jehoahaz",s:841,e:841,len:"1 year",v:"evil",dyn:"House of David",ref:"2 Kings 8:25–9:29; 2 Chronicles 22:1–9",
+did:["His mother Athaliah “was his counsellor to do wickedly.”","Joined his uncle Joram of Israel against Hazael at Ramoth-gilead.","Was visiting the wounded Joram at Jezreel when Jehu struck; fled, was wounded near Ibleam and died at Megiddo."],
+pr:[{u:"Chronicler's comment",m:"“The destruction of Ahaziah was of God by coming to Joram” — caught up in the judgment on Ahab's house that Elisha set in motion through Jehu.",r:"2 Chr 22:7"}]},
+{id:"athaliah",k:"J",n:"Athaliah (queen)",alt:"Daughter of Ahab and Jezebel — the only woman to rule Judah",s:841,e:835,len:"6 years",v:"evil",dyn:"House of Omri (usurper)",ref:"2 Kings 11; 2 Chronicles 22:10–23:21",
+did:["When her son died, she murdered the royal family to seize the throne — nearly ending David's line.","Baby Joash was rescued by his aunt Jehosheba and hidden in the temple for six years by the priest Jehoiada.","Promoted Baal worship; a temple of Baal stood in Jerusalem, and its priest Mattan served there.","In the seventh year Jehoiada crowned Joash; Athaliah cried “Treason, treason!” and was executed.","The people tore down the temple of Baal and renewed the covenant."],
+pr:[{u:"No prophet recorded",m:"God preserved the promise to David through the courage of the priest Jehoiada and his wife Jehosheba.",r:"2 Kgs 11:1–3"}]},
+{id:"joashJ",k:"J",n:"Joash (Jehoash)",alt:"Son of Ahaziah",s:835,e:796,len:"40 years",v:"mixed",dyn:"House of David",ref:"2 Kings 12; 2 Chronicles 24",
+did:["Crowned at age 7; did right “all the days of Jehoiada the priest.”","Restored the temple, raising funds with a chest that had a hole bored in its lid.","After Jehoiada died at 130, the princes of Judah flattered him into Asherah and idol worship.","Ordered Zechariah, Jehoiada's own son, stoned in the temple court.","Hazael of Damascus threatened Jerusalem; Joash bought him off with the temple's treasures. A small Aramean force defeated Judah's large army.","Assassinated in his bed by his servants; not buried in the royal tombs."],
+pr:[{u:"Prophets sent",m:"“He sent prophets to them, to bring them again unto the LORD… but they would not give ear.”",r:"2 Chr 24:19"},{p:"zech_j",m:"“Why transgress ye the commandments of the LORD, that ye cannot prosper? because ye have forsaken the LORD, he hath also forsaken you.” Dying: “The LORD look upon it, and require it.”",r:"2 Chr 24:20–22"},{p:"joel",m:"If dated early, Joel's call to “rend your heart, and not your garments” belongs to Joash's young years under Jehoiada.",r:"Joel 2:13"}]},
+{id:"amaziah",k:"J",n:"Amaziah",alt:"Son of Joash",s:796,e:767,len:"29 years",v:"mixed",dyn:"House of David",ref:"2 Kings 14:1–20; 2 Chronicles 25",
+did:["Did right, “but not with a perfect heart.”","Executed his father's murderers but spared their children, obeying Deuteronomy 24:16.","Hired 100,000 Israelite mercenaries for 100 talents, then sent them home at a prophet's word.","Defeated Edom in the Valley of Salt and took Sela — then brought home Edom's gods and worshipped them.","Proudly challenged Jehoash of Israel: “Come, let us look one another in the face.” Routed at Beth-shemesh and captured; Jerusalem's wall was broken.","Fled a conspiracy to Lachish and was killed there."],
+pr:[{p:"manofgod2",m:"“O king, let not the army of Israel go with thee; for the LORD is not with Israel… God hath power to help, and to cast down.” — “The LORD is able to give thee much more than this.”",r:"2 Chr 25:7–9"},{p:"manofgod2",m:"“Why hast thou sought after the gods of the people, which could not deliver their own people out of thine hand?” … “God hath determined to destroy thee.”",r:"2 Chr 25:15–16"}]},
+{id:"uzziah",k:"J",n:"Uzziah (Azariah)",alt:"Son of Amaziah",s:792,e:740,co:767,len:"52 years (incl. co-regency)",v:"good",dyn:"House of David",ref:"2 Kings 15:1–7; 2 Chronicles 26; Isaiah 6:1",
+did:["Became king at 16. “He sought God in the days of Zechariah, who had understanding in the visions of God: and as long as he sought the LORD, God made him to prosper.”","Defeated the Philistines and Arabs; the Ammonites paid tribute; rebuilt Elath on the Red Sea.","Built towers and cisterns and “loved husbandry” (farming).","Raised an army of 307,500 and built engines to shoot arrows and great stones.","“When he was strong, his heart was lifted up”: he entered the temple to burn incense. Eighty priests led by Azariah withstood him.","Leprosy broke out on his forehead; he lived isolated until death, with Jotham as regent.","A great earthquake struck in his reign (Amos 1:1; Zech 14:5)."],
+pr:[{p:"isaiah",m:"“In the year that king Uzziah died I saw also the Lord sitting upon a throne, high and lifted up… Here am I; send me.” Isaiah also wrote Uzziah's acts.",r:"Isa 6:1–8; 2 Chr 26:22"},{p:"amos",m:"“The LORD will roar from Zion… Woe to them that are at ease in Zion.” Amos dated his book “two years before the earthquake.”",r:"Amos 1:1–2; 6:1"},{p:"hosea",m:"Began prophesying “in the days of Uzziah, Jotham, Ahaz, and Hezekiah, kings of Judah.”",r:"Hos 1:1"},{p:"jonah",m:"Contemporary of Uzziah's early years, sent to Nineveh.",r:"Jonah 1:1–2"}]},
+{id:"jotham",k:"J",n:"Jotham",alt:"Son of Uzziah",s:750,e:732,co:740,len:"16 years (incl. regency)",v:"good",dyn:"House of David",ref:"2 Kings 15:32–38; 2 Chronicles 27",
+did:["Did right like his father — “howbeit he entered not into the temple of the LORD.”","The people still acted corruptly; the high places remained.","Built the Upper Gate of the temple, cities in the hills and forts in the forests.","Subdued Ammon: 100 talents of silver and 10,000 measures each of wheat and barley for three years.","“Became mighty, because he prepared his ways before the LORD.”","Rezin of Damascus and Pekah of Israel began raiding Judah."],
+pr:[{p:"isaiah",m:"“Ah sinful nation, a people laden with iniquity… Come now, and let us reason together… though your sins be as scarlet, they shall be as white as snow.”",r:"Isa 1:4, 18"},{p:"micah",m:"Began prophesying “in the days of Jotham, Ahaz, and Hezekiah.”",r:"Mic 1:1"},{p:"hosea",m:"Continued prophesying to Israel.",r:"Hos 1:1"}]},
+{id:"ahaz",k:"J",n:"Ahaz",alt:"Son of Jotham",s:735,e:715,co:732,len:"16 years",v:"evil",dyn:"House of David",ref:"2 Kings 16; 2 Chronicles 28; Isaiah 7",
+did:["“Walked in the way of the kings of Israel”; burned his son as an offering in the Valley of Hinnom.","Rezin and Pekah besieged Jerusalem; Edomites and Philistines raided Judah.","Refused Isaiah's offer of a sign, then sent the temple's silver and gold to Tiglath-pileser: “I am thy servant and thy son.”","Saw an altar in Damascus, had the priest Urijah copy it and moved the LORD's bronze altar aside.","Cut up the temple furnishings, shut the temple doors, and set up altars on every corner of Jerusalem.","In distress “did he trespass yet more against the LORD.”"],
+pr:[{p:"isaiah",m:"“Take heed, and be quiet; fear not… If ye will not believe, surely ye shall not be established.”",r:"Isa 7:4, 9"},{p:"isaiah",m:"When Ahaz refused a sign: “Behold, a virgin shall conceive, and bear a son, and shall call his name Immanuel.”",r:"Isa 7:10–14"},{p:"micah",m:"“They covet fields, and take them by violence… Is not this the house of Jacob? are the doings of the LORD straitened?”",r:"Mic 2:2, 7"},{p:"oded",m:"In Ahaz's reign Oded persuaded Israel's army to return 200,000 Judean captives.",r:"2 Chr 28:9–15"}]},
+{id:"hezekiah",k:"J",n:"Hezekiah",alt:"Son of Ahaz",s:715,e:686,len:"29 years",v:"good",dyn:"House of David",ref:"2 Kings 18–20; 2 Chronicles 29–32; Isaiah 36–39",
+did:["“He trusted in the LORD God of Israel; so that after him was none like him among all the kings of Judah.”","In his first month reopened and cleansed the temple and restored worship.","Held a great Passover, inviting even the remnant of the northern tribes — the greatest since Solomon.","Removed high places and smashed Nehushtan, Moses' bronze serpent, which people were worshipping.","Rebelled against Assyria; dug the 1,750-foot Siloam tunnel to bring water inside Jerusalem's walls.","In 701 BC Sennacherib took 46 Judean cities including Lachish; Hezekiah spread the Assyrian letter before the LORD; the angel of the LORD struck 185,000. Sennacherib's prism says he shut Hezekiah up “like a bird in a cage” — but never claims to take Jerusalem.","Fell deathly ill, wept and prayed; God added 15 years and moved the shadow back ten steps.","Proudly showed his treasures to envoys from Merodach-baladan of Babylon."],
+pr:[{p:"isaiah",m:"“He shall not come into this city, nor shoot an arrow there… For I will defend this city, to save it, for mine own sake, and for my servant David's sake.”",r:"2 Kgs 19:32–34"},{p:"isaiah",m:"“I have heard thy prayer, I have seen thy tears: behold, I will heal thee… I will add unto thy days fifteen years.”",r:"2 Kgs 20:5–6"},{p:"isaiah",m:"After the Babylonian visit: “All that is in thine house… shall be carried into Babylon: nothing shall be left.”",r:"2 Kgs 20:17"},{p:"micah",m:"“Zion shall be plowed as a field, and Jerusalem shall become heaps.” Hezekiah feared the LORD and the disaster was turned away (recalled in Jer 26:18–19).",r:"Mic 3:12"}]},
+{id:"manasseh",k:"J",n:"Manasseh",alt:"Son of Hezekiah",s:697,e:642,co:686,len:"55 years — the longest reign",v:"evil",dyn:"House of David",ref:"2 Kings 21:1–18; 2 Chronicles 33:1–20",
+did:["Became king at 12 and undid all his father's reforms: rebuilt high places, raised altars to Baal, made an Asherah.","Worshipped “all the host of heaven” and built their altars in the temple courts; placed a carved image in the temple.","Made his son pass through the fire; practiced sorcery and consulted mediums.","“Shed innocent blood very much, till he had filled Jerusalem from one end to another.” (Jewish tradition says Isaiah was sawn in two under him; cf. Heb 11:37.)","Led Judah to do more evil than the nations God had destroyed.","Assyrian records list him as a vassal of Esarhaddon and Ashurbanipal. Taken to Babylon with hooks, he humbled himself and prayed; God restored him, and he removed foreign gods.","Yet his sins are named as the reason judgment could no longer be turned back (2 Kgs 23:26; 24:3)."],
+pr:[{u:"“His servants the prophets”",m:"“I will stretch over Jerusalem the line of Samaria… and I will wipe Jerusalem as a man wipeth a dish, wiping it, and turning it upside down.”",r:"2 Kgs 21:10–13"},{u:"The seers",m:"“The LORD spake to Manasseh, and to his people: but they would not hearken.” The words of the seers were recorded with his prayer.",r:"2 Chr 33:10, 18–19"},{p:"nahum",m:"Late in Manasseh's era, Nahum announced Nineveh's fall: “The LORD is slow to anger, and great in power, and will not at all acquit the wicked.”",r:"Nah 1:3"}]},
+{id:"amon",k:"J",n:"Amon",alt:"Son of Manasseh",s:642,e:640,len:"2 years",v:"evil",dyn:"House of David",ref:"2 Kings 21:19–26; 2 Chronicles 33:21–25",
+did:["Sacrificed to all his father's carved images.","Unlike Manasseh, “humbled not himself… but Amon trespassed more and more.”","Assassinated in his palace by his own servants.","The “people of the land” killed the conspirators and made his 8-year-old son Josiah king."],
+pr:[{p:"nahum",m:"Nahum's oracle against Assyria fits this period: “Woe to the bloody city!”",r:"Nah 3:1"}]},
+{id:"josiah",k:"J",n:"Josiah",alt:"Son of Amon",s:640,e:609,len:"31 years",v:"good",dyn:"House of David",ref:"2 Kings 22–23; 2 Chronicles 34–35",
+did:["Became king at 8; at 16 “began to seek after the God of David his father”; at 20 began purging Judah and Jerusalem of idols.","In his 18th year (622 BC), during temple repairs, Hilkiah the high priest found the Book of the Law. Josiah tore his clothes.","Read the covenant to all the people and led them to pledge themselves to it.","Removed Baal and Asherah vessels, the horses and chariots dedicated to the sun, and defiled Topheth so no one could sacrifice children there.","Tore down the Bethel altar and burned bones on it — fulfilling the prophecy given 300 years earlier that named him.","Kept the greatest Passover since the days of Samuel.","“Like unto him was there no king before him, that turned to the LORD with all his heart.”","Went out to block Pharaoh Necho at Megiddo, ignored Necho's warning, and was shot by archers; all Judah mourned and Jeremiah lamented him."],
+pr:[{p:"huldah",m:"“I will bring evil upon this place… But to the king… Because thine heart was tender, and thou hast humbled thyself… thou shalt be gathered into thy grave in peace; and thine eyes shall not see all the evil.”",r:"2 Kgs 22:15–20"},{p:"jeremiah",m:"Called in Josiah's 13th year: “Before I formed thee in the belly I knew thee… I ordained thee a prophet unto the nations.” — “My people have committed two evils; they have forsaken me the fountain of living waters, and hewed them out… broken cisterns.”",r:"Jer 1:2–5; 2:13"},{p:"zephaniah",m:"“The great day of the LORD is near… Seek ye the LORD, all ye meek of the earth.” And: “The LORD thy God in the midst of thee is mighty; he will save, he will rejoice over thee with joy.”",r:"Zeph 1:14; 2:3; 3:17"},{p:"manofgod",m:"His word from 1 Kings 13 came true: Josiah found the man of God's tomb at Bethel and left his bones undisturbed.",r:"2 Kgs 23:15–18"},{p:"nahum",m:"Nineveh fell in 612 BC, during Josiah's reign, as Nahum foretold.",r:"Nah 2–3"}]},
+{id:"jehoahazJ",k:"J",n:"Jehoahaz (Shallum)",alt:"Son of Josiah",s:609,e:609,len:"3 months",v:"evil",dyn:"House of David",ref:"2 Kings 23:31–34; 2 Chronicles 36:1–4; Jer 22:10–12",
+did:["Chosen by the people of the land over his older brother.","Deposed by Pharaoh Necho at Riblah after three months; Judah was fined 100 talents of silver and a talent of gold.","Taken to Egypt, where he died — the first king of David's line to die in exile."],
+pr:[{p:"jeremiah",m:"“Weep ye not for the dead [Josiah]… but weep sore for him that goeth away: for he shall return no more, nor see his native country.”",r:"Jer 22:10–12"}]},
+{id:"jehoiakim",k:"J",n:"Jehoiakim",alt:"Eliakim, son of Josiah — renamed by Pharaoh Necho",s:609,e:598,len:"11 years",v:"evil",dyn:"House of David",ref:"2 Kings 23:34–24:7; 2 Chronicles 36:5–8; Jeremiah 22, 26, 36",
+did:["Made king by Necho; taxed the land heavily to pay Egypt's tribute.","Built a lavish palace with unpaid forced labor (Jer 22:13–17).","After Babylon beat Egypt at Carchemish (605 BC), became Nebuchadnezzar's vassal. Daniel and other nobles were taken to Babylon.","Cut up Jeremiah's scroll with a penknife and burned it piece by piece in his winter-house fire.","Had the prophet Uriah brought back from Egypt and killed with the sword.","Rebelled after three years; raiders from Babylon, Aram, Moab and Ammon struck Judah. He died as Babylon advanced (598 BC)."],
+pr:[{p:"jeremiah",m:"Temple sermon: “Trust ye not in lying words, saying, The temple of the LORD… Is this house… become a den of robbers in your eyes?”",r:"Jer 7:4, 11; 26:1–6"},{p:"jeremiah",m:"“Woe unto him that buildeth his house by unrighteousness… He shall be buried with the burial of an ass.”",r:"Jer 22:13, 19"},{p:"jeremiah",m:"“This whole land shall be a desolation… and these nations shall serve the king of Babylon seventy years.” After the scroll burning: “He shall have none to sit upon the throne of David.”",r:"Jer 25:11; 36:30"},{p:"uriah",m:"Prophesied against Jerusalem “according to all the words of Jeremiah”; killed by Jehoiakim.",r:"Jer 26:20–23"},{p:"habakkuk",m:"“O LORD, how long shall I cry?” God answered: “I raise up the Chaldeans… The just shall live by his faith.”",r:"Hab 1:2, 6; 2:4"},{p:"daniel",m:"Taken to Babylon in Jehoiakim's third year (605 BC) and purposed in his heart not to defile himself.",r:"Dan 1:1–8"}]},
+{id:"jehoiachin",k:"J",n:"Jehoiachin (Jeconiah / Coniah)",alt:"Son of Jehoiakim",s:598,e:597,len:"3 months",v:"evil",dyn:"House of David",ref:"2 Kings 24:8–17; 25:27–30; Jeremiah 22:24–30",
+did:["Became king at 18 as Nebuchadnezzar's army besieged Jerusalem.","Surrendered with his mother Nehushta; deported to Babylon in 597 BC with 10,000 captives — officials, soldiers, craftsmen and the priest Ezekiel — plus the temple treasures.","Babylonian ration tablets name “Ya'ukin, king of the land of Judah.”","After 37 years in prison, released by Evil-merodach (561 BC) and given a seat at the king's table — David's line survived.","Ancestor of Zerubbabel, and listed in Jesus' genealogy (Matt 1:12)."],
+pr:[{p:"jeremiah",m:"“Though Coniah… were the signet upon my right hand, yet would I pluck thee thence… Write ye this man childless… for no man of his seed shall prosper, sitting upon the throne of David.”",r:"Jer 22:24–30"},{p:"ezekiel",m:"Dated his visions by “the fifth year of king Jehoiachin's captivity”; lamented the young lion taken to Babylon in a cage.",r:"Ezek 1:2; 19:5–9"}]},
+{id:"zedekiah",k:"J",n:"Zedekiah",alt:"Mattaniah, son of Josiah — renamed by Nebuchadnezzar; the last king of Judah",s:597,e:586,len:"11 years",v:"evil",dyn:"House of David",ref:"2 Kings 24:17–25:7; 2 Chr 36:11–21; Jeremiah 21, 27, 32–34, 37–39, 52",
+did:["Installed by Nebuchadnezzar and made to swear loyalty by God; “he stiffened his neck, and hardened his heart.”","Weak and wavering: consulted Jeremiah secretly, yet let his officials throw Jeremiah into a muddy cistern.","Proclaimed freedom for Hebrew slaves, then let the owners take them back (Jer 34).","Rebelled, relying on Egypt (Pharaoh Hophra). Babylon besieged Jerusalem from 588 to 586 BC; famine gripped the city.","When the wall was breached he fled by night but was caught near Jericho.","At Riblah his sons were killed before his eyes; then he was blinded and taken to Babylon in bronze chains.","A month later Nebuzaradan burned the temple, the palace and the houses of Jerusalem and broke down its walls."],
+pr:[{p:"jeremiah",m:"“Bring your necks under the yoke of the king of Babylon, and serve him and his people, and live.”",r:"Jer 27:12"},{p:"jeremiah",m:"In secret: “If thou wilt assuredly go forth unto the king of Babylon's princes, then thy soul shall live, and this city shall not be burned with fire.”",r:"Jer 38:17"},{p:"jeremiah",m:"Hope amid ruin: he bought a field at Anathoth — “Houses and fields and vineyards shall be possessed again in this land.” — and foretold a new covenant written on hearts.",r:"Jer 32:15; 31:31–33"},{p:"ezekiel",m:"“I will bring him to Babylon… yet shall he not see it, though he shall die there.” — “Remove the diadem, and take off the crown… until he come whose right it is; and I will give it him.”",r:"Ezek 12:13; 21:26–27"},{u:"False prophet Hananiah",m:"Broke Jeremiah's wooden yoke, promising release in two years. Jeremiah: “This year thou shalt die.” He died that year.",r:"Jer 28"}]}
+];
+
+const P=[
+{id:"samuel",n:"Samuel",s:1070,e:1015,d:"c. 1100–1015 BC",to:"U",w:false,home:"Ramah (Ephraim)",bk:"1 Samuel",sum:"The last judge, a priest and prophet. He led Israel's transition to monarchy, anointed both Saul and David, and founded a company of prophets.",
+msgs:[["“To obey is better than sacrifice, and to hearken than the fat of rams.”","1 Sam 15:22"],["Warned what a king would take — sons, daughters, fields and a tenth of everything.","1 Sam 8:11–18"],["“The LORD seeth not as man seeth… the LORD looketh on the heart.”","1 Sam 16:7"]]},
+{id:"nathan",n:"Nathan",s:1005,e:965,d:"c. 1005–965 BC",to:"U",w:false,home:"Jerusalem (court prophet)",bk:"2 Samuel 7, 12; 1 Kings 1",sum:"David's court prophet. He delivered the everlasting covenant, confronted David over Bathsheba, and secured Solomon's succession. He also recorded the acts of David and Solomon.",
+msgs:[["“I will set up thy seed after thee… and I will stablish the throne of his kingdom for ever.”","2 Sam 7:12–13"],["“Thou art the man.”","2 Sam 12:7"]]},
+{id:"gad",n:"Gad",s:1015,e:975,d:"c. 1015–975 BC",to:"U",w:false,home:"With David",bk:"1 Sam 22; 2 Sam 24",sum:"David's seer from his fugitive years. He pointed to the site of the future temple and helped organize the temple music.",
+msgs:[["“Depart, and get thee into the land of Judah.”","1 Sam 22:5"],["“Rear an altar unto the LORD in the threshingfloor of Araunah.”","2 Sam 24:18"]]},
+{id:"ahijah",n:"Ahijah the Shilonite",s:935,e:910,d:"c. 935–910 BC",to:"I",w:false,home:"Shiloh",bk:"1 Kings 11, 14",sum:"Announced the division of the kingdom by tearing a cloak into twelve pieces. Later, old and blind, he pronounced doom on Jeroboam's house.",
+msgs:[["“Take thee ten pieces: for thus saith the LORD… I will rend the kingdom out of the hand of Solomon.”","1 Kgs 11:31"],["“I will take away the remnant of the house of Jeroboam… and shall scatter them beyond the river.”","1 Kgs 14:10, 15"]]},
+{id:"manofgod",n:"The man of God from Judah",s:931,e:930,d:"c. 931 BC",to:"I",w:false,home:"Judah",bk:"1 Kings 13",sum:"Unnamed. Cried out against Jeroboam's altar at Bethel and named King Josiah 300 years ahead. He then disobeyed God's command not to eat there and was killed by a lion — a sober lesson in exact obedience.",
+msgs:[["“O altar, altar… a child shall be born unto the house of David, Josiah by name.”","1 Kgs 13:2"]]},
+{id:"shemaiah",n:"Shemaiah",s:931,e:925,d:"c. 931–925 BC",to:"J",w:false,home:"Jerusalem",bk:"1 Kgs 12; 2 Chr 11–12",sum:"Stopped Rehoboam from civil war, then explained Shishak's invasion as God's discipline. His word led king and princes to humble themselves.",
+msgs:[["“Ye shall not go up, nor fight against your brethren.”","1 Kgs 12:24"],["“Ye have forsaken me, and therefore have I also left you in the hand of Shishak.”","2 Chr 12:5"]]},
+{id:"iddo",n:"Iddo the seer",s:931,e:911,d:"c. 931–911 BC",to:"J",w:false,home:"Judah",bk:"2 Chr 9:29; 12:15; 13:22",sum:"A seer and court historian whose writings (now lost) recorded the reigns of Solomon, Rehoboam and Abijah, including visions about Jeroboam.",
+msgs:[["His “visions… against Jeroboam the son of Nebat.”","2 Chr 9:29"]]},
+{id:"azariah",n:"Azariah son of Oded",s:897,e:895,d:"c. 896 BC",to:"J",w:false,home:"Judah",bk:"2 Chronicles 15",sum:"Met Asa returning from victory over Zerah; his message sparked a national covenant renewal.",
+msgs:[["“The LORD is with you, while ye be with him; and if ye seek him, he will be found of you.”","2 Chr 15:2"],["“Be ye strong… for your work shall be rewarded.”","2 Chr 15:7"]]},
+{id:"hanani",n:"Hanani the seer",s:895,e:894,d:"c. 895 BC",to:"J",w:false,home:"Judah",bk:"2 Chronicles 16",sum:"Rebuked Asa for trusting Damascus instead of God and was put in the stocks for it. Father of Jehu the prophet.",
+msgs:[["“The eyes of the LORD run to and fro throughout the whole earth, to shew himself strong in the behalf of them whose heart is perfect toward him.”","2 Chr 16:9"]]},
+{id:"jehu_h",n:"Jehu son of Hanani",s:890,e:850,d:"c. 890–850 BC",to:"IJ",w:false,home:"Judah & Israel",bk:"1 Kgs 16; 2 Chr 19–20",sum:"Prophesied against Baasha of Israel, and decades later rebuked Jehoshaphat of Judah. He also wrote Jehoshaphat's history.",
+msgs:[["Against Baasha: “I exalted thee out of the dust… I will take away the posterity of Baasha.”","1 Kgs 16:2–3"],["To Jehoshaphat: “Shouldest thou help the ungodly, and love them that hate the LORD?”","2 Chr 19:2"]]},
+{id:"elijah",n:"Elijah",s:875,e:848,d:"c. 875–848 BC",to:"IJ",w:false,home:"Tishbe in Gilead",bk:"1 Kings 17 – 2 Kings 2",sum:"The great champion against Baal in Ahab's day. He called down drought and fire, ran from Jezebel, heard God's still small voice at Horeb, and was taken to heaven in a whirlwind. Malachi promised his return; he appeared with Moses at the Transfiguration.",
+msgs:[["“There shall not be dew nor rain these years, but according to my word.”","1 Kgs 17:1"],["“How long halt ye between two opinions?”","1 Kgs 18:21"],["God at Horeb: “a still small voice” — “I have left me seven thousand in Israel… which have not bowed unto Baal.”","1 Kgs 19:12, 18"],["“Hast thou killed, and also taken possession?”","1 Kgs 21:19"],["Letter to Jehoram of Judah foretelling plague and disease.","2 Chr 21:12–15"]]},
+{id:"micaiah",n:"Micaiah son of Imlah",s:854,e:853,d:"853 BC",to:"I",w:false,home:"Samaria",bk:"1 Kings 22",sum:"The lone true prophet against Ahab's 400 court prophets. He was slapped and jailed for telling the truth, and Ahab died exactly as he foretold.",
+msgs:[["“What the LORD saith unto me, that will I speak.”","1 Kgs 22:14"],["“I saw all Israel scattered upon the hills, as sheep that have not a shepherd.”","1 Kgs 22:17"],["“If thou return at all in peace, the LORD hath not spoken by me.”","1 Kgs 22:28"]]},
+{id:"jahaziel",n:"Jahaziel",s:853,e:852,d:"c. 853 BC",to:"J",w:false,home:"Levite of the sons of Asaph",bk:"2 Chronicles 20",sum:"The Spirit came on this Levite in the assembly as Jehoshaphat prayed before an overwhelming invasion.",
+msgs:[["“The battle is not yours, but God's.”","2 Chr 20:15"],["“Stand ye still, and see the salvation of the LORD with you.”","2 Chr 20:17"]]},
+{id:"eliezer",n:"Eliezer son of Dodavah",s:849,e:848,d:"c. 849 BC",to:"J",w:false,home:"Mareshah",bk:"2 Chr 20:37",sum:"Rebuked Jehoshaphat's trading alliance with Ahaziah of Israel; the ships were wrecked.",
+msgs:[["“Because thou hast joined thyself with Ahaziah, the LORD hath broken thy works.”","2 Chr 20:37"]]},
+{id:"elisha",n:"Elisha",s:852,e:797,d:"c. 852–797 BC",to:"IJ",w:false,home:"Abel-meholah",bk:"1 Kings 19 – 2 Kings 13",sum:"Elijah's successor, who received a double portion of his spirit. He served for more than 50 years, through the reigns of Joram, Jehu, Jehoahaz and Joash, with more recorded miracles than any Old Testament prophet: the widow's oil, the Shunammite's son, Naaman, the floating axe head, the chariots of fire. He even anointed Jehu and foretold Hazael's rule.",
+msgs:[["“Let a double portion of thy spirit be upon me.”","2 Kgs 2:9"],["To Naaman: “Go and wash in Jordan seven times.”","2 Kgs 5:10"],["“They that be with us are more than they that be with them.”","2 Kgs 6:16"],["Wept before Hazael: “I know the evil that thou wilt do unto the children of Israel.”","2 Kgs 8:12"],["“The arrow of the LORD's deliverance.”","2 Kgs 13:17"]]},
+{id:"obadiah",n:"Obadiah",s:845,e:840,d:"c. 845 BC? (many date him after 586)",to:"J",w:true,home:"Judah",bk:"Obadiah",sum:"The shortest Old Testament book. It condemns Edom for gloating and joining in when Jerusalem was plundered — either under Jehoram (c. 845) or at Babylon's conquest (586).",
+msgs:[["“The pride of thine heart hath deceived thee.”","Obad 3"],["“As thou hast done, it shall be done unto thee.”","Obad 15"],["“The kingdom shall be the LORD's.”","Obad 21"]]},
+{id:"joel",n:"Joel",s:835,e:830,d:"c. 835 BC? (date disputed)",to:"J",w:true,home:"Judah",bk:"Joel",sum:"Used a devastating locust plague to call Judah to repentance before the Day of the LORD, and promised the outpouring of the Spirit that Peter quoted at Pentecost.",
+msgs:[["“Rend your heart, and not your garments, and turn unto the LORD your God.”","Joel 2:13"],["“I will pour out my spirit upon all flesh.”","Joel 2:28"],["“Whosoever shall call on the name of the LORD shall be delivered.”","Joel 2:32"]]},
+{id:"zech_j",n:"Zechariah son of Jehoiada",s:800,e:797,d:"c. 797 BC",to:"J",w:false,home:"Jerusalem (priest's son)",bk:"2 Chr 24:20–22",sum:"Son of the priest who had saved Joash's life. He was stoned at Joash's command in the temple court. Jesus referred to his blood (Matt 23:35).",
+msgs:[["“Because ye have forsaken the LORD, he hath also forsaken you.”","2 Chr 24:20"],["“The LORD look upon it, and require it.”","2 Chr 24:22"]]},
+{id:"manofgod2",n:"Unnamed prophets to Amaziah",s:791,e:789,d:"c. 790 BC",to:"J",w:false,home:"Judah",bk:"2 Chronicles 25",sum:"A man of God warned Amaziah not to use Israelite mercenaries. A second prophet condemned his worship of Edom's captured gods; Amaziah silenced him with threats.",
+msgs:[["“God hath power to help, and to cast down.”","2 Chr 25:8"],["“Why hast thou sought after the gods of the people, which could not deliver their own people?”","2 Chr 25:15"]]},
+{id:"jonah",n:"Jonah",s:785,e:760,d:"c. 785–760 BC",to:"I",w:true,home:"Gath-hepher (Galilee)",bk:"Jonah; 2 Kgs 14:25",sum:"Foretold Jeroboam II's expansion. He fled from God's call to Nineveh, was swallowed by a great fish, and then preached to Assyria's capital — which repented. The book reveals God's mercy to the nations; Jesus called Jonah's three days a sign.",
+msgs:[["“Salvation is of the LORD.”","Jonah 2:9"],["“Yet forty days, and Nineveh shall be overthrown.”","Jonah 3:4"],["God: “Should not I spare Nineveh, that great city?”","Jonah 4:11"]]},
+{id:"amos",n:"Amos",s:760,e:755,d:"c. 760–755 BC",to:"I",w:true,home:"Tekoa (Judah) — sent to Israel",bk:"Amos",sum:"A herdsman and fig farmer from Judah, sent to prosperous Israel under Jeroboam II. He denounced injustice, luxury, oppression of the poor and empty worship at Bethel. Amaziah, the priest of Bethel, expelled him.",
+msgs:[["“You only have I known of all the families of the earth: therefore I will punish you.”","Amos 3:2"],["“Let judgment run down as waters, and righteousness as a mighty stream.”","Amos 5:24"],["“I was no prophet… and the LORD took me as I followed the flock.”","Amos 7:14–15"],["“A famine… of hearing the words of the LORD.”","Amos 8:11"],["“In that day will I raise up the tabernacle of David that is fallen.”","Amos 9:11"]]},
+{id:"hosea",n:"Hosea",s:755,e:715,d:"c. 755–715 BC",to:"I",w:true,home:"Israel",bk:"Hosea",sum:"Told to marry Gomer, who became unfaithful. His broken marriage pictured Israel's spiritual adultery with Baal — and God's relentless love. He prophesied through Israel's last chaotic decades up to the fall of Samaria.",
+msgs:[["“My people are destroyed for lack of knowledge.”","Hos 4:6"],["“I desired mercy, and not sacrifice; and the knowledge of God more than burnt offerings.”","Hos 6:6"],["“When Israel was a child, then I loved him, and called my son out of Egypt.”","Hos 11:1"],["“How shall I give thee up, Ephraim?”","Hos 11:8"],["“I will heal their backsliding, I will love them freely.”","Hos 14:4"]]},
+{id:"isaiah",n:"Isaiah",s:740,e:681,d:"c. 740–681 BC",to:"J",w:true,home:"Jerusalem",bk:"Isaiah; 2 Kings 19–20",sum:"The great prophet of God's holiness and salvation, active under Uzziah, Jotham, Ahaz and Hezekiah. He gave the Immanuel sign, saw Assyria's defeat at Jerusalem, foretold the Babylonian exile and return (even naming Cyrus), and the Suffering Servant. He is quoted in the New Testament more than any other prophet.",
+msgs:[["“Holy, holy, holy, is the LORD of hosts… Here am I; send me.”","Isa 6:3, 8"],["“Behold, a virgin shall conceive… Immanuel.”","Isa 7:14"],["“For unto us a child is born… The mighty God, The everlasting Father, The Prince of Peace.”","Isa 9:6"],["“O Assyrian, the rod of mine anger.”","Isa 10:5"],["“Comfort ye, comfort ye my people.”","Isa 40:1"],["“He was wounded for our transgressions… and with his stripes we are healed.”","Isa 53:5"]]},
+{id:"micah",n:"Micah",s:735,e:700,d:"c. 735–700 BC",to:"IJ",w:true,home:"Moresheth-gath (Judah)",bk:"Micah",sum:"A country prophet who spoke against both Samaria and Jerusalem, especially land-grabbing and corrupt leaders. His warning moved Hezekiah to repent, and a century later it saved Jeremiah's life (Jer 26:17–19). He foretold Messiah's birth in Bethlehem.",
+msgs:[["“Zion shall be plowed as a field.”","Mic 3:12"],["“But thou, Beth-lehem Ephratah… out of thee shall he come forth unto me that is to be ruler in Israel.”","Mic 5:2"],["“What doth the LORD require of thee, but to do justly, and to love mercy, and to walk humbly with thy God?”","Mic 6:8"],["“Who is a God like unto thee, that pardoneth iniquity?”","Mic 7:18"]]},
+{id:"oded",n:"Oded (of Samaria)",s:734,e:733,d:"c. 734 BC",to:"I",w:false,home:"Samaria",bk:"2 Chr 28:9–15",sum:"A prophet in the north who persuaded Pekah's victorious army to release 200,000 captives from Judah. The soldiers clothed, fed and escorted them home to Jericho — an Old Testament “good Samaritan” scene.",
+msgs:[["“Ye have slain them in a rage that reacheth up unto heaven… deliver the captives again.”","2 Chr 28:9–11"]]},
+{id:"nahum",n:"Nahum",s:660,e:615,d:"c. 660–615 BC",to:"J",w:true,home:"Elkosh",bk:"Nahum",sum:"Prophesied the fall of Nineveh, the cruel Assyrian capital. It fell in 612 BC to the Babylonians and Medes. For Judah, it was comfort: God judges oppressors.",
+msgs:[["“The LORD is slow to anger, and great in power, and will not at all acquit the wicked.”","Nah 1:3"],["“The LORD is good, a strong hold in the day of trouble.”","Nah 1:7"],["“Woe to the bloody city!”","Nah 3:1"]]},
+{id:"zephaniah",n:"Zephaniah",s:635,e:620,d:"c. 635–620 BC",to:"J",w:true,home:"Jerusalem (great-great-grandson of Hezekiah)",bk:"Zephaniah",sum:"A royal descendant who preached the coming Day of the LORD early in Josiah's reign, helping prepare the ground for Josiah's reforms. He ended with God's joy over a purified remnant.",
+msgs:[["“The great day of the LORD is near.”","Zeph 1:14"],["“Seek ye the LORD, all ye meek of the earth.”","Zeph 2:3"],["“He will rejoice over thee with joy… he will joy over thee with singing.”","Zeph 3:17"]]},
+{id:"huldah",n:"Huldah the prophetess",s:622,e:621,d:"622 BC",to:"J",w:false,home:"Jerusalem's Second Quarter",bk:"2 Kgs 22:14–20; 2 Chr 34",sum:"When the Book of the Law was found, Josiah's officials went to her. She confirmed the coming judgment and promised Josiah peace because of his tender heart.",
+msgs:[["“Because thine heart was tender… thou shalt be gathered into thy grave in peace.”","2 Kgs 22:19–20"]]},
+{id:"jeremiah",n:"Jeremiah",s:627,e:580,d:"c. 627–580 BC",to:"J",w:true,home:"Anathoth (priestly family)",bk:"Jeremiah; Lamentations",sum:"The “weeping prophet.” He served for 40 years, from Josiah's 13th year through the fall of Jerusalem, warning the last five kings to submit to Babylon. He was beaten, put in stocks and jailed, his scroll was burned, and he was thrown into a cistern. He saw Jerusalem fall, was taken to Egypt, and foretold 70 years of exile and a New Covenant.",
+msgs:[["“Before I formed thee in the belly I knew thee.”","Jer 1:5"],["“They have forsaken me the fountain of living waters.”","Jer 2:13"],["“Is this house… become a den of robbers?”","Jer 7:11"],["“After seventy years be accomplished at Babylon I will visit you.”","Jer 29:10"],["“I know the thoughts that I think toward you… to give you an expected end.”","Jer 29:11"],["“I will make a new covenant… I will put my law in their inward parts.”","Jer 31:31–33"]]},
+{id:"uriah",n:"Uriah son of Shemaiah",s:609,e:608,d:"c. 608 BC",to:"J",w:false,home:"Kiriath-jearim",bk:"Jer 26:20–23",sum:"Preached the same message as Jeremiah, fled to Egypt in fear, and was extradited and executed by Jehoiakim. He was buried in a commoners' grave.",
+msgs:[["Prophesied against Jerusalem “according to all the words of Jeremiah.”","Jer 26:20"]]},
+{id:"habakkuk",n:"Habakkuk",s:609,e:598,d:"c. 609–598 BC",to:"J",w:true,home:"Judah",bk:"Habakkuk",sum:"Wrestled with God about evil in Judah and then about God using the even more wicked Babylonians. He ended in faith, singing of joy in God even if everything failed. Paul built on his “the just shall live by faith.”",
+msgs:[["“O LORD, how long shall I cry, and thou wilt not hear!”","Hab 1:2"],["“The just shall live by his faith.”","Hab 2:4"],["“The earth shall be filled with the knowledge of the glory of the LORD.”","Hab 2:14"],["“Although the fig tree shall not blossom… yet I will rejoice in the LORD.”","Hab 3:17–18"]]},
+{id:"daniel",n:"Daniel",s:605,e:575,d:"605–c. 536 BC",to:"X",w:true,home:"Taken to Babylon",bk:"Daniel",sum:"Taken to Babylon as a youth in the first deportation (605 BC) under Jehoiakim. He served Babylonian and Persian kings with integrity, interpreted dreams, survived the lions' den, and received visions of world empires and God's everlasting kingdom.",
+msgs:[["“Daniel purposed in his heart that he would not defile himself.”","Dan 1:8"],["“The God of heaven [shall] set up a kingdom, which shall never be destroyed.”","Dan 2:44"],["Understood from Jeremiah's book the 70 years of desolation and prayed for his people.","Dan 9:2–19"]]},
+{id:"ezekiel",n:"Ezekiel",s:593,e:575,d:"593–571 BC",to:"X",w:true,home:"Priest exiled in Babylon (Chebar River)",bk:"Ezekiel",sum:"Deported with Jehoiachin in 597 BC and called in Babylon in 593. Through visions and acted-out signs he showed God's glory leaving the temple, foretold Zedekiah's capture and blinding, then after the fall promised a new heart, the revival of the dry bones, and a new temple.",
+msgs:[["“I have made thee a watchman unto the house of Israel.”","Ezek 3:17"],["The glory of the LORD departed from the threshold of the house.","Ezek 10:18"],["“The soul that sinneth, it shall die.”","Ezek 18:4"],["“A new heart also will I give you.”","Ezek 36:26"],["“O ye dry bones, hear the word of the LORD.”","Ezek 37:4"]]}
+];
+
+const PR=[
+{id:"eli",n:"Eli",s:1070,e:1062,d:"c. 1100–1060 BC (before Saul)",pk:"U",t:"bad",line:"Line of Ithamar, son of Aaron",role:"High priest at Shiloh; judge of Israel",
+sum:"He raised Samuel but failed to restrain his corrupt sons, Hophni and Phinehas. When the Philistines captured the Ark, his sons were killed; Eli fell and died at the news. A man of God foretold that his line would lose the priesthood — fulfilled when Solomon removed Abiathar.",
+acts:[["Raised the boy Samuel at Shiloh: “Speak, LORD; for thy servant heareth.”","1 Sam 3:9"],["“Thou… honourest thy sons above me” — judgment pronounced on his house.","1 Sam 2:29–36"],["Died on hearing the Ark was captured: “The glory is departed from Israel.”","1 Sam 4:18–22"]],kings:[]},
+{id:"ahimelech",n:"Ahimelech",s:1025,e:1015,d:"c. 1015 BC",pk:"U",t:"faithful",line:"Great-grandson of Eli",role:"Chief priest at Nob",
+sum:"He gave the fleeing David the holy bread and Goliath's sword. Doeg the Edomite reported it, and Saul had Ahimelech and 85 priests killed and the town of Nob destroyed — partly fulfilling the word against Eli's house.",
+acts:[["Gave David the showbread and Goliath's sword.","1 Sam 21:1–9"],["Massacred with 85 priests on Saul's orders.","1 Sam 22:11–19"],["Jesus cited the showbread episode: “Have ye not read what David did…?”","Matt 12:3–4"]],kings:["saul","david"]},
+{id:"abiathar",n:"Abiathar",s:1015,e:970,d:"c. 1015–970 BC",pk:"U",t:"mixed",line:"Son of Ahimelech; line of Eli",role:"Co-high priest with Zadok under David",
+sum:"The only survivor of the Nob massacre. He fled to David with the ephod and served him loyally through the fugitive years and Absalom's revolt. But he backed Adonijah over Solomon and was banished to Anathoth — ending Eli's line as foretold.",
+acts:[["Escaped to David with the ephod; David inquired of God through him.","1 Sam 22:20–23; 23:6–9"],["Carried the Ark and stayed loyal during Absalom's revolt.","2 Sam 15:24–29"],["Supported Adonijah; Solomon banished him “that he might fulfil the word of the LORD… concerning the house of Eli.”","1 Kgs 1:7; 2:26–27"]],kings:["david","solomon"]},
+{id:"zadok",n:"Zadok",s:1010,e:960,d:"c. 1010–960 BC",pk:"U",t:"faithful",line:"Line of Eleazar, son of Aaron",role:"High priest under David and Solomon",
+sum:"He stayed loyal to David and Solomon and anointed Solomon king at Gihon. His descendants held the high priesthood for centuries; Ezekiel later named “the sons of Zadok” as the faithful priests of the future temple.",
+acts:[["Carried the Ark during Absalom's revolt; David sent him back to Jerusalem as an informant.","2 Sam 15:24–29"],["Anointed Solomon king at Gihon.","1 Kgs 1:38–39"],["Ezekiel: “The priests the Levites, the sons of Zadok, that kept the charge of my sanctuary when the children of Israel went astray.”","Ezek 44:15"]],kings:["david","solomon"]},
+{id:"azariahS",n:"Azariah son of Zadok",s:965,e:945,d:"c. 965–945 BC",pk:"J",t:"faithful",line:"Son (or grandson) of Zadok",role:"High priest under Solomon",
+sum:"Listed first among Solomon's officials. He is linked with ministering in the temple Solomon built.",
+acts:[["“Azariah the son of Zadok the priest” heads Solomon's officials.","1 Kgs 4:2"],["“He it is that executed the priest's office in the temple that Solomon built.”","1 Chr 6:10"]],kings:["solomon","rehoboam"]},
+{id:"calfpriests",n:"Priests of the golden calves",s:931,e:722,d:"931–722 BC",pk:"I",t:"false",line:"Non-Levites chosen by Jeroboam",role:"Priests of Bethel, Dan and the high places",
+sum:"Jeroboam drove out the Levites and “made priests of the lowest of the people.” This false priesthood served the calves for the whole life of the northern kingdom. Josiah later slaughtered the high-place priests at Bethel and burned bones on the altar, as the man of God had foretold.",
+acts:[["“Whosoever would, he consecrated him… And this thing became sin unto the house of Jeroboam.”","1 Kgs 13:33–34"],["The Levites left their lands and moved to Judah and Jerusalem.","2 Chr 11:13–15"],["Josiah slew the priests of the high places at Bethel.","2 Kgs 23:15–20"]],kings:["jeroboam1","hoshea"]},
+{id:"amariah",n:"Amariah",s:862,e:850,d:"c. 860–850 BC",pk:"J",t:"faithful",line:"Zadokite",role:"Chief priest under Jehoshaphat",
+sum:"In Jehoshaphat's judicial reform, Amariah was the final authority for religious cases, while Zebadiah handled the king's matters.",
+acts:[["“Amariah the chief priest is over you in all matters of the LORD.”","2 Chr 19:11"]],kings:["jehoshaphat"]},
+{id:"mattan",n:"Mattan, priest of Baal",s:841,e:835,d:"841–835 BC",pk:"J",t:"false",line:"Priest of Baal",role:"Priest of Athaliah's temple of Baal in Jerusalem",
+sum:"He served Baal in Jerusalem under Queen Athaliah. When Jehoiada's coup succeeded, the people tore down the Baal temple and killed Mattan before its altars.",
+acts:[["“Slew Mattan the priest of Baal before the altars.”","2 Kgs 11:18"]],kings:["athaliah"]},
+{id:"jehoiada",n:"Jehoiada",s:845,e:815,d:"c. 845–815 BC (died aged 130)",pk:"J",t:"faithful",line:"Zadokite; husband of Princess Jehosheba",role:"High priest; regent for young Joash",
+sum:"The hero of the line of David. With his wife he hid the infant Joash in the temple for six years, then led the coup against Athaliah, renewed the covenant, and guided Joash. He was buried among the kings — “because he had done good in Israel, both toward God, and toward his house.”",
+acts:[["Hid Joash six years, then crowned him: “God save the king.”","2 Kgs 11:4–12"],["Made a covenant “between the LORD and the king and the people, that they should be the LORD's people.”","2 Kgs 11:17"],["Made the temple repair chest with a hole in its lid.","2 Kgs 12:9"],["Buried in the City of David among the kings.","2 Chr 24:15–16"]],kings:["ahaziahJ","athaliah","joashJ"]},
+{id:"amaziahB",n:"Amaziah, priest of Bethel",s:760,e:755,d:"c. 760 BC",pk:"I",t:"false",line:"Calf-cult priest",role:"Chief priest of the royal shrine at Bethel",
+sum:"He reported Amos to Jeroboam II as a conspirator and told him to go home to Judah: “Prophesy not again any more at Bethel: for it is the king's chapel.” Amos answered with a personal prophecy of disaster for Amaziah and exile for Israel.",
+acts:[["“Amos hath conspired against thee in the midst of the house of Israel.”","Amos 7:10"],["“O thou seer, go, flee thee away into the land of Judah.”","Amos 7:12–13"],["Amos's reply: “Thy wife shall be an harlot… and thou shalt die in a polluted land.”","Amos 7:17"]],kings:["jeroboam2"]},
+{id:"azariahU",n:"Azariah (Uzziah's day)",s:752,e:748,d:"c. 750 BC",pk:"J",t:"faithful",line:"Zadokite",role:"High priest who withstood Uzziah",
+sum:"When proud King Uzziah entered the temple to burn incense, Azariah and eighty courageous priests confronted him. While Uzziah raged, leprosy broke out on his forehead.",
+acts:[["“It appertaineth not unto thee, Uzziah, to burn incense unto the LORD, but to the priests the sons of Aaron.”","2 Chr 26:17–18"],["Leprosy rose on the king's forehead “before the priests in the house of the LORD.”","2 Chr 26:19–20"]],kings:["uzziah"]},
+{id:"urijah",n:"Urijah",s:735,e:725,d:"c. 735–725 BC",pk:"J",t:"bad",line:"Zadokite",role:"High priest under Ahaz",
+sum:"When Ahaz saw an altar in Damascus and sent its design home, Urijah built a copy and moved the LORD's bronze altar aside. Isaiah had once named him as a reliable witness.",
+acts:[["“Urijah the priest built an altar according to all that king Ahaz had sent from Damascus.”","2 Kgs 16:10–16"],["Isaiah: “I took unto me faithful witnesses to record, Uriah the priest…”","Isa 8:2"]],kings:["ahaz"]},
+{id:"azariahH",n:"Azariah (Hezekiah's day)",s:715,e:705,d:"c. 715–705 BC",pk:"J",t:"faithful",line:"House of Zadok",role:"Chief priest under Hezekiah",
+sum:"He oversaw the flood of tithes and offerings after Hezekiah's reform; so much came in that it was stacked in heaps and storerooms had to be built.",
+acts:[["“Since the people began to bring the offerings… we have had enough to eat, and have left plenty: for the LORD hath blessed his people.”","2 Chr 31:10"]],kings:["hezekiah"]},
+{id:"hilkiah",n:"Hilkiah",s:625,e:615,d:"c. 625–615 BC",pk:"J",t:"faithful",line:"Zadokite; ancestor of Ezra",role:"High priest under Josiah",
+sum:"During temple repairs in 622 BC he found the Book of the Law, which set off Josiah's great reform. He led the delegation to Huldah and carried out the purge of Baal's vessels from the temple. (Jeremiah's father was also named Hilkiah, but was a priest at Anathoth, likely a different man.)",
+acts:[["“I have found the book of the law in the house of the LORD.”","2 Kgs 22:8"],["Went with the royal delegation to Huldah the prophetess.","2 Kgs 22:14"],["Brought out of the temple all the vessels made for Baal and Asherah.","2 Kgs 23:4"]],kings:["josiah"]},
+{id:"pashhur",n:"Pashhur son of Immer",s:605,e:600,d:"c. 605 BC",pk:"J",t:"bad",line:"Priestly family of Immer",role:"Chief officer of the temple",
+sum:"He beat Jeremiah and locked him in the stocks at the Benjamin Gate. Released the next day, Jeremiah renamed him Magor-missabib, “terror on every side,” and foretold his exile and death in Babylon.",
+acts:[["“Pashur smote Jeremiah the prophet, and put him in the stocks.”","Jer 20:1–2"],["“The LORD hath not called thy name Pashur, but Magor-missabib… thou shalt die there.”","Jer 20:3–6"]],kings:["jehoiakim"]},
+{id:"zephaniahP",n:"Zephaniah son of Maaseiah",s:595,e:586,d:"c. 595–586 BC",pk:"J",t:"mixed",line:"Second priest",role:"Deputy to the high priest; Zedekiah's envoy",
+sum:"Zedekiah sent him to Jeremiah more than once asking him to pray. When a false prophet in Babylon wrote demanding that Jeremiah be silenced, Zephaniah read the letter to Jeremiah instead. He was executed with Seraiah at Riblah.",
+acts:[["Sent by Zedekiah: “Enquire, I pray thee, of the LORD for us.”","Jer 21:1–2; 37:3"],["Read Shemaiah's letter to Jeremiah rather than acting on it.","Jer 29:24–29"],["Executed at Riblah.","2 Kgs 25:18–21"]],kings:["zedekiah"]},
+{id:"seraiah",n:"Seraiah",s:590,e:586,d:"c. 590–586 BC",pk:"J",t:"faithful",line:"Zadokite; grandson of Hilkiah; ancestor of Ezra",role:"Last high priest of the First Temple",
+sum:"He was chief priest when Jerusalem fell. Nebuzaradan took him to Nebuchadnezzar at Riblah, where he was executed. His son Jehozadak went into exile, and his grandson Joshua became the first high priest after the return.",
+acts:[["Executed at Riblah with the second priest and three doorkeepers.","2 Kgs 25:18–21"],["His son Jehozadak “went into captivity, when the LORD carried away Judah.”","1 Chr 6:14–15"],["Ezra the scribe was “the son of Seraiah.”","Ezra 7:1"]],kings:["zedekiah"]}
+];
+
+const EV=[
+{y:1010,t:"David becomes king"},{y:966,t:"Temple construction begins"},{y:931,t:"Kingdom divides"},{y:925,t:"Shishak invades"},
+{y:853,t:"Battle of Qarqar"},{y:841,t:"Jehu's revolt"},{y:760,t:"Great earthquake (c.)"},{y:733,t:"Assyria takes Galilee"},
+{y:722,t:"Fall of Samaria"},{y:701,t:"Sennacherib's siege"},{y:622,t:"Book of the Law found"},{y:612,t:"Nineveh falls"},
+{y:605,t:"Carchemish · 1st exile"},{y:597,t:"2nd exile"},{y:586,t:"Jerusalem destroyed"}
+];
+
+/* ======================= HELPERS ======================= */
+const START=1060, END=575, LW=68, ROWH=32;
+const ZOOMS=[3,5,8,12,18]; let zi=1;
+let scale=ZOOMS[zi];
+const byId={}; K.forEach(k=>byId[k.id]=k); P.forEach(p=>byId[p.id]=p); PR.forEach(p=>byId[p.id]=p);
+const $=s=>document.querySelector(s);
+const VL={good:"Did right in the LORD's sight",evil:"Did evil in the LORD's sight",mixed:"Mixed record",none:"Not evaluated"};
+const KN={U:"United Kingdom",I:"Israel (Northern Kingdom)",J:"Judah (Southern Kingdom)",X:"Exile"};
+const KC={U:"var(--uni)",I:"var(--isr)",J:"var(--jud)"};
+const yrs=(s,e)=>s===e?`${s} BC`:`${s}–${e} BC`;
+const esc=t=>String(t).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const dispE=it=>it.e===it.s?it.s-0.6:it.e;
+const xOf=y=>LW+(START-Math.min(y,START))*scale;
+const active=(it,y)=>it.s>=y && y>=it.e;
+// prophets -> kings they addressed
+const spoke={}; K.forEach(k=>k.pr.forEach(x=>{if(x.p){(spoke[x.p]=spoke[x.p]||new Set()).add(k.id)}}));
+function overl(a,b){return a.s>=b.e && b.s>=a.e}
+
+/* ======================= TIMELINE ======================= */
+function assign(items){ // items with l,r pixels
+  const ends=[];
+  items.sort((a,b)=>a.l-b.l).forEach(it=>{
+    let r=ends.findIndex(e=>e+3<=it.l); if(r<0){r=ends.length;ends.push(0)}
+    ends[r]=it.r; it.row=r;
+  });
+  return Math.max(1,ends.length);
+}
+let year=931;
+function build(){
+  const tl=$("#tl"); tl.innerHTML="";
+  const W=LW+(START-END)*scale+20; tl.style.width=W+"px";
+  // axis
+  const ax=document.createElement("div"); ax.className="axis";
+  for(let y=1050;y>=END;y-=10){
+    const t=document.createElement("div");
+    const major=y%50===0;
+    t.className="tick"+(major?"":" minor"); t.style.left=xOf(y)+"px";
+    if(major)t.textContent=y+" BC";
+    ax.appendChild(t);
+  }
+  tl.appendChild(ax);
+  // event lines
+  EV.forEach(e=>{const l=document.createElement("div");l.className="evline";l.style.left=xOf(e.y)+"px";tl.appendChild(l)});
+  const lanes=[
+    {t:"Events",ev:true},
+    {t:"United",k:"U",c:KC.U},
+    {t:"Israel<br>North",k:"I",c:KC.I},
+    {t:"Judah<br>South",k:"J",c:KC.J},
+    {t:"Prophets",p:true,c:"var(--pro)"},
+    {t:"Priests",r:true,c:"var(--pri)"}
+  ];
+  lanes.forEach(L=>{
+    const lane=document.createElement("div"); lane.className="lane";
+    let items;
+    if(L.ev){
+      items=EV.map(e=>{const l=xOf(e.y)-6;return{e,l,r:l+e.t.length*6.3+26}});
+    }else{
+      const src=L.p?P:L.r?PR:K.filter(k=>k.k===L.k);
+      items=src.map(it=>{const l=xOf(it.s);const r=Math.max(l+(it.s-dispE(it))*scale,l+7);return{it,l,r:Math.max(r,l+7)}});
+    }
+    const n=assign(items);
+    const h=n*ROWH+8; lane.style.height=h+"px";
+    const lb=document.createElement("div"); lb.className="lbl"; lb.innerHTML=L.t; if(L.c)lb.style.color=L.c; lane.appendChild(lb);
+    items.forEach(o=>{
+      if(L.ev){
+        const d=document.createElement("div"); d.className="evt";
+        d.style.left=o.l+"px"; d.style.top=(5+o.row*ROWH)+"px";
+        d.innerHTML=`<b></b>${o.e.y} · ${esc(o.e.t)}`; lane.appendChild(d); return;
+      }
+      const it=o.it, w=o.r-o.l;
+      const b=document.createElement("button"); b.className="bar "+(L.p?"pro":L.r?"pri "+it.t:it.v);
+      b.style.left=o.l+"px"; b.style.width=w+"px"; b.style.top=(4+o.row*ROWH)+"px";
+      b.title=`${it.n} · ${(L.p||L.r)?it.d:yrs(it.s,it.e)}`;
+      b.setAttribute("aria-label",b.title);
+      let inner="";
+      if(it.co && it.co<it.s){inner+=`<i class="co" style="width:${(it.s-it.co)*scale}px"></i>`}
+      const lbl=it.n.replace(/ \(.*\)/,"");
+      if(w>lbl.length*6.6+10) inner+=`<span>${esc(lbl)}</span>`;
+      else if(w>26) inner+=`<span>${esc(lbl.slice(0,Math.max(1,Math.floor((w-10)/7))))}</span>`;
+      b.innerHTML=inner;
+      b.onclick=ev=>{ev.stopPropagation();open(it.id)};
+      lane.appendChild(b);
+    });
+    tl.appendChild(lane);
+  });
+  const c=document.createElement("div"); c.id="cursor"; tl.appendChild(c);
+  setYear(year,false);
+}
+$("#tl").addEventListener("click",ev=>{
+  const r=$("#tl").getBoundingClientRect(); const x=ev.clientX-r.left;
+  if(x<LW)return;
+  setYear(Math.round(START-(x-LW)/scale),false);
+});
+function zoom(d){
+  const wrap=$("#wrap"); const centerYear=START-((wrap.scrollLeft+wrap.clientWidth/2)-LW)/scale;
+  zi=Math.max(0,Math.min(ZOOMS.length-1,zi+d)); scale=ZOOMS[zi]; build();
+  wrap.scrollLeft=xOf(centerYear)-wrap.clientWidth/2;
+}
+$("#zi").onclick=()=>zoom(1); $("#zo").onclick=()=>zoom(-1);
+function scrollTo(y){const w=$("#wrap");w.scrollTo({left:xOf(y)-w.clientWidth/2,behavior:"smooth"})}
+
+/* jump buttons */
+[["Saul",1050],["Split 931",931],["Elijah & Ahab",865],["Jehu",841],["Jeroboam II",770],["Fall of Samaria",722],["Hezekiah",705],["Josiah",630],["Fall of Jerusalem",590]].forEach(([t,y])=>{
+  const b=document.createElement("button");b.textContent=t;b.onclick=()=>{setYear(y,true)};$("#jump").appendChild(b);
+});
+
+/* ======================= YEAR SCRUBBER ======================= */
+const sl=$("#slider"); sl.min=0; sl.max=1050-586;
+sl.oninput=()=>setYear(1050-(+sl.value),false,true);
+$("#ym").onclick=()=>setYear(Math.min(1050,year+1),true);
+$("#yp").onclick=()=>setYear(Math.max(586,year-1),true);
+const PCOL={faithful:"var(--pri)",mixed:"var(--pri)",bad:"var(--pribad)",false:"var(--prifalse)"};
+function chip(it,color){return `<button class="chip" data-id="${it.id}"><i style="background:${color}"></i>${esc(it.n)}</button>`}
+function setYear(y,scroll,fromSlider){
+  year=Math.max(586,Math.min(1050,y));
+  $("#yr").textContent=year+" BC";
+  if(!fromSlider) sl.value=1050-year;
+  const c=$("#cursor"); if(c){c.style.left=xOf(year)+"px";c.dataset.y=year+" BC"}
+  const ev=EV.filter(e=>Math.abs(e.y-year)<=1);
+  $("#yrev").textContent=ev.length?ev.map(e=>e.y+" · "+e.t).join(" | "):"Who was reigning and prophesying this year";
+  const vc=v=>({good:"var(--good)",evil:"var(--evil)",mixed:"var(--mixed)",none:"var(--none)"}[v]);
+  const col=(title,arr,f,full)=>`<div class="col${full?" full":""}"><h4>${title}</h4>${arr.length?arr.map(f).join(""):'<span class="chip empty">—</span>'}</div>`;
+  let html="";
+  if(year>=931 && year<=1050 && year>931) html+=col("United Kingdom",K.filter(k=>k.k==="U"&&active(k,year)),k=>chip(k,vc(k.v)),true);
+  else if(year===931){html+=col("United Kingdom",K.filter(k=>k.k==="U"&&active(k,year)),k=>chip(k,vc(k.v)),true)}
+  if(year<=931){
+    html+=col("Israel (North)",K.filter(k=>k.k==="I"&&active(k,year)),k=>chip(k,vc(k.v)));
+    html+=col("Judah (South)",K.filter(k=>k.k==="J"&&active(k,year)),k=>chip(k,vc(k.v)));
+  }
+  if(year<722 && year<=931) html=html.replace(/<div class="col"><h4>Israel \(North\)<\/h4>.*?<\/div>/,`<div class="col"><h4>Israel (North)</h4><span class="chip empty">Exiled to Assyria (722)</span></div>`);
+  html+=col("Prophets active",P.filter(p=>active(p,year)),p=>chip(p,"var(--pro)"),true);
+  html+=col("Priests serving",PR.filter(p=>active(p,year)),p=>chip(p,PCOL[p.t]),true);
+  $("#contemp").innerHTML=html;
+  $("#contemp").querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>open(b.dataset.id));
+  if(scroll)scrollTo(year);
+}
+
+/* ======================= KINGS SIDE BY SIDE ======================= */
+let kfilter="all";
+function renderKings(){
+  const q=$("#ks").value.trim().toLowerCase();
+  const list=K.filter(k=>(kfilter==="all"||k.v===kfilter)&&(!q||JSON.stringify(k).toLowerCase().includes(q)||k.pr.some(x=>x.p&&byId[x.p].n.toLowerCase().includes(q))));
+  const sorted=[...list].sort((a,b)=>b.s-a.s||(a.k<b.k?-1:1));
+  let html=`<div class="hd i">Israel · North</div><div class="hd j">Judah · South</div>`;
+  let lastC=null;
+  sorted.forEach(k=>{
+    const cen=Math.floor(k.s/50)*50;
+    if(cen!==lastC){html+=`<div class="yrsep">${cen+49>1050?1050:cen+49}–${cen} BC</div>`;lastC=cen}
+    const ps=[...new Set(k.pr.filter(x=>x.p).map(x=>byId[x.p].n))];
+    html+=`<button class="kc ${k.k} ${k.v}" data-id="${k.id}">
+      <div class="nm">${esc(k.n)}</div>
+      <div class="dt">${yrs(k.s,k.e)} · ${esc(k.len)}${k.k==="U"?" · United":""}</div>
+      <div class="ln">${esc(k.did[0])}</div>
+      ${ps.length?`<div class="ps">${ps.map(p=>`<span>${esc(p)}</span>`).join("")}</div>`:""}
+    </button>`;
+  });
+  if(!sorted.length) html+=`<div class="yrsep">No matches</div>`;
+  $("#par").innerHTML=html;
+  $("#par").querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>open(b.dataset.id));
+}
+$("#ks").oninput=renderKings;
+$("#kf").querySelectorAll("button").forEach(b=>b.onclick=()=>{kfilter=b.dataset.f;$("#kf").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));renderKings()});
+
+/* ======================= PROPHETS ======================= */
+let pfilter="all";
+function renderProphets(){
+  const q=$("#ps").value.trim().toLowerCase();
+  const list=P.filter(p=>(pfilter==="all"||(pfilter==="w"?p.w:p.to.includes(pfilter)))&&(!q||JSON.stringify(p).toLowerCase().includes(q)));
+  $("#pgrid").innerHTML=list.map(p=>`<button class="pc" data-id="${p.id}">
+    <div class="nm">${esc(p.n)}${p.w?'<span class="tag w">Book</span>':""}</div>
+    <div class="dt">${esc(p.d)} · ${p.to.split("").map(t=>`<span class="tag ${t}" style="margin-left:0">${t==="X"?"Exile":t==="U"?"United":t==="I"?"Israel":"Judah"}</span>`).join(" ")}</div>
+    <div class="q">${esc(p.msgs[0][0])} <span style="font-style:normal;color:var(--muted)">— ${esc(p.msgs[0][1])}</span></div>
+  </button>`).join("")||"<p>No matches</p>";
+  $("#pgrid").querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>open(b.dataset.id));
+}
+$("#ps").oninput=renderProphets;
+$("#pf").querySelectorAll("button").forEach(b=>b.onclick=()=>{pfilter=b.dataset.f;$("#pf").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));renderProphets()});
+
+/* ======================= DETAIL SHEET ======================= */
+let cur=null;
+function open(id){
+  cur=id; const it=byId[id]; const isK=!!it.k;
+  let h="";
+  if(it.pk){
+    const TL={faithful:"Faithful",mixed:"Mixed record",bad:"Compromised",false:"False / idol priesthood"};
+    const ks=[...new Set([...it.kings.map(i=>byId[i]),...K.filter(k=>overl(k,it)&&(it.pk==="U"||k.k===it.pk||k.k==="U"))])];
+    const ps=P.filter(p=>overl(p,it));
+    h+=`<span class="tag P" style="margin-left:0">Priest · ${it.pk==="I"?"Israel":it.pk==="J"?"Judah":"United Kingdom"}</span>
+      <h2>${esc(it.n)}</h2><div class="alt">${esc(it.role)}</div>
+      <span class="vpill" style="background:${PCOL[it.t]}">${TL[it.t]}</span>
+      <div class="facts">
+        <div><small>Served</small><b>${esc(it.d)}</b></div>
+        <div><small>Lineage</small><b>${esc(it.line)}</b></div>
+      </div>
+      <p>${esc(it.sum)}</p>
+      <h3>What he did</h3>
+      ${it.acts.map(a=>`<div class="pm pri"><div class="msg">${esc(a[0])}</div><div class="ref">${esc(a[1])}</div></div>`).join("")}
+      ${ks.length?`<h3>Kings he served under</h3><div>${ks.map(k=>chip(k,KC[k.k])).join("")}</div>`:""}
+      ${ps.length?`<h3>Prophets of his day</h3><div>${ps.map(p=>chip(p,"var(--pro)")).join("")}</div>`:""}`;
+  }else if(isK){
+    const other=it.k==="I"?"J":it.k==="J"?"I":null;
+    const contemporaries=other?K.filter(x=>x.k===other&&overl(x,it)):[];
+    const prophetsActive=P.filter(p=>overl(p,it));
+    h+=`<span class="tag ${it.k}" style="margin-left:0">${KN[it.k]}</span>
+      <h2>${esc(it.n)}</h2><div class="alt">${esc(it.alt)}</div>
+      <span class="vpill ${it.v}">${VL[it.v]}</span>
+      <div class="facts">
+        <div><small>Reign</small><b>${yrs(it.s,it.e)}</b></div>
+        <div><small>Length</small><b>${esc(it.len)}</b></div>
+        <div><small>Dynasty</small><b>${esc(it.dyn)}</b></div>
+        <div><small>Read</small><b>${esc(it.ref)}</b></div>
+      </div>
+      ${it.co?`<div class="note">Striped on the timeline: ${it.s}–${it.co} BC was a co-regency or rival rule; sole reign from ${it.co} BC.</div>`:""}
+      <h3>What he did</h3><ul class="did">${it.did.map(d=>`<li>${esc(d)}</li>`).join("")}</ul>
+      <h3>The prophets &amp; their message</h3>
+      ${it.pr.length?it.pr.map(x=>`<div class="pm"><div class="who">${x.p?`<button data-id="${x.p}">${esc(byId[x.p].n)}</button>`:esc(x.u)}</div><div class="msg">${esc(x.m)}</div><div class="ref">${esc(x.r)}</div></div>`).join(""):`<div class="note">No prophet is recorded speaking to this ruler.</div>`}
+      ${(()=>{const pa=PR.filter(p=>overl(p,it)||p.kings.includes(it.id));return pa.length?`<h3>Priests in this reign</h3><div>${pa.map(p=>chip(p,PCOL[p.t])).join("")}</div>`:""})()}
+      ${prophetsActive.length?`<h3>Prophets active in this reign</h3><div>${prophetsActive.map(p=>chip(p,"var(--pro)")).join("")}</div>`:""}
+      ${contemporaries.length?`<h3>On the other throne (${other==="I"?"Israel":"Judah"})</h3><div>${contemporaries.map(k=>chip(k,KC[k.k])).join("")}</div>`:""}`;
+  }else{
+    const ks=K.filter(k=>overl(k,it)&&k.k!=="X");
+    const spk=[...(spoke[it.id]||[])].map(i=>byId[i]);
+    h+=`<span class="tag w" style="margin-left:0">Prophet${it.w?" · wrote a book":""}</span>
+      <h2>${esc(it.n)}</h2><div class="alt">${esc(it.home)}</div>
+      <div class="facts">
+        <div><small>Ministry</small><b>${esc(it.d)}</b></div>
+        <div><small>Sent to</small><b>${it.to.split("").map(t=>t==="X"?"Exiles":t==="U"?"United Israel":t==="I"?"Israel":"Judah").join(" & ")}</b></div>
+        <div style="grid-column:span 2"><small>Read</small><b>${esc(it.bk)}</b></div>
+      </div>
+      <p>${esc(it.sum)}</p>
+      <h3>Key messages</h3>
+      ${it.msgs.map(m=>`<div class="pm"><div class="msg">${esc(m[0])}</div><div class="ref">${esc(m[1])}</div></div>`).join("")}
+      ${spk.length?`<h3>Spoke to these kings</h3><div>${spk.map(k=>chip(k,KC[k.k])).join("")}</div>`:""}
+      ${ks.length?`<h3>Kings reigning during this ministry</h3><div>${ks.map(k=>chip(k,KC[k.k])).join("")}</div>`:""}`;
+  }
+  $("#sbody").innerHTML=h;
+  $("#sbody").querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>open(b.dataset.id));
+  $("#sheet").scrollTop=0;
+  $("#back").style.display="block"; requestAnimationFrame(()=>$("#sheet").classList.add("on"));
+}
+function closeS(){$("#sheet").classList.remove("on");$("#back").style.display="none"}
+$("#close").onclick=closeS; $("#back").onclick=closeS;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeS()});
+function step(d){
+  const it=byId[cur]; const arr=it.k?K.filter(k=>k.k===it.k||(it.k!=="U"&&false)):P;
+  // for kings: walk the line of the same kingdom; United flows into Judah (David's line)
+  let seq=it.k?(it.k==="I"?K.filter(k=>k.k==="I"):K.filter(k=>k.k==="U"||k.k==="J")):it.pk?PR:P;
+  if(it.k==="I"&&d<0&&seq[0].id===cur){open("solomon");return}
+  const i=seq.findIndex(x=>x.id===cur); const n=seq[i+d]; if(n)open(n.id);
+}
+$("#prev").onclick=()=>step(-1); $("#next").onclick=()=>step(1);
+
+/* ======================= TABS ======================= */
+document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("nav.tabs button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on",v.id===b.dataset.v));
+  window.scrollTo({top:0});
+});
+
+let rfilter="all";
+function renderPriests(){
+  const q=$("#rs").value.trim().toLowerCase();
+  const TL={faithful:"Faithful",mixed:"Mixed",bad:"Compromised",false:"False / idol"};
+  const list=PR.filter(p=>(rfilter==="all"||p.t===rfilter||(rfilter==="faithful"&&p.t==="mixed"))&&(!q||JSON.stringify(p).toLowerCase().includes(q)));
+  $("#rgrid").innerHTML=list.map(p=>`<button class="pc pr ${p.t}" data-id="${p.id}">
+    <div class="nm">${esc(p.n)}</div>
+    <div class="dt">${esc(p.d)} · <span class="tag ${p.pk}" style="margin-left:0">${p.pk==="I"?"Israel":p.pk==="J"?"Judah":"United"}</span> <span class="tag P" style="margin-left:0">${TL[p.t]}</span></div>
+    <div class="ln" style="font-size:12.5px;margin-top:4px;color:var(--muted)">${esc(p.role)}</div>
+    <div class="q">${esc(p.acts[0][0])} <span style="font-style:normal;color:var(--muted)">— ${esc(p.acts[0][1])}</span></div>
+  </button>`).join("")||"<p>No matches</p>";
+  $("#rgrid").querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>open(b.dataset.id));
+}
+$("#rs").oninput=renderPriests;
+$("#rf").querySelectorAll("button").forEach(b=>b.onclick=()=>{rfilter=b.dataset.f;$("#rf").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));renderPriests()});
+document.querySelectorAll("#vc [data-c]").forEach(el=>{
+  el.innerHTML=el.dataset.c.split(",").map(id=>{const it=byId[id];if(!it)return"";const col=it.k?KC[it.k]:it.pk?PCOL[it.t]:"var(--pro)";return chip(it,col)}).join("");
+  el.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>open(b.dataset.id));
+});
+document.getElementById("genLink").href=GEN_URL;document.querySelectorAll(".genL").forEach(a=>a.href=GEN_URL);
+document.querySelectorAll("#genLink,.genL").forEach(a=>{a.target="_blank";a.rel="noopener"});
+build(); renderKings(); renderProphets(); renderPriests();
+function fromHash(){const h=location.hash.slice(1);if(!h)return;
+  if(h==="christ"){document.querySelector("[data-v=vc]").click();return}
+  if(h.startsWith("k-")&&byId[h.slice(2)]){open(h.slice(2))}}
+window.addEventListener("hashchange",fromHash);setTimeout(fromHash,80);
+setTimeout(()=>scrollTo(931),50);
+</script>
+</body>
+</html>

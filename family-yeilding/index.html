@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Family Yielding Process</title>
+    <style>
+        :root {
+            /* 5-Step Colors */
+            --step-0: #dc3545;   /* Red - Self-Will */
+            --step-25: #fd7e14;  /* Orange - Struggle */
+            --step-50: #ffc107;  /* Yellow - Turning Point */
+            --step-75: #20c997;  /* Teal - Active Submission */
+            --step-100: #28a745; /* Green - Walking in Spirit */
+            
+            --bg-color: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Ensures background colors appear in PDF exports */
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        header {
+            text-align: center;
+            max-width: 900px;
+            margin-bottom: 15px;
+        }
+
+        h1 { margin: 0 0 5px 0; font-size: 1.6rem; }
+        .subtitle { color: #555; font-style: italic; margin: 0 0 5px 0; font-size: 0.95rem; }
+        header p { margin: 0; font-size: 0.85rem; color: #666; }
+
+        .family-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+            width: 100%;
+            max-width: 1300px;
+            margin-bottom: 20px;
+        }
+
+        .person-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--step-50);
+            position: relative;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #ffeeba;
+            border: none;
+            color: #856404;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .delete-btn:hover { background: #ffc107; }
+
+        .person-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .role-select {
+            font-size: 0.95rem;
+            font-weight: bold;
+            padding: 2px 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            color: #495057;
+        }
+
+        .name-input {
+            width: 85%;
+            padding: 4px;
+            font-size: 0.85rem;
+            text-align: center;
+            border: 1px dashed #ccc;
+            border-radius: 4px;
+            background: #fafafa;
+        }
+
+        .name-input:focus {
+            outline: none;
+            border-color: #80bdff;
+            background: #fff;
+        }
+
+        /* Clean label used only for printing */
+        .print-header-label {
+            display: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #222;
+            text-align: center;
+            padding-bottom: 5px;
+        }
+
+        .slider-container {
+            margin: 10px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f1f3f5;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .slider-title {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #6c757d;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .sin-label { color: var(--step-0); width: 48%; text-align: left; }
+        .spirit-label { color: var(--step-100); width: 48%; text-align: right; }
+        
+        .sub-label {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: normal;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .range-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        input[type=range] {
+            width: 100%;
+            cursor: pointer;
+            accent-color: var(--step-50);
+            margin: 0;
+            display: block;
+        }
+
+        .tick-marks {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 8px; 
+            margin-top: 6px;
+        }
+
+        .tick {
+            width: 2px;
+            height: 8px;
+            background-color: #adb5bd;
+            border-radius: 1px;
+        }
+
+        .spirit-of-man {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #495057;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .internal-state {
+            background: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            min-height: 100px;
+            border: 1px solid #eee;
+            margin-top: 10px;
+            line-height: 1.3;
+        }
+
+        .state-title { font-weight: bold; margin-bottom: 3px; display: block;}
+        .state-desc { color: #555; }
+        .state-verse { font-style: italic; color: #888; font-size: 0.75rem; display: block; margin-top: 5px;}
+
+        .controls-panel {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: background-color 0.2s;
+            font-weight: bold;
+        }
+
+        .add-btn { background-color: #007bff; }
+        .add-btn:hover { background-color: #0056b3; }
+
+        .export-btn { background-color: #6c757d; }
+        .export-btn:hover { background-color: #5a6268; }
+
+        .collective-panel {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            width: 100%;
+            max-width: 1300px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 2px solid #ddd;
+            margin-bottom: 30px;
+        }
+        
+        .collective-panel h2 { font-size: 1.4rem; margin: 0 0 5px 0; }
+        .collective-panel > p { margin: 0; font-size: 0.9rem; color: #555; }
+
+        .harmony-meter-container {
+            width: 80%;
+            height: 20px;
+            background: linear-gradient(to right, var(--step-0) 0%, var(--step-25) 25%, var(--step-50) 50%, var(--step-75) 75%, var(--step-100) 100%);
+            margin: 15px auto 25px auto;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        #harmony-marker {
+            width: 6px;
+            height: 30px;
+            background: #222;
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+            transition: left 0.4s ease-out;
+            box-shadow: 0 0 3px rgba(0,0,0,0.5);
+        }
+
+        /* Relationship Pairs & Impact Styles */
+        .pairs-section {
+            border-top: 1px dashed #ccc;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        .pairs-section h3 {
+            font-size: 1.1rem;
+            color: #495057;
+            margin: 0 0 15px 0;
+        }
+        .pairs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            text-align: left;
+        }
+        .pair-item {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        .pair-label {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .pair-track {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .pair-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.4s ease, background-color 0.4s ease;
+        }
+
+        /* Generational Impact Styles */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .impact-statement {
+            background: #f0f8ff;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 5px solid #007bff;
+            font-size: 0.95rem;
+            color: #333;
+            text-align: left;
+            line-height: 1.5;
+        }
+        .impact-statement strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #0056b3;
+            font-size: 1.05rem;
+        }
+
+        /* Support Network Styles */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            text-align: left;
+        }
+        .support-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #c3e6cb;
+            border-left: 5px solid var(--step-75);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .support-card .helper {
+            font-weight: bold;
+            color: var(--step-100);
+        }
+        .support-card .helpee {
+            font-weight: bold;
+            color: var(--step-0);
+        }
+        .support-card .action-verse {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            font-style: italic;
+            color: #555;
+        }
+
+        #relational-result {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 10px 0 5px 0;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background-color 0.4s;
+        }
+
+        #collective-dynamics {
+            font-weight: bold;
+            color: #495057;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+        
+        #collective-scripture { margin: 0; font-size: 0.85rem; }
+
+        /* Reference & Recommendations Section */
+        .reference-section {
+            width: 100%;
+            max-width: 1300px;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .ref-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ref-card {
+            background: #f8f9fa;
+            border-left: 5px solid #ccc;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .ref-card h3 { margin: 0 0 5px 0; font-size: 1.1rem; }
+        .ref-card p { margin: 5px 0; font-size: 0.9rem; color: #555; }
+        .ref-card .verse { font-style: italic; color: #777; font-size: 0.85rem; margin-top: 8px;}
+        
+        .zone-1 { border-left-color: var(--step-0); }
+        .zone-2 { border-left-color: var(--step-25); }
+        .zone-3 { border-left-color: var(--step-75); }
+        .zone-4 { border-left-color: var(--step-100); }
+
+        .recommendations ul {
+            padding-left: 20px;
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .recommendations li { margin-bottom: 10px; }
+        .recommendations strong { color: #222; }
+
+        /* Print Styles for Exporting */
+        @media print {
+            body { background-color: white; padding: 0; }
+            .controls-panel, .delete-btn { display: none !important; }
+            .person-card, .collective-panel, .reference-section { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; }
+            
+            /* Hide the form inputs and show the clean text label */
+            .role-select, .name-input { display: none !important; }
+            .print-header-label { display: block !important; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>The Family Yielding Process</h1>
+        <p class="subtitle">Visualizing the Internal Balance and Relational Result</p>
+        <p class="no-print">Adjust the slider for each family member to see how their choice affects harmony.</p>
+    </header>
+
+    <div class="family-grid" id="family-grid">
+        </div>
+
+    <div class="controls-panel">
+        <button class="action-btn add-btn" id="add-member-btn">+ Add Family Member</button>
+        <button class="action-btn export-btn" id="export-btn">💾 Save / Export to PDF</button>
+    </div>
+
+    <div class="collective-panel">
+        <h2 id="collective-zone-title">Level 3: Growth Zone (50%)</h2>
+        <p>The overall relational climate is a weighted average of individual choices to yield.</p>
+        
+        <div class="harmony-meter-container">
+            <div id="harmony-marker"></div>
+        </div>
+
+        <div id="relational-result">Intentional Peace: Conflict is handled with grace and apologies.</div>
+        <div id="collective-dynamics">Dynamics: Active effort to yield; reconciliation happens quickly after a mistake.</div>
+        <p id="collective-scripture" style="font-style: italic; color: #555;">Ephesians 4:3 - "Make every effort to keep the unity of the Spirit through the bond of peace."</p>
+
+        <div class="pairs-section" id="support-section" style="display:none;">
+            <h3>Active Support Network (Galatians 6:1-2)</h3>
+            <p style="text-align: left; font-size: 0.9rem; color: #555; margin-bottom: 15px;">How those currently walking in the Spirit can gently bear the burdens of those struggling in the flesh.</p>
+            <div class="support-grid" id="support-container">
+                </div>
+        </div>
+
+        <div class="pairs-section" id="generational-section" style="display:none;">
+            <h3>Generational Impact (Parents &rarr; Children)</h3>
+            <div class="impact-grid" id="generational-bars">
+                </div>
+            <div id="impact-statement" class="impact-statement">
+                </div>
+        </div>
+
+        <div class="pairs-section" id="pairs-section-container" style="display:none;">
+            <h3>1-on-1 Relationship Breakdown</h3>
+            <div class="pairs-grid" id="pairs-container">
+                </div>
+        </div>
+
+    </div>
+
+    <div class="reference-section">
+        <h2>Reference Guide: The 4 Harmony Zones</h2>
+        <div class="ref-grid">
+            <div class="ref-card zone-1">
+                <h3>Level 1: Crisis Zone (0% - 20%)</h3>
+                <p><strong>Status:</strong> High Conflict: Quarrels, anger, and discord dominate.</p>
+                <p><strong>Dynamics:</strong> Relational fracture; deep bitterness and "walls" are being built.</p>
+                <div class="verse">James 4:1 - "What causes fights and quarrels among you? Don't they come from your desires that battle within you?"</div>
+            </div>
+            <div class="ref-card zone-2">
+                <h3>Level 2: Friction Zone (21% - 45%)</h3>
+                <p><strong>Status:</strong> Mixed Dynamic: Periods of peace mixed with frequent arguments.</p>
+                <p><strong>Dynamics:</strong> "Walking on eggshells"; constant bickering and underlying tension.</p>
+                <div class="verse">Galatians 5:17 - "For the flesh desires what is contrary to the Spirit, and the Spirit what is contrary to the flesh."</div>
+            </div>
+            <div class="ref-card zone-3">
+                <h3>Level 3: Growth Zone (46% - 75%)</h3>
+                <p><strong>Status:</strong> Intentional Peace: Conflict is handled with grace and apologies.</p>
+                <p><strong>Dynamics:</strong> Active effort to yield; reconciliation happens quickly after a mistake.</p>
+                <div class="verse">Ephesians 4:3 - "Make every effort to keep the unity of the Spirit through the bond of peace."</div>
+            </div>
+            <div class="ref-card zone-4">
+                <h3>Level 4: Unity Zone (76% - 100%)</h3>
+                <p><strong>Status:</strong> High Harmony: Peace, unity, and love flow naturally.</p>
+                <p><strong>Dynamics:</strong> Spiritual synergy; the "Fruit of the Spirit" is the primary atmosphere of the home.</p>
+                <div class="verse">Colossians 3:14 - "And over all these virtues put on love, which binds them all together in perfect unity."</div>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h2>Recommendations to Reach Level 4 (Unity)</h2>
+            <ul>
+                <li><strong>The 5-Second Pause (James 1:19):</strong> <em>“Everyone should be quick to listen, slow to speak and slow to become angry.”</em> When triggered, implement a family rule to take a mandatory 5-second breath before responding, creating space for the Spirit.</li>
+                <li><strong>Normalize Quick Repentance (James 5:16):</strong> <em>“Confess your sins to each other and pray for each other.”</em> Make it safe and normal to say, "I yielded to my flesh just then, and I'm sorry." Quick apologies prevent <em>Friction</em> from turning into a <em>Crisis</em>.</li>
+                <li><strong>Daily Mind Alignment (Romans 8:5):</strong> <em>“Those who live in accordance with the Spirit have their minds set on what the Spirit desires.”</em> Start the day collectively or individually by asking the Holy Spirit for specific fruit (e.g., patience for a tough meeting) before conflicts even arise.</li>
+                <li><strong>Extend Grace for the Struggle (Romans 8:1):</strong> <em>“Therefore, there is now no condemnation for those who are in Christ Jesus.”</em> Recognize everyone is in the "Romans 7" struggle. When family members fail, offer grace and point them back to Christ rather than condemning them.</li>
+            </ul>
+        </div>
+    </div>
+
+    <template id="member-template">
+        <div class="person-card">
+            <button class="delete-btn" title="Remove Member">X</button>
+            <div class="person-header">
+                <select class="role-select">
+                    <option value="Father">Father</option>
+                    <option value="Mother">Mother</option>
+                    <option value="Son">Son</option>
+                    <option value="Daughter">Daughter</option>
+                    <option value="Child">Child</option>
+                </select>
+                <input type="text" class="name-input" placeholder="Name (Optional)">
+                
+                <div class="print-header-label"></div>
+            </div>
+            <div class="slider-container">
+                <div class="slider-title">Rom. 7:21-25; 8:2</div>
+                <div class="slider-labels">
+                    <span class="sin-label">Law of Sin<span class="sub-label">(Flesh/Death)</span></span>
+                    <span class="spirit-label">Law of God<span class="sub-label">(Spirit of Christ)</span></span>
+                </div>
+                
+                <div class="range-wrapper">
+                    <input type="range" min="0" max="100" step="25" value="50" class="yielding-slider">
+                    <div class="tick-marks">
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                        <div class="tick"></div>
+                    </div>
+                </div>
+
+                <div class="spirit-of-man">
+                    Human Spirit
+                    <span class="sub-label" style="font-style: italic;">1 Cor. 2:11</span>
+                </div>
+            </div>
+            <div class="internal-state">
+                <span class="state-title">The Turning Point</span>
+                <span class="state-desc">Moment of Reckoning: A pause; deciding to "reckon" oneself dead to sin.</span>
+                <span class="state-verse">Romans 6:11</span>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        const marker = document.getElementById('harmony-marker');
+        const resultBox = document.getElementById('relational-result');
+        const dynamicsBox = document.getElementById('collective-dynamics');
+        const collectiveScripture = document.getElementById('collective-scripture');
+        const zoneTitle = document.getElementById('collective-zone-title');
+        
+        const familyGrid = document.getElementById('family-grid');
+        
+        const supportSection = document.getElementById('support-section');
+        const supportContainer = document.getElementById('support-container');
+
+        const pairsSectionContainer = document.getElementById('pairs-section-container');
+        const pairsContainer = document.getElementById('pairs-container');
+        
+        const generationalSection = document.getElementById('generational-section');
+        const generationalBars = document.getElementById('generational-bars');
+        const impactStatement = document.getElementById('impact-statement');
+
+        const addMemberBtn = document.getElementById('add-member-btn');
+        const exportBtn = document.getElementById('export-btn');
+        const template = document.getElementById('member-template');
+        
+        // Individual Yielding Scale Logic
+        const individualStates = {
+            "0": {
+                title: "Self-Will (Flesh)",
+                desc: "Yielding to Sin: Acting on impulse, anger, or the need to be 'right.'",
+                verse: "Galatians 5:19-21",
+                color: "var(--step-0)"
+            },
+            "25": {
+                title: "The Struggle",
+                desc: "Internal Conflict: Aware of the wrong choice but feeling powerless to stop it.",
+                verse: "Romans 7:15",
+                color: "var(--step-25)"
+            },
+            "50": {
+                title: "The Turning Point",
+                desc: "Moment of Reckoning: A pause; deciding to 'reckon' oneself dead to sin.",
+                verse: "Romans 6:11",
+                color: "var(--step-50)"
+            },
+            "75": {
+                title: "Active Submission",
+                desc: "Choosing Grace: Consciously choosing a gentle answer or silence over a sharp retort.",
+                verse: "Proverbs 15:1",
+                color: "var(--step-75)"
+            },
+            "100": {
+                title: "Walking in Spirit",
+                desc: "Yielding to God: Natural flow of love and peace; responding as Christ would.",
+                verse: "Romans 8:6",
+                color: "var(--step-100)"
+            }
+        };
+
+        // Helper to get color based on 0-100 scale
+        function getColorForPercentage(pct) {
+            if (pct <= 20) return "var(--step-0)";
+            if (pct <= 45) return "var(--step-25)";
+            if (pct <= 75) return "var(--step-75)";
+            return "var(--step-100)";
+        }
+
+        // Function to update the cleanly formatted Print label based on inputs
+        function updatePrintHeader(card) {
+            const role = card.querySelector('.role-select').value;
+            const name = card.querySelector('.name-input').value.trim();
+            const printLabel = card.querySelector('.print-header-label');
+            
+            if (name) {
+                printLabel.textContent = `${role} - ${name}`;
+            } else {
+                printLabel.textContent = `${role}`;
+            }
+            
+            // Recalculate to update pairs labels
+            calculateCollectiveHarmony();
+        }
+
+        function updateIndividualState(slider, card) {
+            const val = slider.value;
+            const state = individualStates[val];
+
+            card.querySelector('.state-title').textContent = state.title;
+            card.querySelector('.state-desc').textContent = state.desc;
+            card.querySelector('.state-verse').textContent = state.verse;
+            
+            card.querySelector('.state-title').style.color = state.color;
+            card.style.borderTopColor = state.color;
+            slider.style.accentColor = state.color;
+        }
+
+        // Generate a single progress bar HTML string
+        function generateBarHTML(label, pct) {
+            const barColor = getColorForPercentage(pct);
+            return `
+                <div class="pair-item">
+                    <div class="pair-label">
+                        <span>${label}</span>
+                        <span style="color: ${barColor}">${pct.toFixed(0)}%</span>
+                    </div>
+                    <div class="pair-track">
+                        <div class="pair-fill" style="width: ${pct}%; background-color: ${barColor};"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Logic for Support Recommendations
+        function getSupportAction(helper, helpee) {
+            const hRole = helper.role;
+            const pRole = helpee.role;
+            const isHelperParent = (hRole === 'Father' || hRole === 'Mother');
+            const isHelpeeParent = (pRole === 'Father' || pRole === 'Mother');
+
+            if (isHelperParent && !isHelpeeParent) {
+                return {
+                    action: "Provide gentle instruction and training rather than reactive discipline.",
+                    verse: "Ephesians 6:4 - 'Fathers, do not exasperate your children; instead, bring them up in the training and instruction of the Lord.'"
+                };
+            } else if (isHelperParent && isHelpeeParent) {
+                return {
+                    action: "Cover their struggle with deep grace and intercede privately for them.",
+                    verse: "1 Peter 4:8 - 'Above all, love each other deeply, because love covers over a multitude of sins.'"
+                };
+            } else if (!isHelperParent && isHelpeeParent) {
+                return {
+                    action: "Honor them respectfully while actively praying for their spiritual renewal.",
+                    verse: "1 Timothy 2:1 - 'I urge, then, first of all, that petitions, prayers, intercession and thanksgiving be made for all people.'"
+                };
+            } else {
+                // Child to Child (Siblings)
+                return {
+                    action: "Encourage them gently and build them up instead of arguing.",
+                    verse: "1 Thessalonians 5:11 - 'Therefore encourage one another and build each other up, just as in fact you are doing.'"
+                };
+            }
+        }
+
+        // Collective Harmony & Impact Logic
+        function calculateCollectiveHarmony() {
+            const cards = document.querySelectorAll('.person-card');
+            if (cards.length === 0) {
+                pairsSectionContainer.style.display = 'none';
+                generationalSection.style.display = 'none';
+                supportSection.style.display = 'none';
+                return;
+            }
+
+            let total = 0;
+            const activeMembers = [];
+            const parents = [];
+            const children = [];
+            const strongMembers = [];
+            const strugglingMembers = [];
+
+            cards.forEach(card => {
+                const val = parseInt(card.querySelector('.yielding-slider').value);
+                const role = card.querySelector('.role-select').value;
+                const name = card.querySelector('.name-input').value.trim();
+                const displayName = name ? `${role} (${name})` : role;
+                
+                total += val;
+                
+                const memberData = { role, displayName, val };
+                activeMembers.push(memberData);
+                
+                // Generational Grouping
+                if (role === 'Father' || role === 'Mother') {
+                    parents.push(memberData);
+                } else {
+                    children.push(memberData);
+                }
+
+                // Support Grouping (Threshold is 50%)
+                if (val >= 50) {
+                    strongMembers.push(memberData);
+                } else {
+                    strugglingMembers.push(memberData);
+                }
+            });
+
+            const average = total / cards.length;
+            marker.style.left = `${average}%`;
+
+            // Update Main Meter Text
+            if (average <= 20) {
+                zoneTitle.textContent = `Level 1: Crisis Zone (${average.toFixed(1)}%)`;
+                resultBox.textContent = "High Conflict: Quarrels, anger, and discord dominate.";
+                dynamicsBox.textContent = "Dynamics: Relational fracture; deep bitterness and \"walls\" are being built.";
+                collectiveScripture.textContent = 'James 4:1 - "What causes fights and quarrels among you? Don\'t they come from your desires that battle within you?"';
+                resultBox.style.backgroundColor = "rgba(220, 53, 69, 0.15)";
+                resultBox.style.color = "#a71d2a";
+            } 
+            else if (average <= 45) {
+                zoneTitle.textContent = `Level 2: Friction Zone (${average.toFixed(1)}%)`;
+                resultBox.textContent = "Mixed Dynamic: Periods of peace mixed with frequent arguments.";
+                dynamicsBox.textContent = "Dynamics: \"Walking on eggshells\"; constant bickering and underlying tension.";
+                collectiveScripture.textContent = 'Galatians 5:17 - "For the flesh desires what is contrary to the Spirit, and the Spirit what is contrary to the flesh."';
+                resultBox.style.backgroundColor = "rgba(253, 126, 20, 0.15)";
+                resultBox.style.color = "#d35400";
+            } 
+            else if (average <= 75) {
+                zoneTitle.textContent = `Level 3: Growth Zone (${average.toFixed(1)}%)`;
+                resultBox.textContent = "Intentional Peace: Conflict is handled with grace and apologies.";
+                dynamicsBox.textContent = "Dynamics: Active effort to yield; reconciliation happens quickly after a mistake.";
+                collectiveScripture.textContent = 'Ephesians 4:3 - "Make every effort to keep the unity of the Spirit through the bond of peace."';
+                resultBox.style.backgroundColor = "rgba(32, 201, 151, 0.15)";
+                resultBox.style.color = "#0e8560";
+            } 
+            else {
+                zoneTitle.textContent = `Level 4: Unity Zone (${average.toFixed(1)}%)`;
+                resultBox.textContent = "High Harmony: Peace, unity, and love flow naturally.";
+                dynamicsBox.textContent = "Dynamics: Spiritual synergy; the \"Fruit of the Spirit\" is the primary atmosphere of the home.";
+                collectiveScripture.textContent = 'Colossians 3:14 - "And over all these virtues put on love, which binds them all together in perfect unity."';
+                resultBox.style.backgroundColor = "rgba(40, 167, 69, 0.15)";
+                resultBox.style.color = "#155724";
+            }
+
+            // Generate Active Support Network
+            if (strongMembers.length > 0 && strugglingMembers.length > 0) {
+                supportSection.style.display = 'block';
+                supportContainer.innerHTML = '';
+                
+                strongMembers.forEach(helper => {
+                    strugglingMembers.forEach(helpee => {
+                        const advice = getSupportAction(helper, helpee);
+                        supportContainer.innerHTML += `
+                            <div class="support-card">
+                                <div><span class="helper">${helper.displayName}</span> can support <span class="helpee">${helpee.displayName}</span></div>
+                                <div style="margin-top: 5px;">${advice.action}</div>
+                                <span class="action-verse">${advice.verse}</span>
+                            </div>
+                        `;
+                    });
+                });
+            } else if (strongMembers.length === 0 && strugglingMembers.length > 0) {
+                supportSection.style.display = 'block';
+                supportContainer.innerHTML = `
+                    <div class="support-card" style="border-left-color: var(--step-0);">
+                        <strong>External Support Required:</strong> All family members are currently struggling in the flesh. Pastoral care, family counseling, or a trusted mediator is highly recommended to break the cycle.
+                    </div>`;
+            } else {
+                supportSection.style.display = 'none';
+            }
+
+            // Generate Generational Impact
+            if (parents.length > 0 && children.length > 0) {
+                generationalSection.style.display = 'block';
+                
+                let parentTotal = 0; parents.forEach(p => parentTotal += p.val);
+                const parentAvg = parentTotal / parents.length;
+                
+                let childTotal = 0; children.forEach(c => childTotal += c.val);
+                const childAvg = childTotal / children.length;
+
+                generationalBars.innerHTML = 
+                    generateBarHTML("Parental Unit Harmony", parentAvg) + 
+                    generateBarHTML("Children's Atmosphere Response", childAvg);
+
+                // Complex Impact Matrix
+                if (parentAvg > 50 && childAvg > 50) {
+                    impactStatement.innerHTML = "<strong>Atmosphere: Secure Greenhouse</strong> Parental unity models the Spirit. This shared peace provides deep psychological security, making it natural and safe for children to flourish and yield to the Spirit themselves.";
+                    impactStatement.style.borderLeftColor = "var(--step-100)";
+                    impactStatement.style.backgroundColor = "rgba(40, 167, 69, 0.05)";
+                } 
+                else if (parentAvg > 50 && childAvg <= 50) {
+                    impactStatement.innerHTML = "<strong>Atmosphere: Safe Harbor for Struggle</strong> The children are currently struggling with the flesh, but the parents are holding the spiritual line. Because the parents are yielding to the Spirit, they can correct and guide the children with grace and patience rather than reactive anger.";
+                    impactStatement.style.borderLeftColor = "var(--step-75)";
+                    impactStatement.style.backgroundColor = "rgba(32, 201, 151, 0.05)";
+                }
+                else if (parentAvg <= 50 && childAvg <= 50) {
+                    impactStatement.innerHTML = "<strong>Atmosphere: The Cycle of Strife</strong> Fleshly reactions from the parents are breeding fleshly reactions in the children. Without the parents setting a spiritual baseline, the children lack a model for peace, and conflict cascades through the generations.";
+                    impactStatement.style.borderLeftColor = "var(--step-0)";
+                    impactStatement.style.backgroundColor = "rgba(220, 53, 69, 0.05)";
+                }
+                else if (parentAvg <= 50 && childAvg > 50) {
+                    impactStatement.innerHTML = "<strong>Atmosphere: The Cycle Breaker!</strong> Despite the parents yielding to the flesh and creating a tense atmosphere, the children are individually choosing to yield to the Spirit. They are acting as peacemakers and breaking the generational cycle of fleshly reactions.";
+                    impactStatement.style.borderLeftColor = "var(--step-25)";
+                    impactStatement.style.backgroundColor = "rgba(253, 126, 20, 0.05)";
+                }
+
+            } else {
+                generationalSection.style.display = 'none';
+            }
+
+            // Generate 1-on-1 Pairs
+            if (activeMembers.length >= 2) {
+                pairsSectionContainer.style.display = 'block';
+                pairsContainer.innerHTML = ''; 
+                for (let i = 0; i < activeMembers.length; i++) {
+                    for (let j = i + 1; j < activeMembers.length; j++) {
+                        const p1 = activeMembers[i];
+                        const p2 = activeMembers[j];
+                        const pairAvg = (p1.val + p2.val) / 2;
+                        pairsContainer.innerHTML += generateBarHTML(`${p1.displayName} & ${p2.displayName}`, pairAvg);
+                    }
+                }
+            } else {
+                pairsSectionContainer.style.display = 'none';
+            }
+        }
+
+        function createMemberCard(defaultRole) {
+            const clone = template.content.cloneNode(true);
+            const newCard = clone.querySelector('.person-card');
+            const slider = newCard.querySelector('.yielding-slider');
+            const roleSelect = newCard.querySelector('.role-select');
+            const nameInput = newCard.querySelector('.name-input');
+            
+            if(defaultRole) roleSelect.value = defaultRole;
+
+            // Header listeners for Print label updating & Pairs renaming
+            roleSelect.addEventListener('change', () => updatePrintHeader(newCard));
+            nameInput.addEventListener('input', () => updatePrintHeader(newCard));
+            
+            // Delete functionality
+            newCard.querySelector('.delete-btn').addEventListener('click', () => {
+                newCard.remove();
+                calculateCollectiveHarmony();
+            });
+
+            // Slider functionality
+            slider.addEventListener('input', () => {
+                updateIndividualState(slider, newCard);
+                calculateCollectiveHarmony();
+            });
+
+            familyGrid.appendChild(newCard);
+            
+            // Initial setup
+            updatePrintHeader(newCard); // This also calls calculateCollectiveHarmony
+            updateIndividualState(slider, newCard);
+        }
+
+        // Add Initial Members
+        createMemberCard("Father");
+        createMemberCard("Mother");
+        createMemberCard("Son");
+        createMemberCard("Daughter");
+        
+        // Add button listener
+        addMemberBtn.addEventListener('click', () => {
+            createMemberCard("Child");
+        });
+
+        // Export button listener
+        exportBtn.addEventListener('click', () => {
+            window.print();
+        });
+
+    </script>
+</body>
+</html>

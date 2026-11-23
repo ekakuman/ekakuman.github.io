@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Kingdom: When, Who, How</title>
+<meta name="description" content="An interactive trace of the kingdom of God through Scripture: God's intention, man's response, and the questions of when, who and how. KJV text throughout.">
+<meta property="og:title" content="The Kingdom: When, Who, How">
+<meta property="og:description" content="Trace the kingdom of God from Eden to the new Jerusalem, with every verse quoted from the KJV.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#5A2A6E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%235A2A6E'/%3E%3Cpath d='M7 22 L9 11 L13 16 L16 9 L19 16 L23 11 L25 22 Z' fill='%23D9B154'/%3E%3Crect x='7' y='23' width='18' height='3' rx='1' fill='%23D9B154'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a two-track arc (God's intention above, man's response below), then three question tabs, then the hinge variables. */
+:root {
+  --bg: #F3F4F1;
+  --surface: #FFFFFF;
+  --ink: #1C2230;
+  --muted: #5A6170;
+  --line: #DADDD6;
+  --royal: #5A2A6E;
+  --gold: #946B12;
+  --rust: #A8402A;
+  --sage: #2D6E55;
+  --royal-soft: rgba(90,42,110,.08);
+  --gold-soft: rgba(148,107,18,.10);
+  --rust-soft: rgba(168,64,42,.09);
+  --sage-soft: rgba(45,110,85,.10);
+  --display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121419; --surface: #1A1D25; --ink: #E8E6E1; --muted: #A3A8B3; --line: #2C303B;
+    --royal: #C09AD6; --gold: #D9B154; --rust: #E2826A; --sage: #74C39F;
+    --royal-soft: rgba(192,154,214,.12); --gold-soft: rgba(217,177,84,.12); --rust-soft: rgba(226,130,106,.12); --sage-soft: rgba(116,195,159,.12);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121419; --surface: #1A1D25; --ink: #E8E6E1; --muted: #A3A8B3; --line: #2C303B;
+  --royal: #C09AD6; --gold: #D9B154; --rust: #E2826A; --sage: #74C39F;
+  --royal-soft: rgba(192,154,214,.12); --gold-soft: rgba(217,177,84,.12); --rust-soft: rgba(226,130,106,.12); --sage-soft: rgba(116,195,159,.12);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; text-wrap: balance; line-height: 1.12; margin: 0; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -.01em; }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); }
+h3 { font-size: 1.35rem; }
+p { margin: 0; }
+.ui { font-family: var(--ui); }
+.kicker { font-family: var(--ui); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--royal); font-weight: 600; }
+header.top { padding: 44px 0 24px; border-bottom: 1px solid var(--line); }
+header.top .lead { max-width: 64ch; color: var(--muted); margin-top: 14px; font-size: 1.05rem; }
+.qs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.qchip { font-family: var(--ui); font-size: .88rem; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); text-decoration: none; }
+.qchip b { color: var(--royal); }
+.lensbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 18px; font-family: var(--ui); font-size: .9rem; color: var(--muted); }
+.switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; color: var(--ink); }
+.switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.switch .track { width: 40px; height: 22px; border-radius: 999px; background: var(--line); position: relative; transition: background .2s; flex: none; }
+.switch .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .2s; }
+.switch input:checked + .track { background: var(--royal); }
+.switch input:checked + .track::after { transform: translateX(18px); }
+.switch input:focus-visible + .track { outline: 2px solid var(--royal); outline-offset: 2px; }
+section.block { padding: 40px 0 8px; }
+section.block > .head { display: grid; gap: 8px; margin-bottom: 20px; }
+section.block > .head p { color: var(--muted); max-width: 66ch; }
+
+/* Arc */
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-family: var(--ui); font-size: .82rem; color: var(--muted); margin-bottom: 12px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; flex: none; }
+.dot.int { background: var(--gold); }
+.dot.reject { background: var(--rust); }
+.dot.mixed { background: linear-gradient(90deg, var(--rust) 50%, var(--sage) 50%); }
+.dot.none { background: transparent; border: 2px solid var(--muted); }
+.dot.ans { background: var(--sage); }
+.arc-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); scrollbar-width: thin; }
+.arc { display: grid; grid-template-columns: repeat(17, minmax(84px, 1fr)); min-width: 1428px; position: relative; }
+.arc::before, .arc::after { content: ""; position: absolute; left: 42px; right: 42px; height: 2px; }
+.arc::before { top: 58px; background: var(--gold); opacity: .55; }
+.arc::after { top: 112px; background: repeating-linear-gradient(90deg, var(--rust) 0 6px, transparent 6px 11px); opacity: .5; }
+.ep { appearance: none; border: 0; background: transparent; color: inherit; font: inherit; cursor: pointer; padding: 10px 4px 12px; display: grid; grid-template-rows: 34px 20px 34px 20px auto; justify-items: center; align-items: center; position: relative; z-index: 1; border-radius: 10px; }
+.ep:hover { background: var(--royal-soft); }
+.ep:focus-visible { outline: 2px solid var(--royal); outline-offset: -2px; }
+.ep[aria-selected="true"] { background: var(--royal-soft); }
+.ep[aria-selected="true"] .ep-name { color: var(--royal); font-weight: 600; }
+.ep .num { font-family: var(--ui); font-size: .7rem; color: var(--muted); align-self: end; }
+.ep .m-int { width: 14px; height: 14px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px var(--surface); }
+.ep .m-resp { width: 14px; height: 14px; border-radius: 50%; box-shadow: 0 0 0 4px var(--surface); }
+.ep .m-resp.reject { background: var(--rust); }
+.ep .m-resp.mixed { background: linear-gradient(90deg, var(--rust) 50%, var(--sage) 50%); }
+.ep .m-resp.none { background: var(--surface); border: 2px solid var(--muted); }
+.ep .m-resp.receive { background: var(--sage); }
+.ep .ep-name { font-family: var(--ui); font-size: .78rem; line-height: 1.25; text-align: center; padding: 0 2px; }
+.track-labels { display: flex; justify-content: space-between; font-family: var(--ui); font-size: .75rem; color: var(--muted); margin: 8px 2px 0; flex-wrap: wrap; gap: 8px; }
+.hint { font-family: var(--ui); font-size: .8rem; color: var(--muted); }
+
+.detail { margin-top: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: grid; gap: 18px; }
+.detail-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.detail-head .span { font-family: var(--ui); font-size: .85rem; color: var(--muted); }
+.navbtns { display: flex; gap: 8px; }
+.btn { font-family: var(--ui); font-size: .85rem; border: 1px solid var(--line); background: var(--bg); color: var(--ink); padding: 6px 12px; border-radius: 8px; cursor: pointer; }
+.btn:hover { border-color: var(--royal); color: var(--royal); }
+.btn:focus-visible { outline: 2px solid var(--royal); outline-offset: 2px; }
+.lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.lane { border-radius: 10px; padding: 14px 16px; border-left: 4px solid; display: grid; gap: 8px; align-content: start; }
+.lane.int { background: var(--gold-soft); border-color: var(--gold); }
+.lane.resp { background: var(--rust-soft); border-color: var(--rust); }
+.lane.resp.none { background: var(--bg); border-color: var(--muted); }
+.lane.ans { background: var(--sage-soft); border-color: var(--sage); }
+.lane .lbl { font-family: var(--ui); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
+.lane.int .lbl { color: var(--gold); }
+.lane.resp .lbl { color: var(--rust); }
+.lane.resp.none .lbl { color: var(--muted); }
+.lane.ans .lbl { color: var(--sage); }
+.lane .claim { font-weight: 600; font-size: 1rem; }
+.v { font-size: .95rem; }
+.v cite { font-style: normal; font-family: var(--ui); font-size: .78rem; font-weight: 600; color: var(--royal); display: block; margin-bottom: 1px; }
+.v q { quotes: none; }
+.wwh { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.wwh div { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.wwh .k { font-family: var(--ui); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.wwh .val { font-size: .95rem; margin-top: 2px; }
+
+/* Pattern */
+.pattern { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.pstep { padding: 16px; border-right: 1px solid var(--line); display: grid; gap: 8px; align-content: start; position: relative; }
+.pstep:last-child { border-right: 0; }
+.pstep .n { font-family: var(--ui); font-size: .72rem; color: var(--muted); }
+.pstep h3 { font-size: 1.25rem; }
+.pstep.offer h3 { color: var(--gold); }
+.pstep.refuse h3 { color: var(--rust); }
+.pstep.judge h3 { color: var(--ink); }
+.pstep.keep h3, .pstep.renew h3 { color: var(--sage); }
+.tally { margin-top: 12px; font-family: var(--ui); font-size: .88rem; color: var(--muted); }
+.tally b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* Questions */
+.tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.tab { appearance: none; border: 0; background: transparent; font-family: var(--ui); font-size: .95rem; padding: 10px 14px; cursor: pointer; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tab[aria-selected="true"] { color: var(--royal); border-bottom-color: var(--royal); font-weight: 600; }
+.tab:focus-visible { outline: 2px solid var(--royal); outline-offset: 2px; }
+.qpanel { padding-top: 20px; display: grid; gap: 18px; }
+.qpanel .ask { font-family: var(--display); font-size: 1.6rem; font-weight: 600; }
+.observe { background: var(--royal-soft); border-radius: 10px; padding: 14px 16px; max-width: 80ch; }
+.observe .lbl { font-family: var(--ui); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--royal); font-weight: 600; display: block; margin-bottom: 4px; }
+.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.group { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; align-content: start; border-top: 4px solid var(--c, var(--royal)); }
+.group h3 { font-size: 1.3rem; color: var(--c, var(--royal)); }
+.group .sub { font-family: var(--ui); font-size: .82rem; color: var(--muted); }
+.group .count { font-family: var(--ui); font-size: .75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.vlist { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.vlist li { border-top: 1px dashed var(--line); padding-top: 8px; }
+.vbtn { appearance: none; border: 0; background: none; padding: 0; text-align: left; color: inherit; font: inherit; cursor: pointer; width: 100%; }
+.vbtn:focus-visible { outline: 2px solid var(--royal); outline-offset: 2px; border-radius: 4px; }
+.vbtn .t { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: .93rem; }
+.vbtn[aria-expanded="true"] .t { display: block; -webkit-line-clamp: unset; }
+.vbtn cite { font-style: normal; font-family: var(--ui); font-size: .78rem; font-weight: 600; color: var(--royal); }
+.readings { display: none; }
+body.lens .readings { display: grid; }
+.readings { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; gap: 10px; }
+.readings .lbl { font-family: var(--ui); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.rrow { display: grid; grid-template-columns: 200px 1fr; gap: 12px; border-top: 1px solid var(--line); padding-top: 8px; font-size: .94rem; }
+.rrow .who { font-family: var(--ui); font-weight: 600; font-size: .85rem; }
+.lens-off-note { font-family: var(--ui); font-size: .85rem; color: var(--muted); }
+body.lens .lens-off-note { display: none; }
+
+/* Variables */
+.vars { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.var { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 10px; align-content: start; }
+.var .tag { font-family: var(--ui); font-size: .72rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+.var .q { font-size: .96rem; }
+.refs { display: flex; flex-wrap: wrap; gap: 6px; }
+.ref { font-family: var(--ui); font-size: .78rem; border: 1px solid var(--line); background: var(--bg); color: var(--royal); border-radius: 999px; padding: 3px 9px; cursor: pointer; }
+.ref[aria-pressed="true"] { background: var(--royal); color: var(--surface); border-color: var(--royal); }
+.ref:focus-visible { outline: 2px solid var(--royal); outline-offset: 2px; }
+.reftext { font-size: .93rem; border-left: 3px solid var(--royal); padding: 4px 0 4px 10px; display: none; }
+.reftext.on { display: block; }
+.spectrum { display: grid; gap: 6px; }
+.spectrum .end { font-size: .9rem; display: grid; grid-template-columns: 14px 1fr; gap: 8px; align-items: start; }
+.spectrum .end .dot { margin-top: 6px; }
+.spectrum .bar { height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--gold), var(--royal)); opacity: .6; margin: 2px 0 2px 3px; width: calc(100% - 3px); }
+.var .holders { font-family: var(--ui); font-size: .8rem; color: var(--muted); display: none; }
+body.lens .var .holders { display: block; }
+
+footer { padding: 36px 0 48px; color: var(--muted); font-family: var(--ui); font-size: .82rem; border-top: 1px solid var(--line); margin-top: 40px; }
+
+@media (max-width: 820px) {
+  .lanes, .wwh { grid-template-columns: 1fr; }
+  .pattern { grid-template-columns: 1fr; }
+  .pstep { border-right: 0; border-bottom: 1px solid var(--line); }
+  .pstep:last-child { border-bottom: 0; }
+  .rrow { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (max-width: 420px) {
+  body { font-size: 16px; }
+  .wrap { padding: 0 16px; }
+  .detail { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="kicker">Tracing Scripture · King James Version</div>
+    <h1>The Kingdom: When, Who, How</h1>
+    <p class="lead">From Eden to the new Jerusalem, God keeps stating his intention to rule through a chosen king among a chosen people, and people keep refusing it. Follow that arc below, then test the three questions against the verses themselves. Every quotation is KJV text, word for word.</p>
+    <div class="qs" aria-label="The three questions">
+      <a class="qchip" href="#questions" data-q="when"><b>When</b> · now, future, or both?</a>
+      <a class="qchip" href="#questions" data-q="who"><b>Who</b> · Israel, the Church, or both?</a>
+      <a class="qchip" href="#questions" data-q="how"><b>How</b> · spiritual, political, cultural, sacramental?</a>
+    </div>
+    <div class="lensbar">
+      <label class="switch" for="lens"><input type="checkbox" id="lens"><span class="track" aria-hidden="true"></span>Show how traditions read these texts</label>
+      <span>Off: Scripture only. On: adds the main readings of each hinge text.</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="block" id="arc">
+    <div class="head">
+      <div class="kicker">1 · The arc</div>
+      <h2>God's intention, man's response, God's answer</h2>
+      <p>Seventeen stages from Creation to the new creation. The gold line is what God says he intends. The dashed line below it is how people respond. Select a stage to read the verses.</p>
+    </div>
+    <div class="legend">
+      <span><i class="dot int"></i>God's stated intention</span>
+      <span><i class="dot reject"></i>Rejection</span>
+      <span><i class="dot mixed"></i>Rejection with a receiving remnant</span>
+      <span><i class="dot none"></i>No rejection recorded</span>
+      <span><i class="dot ans"></i>God's answer</span>
+    </div>
+    <div class="arc-scroll" id="arcScroll">
+      <div class="arc" id="arcRow" role="tablist" aria-label="Stages of the kingdom story"></div>
+    </div>
+    <div class="track-labels"><span>Upper line: God's intention · Lower line: man's response</span><span class="hint">Scroll sideways for all 17 stages · ← → keys move between them</span></div>
+    <article class="detail" id="detail" aria-live="polite"></article>
+  </section>
+
+  <section class="block" id="pattern">
+    <div class="head">
+      <div class="kicker">2 · The repeating pattern</div>
+      <h2>Offer, refusal, judgment, a kept promise, a renewed promise</h2>
+      <p>The same five moves recur across the arc. One clear instance of each is shown.</p>
+    </div>
+    <div class="pattern" id="patternRow"></div>
+    <p class="tally" id="tally"></p>
+  </section>
+
+  <section class="block" id="questions">
+    <div class="head">
+      <div class="kicker">3 · The three questions</div>
+      <h2>What the verses say, grouped by answer</h2>
+      <p>Each answer has its own set of verses, and Scripture supplies texts for every one of them. Tap a verse to read it in full.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Questions" id="qtabs"></div>
+    <div id="qpanel" class="qpanel" role="tabpanel"></div>
+  </section>
+
+  <section class="block" id="variables">
+    <div class="head">
+      <div class="kicker">4 · The variables</div>
+      <h2>Ten hinge points where readings divide</h2>
+      <p>Most differences between systems come down to how these ten questions are answered. Each card gives its key texts and the range of answers. Tap a reference to read it.</p>
+    </div>
+    <div class="vars" id="vars"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Scripture quotations: King James Version (public domain). Stage summaries and labels are descriptive aids. The verses are the primary text.</div>
+</footer>
+
+<script>
+const VERSES = {"1 Corinthians 15:23-26": "²³ But every man in his own order: Christ the firstfruits; afterward they that are Christ’s at his coming. ²⁴ Then cometh the end, when he shall have delivered up the kingdom to God, even the Father; when he shall have put down all rule and all authority and power. ²⁵ For he must reign, till he hath put all enemies under his feet. ²⁶ The last enemy that shall be destroyed is death.", "1 Corinthians 15:24-25": "²⁴ Then cometh the end, when he shall have delivered up the kingdom to God, even the Father; when he shall have put down all rule and all authority and power. ²⁵ For he must reign, till he hath put all enemies under his feet.", "1 Corinthians 15:28": "And when all things shall be subdued unto him, then shall the Son also himself be subject unto him that put all things under him, that God may be all in all.", "1 Corinthians 15:50": "Now this I say, brethren, that flesh and blood cannot inherit the kingdom of God; neither doth corruption inherit incorruption.", "1 Corinthians 3:16": "Know ye not that ye are the temple of God, and that the Spirit of God dwelleth in you?", "1 Corinthians 4:20": "For the kingdom of God is not in word, but in power.", "1 Corinthians 6:9-10": "⁹ Know ye not that the unrighteous shall not inherit the kingdom of God? Be not deceived: neither fornicators, nor idolaters, nor adulterers, nor effeminate, nor abusers of themselves with mankind, ¹⁰ Nor thieves, nor covetous, nor drunkards, nor revilers, nor extortioners, shall inherit the kingdom of God.", "1 Kings 11:13": "Howbeit I will not rend away all the kingdom; but will give one tribe to thy son for David my servant’s sake, and for Jerusalem’s sake which I have chosen.", "1 Kings 9:4-5": "⁴ And if thou wilt walk before me, as David thy father walked, in integrity of heart, and in uprightness, to do according to all that I have commanded thee, and wilt keep my statutes and my judgments: ⁵ Then I will establish the throne of thy kingdom upon Israel for ever, as I promised to David thy father, saying, There shall not fail thee a man upon the throne of Israel.", "1 Kings 9:4-7": "⁴ And if thou wilt walk before me, as David thy father walked, in integrity of heart, and in uprightness, to do according to all that I have commanded thee, and wilt keep my statutes and my judgments: ⁵ Then I will establish the throne of thy kingdom upon Israel for ever, as I promised to David thy father, saying, There shall not fail thee a man upon the throne of Israel. ⁶ But if ye shall at all turn from following me, ye or your children, and will not keep my commandments and my statutes which I have set before you, but go and serve other gods, and worship them: ⁷ Then will I cut off Israel out of the land which I have given them; and this house, which I have hallowed for my name, will I cast out of my sight; and Israel shall be a proverb and a byword among all people:", "1 Peter 1:10-12": "¹⁰ Of which salvation the prophets have enquired and searched diligently, who prophesied of the grace that should come unto you: ¹¹ Searching what, or what manner of time the Spirit of Christ which was in them did signify, when it testified beforehand the sufferings of Christ, and the glory that should follow. ¹² Unto whom it was revealed, that not unto themselves, but unto us they did minister the things, which are now reported unto you by them that have preached the gospel unto you with the Holy Ghost sent down from heaven; which things the angels desire to look into.", "1 Peter 2:9": "But ye are a chosen generation, a royal priesthood, an holy nation, a peculiar people; that ye should shew forth the praises of him who hath called you out of darkness into his marvellous light:", "1 Samuel 12:22": "For the LORD will not forsake his people for his great name’s sake: because it hath pleased the LORD to make you his people.", "1 Samuel 2:10": "The adversaries of the LORD shall be broken to pieces; out of heaven shall he thunder upon them: the LORD shall judge the ends of the earth; and he shall give strength unto his king, and exalt the horn of his anointed.", "1 Samuel 8:19-20": "¹⁹ Nevertheless the people refused to obey the voice of Samuel; and they said, Nay; but we will have a king over us; ²⁰ That we also may be like all the nations; and that our king may judge us, and go out before us, and fight our battles.", "1 Samuel 8:7": "And the LORD said unto Samuel, Hearken unto the voice of the people in all that they say unto thee: for they have not rejected thee, but they have rejected me, that I should not reign over them.", "1 Thessalonians 2:12": "That ye would walk worthy of God, who hath called you unto his kingdom and glory.", "2 Chronicles 36:15-16": "¹⁵ And the LORD God of their fathers sent to them by his messengers, rising up betimes, and sending; because he had compassion on his people, and on his dwelling place: ¹⁶ But they mocked the messengers of God, and despised his words, and misused his prophets, until the wrath of the LORD arose against his people, till there was no remedy.", "2 Chronicles 36:16": "But they mocked the messengers of God, and despised his words, and misused his prophets, until the wrath of the LORD arose against his people, till there was no remedy.", "2 Corinthians 1:20": "For all the promises of God in him are yea, and in him Amen, unto the glory of God by us.", "2 Samuel 12:13": "And David said unto Nathan, I have sinned against the LORD. And Nathan said unto David, The LORD also hath put away thy sin; thou shalt not die.", "2 Samuel 12:9": "Wherefore hast thou despised the commandment of the LORD, to do evil in his sight? thou hast killed Uriah the Hittite with the sword, and hast taken his wife to be thy wife, and hast slain him with the sword of the children of Ammon.", "2 Samuel 7:12-13": "¹² And when thy days be fulfilled, and thou shalt sleep with thy fathers, I will set up thy seed after thee, which shall proceed out of thy bowels, and I will establish his kingdom. ¹³ He shall build an house for my name, and I will stablish the throne of his kingdom for ever.", "2 Samuel 7:14-16": "¹⁴ I will be his father, and he shall be my son. If he commit iniquity, I will chasten him with the rod of men, and with the stripes of the children of men: ¹⁵ But my mercy shall not depart away from him, as I took it from Saul, whom I put away before thee. ¹⁶ And thine house and thy kingdom shall be established for ever before thee: thy throne shall be established for ever.", "2 Samuel 7:16": "And thine house and thy kingdom shall be established for ever before thee: thy throne shall be established for ever.", "2 Timothy 4:1": "I charge thee therefore before God, and the Lord Jesus Christ, who shall judge the quick and the dead at his appearing and his kingdom;", "2 Timothy 4:3-4": "³ For the time will come when they will not endure sound doctrine; but after their own lusts shall they heap to themselves teachers, having itching ears; ⁴ And they shall turn away their ears from the truth, and shall be turned unto fables.", "Acts 13:46": "Then Paul and Barnabas waxed bold, and said, It was necessary that the word of God should first have been spoken to you: but seeing ye put it from you, and judge yourselves unworthy of everlasting life, lo, we turn to the Gentiles.", "Acts 14:22": "Confirming the souls of the disciples, and exhorting them to continue in the faith, and that we must through much tribulation enter into the kingdom of God.", "Acts 15:16-17": "¹⁶ After this I will return, and will build again the tabernacle of David, which is fallen down; and I will build again the ruins thereof, and I will set it up: ¹⁷ That the residue of men might seek after the Lord, and all the Gentiles, upon whom my name is called, saith the Lord, who doeth all these things.", "Acts 1:6": "When they therefore were come together, they asked of him, saying, Lord, wilt thou at this time restore again the kingdom to Israel?", "Acts 1:6-7": "⁶ When they therefore were come together, they asked of him, saying, Lord, wilt thou at this time restore again the kingdom to Israel? ⁷ And he said unto them, It is not for you to know the times or the seasons, which the Father hath put in his own power.", "Acts 28:31": "Preaching the kingdom of God, and teaching those things which concern the Lord Jesus Christ, with all confidence, no man forbidding him.", "Acts 2:23": "Him, being delivered by the determinate counsel and foreknowledge of God, ye have taken, and by wicked hands have crucified and slain:", "Acts 2:30-31": "³⁰ Therefore being a prophet, and knowing that God had sworn with an oath to him, that of the fruit of his loins, according to the flesh, he would raise up Christ to sit on his throne; ³¹ He seeing this before spake of the resurrection of Christ, that his soul was not left in hell, neither his flesh did see corruption.", "Acts 2:30-36": "³⁰ Therefore being a prophet, and knowing that God had sworn with an oath to him, that of the fruit of his loins, according to the flesh, he would raise up Christ to sit on his throne; ³¹ He seeing this before spake of the resurrection of Christ, that his soul was not left in hell, neither his flesh did see corruption. ³² This Jesus hath God raised up, whereof we all are witnesses. ³³ Therefore being by the right hand of God exalted, and having received of the Father the promise of the Holy Ghost, he hath shed forth this, which ye now see and hear. ³⁴ For David is not ascended into the heavens: but he saith himself, The LORD said unto my Lord, Sit thou on my right hand, ³⁵ Until I make thy foes thy footstool. ³⁶ Therefore let all the house of Israel know assuredly, that God hath made that same Jesus, whom ye have crucified, both Lord and Christ.", "Acts 2:36": "Therefore let all the house of Israel know assuredly, that God hath made that same Jesus, whom ye have crucified, both Lord and Christ.", "Acts 2:41": "Then they that gladly received his word were baptized: and the same day there were added unto them about three thousand souls.", "Acts 3:19-21": "¹⁹ Repent ye therefore, and be converted, that your sins may be blotted out, when the times of refreshing shall come from the presence of the Lord; ²⁰ And he shall send Jesus Christ, which before was preached unto you: ²¹ Whom the heaven must receive until the times of restitution of all things, which God hath spoken by the mouth of all his holy prophets since the world began.", "Acts 8:12": "But when they believed Philip preaching the things concerning the kingdom of God, and the name of Jesus Christ, they were baptized, both men and women.", "Colossians 1:13": "Who hath delivered us from the power of darkness, and hath translated us into the kingdom of his dear Son:", "Daniel 2:44": "And in the days of these kings shall the God of heaven set up a kingdom, which shall never be destroyed: and the kingdom shall not be left to other people, but it shall break in pieces and consume all these kingdoms, and it shall stand for ever.", "Daniel 7:13-14": "¹³ I saw in the night visions, and, behold, one like the Son of man came with the clouds of heaven, and came to the Ancient of days, and they brought him near before him. ¹⁴ And there was given him dominion, and glory, and a kingdom, that all people, nations, and languages, should serve him: his dominion is an everlasting dominion, which shall not pass away, and his kingdom that which shall not be destroyed.", "Daniel 7:27": "And the kingdom and dominion, and the greatness of the kingdom under the whole heaven, shall be given to the people of the saints of the most High, whose kingdom is an everlasting kingdom, and all dominions shall serve and obey him.", "Deuteronomy 17:15": "Thou shalt in any wise set him king over thee, whom the LORD thy God shall choose: one from among thy brethren shalt thou set king over thee: thou mayest not set a stranger over thee, which is not thy brother.", "Ephesians 2:14": "For he is our peace, who hath made both one, and hath broken down the middle wall of partition between us;", "Ephesians 2:19": "Now therefore ye are no more strangers and foreigners, but fellowcitizens with the saints, and of the household of God;", "Ephesians 2:21": "In whom all the building fitly framed together groweth unto an holy temple in the Lord:", "Ephesians 3:6": "That the Gentiles should be fellowheirs, and of the same body, and partakers of his promise in Christ by the gospel:", "Exodus 15:18": "The LORD shall reign for ever and ever.", "Exodus 19:5-6": "⁵ Now therefore, if ye will obey my voice indeed, and keep my covenant, then ye shall be a peculiar treasure unto me above all people: for all the earth is mine: ⁶ And ye shall be unto me a kingdom of priests, and an holy nation. These are the words which thou shalt speak unto the children of Israel.", "Exodus 32:8": "They have turned aside quickly out of the way which I commanded them: they have made them a molten calf, and have worshipped it, and have sacrificed thereunto, and said, These be thy gods, O Israel, which have brought thee up out of the land of Egypt.", "Exodus 34:6": "And the LORD passed by before him, and proclaimed, The LORD, The LORD God, merciful and gracious, longsuffering, and abundant in goodness and truth,", "Ezekiel 21:27": "I will overturn, overturn, overturn, it: and it shall be no more, until he come whose right it is; and I will give it him.", "Ezekiel 37:21-25": "²¹ And say unto them, Thus saith the Lord GOD; Behold, I will take the children of Israel from among the heathen, whither they be gone, and will gather them on every side, and bring them into their own land: ²² And I will make them one nation in the land upon the mountains of Israel; and one king shall be king to them all: and they shall be no more two nations, neither shall they be divided into two kingdoms any more at all: ²³ Neither shall they defile themselves any more with their idols, nor with their detestable things, nor with any of their transgressions: but I will save them out of all their dwellingplaces, wherein they have sinned, and will cleanse them: so shall they be my people, and I will be their God. ²⁴ And David my servant shall be king over them; and they all shall have one shepherd: they shall also walk in my judgments, and observe my statutes, and do them. ²⁵ And they shall dwell in the land that I have given unto Jacob my servant, wherein your fathers have dwelt; and they shall dwell therein, even they, and their children, and their children’s children for ever: and my servant David shall be their prince for ever.", "Ezekiel 37:22": "And I will make them one nation in the land upon the mountains of Israel; and one king shall be king to them all: and they shall be no more two nations, neither shall they be divided into two kingdoms any more at all:", "Ezekiel 43:7": "And he said unto me, Son of man, the place of my throne, and the place of the soles of my feet, where I will dwell in the midst of the children of Israel for ever, and my holy name, shall the house of Israel no more defile, neither they, nor their kings, by their whoredom, nor by the carcases of their kings in their high places.", "Galatians 3:28-29": "²⁸ There is neither Jew nor Greek, there is neither bond nor free, there is neither male nor female: for ye are all one in Christ Jesus. ²⁹ And if ye be Christ’s, then are ye Abraham’s seed, and heirs according to the promise.", "Galatians 6:16": "And as many as walk according to this rule, peace be on them, and mercy, and upon the Israel of God.", "Genesis 11:4": "And they said, Go to, let us build us a city and a tower, whose top may reach unto heaven; and let us make us a name, lest we be scattered abroad upon the face of the whole earth.", "Genesis 12:2-3": "² And I will make of thee a great nation, and I will bless thee, and make thy name great; and thou shalt be a blessing: ³ And I will bless them that bless thee, and curse him that curseth thee: and in thee shall all families of the earth be blessed.", "Genesis 12:3": "And I will bless them that bless thee, and curse him that curseth thee: and in thee shall all families of the earth be blessed.", "Genesis 15:18": "In the same day the LORD made a covenant with Abram, saying, Unto thy seed have I given this land, from the river of Egypt unto the great river, the river Euphrates:", "Genesis 17:16": "And I will bless her, and give thee a son also of her: yea, I will bless her, and she shall be a mother of nations; kings of people shall be of her.", "Genesis 17:6": "And I will make thee exceeding fruitful, and I will make nations of thee, and kings shall come out of thee.", "Genesis 17:8": "And I will give unto thee, and to thy seed after thee, the land wherein thou art a stranger, all the land of Canaan, for an everlasting possession; and I will be their God.", "Genesis 1:26": "And God said, Let us make man in our image, after our likeness: and let them have dominion over the fish of the sea, and over the fowl of the air, and over the cattle, and over all the earth, and over every creeping thing that creepeth upon the earth.", "Genesis 1:28": "And God blessed them, and God said unto them, Be fruitful, and multiply, and replenish the earth, and subdue it: and have dominion over the fish of the sea, and over the fowl of the air, and over every living thing that moveth upon the earth.", "Genesis 2:16-17": "¹⁶ And the LORD God commanded the man, saying, Of every tree of the garden thou mayest freely eat: ¹⁷ But of the tree of the knowledge of good and evil, thou shalt not eat of it: for in the day that thou eatest thereof thou shalt surely die.", "Genesis 2:17": "But of the tree of the knowledge of good and evil, thou shalt not eat of it: for in the day that thou eatest thereof thou shalt surely die.", "Genesis 37:8": "And his brethren said to him, Shalt thou indeed reign over us? or shalt thou indeed have dominion over us? And they hated him yet the more for his dreams, and for his words.", "Genesis 3:15": "And I will put enmity between thee and the woman, and between thy seed and her seed; it shall bruise thy head, and thou shalt bruise his heel.", "Genesis 3:6": "And when the woman saw that the tree was good for food, and that it was pleasant to the eyes, and a tree to be desired to make one wise, she took of the fruit thereof, and did eat, and gave also unto her husband with her; and he did eat.", "Genesis 49:10": "The sceptre shall not depart from Judah, nor a lawgiver from between his feet, until Shiloh come; and unto him shall the gathering of the people be.", "Genesis 50:20": "But as for you, ye thought evil against me; but God meant it unto good, to bring to pass, as it is this day, to save much people alive.", "Hebrews 11:16": "But now they desire a better country, that is, an heavenly: wherefore God is not ashamed to be called their God: for he hath prepared for them a city.", "Hebrews 2:8": "Thou hast put all things in subjection under his feet. For in that he put all in subjection under him, he left nothing that is not put under him. But now we see not yet all things put under him.", "Hosea 3:5": "Afterward shall the children of Israel return, and seek the LORD their God, and David their king; and shall fear the LORD and his goodness in the latter days.", "Isaiah 11:10": "And in that day there shall be a root of Jesse, which shall stand for an ensign of the people; to it shall the Gentiles seek: and his rest shall be glorious.", "Isaiah 65:20": "There shall be no more thence an infant of days, nor an old man that hath not filled his days: for the child shall die an hundred years old; but the sinner being an hundred years old shall be accursed.", "Isaiah 9:7": "Of the increase of his government and peace there shall be no end, upon the throne of David, and upon his kingdom, to order it, and to establish it with judgment and with justice from henceforth even for ever. The zeal of the LORD of hosts will perform this.", "Jeremiah 23:5": "Behold, the days come, saith the LORD, that I will raise unto David a righteous Branch, and a King shall reign and prosper, and shall execute judgment and justice in the earth.", "Jeremiah 29:7": "And seek the peace of the city whither I have caused you to be carried away captives, and pray unto the LORD for it: for in the peace thereof shall ye have peace.", "John 18:36": "Jesus answered, My kingdom is not of this world: if my kingdom were of this world, then would my servants fight, that I should not be delivered to the Jews: but now is my kingdom not from hence.", "John 18:36-37": "³⁶ Jesus answered, My kingdom is not of this world: if my kingdom were of this world, then would my servants fight, that I should not be delivered to the Jews: but now is my kingdom not from hence. ³⁷ Pilate therefore said unto him, Art thou a king then? Jesus answered, Thou sayest that I am a king. To this end was I born, and for this cause came I into the world, that I should bear witness unto the truth. Every one that is of the truth heareth my voice.", "John 19:15": "But they cried out, Away with him, away with him, crucify him. Pilate saith unto them, Shall I crucify your King? The chief priests answered, We have no king but Cæsar.", "John 1:11": "He came unto his own, and his own received him not.", "John 1:12": "But as many as received him, to them gave he power to become the sons of God, even to them that believe on his name:", "John 2:19-21": "¹⁹ Jesus answered and said unto them, Destroy this temple, and in three days I will raise it up. ²⁰ Then said the Jews, Forty and six years was this temple in building, and wilt thou rear it up in three days? ²¹ But he spake of the temple of his body.", "John 3:3": "Jesus answered and said unto him, Verily, verily, I say unto thee, Except a man be born again, he cannot see the kingdom of God.", "John 3:5": "Jesus answered, Verily, verily, I say unto thee, Except a man be born of water and of the Spirit, he cannot enter into the kingdom of God.", "Judges 21:25": "In those days there was no king in Israel: every man did that which was right in his own eyes.", "Judges 8:23": "And Gideon said unto them, I will not rule over you, neither shall my son rule over you: the LORD shall rule over you.", "Luke 12:32": "Fear not, little flock; for it is your Father’s good pleasure to give you the kingdom.", "Luke 13:29": "And they shall come from the east, and from the west, and from the north, and from the south, and shall sit down in the kingdom of God.", "Luke 17:20-21": "²⁰ And when he was demanded of the Pharisees, when the kingdom of God should come, he answered them and said, The kingdom of God cometh not with observation: ²¹ Neither shall they say, Lo here! or, lo there! for, behold, the kingdom of God is within you.", "Luke 19:11-12": "¹¹ And as they heard these things, he added and spake a parable, because he was nigh to Jerusalem, and because they thought that the kingdom of God should immediately appear. ¹² He said therefore, A certain nobleman went into a far country to receive for himself a kingdom, and to return.", "Luke 19:14": "But his citizens hated him, and sent a message after him, saying, We will not have this man to reign over us.", "Luke 1:32-33": "³² He shall be great, and shall be called the Son of the Highest: and the Lord God shall give unto him the throne of his father David: ³³ And he shall reign over the house of Jacob for ever; and of his kingdom there shall be no end.", "Luke 22:16": "For I say unto you, I will not any more eat thereof, until it be fulfilled in the kingdom of God.", "Luke 22:18": "For I say unto you, I will not drink of the fruit of the vine, until the kingdom of God shall come.", "Luke 22:29-30": "²⁹ And I appoint unto you a kingdom, as my Father hath appointed unto me; ³⁰ That ye may eat and drink at my table in my kingdom, and sit on thrones judging the twelve tribes of Israel.", "Luke 23:42": "And he said unto Jesus, Lord, remember me when thou comest into thy kingdom.", "Luke 24:27": "And beginning at Moses and all the prophets, he expounded unto them in all the scriptures the things concerning himself.", "Luke 24:44": "And he said unto them, These are the words which I spake unto you, while I was yet with you, that all things must be fulfilled, which were written in the law of Moses, and in the prophets, and in the psalms, concerning me.", "Malachi 3:1": "Behold, I will send my messenger, and he shall prepare the way before me: and the Lord, whom ye seek, shall suddenly come to his temple, even the messenger of the covenant, whom ye delight in: behold, he shall come, saith the LORD of hosts.", "Malachi 3:7": "Even from the days of your fathers ye are gone away from mine ordinances, and have not kept them. Return unto me, and I will return unto you, saith the LORD of hosts. But ye said, Wherein shall we return?", "Malachi 4:2": "But unto you that fear my name shall the Sun of righteousness arise with healing in his wings; and ye shall go forth, and grow up as calves of the stall.", "Mark 1:15": "And saying, The time is fulfilled, and the kingdom of God is at hand: repent ye, and believe the gospel.", "Mark 4:26-29": "²⁶ And he said, So is the kingdom of God, as if a man should cast seed into the ground; ²⁷ And should sleep, and rise night and day, and the seed should spring and grow up, he knoweth not how. ²⁸ For the earth bringeth forth fruit of herself; first the blade, then the ear, after that the full corn in the ear. ²⁹ But when the fruit is brought forth, immediately he putteth in the sickle, because the harvest is come.", "Mark 9:1": "And he said unto them, Verily I say unto you, That there be some of them that stand here, which shall not taste of death, till they have seen the kingdom of God come with power.", "Matthew 11:12": "And from the days of John the Baptist until now the kingdom of heaven suffereth violence, and the violent take it by force.", "Matthew 12:28": "But if I cast out devils by the Spirit of God, then the kingdom of God is come unto you.", "Matthew 13:31-33": "³¹ Another parable put he forth unto them, saying, The kingdom of heaven is like to a grain of mustard seed, which a man took, and sowed in his field: ³² Which indeed is the least of all seeds: but when it is grown, it is the greatest among herbs, and becometh a tree, so that the birds of the air come and lodge in the branches thereof. ³³ Another parable spake he unto them; The kingdom of heaven is like unto leaven, which a woman took, and hid in three measures of meal, till the whole was leavened.", "Matthew 13:33": "Another parable spake he unto them; The kingdom of heaven is like unto leaven, which a woman took, and hid in three measures of meal, till the whole was leavened.", "Matthew 16:18-19": "¹⁸ And I say also unto thee, That thou art Peter, and upon this rock I will build my church; and the gates of hell shall not prevail against it. ¹⁹ And I will give unto thee the keys of the kingdom of heaven: and whatsoever thou shalt bind on earth shall be bound in heaven: and whatsoever thou shalt loose on earth shall be loosed in heaven.", "Matthew 16:19": "And I will give unto thee the keys of the kingdom of heaven: and whatsoever thou shalt bind on earth shall be bound in heaven: and whatsoever thou shalt loose on earth shall be loosed in heaven.", "Matthew 18:3": "And said, Verily I say unto you, Except ye be converted, and become as little children, ye shall not enter into the kingdom of heaven.", "Matthew 19:23-24": "²³ Then said Jesus unto his disciples, Verily I say unto you, That a rich man shall hardly enter into the kingdom of heaven. ²⁴ And again I say unto you, It is easier for a camel to go through the eye of a needle, than for a rich man to enter into the kingdom of God.", "Matthew 19:28": "And Jesus said unto them, Verily I say unto you, That ye which have followed me, in the regeneration when the Son of man shall sit in the throne of his glory, ye also shall sit upon twelve thrones, judging the twelve tribes of Israel.", "Matthew 21:43": "Therefore say I unto you, The kingdom of God shall be taken from you, and given to a nation bringing forth the fruits thereof.", "Matthew 23:37-39": "³⁷ O Jerusalem, Jerusalem, thou that killest the prophets, and stonest them which are sent unto thee, how often would I have gathered thy children together, even as a hen gathereth her chickens under her wings, and ye would not! ³⁸ Behold, your house is left unto you desolate. ³⁹ For I say unto you, Ye shall not see me henceforth, till ye shall say, Blessed is he that cometh in the name of the Lord.", "Matthew 24:14": "And this gospel of the kingdom shall be preached in all the world for a witness unto all nations; and then shall the end come.", "Matthew 25:31": "When the Son of man shall come in his glory, and all the holy angels with him, then shall he sit upon the throne of his glory:", "Matthew 25:34": "Then shall the King say unto them on his right hand, Come, ye blessed of my Father, inherit the kingdom prepared for you from the foundation of the world:", "Matthew 26:29": "But I say unto you, I will not drink henceforth of this fruit of the vine, until that day when I drink it new with you in my Father’s kingdom.", "Matthew 28:18": "And Jesus came and spake unto them, saying, All power is given unto me in heaven and in earth.", "Matthew 4:17": "From that time Jesus began to preach, and to say, Repent: for the kingdom of heaven is at hand.", "Matthew 4:23": "And Jesus went about all Galilee, teaching in their synagogues, and preaching the gospel of the kingdom, and healing all manner of sickness and all manner of disease among the people.", "Matthew 5:16": "Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven.", "Matthew 5:3": "Blessed are the poor in spirit: for theirs is the kingdom of heaven.", "Matthew 5:5": "Blessed are the meek: for they shall inherit the earth.", "Matthew 6:10": "Thy kingdom come. Thy will be done in earth, as it is in heaven.", "Matthew 6:33": "But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.", "Matthew 7:21": "Not every one that saith unto me, Lord, Lord, shall enter into the kingdom of heaven; but he that doeth the will of my Father which is in heaven.", "Matthew 8:11": "And I say unto you, That many shall come from the east and west, and shall sit down with Abraham, and Isaac, and Jacob, in the kingdom of heaven.", "Philippians 3:20": "For our conversation is in heaven; from whence also we look for the Saviour, the Lord Jesus Christ:", "Psalms 2:8-9": "⁸ Ask of me, and I shall give thee the heathen for thine inheritance, and the uttermost parts of the earth for thy possession. ⁹ Thou shalt break them with a rod of iron; thou shalt dash them in pieces like a potter’s vessel.", "Psalms 89:30-37": "³⁰ If his children forsake my law, and walk not in my judgments; ³¹ If they break my statutes, and keep not my commandments; ³² Then will I visit their transgression with the rod, and their iniquity with stripes. ³³ Nevertheless my lovingkindness will I not utterly take from him, nor suffer my faithfulness to fail. ³⁴ My covenant will I not break, nor alter the thing that is gone out of my lips. ³⁵ Once have I sworn by my holiness that I will not lie unto David. ³⁶ His seed shall endure for ever, and his throne as the sun before me. ³⁷ It shall be established for ever as the moon, and as a faithful witness in heaven. Selah.", "Psalms 89:33-34": "³³ Nevertheless my lovingkindness will I not utterly take from him, nor suffer my faithfulness to fail. ³⁴ My covenant will I not break, nor alter the thing that is gone out of my lips.", "Revelation 11:15": "And the seventh angel sounded; and there were great voices in heaven, saying, The kingdoms of this world are become the kingdoms of our Lord, and of his Christ; and he shall reign for ever and ever.", "Revelation 12:10": "And I heard a loud voice saying in heaven, Now is come salvation, and strength, and the kingdom of our God, and the power of his Christ: for the accuser of our brethren is cast down, which accused them before our God day and night.", "Revelation 19:15": "And out of his mouth goeth a sharp sword, that with it he should smite the nations: and he shall rule them with a rod of iron: and he treadeth the winepress of the fierceness and wrath of Almighty God.", "Revelation 19:16": "And he hath on his vesture and on his thigh a name written, KING OF KINGS, AND LORD OF LORDS.", "Revelation 19:19": "And I saw the beast, and the kings of the earth, and their armies, gathered together to make war against him that sat on the horse, and against his army.", "Revelation 1:9": "I John, who also am your brother, and companion in tribulation, and in the kingdom and patience of Jesus Christ, was in the isle that is called Patmos, for the word of God, and for the testimony of Jesus Christ.", "Revelation 20:4": "And I saw thrones, and they sat upon them, and judgment was given unto them: and I saw the souls of them that were beheaded for the witness of Jesus, and for the word of God, and which had not worshipped the beast, neither his image, neither had received his mark upon their foreheads, or in their hands; and they lived and reigned with Christ a thousand years.", "Revelation 20:4-6": "⁴ And I saw thrones, and they sat upon them, and judgment was given unto them: and I saw the souls of them that were beheaded for the witness of Jesus, and for the word of God, and which had not worshipped the beast, neither his image, neither had received his mark upon their foreheads, or in their hands; and they lived and reigned with Christ a thousand years. ⁵ But the rest of the dead lived not again until the thousand years were finished. This is the first resurrection. ⁶ Blessed and holy is he that hath part in the first resurrection: on such the second death hath no power, but they shall be priests of God and of Christ, and shall reign with him a thousand years.", "Revelation 21:22": "And I saw no temple therein: for the Lord God Almighty and the Lamb are the temple of it.", "Revelation 21:3": "And I heard a great voice out of heaven saying, Behold, the tabernacle of God is with men, and he will dwell with them, and they shall be his people, and God himself shall be with them, and be their God.", "Revelation 21:4": "And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away.", "Revelation 22:3-5": "³ And there shall be no more curse: but the throne of God and of the Lamb shall be in it; and his servants shall serve him: ⁴ And they shall see his face; and his name shall be in their foreheads. ⁵ And there shall be no night there; and they need no candle, neither light of the sun; for the Lord God giveth them light: and they shall reign for ever and ever.", "Revelation 3:21": "To him that overcometh will I grant to sit with me in my throne, even as I also overcame, and am set down with my Father in his throne.", "Revelation 5:9-10": "⁹ And they sung a new song, saying, Thou art worthy to take the book, and to open the seals thereof: for thou wast slain, and hast redeemed us to God by thy blood out of every kindred, and tongue, and people, and nation; ¹⁰ And hast made us unto our God kings and priests: and we shall reign on the earth.", "Romans 11:17": "And if some of the branches be broken off, and thou, being a wild olive tree, wert graffed in among them, and with them partakest of the root and fatness of the olive tree;", "Romans 11:25-26": "²⁵ For I would not, brethren, that ye should be ignorant of this mystery, lest ye should be wise in your own conceits; that blindness in part is happened to Israel, until the fulness of the Gentiles be come in. ²⁶ And so all Israel shall be saved: as it is written, There shall come out of Sion the Deliverer, and shall turn away ungodliness from Jacob:", "Romans 11:25-29": "²⁵ For I would not, brethren, that ye should be ignorant of this mystery, lest ye should be wise in your own conceits; that blindness in part is happened to Israel, until the fulness of the Gentiles be come in. ²⁶ And so all Israel shall be saved: as it is written, There shall come out of Sion the Deliverer, and shall turn away ungodliness from Jacob: ²⁷ For this is my covenant unto them, when I shall take away their sins. ²⁸ As concerning the gospel, they are enemies for your sakes: but as touching the election, they are beloved for the fathers’ sakes. ²⁹ For the gifts and calling of God are without repentance.", "Romans 11:26-29": "²⁶ And so all Israel shall be saved: as it is written, There shall come out of Sion the Deliverer, and shall turn away ungodliness from Jacob: ²⁷ For this is my covenant unto them, when I shall take away their sins. ²⁸ As concerning the gospel, they are enemies for your sakes: but as touching the election, they are beloved for the fathers’ sakes. ²⁹ For the gifts and calling of God are without repentance.", "Romans 14:17": "For the kingdom of God is not meat and drink; but righteousness, and peace, and joy in the Holy Ghost.", "Romans 15:8": "Now I say that Jesus Christ was a minister of the circumcision for the truth of God, to confirm the promises made unto the fathers:", "Romans 4:13": "For the promise, that he should be the heir of the world, was not to Abraham, or to his seed, through the law, but through the righteousness of faith.", "Zechariah 14:9": "And the LORD shall be king over all the earth: in that day shall there be one LORD, and his name one.", "Zechariah 7:11-12": "¹¹ But they refused to hearken, and pulled away the shoulder, and stopped their ears, that they should not hear. ¹² Yea, they made their hearts as an adamant stone, lest they should hear the law, and the words which the LORD of hosts hath sent in his spirit by the former prophets: therefore came a great wrath from the LORD of hosts.", "Zechariah 9:9": "Rejoice greatly, O daughter of Zion; shout, O daughter of Jerusalem: behold, thy King cometh unto thee: he is just, and having salvation; lowly, and riding upon an ass, and upon a colt the foal of an ass."};
+
+const EPOCHS = [
+ { name:"Creation", span:"Genesis 1–2",
+   intent:{ t:"Humanity made to rule the earth under God", r:["Genesis 1:26","Genesis 1:28"] },
+   resp:{ kind:"none", t:"Rule held in trust under one command", r:["Genesis 2:16-17"] },
+   ans:null,
+   when:"Present in Eden", who:"Adam and his seed", how:"Delegated rule over creation" },
+ { name:"The Fall", span:"Genesis 3",
+   intent:{ t:"The command that kept man under God's rule", r:["Genesis 2:17"] },
+   resp:{ kind:"reject", t:"Man takes what God withheld", r:["Genesis 3:6"] },
+   ans:{ t:"A Seed promised who will bruise the serpent's head", r:["Genesis 3:15"] },
+   when:"Lost; then promised", who:"The seed of the woman", how:"Victory over the serpent" },
+ { name:"Babel and Abraham", span:"Genesis 11–17",
+   intent:{ t:"Blessing for all families through one man's line", r:["Genesis 12:2-3"] },
+   resp:{ kind:"reject", t:"Man builds his own name and city", r:["Genesis 11:4"] },
+   ans:{ t:"Kings promised from Abraham and Sarah", r:["Genesis 17:6","Genesis 17:16"] },
+   when:"Promised to a line", who:"Abraham's seed, for all nations", how:"Covenant promise" },
+ { name:"Judah's sceptre", span:"Genesis 49",
+   intent:{ t:"Rule promised to Judah until Shiloh comes", r:["Genesis 49:10"] },
+   resp:{ kind:"mixed", t:"Joseph's brothers resent the thought of his rule", r:["Genesis 37:8"] },
+   ans:{ t:"Joseph's suffering turned to the saving of many", r:["Genesis 50:20"] },
+   when:"Promised", who:"Judah's line", how:"A sceptre and a gathering of peoples" },
+ { name:"Sinai", span:"Exodus 15–34",
+   intent:{ t:"Israel to be a kingdom of priests", r:["Exodus 15:18","Exodus 19:5-6"] },
+   resp:{ kind:"reject", t:"The golden calf", r:["Exodus 32:8"] },
+   ans:{ t:"The LORD proclaims his mercy and stays with them", r:["Exodus 34:6"] },
+   when:"Present in covenant form", who:"Israel, a holy nation", how:"Theocracy under the law, God dwelling among them" },
+ { name:"Judges", span:"Judges",
+   intent:{ t:"The LORD himself shall rule over you", r:["Judges 8:23"] },
+   resp:{ kind:"reject", t:"Every man does what is right in his own eyes", r:["Judges 21:25"] },
+   ans:{ t:"Hannah sings of the LORD's king and anointed", r:["1 Samuel 2:10"] },
+   when:"Present but ignored", who:"Israel's tribes", how:"God as King, judges raised up" },
+ { name:"A king like the nations", span:"1 Samuel 8–12",
+   intent:{ t:"A king whom the LORD shall choose, under his law", r:["Deuteronomy 17:15"] },
+   resp:{ kind:"reject", t:"They have rejected me, that I should not reign", r:["1 Samuel 8:7","1 Samuel 8:19-20"] },
+   ans:{ t:"The LORD will not forsake his people", r:["1 Samuel 12:22"] },
+   when:"Present, compromised", who:"Israel under Saul", how:"Monarchy demanded on the nations' pattern" },
+ { name:"David's covenant", span:"2 Samuel 7; Psalm 89",
+   intent:{ t:"A house, a throne and a kingdom for ever", r:["2 Samuel 7:12-13","2 Samuel 7:16"] },
+   resp:{ kind:"mixed", t:"David despises the commandment, yet repents", r:["2 Samuel 12:9","2 Samuel 12:13"] },
+   ans:{ t:"Faithfulness that will not fail, even when the sons sin", r:["Psalms 89:33-34"] },
+   when:"Present in Jerusalem, promised for ever", who:"Israel under David's house", how:"The throne of the kingdom of the LORD" },
+ { name:"Division and exile", span:"1 Kings 11 – 2 Chronicles 36",
+   intent:{ t:"The throne established if the king walks before God", r:["1 Kings 9:4-5"] },
+   resp:{ kind:"reject", t:"They mocked the messengers of God", r:["2 Chronicles 36:15-16"] },
+   ans:{ t:"Overturned until he come whose right it is", r:["Ezekiel 21:27","Jeremiah 23:5"] },
+   when:"Throne vacated, promise held open", who:"A scattered people and a remnant", how:"Visible kingdom removed" },
+ { name:"The prophets' vision", span:"Isaiah – Daniel",
+   intent:{ t:"A kingdom that shall never be destroyed, given to the Son of man", r:["Daniel 2:44","Daniel 7:13-14"] },
+   resp:{ kind:"reject", t:"They refused to hearken", r:["Zechariah 7:11-12"] },
+   ans:{ t:"The kingdom given to the saints of the most High", r:["Daniel 7:27","Isaiah 9:7"] },
+   when:"Future: in the days of these kings", who:"The Son of man and the saints; all nations serve", how:"Universal, everlasting dominion" },
+ { name:"Return and waiting", span:"Ezra – Malachi",
+   intent:{ t:"Thy King cometh; the Lord shall suddenly come to his temple", r:["Zechariah 9:9","Malachi 3:1"] },
+   resp:{ kind:"mixed", t:"Ye are gone away from mine ordinances", r:["Malachi 3:7"] },
+   ans:{ t:"The Sun of righteousness shall arise", r:["Malachi 4:2"] },
+   when:"Awaited", who:"The returned remnant", how:"Temple rebuilt, King not yet come" },
+ { name:"The King arrives", span:"The Gospels",
+   intent:{ t:"The kingdom of God is at hand, and come upon you", r:["Mark 1:15","Matthew 12:28"] },
+   resp:{ kind:"mixed", t:"We will not have this man to reign over us", r:["John 1:11","Luke 19:14"] },
+   ans:{ t:"To as many as received him; the little flock", r:["John 1:12","Luke 12:32"] },
+   when:"At hand; already come upon them", who:"Israel first; the poor in spirit", how:"Teaching, healing, casting out devils" },
+ { name:"The cross", span:"Gospels' final chapters",
+   intent:{ t:"A king whose kingdom is not of this world", r:["John 18:36-37"] },
+   resp:{ kind:"mixed", t:"We have no king but Caesar; yet a dying thief asks for the kingdom", r:["John 19:15","Luke 23:42"] },
+   ans:{ t:"All power given in heaven and in earth", r:["Matthew 28:18","Matthew 21:43"] },
+   when:"Refused, then given all authority", who:"Rejected by the leaders, received by a thief", how:"A title on a cross" },
+ { name:"Ascension and Pentecost", span:"Acts",
+   intent:{ t:"Christ raised up to sit on David's throne", r:["Acts 2:30-31","Acts 2:36"] },
+   resp:{ kind:"mixed", t:"Many receive the word; others put it from them", r:["Acts 2:41","Acts 13:46"] },
+   ans:{ t:"The tabernacle of David rebuilt so the Gentiles may seek the Lord", r:["Acts 15:16-17"] },
+   when:"Seated now; restoring the kingdom to Israel left to the Father's timing", who:"Jews first, then Gentiles", how:"The gospel of the kingdom preached" },
+ { name:"The present age", span:"Epistles",
+   intent:{ t:"Translated into his Son's kingdom; all things not yet under him", r:["Colossians 1:13","Hebrews 2:8"] },
+   resp:{ kind:"mixed", t:"They will not endure sound doctrine", r:["2 Timothy 4:3-4"] },
+   ans:{ t:"Blindness in part, until the fulness of the Gentiles", r:["Romans 11:25-26","Matthew 24:14"] },
+   when:"Now, and not yet", who:"Believers from every nation; Israel blinded in part", how:"Righteousness, peace and joy in the Holy Ghost" },
+ { name:"The King returns", span:"Revelation 11–20",
+   intent:{ t:"The kingdoms of this world become his", r:["Revelation 11:15"] },
+   resp:{ kind:"reject", t:"The kings of the earth gathered to make war", r:["Revelation 19:19"] },
+   ans:{ t:"KING OF KINGS; they reign with Christ", r:["Revelation 19:16","Revelation 20:4"] },
+   when:"Future, visible", who:"Saints who reign; nations judged", how:"Rule with a rod of iron" },
+ { name:"New creation", span:"Revelation 21–22",
+   intent:{ t:"God dwelling with men; the throne of God and of the Lamb", r:["Revelation 21:3","Revelation 22:3-5"] },
+   resp:{ kind:"none", t:"No more death, sorrow or curse", r:["Revelation 21:4"] },
+   ans:{ t:"God all in all", r:["1 Corinthians 15:28"] },
+   when:"For ever and ever", who:"His servants; the nations in its light", how:"Face-to-face reign" }
+];
+
+const PATTERN = [
+ { cls:"offer", h:"Offer", t:"God states what he intends.", r:"Exodus 19:5-6" },
+ { cls:"refuse", h:"Refusal", t:"People choose another ruler.", r:"1 Samuel 8:7" },
+ { cls:"judge", h:"Judgment", t:"The visible kingdom is removed.", r:"2 Chronicles 36:16" },
+ { cls:"keep", h:"Kept promise", t:"A lamp is kept for David's sake.", r:"1 Kings 11:13" },
+ { cls:"renew", h:"Renewed promise", t:"A greater King is promised.", r:"Jeremiah 23:5" }
+];
+
+const QUESTIONS = {
+ when: {
+  tab:"When", ask:"When is the kingdom here: now, future, or both?",
+  observe:"The present-tense and future-tense statements come from the same speakers. Jesus speaks both ways in Luke 17 and Luke 19, and Paul does in Colossians 1 and 2 Timothy 4. Scripture does not set one group against the other.",
+  groups:[
+   { c:"--sage", h:"Now", sub:"Spoken of as already present or entered", r:["Matthew 12:28","Luke 17:20-21","Colossians 1:13","Romans 14:17","1 Corinthians 4:20","Revelation 1:9","Matthew 11:12"] },
+   { c:"--gold", h:"Future", sub:"Spoken of as still coming or inherited later", r:["Matthew 6:10","Luke 19:11-12","Acts 1:6-7","Matthew 25:34","1 Corinthians 15:50","2 Timothy 4:1","Luke 22:18","Revelation 11:15"] },
+   { c:"--royal", h:"Both at once", sub:"Present and still unfinished in one frame", r:["Hebrews 2:8","1 Corinthians 15:24-25","Mark 4:26-29","Matthew 13:31-33","Luke 22:29-30","Revelation 12:10"] }
+  ],
+  readings:[
+   ["Classic dispensational","The Davidic kingdom was offered to Israel, rejected and postponed. The present age is the kingdom in mystery form. The kingdom proper is the future millennium."],
+   ["Progressive dispensational","Christ's Davidic reign began at the ascension (Acts 2). It continues to a fuller, earthly phase in the millennium."],
+   ["Covenantal (amillennial)","The kingdom was inaugurated at Christ's first coming and is his reign from heaven now. It is consummated at his return in the new creation."],
+   ["Historic premillennial","The kingdom is inaugurated now, followed by a literal thousand-year reign on earth after the return, then the new creation."],
+   ["Postmillennial","The kingdom advances through the gospel until it fills the earth, and Christ returns after that age."],
+   ["Partial preterist","Many \"coming\" texts were fulfilled in the judgment of AD 70. The final return and resurrection are still future."]
+  ]
+ },
+ who: {
+  tab:"Who", ask:"Who are its people: Israel, the Church, or both?",
+  observe:"The promises to Israel are restated in the New Testament (Luke 1:33; Romans 11:29). The same New Testament applies Israel's titles to believing Gentiles (1 Peter 2:9 quoting Exodus 19:6). Both lines of text stand in Scripture.",
+  groups:[
+   { c:"--gold", h:"Israel", sub:"Promises addressed to the nation and David's house", r:["2 Samuel 7:16","Ezekiel 37:22","Luke 1:32-33","Matthew 19:28","Acts 1:6","Romans 11:26-29"] },
+   { c:"--rust", h:"The nations brought in", sub:"Gentiles called into the blessing and the kingdom", r:["Genesis 12:3","Isaiah 11:10","Matthew 8:11","Matthew 21:43","Acts 15:16-17","Revelation 5:9-10"] },
+   { c:"--royal", h:"One people", sub:"Jew and Gentile joined in one body", r:["Ephesians 2:14","Ephesians 2:19","Ephesians 3:6","Galatians 3:28-29","Romans 11:17","1 Peter 2:9","Galatians 6:16"] },
+   { c:"--sage", h:"Who enters", sub:"Conditions stated for anyone, from any nation", r:["John 3:3","John 3:5","Matthew 5:3","Matthew 7:21","Matthew 18:3","1 Corinthians 6:9-10","Acts 14:22"] }
+  ],
+  readings:[
+   ["Dispensational","Israel and the Church are two distinct peoples. National promises to Israel are fulfilled to Israel in the millennium."],
+   ["Progressive dispensational","There is one people of God in Christ. National Israel still has a distinct future role."],
+   ["Covenantal","There is one covenant people across both Testaments, and the Church is \"the Israel of God\". Romans 11:26 is read either as the elect of Israel saved through history or as a future turning of ethnic Israel."],
+   ["Progressive covenantal","Christ is the true Israel, and the promises reach the Church through him. Many in this view expect a future salvation of ethnic Israel."],
+   ["Catholic and Orthodox","The Church is the new Israel and the seed of the kingdom on earth."]
+  ]
+ },
+ how: {
+  tab:"How", ask:"How is it expressed: spiritually, politically, culturally, or sacramentally?",
+  observe:"No single group of texts covers everything. The same Jesus who says \"not of this world\" will \"rule them with a rod of iron\" (John 18:36; Revelation 19:15). He also gives the keys and the cup to his disciples.",
+  groups:[
+   { c:"--royal", h:"Spiritual, inward", sub:"Received by new birth, not seen by observation", r:["John 18:36","Luke 17:20-21","John 3:5","Romans 14:17","Colossians 1:13"] },
+   { c:"--gold", h:"Governmental", sub:"A throne, nations and dominion", r:["Psalms 2:8-9","Isaiah 9:7","Daniel 2:44","Zechariah 14:9","Revelation 11:15","Revelation 19:15"] },
+   { c:"--sage", h:"Ethical and cultural", sub:"Citizens living out the King's rule where they are", r:["Matthew 5:16","Matthew 6:33","Matthew 13:33","Jeremiah 29:7","Philippians 3:20","1 Thessalonians 2:12"] },
+   { c:"--rust", h:"In power", sub:"Signs of the King's rule breaking in", r:["Matthew 4:23","Matthew 12:28","1 Corinthians 4:20","Mark 9:1"] },
+   { c:"--muted", h:"Sacramental", sub:"The table, water and Spirit, and the keys", r:["Luke 22:16","Matthew 26:29","Luke 13:29","John 3:5","Matthew 16:19"] }
+  ],
+  readings:[
+   ["Lutheran two kingdoms","God rules the world through law and the state (the left hand) and saves through the gospel in the Church (the right hand)."],
+   ["Reformed two kingdoms","There is a common kingdom shared with all people and a redemptive kingdom in the Church, kept distinct."],
+   ["Neo-Calvinist (Kuyper)","Christ claims every sphere: family, school, art and state. The kingdom is expressed in culture."],
+   ["Anabaptist","The Church is a visible, nonviolent counter-kingdom set apart from the state."],
+   ["Catholic and Orthodox","The kingdom is present in the Church's sacramental life. The Eucharist is a foretaste of the heavenly banquet."],
+   ["Dispensational","The political reign is reserved for the millennium. In this age its expression is spiritual."],
+   ["Theonomist / postmillennial","Biblical law is to be applied to civil society as the kingdom advances."],
+   ["Social gospel / liberation","The kingdom appears as justice for the poor and oppressed in history (appealing to Luke 4:18)."]
+  ]
+ }
+};
+
+const VARS = [
+ { tag:"Timing", h:"Offered and postponed?", q:"When Jesus said the kingdom was at hand, was it an offer Israel could refuse and delay, or the inauguration God had already planned around their refusal?",
+   r:["Matthew 4:17","Matthew 23:37-39","Matthew 21:43","Acts 3:19-21","Acts 2:23"],
+   a:"Offered to Israel, rejected, postponed to the future", b:"Inaugurated as planned, rejection foreseen in God's counsel",
+   holders:"First: classic dispensational. Second: covenantal, progressive covenantal, most historic premillennialists." },
+ { tag:"Throne", h:"David's throne: now or later?", q:"Is Christ seated on David's throne now in heaven, or on his Father's throne until he returns to take David's?",
+   r:["Luke 1:32-33","Acts 2:30-36","Revelation 3:21","Matthew 25:31","Matthew 19:28"],
+   a:"Father's throne now; David's throne at the return", b:"David's throne now, fulfilled in the heavenly session",
+   holders:"First: classic dispensational. Second: covenantal and progressive dispensational." },
+ { tag:"Israel", h:"Restoration of Israel", q:"Do the restoration promises still look ahead to the nation, or are they fulfilled in Christ and the gathered people of God?",
+   r:["Acts 1:6-7","Romans 11:25-29","Ezekiel 37:21-25","Hosea 3:5"],
+   a:"A future national restoration", b:"Fulfilled in Christ and the Church",
+   holders:"First: dispensational and many historic premillennialists. Second: many amillennial covenantal interpreters. Many in between expect a future turning of Israel within one people." },
+ { tag:"Millennium", h:"The thousand years", q:"Is the reign of Revelation 20 a future age on earth, the present age seen from heaven, or a golden age before the return?",
+   r:["Revelation 20:4-6","1 Corinthians 15:23-26","Isaiah 65:20"],
+   a:"A future earthly reign after the return", b:"The present reign of Christ and the saints",
+   holders:"First: premillennial (dispensational and historic). Second: amillennial. Postmillennial: a coming golden age before the return." },
+ { tag:"Land", h:"The land promise", q:"Is the land given to Abraham a specific territory still owed, or a pledge that widens to the whole renewed earth?",
+   r:["Genesis 15:18","Genesis 17:8","Romans 4:13","Matthew 5:5","Hebrews 11:16"],
+   a:"The specific land, to Abraham's physical seed", b:"Widened to the world and the heavenly country",
+   holders:"First: dispensational. Second: covenantal and progressive covenantal." },
+ { tag:"Temple", h:"The temple", q:"Does Ezekiel's temple await a future building, or is it fulfilled in Christ's body and his people?",
+   r:["Ezekiel 43:7","John 2:19-21","1 Corinthians 3:16","Ephesians 2:21","Revelation 21:22"],
+   a:"A future literal temple", b:"Fulfilled in Christ, the Church, and God's presence in the new creation",
+   holders:"First: many dispensationalists. Second: covenantal and most others." },
+ { tag:"Covenant", h:"Conditional or unconditional?", q:"The Davidic promise says \"for ever\" yet warns of chastening. How do the two fit?",
+   r:["2 Samuel 7:14-16","1 Kings 9:4-7","Psalms 89:30-37"],
+   a:"Unconditional promise; the line's enjoyment of it conditional", b:"Fulfilled in the one obedient Son who meets the condition",
+   holders:"Both are held widely and often together. The emphasis differs by system." },
+ { tag:"Terms", h:"Kingdom of heaven and kingdom of God", q:"Matthew uses \"kingdom of heaven\" 33 times; the other writers say \"kingdom of God\". Are they two realms or one?",
+   r:["Matthew 19:23-24","Matthew 4:17","Mark 1:15"],
+   a:"Distinct realms (sphere of profession vs. true reign)", b:"The same kingdom, phrased reverently",
+   holders:"First: older dispensational (Scofield). Second: most interpreters today, including many dispensationalists." },
+ { tag:"Church", h:"Is the Church the kingdom?", q:"Are the Church and the kingdom the same thing, overlapping, or distinct?",
+   r:["Matthew 16:18-19","Colossians 1:13","Acts 8:12","Acts 28:31"],
+   a:"The Church is the kingdom on earth", b:"The Church is distinct from a future kingdom",
+   holders:"First: Catholic (historically), some covenantal. Middle ground: the Church as the kingdom's community and witness (many evangelicals). Second: classic dispensational." },
+ { tag:"Method", h:"Reading the promises", q:"Are Old Testament promises fulfilled in their plain original terms, or fulfilled and expanded in Christ?",
+   r:["Luke 24:27","Luke 24:44","1 Peter 1:10-12","2 Corinthians 1:20","Romans 15:8"],
+   a:"Plain, original-audience fulfilment", b:"Christ-centred fulfilment that may expand the promise",
+   holders:"First: dispensational emphasis. Second: covenantal emphasis. Most interpreters hold both in some measure." }
+];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const lab = r => r.replace("-", "–").replace(/^Psalms (\d+):/, "Psalm $1:");
+const vtxt = r => VERSES[r] || "";
+const verse = r => `<div class="v"><cite>${lab(r)}</cite><q>${esc(vtxt(r))}</q></div>`;
+
+/* ---------- arc ---------- */
+let cur = 0;
+const arcRow = $("#arcRow");
+arcRow.innerHTML = EPOCHS.map((e, i) => `
+  <button class="ep" role="tab" id="ep-${i}" aria-selected="false" aria-controls="detail" tabindex="-1" data-i="${i}">
+    <span class="num">${String(i+1).padStart(2,"0")}</span>
+    <span class="m-int" title="God's intention"></span>
+    <span></span>
+    <span class="m-resp ${e.resp.kind}" title="${e.resp.kind === "none" ? "No rejection recorded" : e.resp.kind === "mixed" ? "Rejection with a receiving remnant" : "Rejection"}"></span>
+    <span class="ep-name">${e.name}</span>
+  </button>`).join("");
+const respLabel = { reject:"Man's response: rejection", mixed:"Man's response: rejection, with some who receive", none:"Man's response", receive:"Man's response: received" };
+function showEpoch(i, focus) {
+  cur = (i + EPOCHS.length) % EPOCHS.length;
+  const e = EPOCHS[cur];
+  arcRow.querySelectorAll(".ep").forEach((b, j) => { b.setAttribute("aria-selected", j === cur); b.tabIndex = j === cur ? 0 : -1; });
+  const btn = $("#ep-" + cur);
+  if (focus) btn.focus();
+  const sc = $("#arcScroll");
+  const bl = btn.offsetLeft, bw = btn.offsetWidth;
+  if (bl < sc.scrollLeft || bl + bw > sc.scrollLeft + sc.clientWidth) sc.scrollLeft = bl - sc.clientWidth / 2 + bw / 2;
+  $("#detail").innerHTML = `
+    <div class="detail-head">
+      <div><div class="kicker">Stage ${cur+1} of ${EPOCHS.length}</div><h3 style="font-size:1.8rem">${e.name}</h3><div class="span">${e.span}</div></div>
+      <div class="navbtns"><button class="btn" id="prev" aria-label="Previous stage">← Previous</button><button class="btn" id="next" aria-label="Next stage">Next →</button></div>
+    </div>
+    <div class="lanes">
+      <div class="lane int"><span class="lbl">God's intention</span><span class="claim">${e.intent.t}</span>${e.intent.r.map(verse).join("")}</div>
+      <div class="lane resp ${e.resp.kind === "none" ? "none" : ""}"><span class="lbl">${respLabel[e.resp.kind]}</span><span class="claim">${e.resp.t}</span>${e.resp.r.map(verse).join("")}</div>
+      <div class="lane ans"><span class="lbl">God's answer</span>${e.ans ? `<span class="claim">${e.ans.t}</span>${e.ans.r.map(verse).join("")}` : `<span class="claim">No breach yet to answer</span>`}</div>
+    </div>
+    <div class="wwh">
+      <div><div class="k">When</div><div class="val">${e.when}</div></div>
+      <div><div class="k">Who</div><div class="val">${e.who}</div></div>
+      <div><div class="k">How</div><div class="val">${e.how}</div></div>
+    </div>`;
+  $("#prev").onclick = () => showEpoch(cur - 1);
+  $("#next").onclick = () => showEpoch(cur + 1);
+}
+arcRow.addEventListener("click", ev => { const b = ev.target.closest(".ep"); if (b) showEpoch(+b.dataset.i); });
+arcRow.addEventListener("keydown", ev => {
+  if (ev.key === "ArrowRight") { ev.preventDefault(); showEpoch(cur + 1, true); }
+  if (ev.key === "ArrowLeft") { ev.preventDefault(); showEpoch(cur - 1, true); }
+});
+
+/* ---------- pattern ---------- */
+$("#patternRow").innerHTML = PATTERN.map((p, i) => `
+  <div class="pstep ${p.cls}"><span class="n">${i+1} of 5</span><h3>${p.h}</h3><p class="ui" style="font-size:.88rem;color:var(--muted)">${p.t}</p>${verse(p.r)}</div>`).join("");
+const nRej = EPOCHS.filter(e => e.resp.kind === "reject").length;
+const nMix = EPOCHS.filter(e => e.resp.kind === "mixed").length;
+const nAns = EPOCHS.filter(e => e.ans).length;
+$("#tally").innerHTML = `Across the ${EPOCHS.length} stages: <b>${nRej}</b> record outright rejection, <b>${nMix}</b> record rejection alongside some who receive, and God answers a breach in <b>${nAns}</b>. The only stages with no rejection recorded are the first and the last.`;
+
+/* ---------- questions ---------- */
+const qtabs = $("#qtabs"), qpanel = $("#qpanel");
+const keys = Object.keys(QUESTIONS);
+qtabs.innerHTML = keys.map(k => `<button class="tab" role="tab" id="tab-${k}" data-k="${k}" aria-selected="false">${QUESTIONS[k].tab}</button>`).join("");
+function showQ(k) {
+  const Q = QUESTIONS[k];
+  qtabs.querySelectorAll(".tab").forEach(t => { const on = t.dataset.k === k; t.setAttribute("aria-selected", on); t.tabIndex = on ? 0 : -1; });
+  qpanel.setAttribute("aria-labelledby", "tab-" + k);
+  qpanel.innerHTML = `
+    <p class="ask">${Q.ask}</p>
+    <div class="groups">${Q.groups.map(g => `
+      <div class="group" style="--c: var(${g.c})">
+        <h3>${g.h}</h3><span class="sub">${g.sub}</span><span class="count">${g.r.length} passages</span>
+        <ul class="vlist">${g.r.map(r => `<li><button class="vbtn" aria-expanded="false"><cite>${lab(r)}</cite><span class="t">${esc(vtxt(r))}</span></button></li>`).join("")}</ul>
+      </div>`).join("")}
+    </div>
+    <div class="observe"><span class="lbl">What the text shows</span>${Q.observe}</div>
+    <p class="lens-off-note">Turn on "Show how traditions read these texts" at the top to see how each system answers this question.</p>
+    <div class="readings"><span class="lbl">How traditions answer</span>${Q.readings.map(([w, t]) => `<div class="rrow"><span class="who">${w}</span><span>${t}</span></div>`).join("")}</div>`;
+}
+qtabs.addEventListener("click", ev => { const t = ev.target.closest(".tab"); if (t) showQ(t.dataset.k); });
+qtabs.addEventListener("keydown", ev => {
+  if (ev.key !== "ArrowRight" && ev.key !== "ArrowLeft") return;
+  const i = keys.indexOf(qtabs.querySelector('[aria-selected="true"]').dataset.k);
+  const n = keys[(i + (ev.key === "ArrowRight" ? 1 : -1) + keys.length) % keys.length];
+  showQ(n); $("#tab-" + n).focus();
+});
+qpanel.addEventListener("click", ev => { const b = ev.target.closest(".vbtn"); if (b) b.setAttribute("aria-expanded", b.getAttribute("aria-expanded") !== "true"); });
+document.querySelectorAll(".qchip").forEach(a => a.addEventListener("click", () => showQ(a.dataset.q)));
+
+/* ---------- variables ---------- */
+$("#vars").innerHTML = VARS.map((v, i) => `
+  <div class="var">
+    <span class="tag">${String(i+1).padStart(2,"0")} · ${v.tag}</span>
+    <h3>${v.h}</h3>
+    <p class="q">${v.q}</p>
+    <div class="refs">${v.r.map(r => `<button class="ref" aria-pressed="false" data-r="${r}">${lab(r)}</button>`).join("")}</div>
+    <div class="reftext"></div>
+    <div class="spectrum">
+      <div class="end"><i class="dot" style="background:var(--gold)"></i><span>${v.a}</span></div>
+      <div class="bar" aria-hidden="true"></div>
+      <div class="end"><i class="dot" style="background:var(--royal)"></i><span>${v.b}</span></div>
+    </div>
+    <p class="holders">${v.holders}</p>
+  </div>`).join("");
+$("#vars").addEventListener("click", ev => {
+  const b = ev.target.closest(".ref"); if (!b) return;
+  const card = b.closest(".var"), box = card.querySelector(".reftext");
+  const was = b.getAttribute("aria-pressed") === "true";
+  card.querySelectorAll(".ref").forEach(x => x.setAttribute("aria-pressed", "false"));
+  if (was) { box.classList.remove("on"); box.innerHTML = ""; return; }
+  b.setAttribute("aria-pressed", "true");
+  box.innerHTML = verse(b.dataset.r); box.classList.add("on");
+});
+
+/* ---------- lens ---------- */
+const lens = $("#lens");
+try { if (localStorage.getItem("kingdom-lens") === "1") lens.checked = true; } catch (e) {}
+const applyLens = () => { document.body.classList.toggle("lens", lens.checked); try { localStorage.setItem("kingdom-lens", lens.checked ? "1" : "0"); } catch (e) {} };
+lens.addEventListener("change", applyLens);
+applyLens();
+
+showEpoch(0);
+showQ("when");
+</script>
+</body>
+</html>

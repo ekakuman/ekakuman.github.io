@@ -1,0 +1,15 @@
+/* Hosted-site additions: phone layout for the wide matrix and flow diagram */
+.swipe-hint{display:none;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px}
+@media (max-width:760px){
+  .swipe-hint{display:block}
+  .mx-scroll,.flow-box{-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+  /* keep the theme names visible while the stage columns scroll */
+  table.matrix thead th:first-child,table.matrix tbody td:first-child,
+  table.lifegrid thead th:first-child,table.lifegrid tbody td:first-child{position:sticky;left:0;z-index:2;background:var(--sheet);box-shadow:1px 0 0 var(--line)}
+  table.matrix thead th:first-child,table.lifegrid thead th:first-child{background:var(--paper-2);z-index:3}
+  table.matrix tbody tr.grow td{position:static;box-shadow:none}
+  .flow-box svg{min-width:760px}
+  .studies{display:flex;flex-wrap:wrap;gap:10px 16px}
+  .studies a{padding:4px 0}
+  .mobile-pick select{font-size:16px;min-height:44px}
+}

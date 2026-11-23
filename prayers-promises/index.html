@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prayers &amp; Promises for Every Occasion</title>
+<meta name="description" content="Scripture-anchored prayers and God's promises for every occasion of life, short and detailed, in English and Telugu.">
+<meta name="theme-color" content="#7a4e1d">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#/" class="brand" aria-label="Home">
+      <img src="icon.svg" alt="" width="28" height="28">
+      <span data-i18n-html="brand">Prayers &amp; Promises</span>
+    </a>
+    <nav class="sections" aria-label="Sections">
+      <a href="#/prayers" data-sec="pr" data-i18n="prayers">Prayers</a>
+      <a href="#/promises" data-sec="pm" data-i18n="promises">Promises</a>
+    </nav>
+    <div class="tools">
+      <a class="icon-btn search-btn" id="searchBtn" href="#/search" aria-label="Search" title="Search"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
+      <button type="button" class="icon-btn" id="favBtn" aria-label="Saved" title="Saved">&#9733;</button>
+      <button type="button" class="icon-btn" id="settingsBtn" aria-label="Settings" title="Text size and theme">Aa</button>
+    </div>
+  </div>
+  <div class="toolbar">
+    <div class="seg" role="group" aria-label="Length">
+      <button type="button" data-mode="short" data-i18n="short">Short</button>
+      <button type="button" data-mode="detailed" data-i18n="detailed">Detailed</button>
+    </div>
+    <div class="seg lang-seg" role="group" aria-label="Language / భాష">
+      <button type="button" data-lang="en" lang="en">English</button>
+      <button type="button" data-lang="te" lang="te">తెలుగు</button>
+      <button type="button" data-lang="both" data-i18n="both">Both</button>
+    </div>
+  </div>
+  <div class="settings" id="settings" hidden>
+    <div class="row"><span data-i18n="textsize">Text size</span>
+      <button type="button" data-size="-1" aria-label="Smaller text">A&minus;</button>
+      <button type="button" data-size="1" aria-label="Larger text">A+</button>
+    </div>
+    <div class="row"><span data-i18n="theme">Theme</span>
+      <button type="button" data-theme="light" data-i18n="light">Light</button>
+      <button type="button" data-theme="dark" data-i18n="dark">Dark</button>
+      <button type="button" data-theme="auto" data-i18n="auto">Auto</button>
+    </div>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer class="foot">
+  <p data-i18n="foot1">Scripture quotations from the King James Version and the Telugu Bible (BSI), both public domain.</p>
+  <p data-i18n="foot2">"Pray without ceasing." 1 Thessalonians 5:17</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Prayers -->
+<script src="data/categories.js"></script>
+<script src="data/forms.js"></script>
+<script src="data/daily.js"></script>
+<script src="data/family.js"></script>
+<script src="data/work.js"></script>
+<script src="data/health.js"></script>
+<script src="data/trials.js"></script>
+<script src="data/loss.js"></script>
+<script src="data/spiritual.js"></script>
+<script src="data/others.js"></script>
+<script src="data/milestones.js"></script>
+<script src="data/te/categories.js"></script>
+<script src="data/te/verses.js"></script>
+<script src="data/te/forms.js"></script>
+<script src="data/te/daily.js"></script>
+<script src="data/te/family.js"></script>
+<script src="data/te/work.js"></script>
+<script src="data/te/health.js"></script>
+<script src="data/te/trials.js"></script>
+<script src="data/te/loss.js"></script>
+<script src="data/te/spiritual.js"></script>
+<script src="data/te/others.js"></script>
+<script src="data/te/milestones.js"></script>
+<!-- Promises -->
+<script src="data/pm/categories.js"></script>
+<script src="data/pm/foundation.js"></script>
+<script src="data/pm/daily.js"></script>
+<script src="data/pm/family.js"></script>
+<script src="data/pm/work.js"></script>
+<script src="data/pm/health.js"></script>
+<script src="data/pm/trials.js"></script>
+<script src="data/pm/loss.js"></script>
+<script src="data/pm/spiritual.js"></script>
+<script src="data/pm/others.js"></script>
+<script src="data/pm/milestones.js"></script>
+<script src="data/pm/verses.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

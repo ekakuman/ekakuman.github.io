@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Genealogies to Christ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5efe3;--card:#fffcf6;--ink:#2a2118;--muted:#6e604f;--line:#e3d8c4;--soft:#efe6d5;
+--king:#8a6410;--pri:#1d7470;--pro:#5a4796;--wom:#a2456b;--gen:#6b6b6b;--threat:#a3322c;--gold:#b8962e}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%}
+h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:var(--pro)}
+header{padding:18px 16px 6px;max-width:900px;margin:0 auto}
+header h1{font-size:32px;line-height:1.05;margin:0 0 4px;font-weight:700}
+header p{margin:0 0 8px;color:var(--muted);font-size:13.5px}
+.xlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--king);background:#fbf4e1;border:1px solid #ecdcae;border-radius:999px;padding:5px 12px;text-decoration:none}
+nav.tabs{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.tabs .in{max-width:900px;margin:0 auto;display:flex;gap:4px;padding:8px 10px;overflow-x:auto;scrollbar-width:none}
+nav.tabs .in::-webkit-scrollbar{display:none}
+nav.tabs button{flex:1 0 auto;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 11px;font-weight:600;font-size:12.5px;white-space:nowrap}
+nav.tabs button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+main{max-width:900px;margin:0 auto;padding:12px 12px 60px}
+.view{display:none}.view.on{display:block}
+.intro{font-size:13.5px;color:var(--muted);margin:2px 2px 12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--card);padding:3px;margin:0 2px 12px}
+.seg button{border:0;background:none;border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:600}
+.seg button.on{background:var(--ink);color:#fff}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--muted);margin:0 2px 12px}
+.tg{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-radius:5px;padding:1px 6px;color:#fff;vertical-align:1px}
+.tg.K{background:var(--king)}.tg.P{background:var(--pri)}.tg.R{background:var(--pro)}.tg.W{background:var(--wom)}.tg.G{background:var(--gen)}
+/* chain */
+.era{margin:18px 0 8px;padding-left:2px}
+.era h2{font-size:24px;margin:0;line-height:1.1}
+.era small{color:var(--muted);font-size:12.5px}
+.chain{position:relative;padding-left:30px}
+.chain::before{content:"";position:absolute;left:12px;top:4px;bottom:4px;width:2px;background:var(--line)}
+.node{position:relative;margin:0 0 8px}
+.node .dot{position:absolute;left:-24px;top:14px;width:14px;height:14px;border-radius:50%;background:var(--card);border:2px solid var(--ink)}
+.node.K .dot{background:var(--king);border-color:var(--king)}
+.node.Jesus .dot{background:var(--gold);border-color:var(--gold);width:18px;height:18px;left:-26px}
+.card{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 12px}
+.card .top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.card .g{font-size:11px;color:var(--muted);font-weight:700;min-width:22px}
+.card .nm{font-family:"Cormorant Garamond",serif;font-size:20px;font-weight:700;line-height:1.1}
+.card .alt{font-size:12px;color:var(--muted)}
+.card .ln{font-size:13px;color:#43382c;margin-top:3px}
+.card .meta{font-size:11.5px;color:var(--muted);margin-top:3px}
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.pill{border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:600}
+.pill.w{border-color:#e8c3d2;background:#fbeef3;color:var(--wom)}
+.pill.br{color:var(--muted);font-weight:500}
+.pill.go{border-color:#cfe6e4;background:#eef6f5;color:var(--pri)}
+.hinge{margin:4px 0 8px;background:#fbf4e1;border:1px solid #ecdcae;border-radius:10px;padding:7px 10px;font-size:13px}
+.hinge b{color:var(--king);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;display:block}
+.threat{margin:4px 0 8px;background:#fbecea;border:1px solid #efc9c5;border-radius:10px;padding:7px 10px;font-size:13px}
+.threat b{color:var(--threat);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;display:block}
+.skip{margin:2px 0 8px;font-size:12.5px;color:var(--muted);font-style:italic;padding-left:2px}
+.christ{background:linear-gradient(160deg,#2a2118,#4a3a22);color:#f8f1e2;border-radius:16px;padding:16px;margin-top:6px}
+.christ h3{font-size:28px;margin:0 0 4px;color:#f3d98b}
+.christ p{margin:0 0 8px;font-size:14px;color:#eadfca}
+.christ .kv{font-family:"Cormorant Garamond",serif;font-size:19px;line-height:1.35;color:#fff}
+.christ .kv .k{color:#f3d98b;font-weight:700}.christ .kv .p{color:#c9b8ff;font-weight:700}.christ .kv .r{color:#8fe0d6;font-weight:700}
+.christ a{color:#f3d98b}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}
+.three div{border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:8px;font-size:12px;color:#eadfca}
+.three b{display:block;font-size:13px;margin-bottom:2px}
+/* compare */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:6px 8px}
+.cmp .hd{position:sticky;top:50px;z-index:3;background:var(--bg);font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:700;padding:6px 2px;border-bottom:2px solid}
+.cmp .hd.m{color:var(--king);border-color:var(--king)}.cmp .hd.l{color:var(--pro);border-color:var(--pro)}
+.cmp .hd small{display:block;font-family:Inter,sans-serif;font-size:11px;font-weight:500;color:var(--muted)}
+.cmp .both{grid-column:1/-1}
+.cmp .nb{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:9px;padding:6px 9px;font-size:13.5px;font-weight:600}
+.cmp .both .nb{text-align:center;background:#f3efe6}
+.cmp .nb small{display:block;font-weight:400;color:var(--muted);font-size:11px}
+.cmp .col{display:flex;flex-direction:column;gap:5px}
+.cmp .note{grid-column:1/-1;font-size:12.5px;color:var(--muted);background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:7px 10px;margin:4px 0}
+.cmp .grp{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--king);margin-top:6px}
+.cmp .empty{font-size:12px;color:var(--muted);font-style:italic;padding:6px 4px}
+.cmp .div{grid-column:1/-1;font-size:11.5px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-top:8px}
+.cmp .div::after{content:"";flex:1;border-top:1px solid var(--line)}
+/* cards grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 12px;text-align:left;width:100%}
+.box .nm{font-family:"Cormorant Garamond",serif;font-size:20px;font-weight:700;line-height:1.1}
+.box .sub{font-size:12px;color:var(--muted);margin-top:2px}
+.box p{font-size:13.5px;margin:6px 0 0}
+.box.w{border-top:4px solid var(--wom)}
+.box.t{border-left:4px solid var(--threat)}
+.box.t .sv{margin-top:6px;font-size:13.5px;background:#eef6f5;border-radius:8px;padding:6px 8px}
+.box.t .sv b,.box.t .th b{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;display:block}
+.box.t .th b{color:var(--threat)}.box.t .sv b{color:var(--pri)}
+.box .ref{font-size:12px;color:var(--muted);margin-top:6px}
+h3.sec{font-family:"Cormorant Garamond",serif;font-size:24px;margin:20px 2px 8px}
+/* priest chain */
+.pchain .node .dot{border-color:var(--pri)}
+.pchain .node.main .dot{background:var(--pri)}
+.mel{background:var(--card);border:2px dashed var(--pri);border-radius:14px;padding:12px;margin-bottom:12px}
+.mel .nm{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:700}
+/* sheet */
+#back{position:fixed;inset:0;background:rgba(30,22,14,.45);z-index:40;display:none}
+#sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:88vh;overflow-y:auto;background:var(--card);border-radius:18px 18px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.2);transform:translateY(105%);transition:transform .25s ease;max-width:720px;margin:0 auto}
+#sheet.on{transform:none}
+#sheet .grab{position:sticky;top:0;background:var(--card);padding:8px 14px 6px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);z-index:2}
+#sheet .grab .nav{display:flex;gap:6px}
+#sheet .grab button{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:5px 10px;font-size:13px;font-weight:600}
+#sheet .body{padding:14px 16px 34px}
+#sheet h2{font-size:30px;margin:2px 0 0;line-height:1.05}
+#sheet .alt{color:var(--muted);font-size:13px;margin-top:2px}
+#sheet h3{font-size:20px;margin:16px 0 6px;border-bottom:1px solid var(--line);padding-bottom:3px}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:12px 0}
+.facts div{background:var(--bg);border-radius:10px;padding:7px 10px}
+.facts small{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+.facts b{font-size:14px}
+.go-btn{display:inline-block;margin-top:12px;background:var(--king);color:#fff;border-radius:10px;padding:8px 12px;font-weight:600;font-size:13.5px;text-decoration:none}
+
+.sgrp{font-family:"Cormorant Garamond",serif;font-size:24px;margin:20px 2px 8px}
+.src{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.src .r{font-size:12px;font-weight:700;color:var(--muted)}
+.src .t{font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:700;line-height:1.15}
+.src .c{font-size:13px;color:#43382c;margin-top:2px}
+.src .w{font-size:13px;margin-top:6px;border-left:3px solid var(--line);padding-left:8px}
+.role{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:2px}
+.role.main{background:#fbf4e1;color:var(--king)}.role.branch{background:#efe9df;color:#6e604f}.role.pri{background:#dcefed;color:var(--pri)}.role.tribes{background:#e3ebf5;color:#365d8c}.role.ret{background:#f3e8f6;color:#7a3f8c}.role.nt{background:#fbeef3;color:var(--wom)}
+.pill.bx{border-color:#ecdcae;background:#fbf4e1;color:var(--king)}
+.blist{position:relative;padding-left:22px;margin:8px 0}
+.blist::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.blist div{position:relative;margin-bottom:7px;font-size:14px}
+.blist div::before{content:"";position:absolute;left:-19px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--card);border:2px solid var(--muted)}
+.blist b{font-weight:700}
+.blist span{color:var(--muted);font-size:12.5px}
+.teach{background:#fbf4e1;border:1px solid #ecdcae;border-radius:10px;padding:8px 11px;font-size:13.5px;margin-top:10px}
+.teach b{display:block;color:var(--king);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em}
+
+.lg{display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:5px;vertical-align:3px}
+.lg.ring{width:11px;height:11px;border-radius:50%;border:2px solid var(--threat);background:none;vertical-align:-1px}
+.lg.star{width:10px;height:10px;transform:rotate(45deg);background:var(--gold);border-radius:1px;vertical-align:0}
+.toolbar{display:flex;align-items:center;gap:8px;margin:0 2px 8px}
+.toolbar .zoom{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
+.toolbar .zoom button{border:0;background:none;padding:5px 12px;font-weight:700;font-size:16px}
+.toolbar .zoom button+button{border-left:1px solid var(--line)}
+.toolbar .hint{font-size:12.5px;color:var(--muted)}
+.vwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);-webkit-overflow-scrolling:touch}
+.vwrap svg{display:block}
+.vwrap svg [data-id],.vwrap svg [data-br],.vwrap svg [data-pl]{cursor:pointer}
+.scrub{margin:12px 0 0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.scrub .top{display:flex;justify-content:space-between;align-items:baseline}
+.scrub .yr{font-family:"Cormorant Garamond",serif;font-size:28px;font-weight:700;line-height:1}
+.scrub .yrlbl{font-size:12px;color:var(--muted)}
+.scrub input{width:100%;margin:10px 0 6px;accent-color:var(--ink)}
+.scrub .step{display:flex;gap:6px}
+.scrub .step button{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:3px 9px;font-size:12.5px;font-weight:600}
+#alive .pill{margin:0 5px 5px 0;display:inline-block;cursor:pointer}
+footer{max-width:900px;margin:0 auto;padding:0 16px 40px;font-size:12px;color:var(--muted)}
+@media(min-width:760px){header h1{font-size:42px}#sheet{border-radius:18px;bottom:20px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Genealogies to Christ</h1>
+  <p>The promise of Genesis 3:15 carried through real families: the royal line from Adam to Jesus, the priestly line from Levi to the exile, and the prophets who had no line at all. Tap any name.</p>
+  <a class="xlink" id="kingsLink" href="#">Companion: Kings, Prophets &amp; Priests →</a>
+</header>
+<nav class="tabs"><div class="in">
+  <button data-v="vl" class="on">The Line</button>
+  <button data-v="vv">Visuals</button>
+  <button data-v="vm">Matthew &amp; Luke</button>
+  <button data-v="vp">Priestly line</button>
+  <button data-v="vn">Near breaks</button>
+  <button data-v="vw">Women</button>
+  <button data-v="vs">OT sources</button>
+</div></nav>
+<main>
+  <section id="vl" class="view on">
+    <p class="intro">From Adam to Jesus. At each gold marker God narrowed the line and attached a new promise; each red marker is a moment the line nearly broke. After David you can follow Solomon's royal line (Matthew) or Nathan's line (Luke).</p>
+    <div class="seg" id="mode"><button data-m="M" class="on">Via Solomon · Matthew</button><button data-m="L">Via Nathan · Luke</button></div>
+    <div class="legend"><span><span class="tg K">King</span> reigned</span><span><span class="tg R">Prophet</span> called a prophet</span><span><span class="tg G">Gentile</span></span><span><span class="tg W">Woman</span></span></div>
+    <div id="line"></div>
+  </section>
+  <section id="vv" class="view">
+    <div class="seg" id="vseg"><button data-s="map" class="on">Line map</button><button data-s="life">Lifespans</button></div>
+    <div id="vmap">
+      <p class="intro">The whole line from Adam to Christ, drawn like a route map. Gold is the royal line, which splits at David into Solomon's line (Matthew) and Nathan's line (Luke) and rejoins at Shealtiel and at Joseph. Teal is the priestly line from Levi, which ends after the exile; the dashed line is Melchizedek's order, which reaches Christ. Grey stubs are side branches. Tap any stop.</p>
+      <div class="legend"><span><i class="lg" style="background:var(--gold)"></i>Royal line / Matthew</span><span><i class="lg" style="background:var(--pro)"></i>Luke via Nathan</span><span><i class="lg" style="background:var(--pri)"></i>Priestly line</span><span><i class="lg" style="background:#b9ad98"></i>Side branch</span><span><i class="lg ring"></i>Near break</span><span><i class="lg star"></i>Promise</span></div>
+      <div class="toolbar"><div class="zoom"><button id="mzo" aria-label="Zoom out">−</button><button id="mzi" aria-label="Zoom in">+</button></div><span class="hint">Scroll sideways</span></div>
+      <div class="vwrap" id="mapwrap"></div>
+    </div>
+    <div id="vlife" style="display:none">
+      <p class="intro">Every life in Genesis 5 and 11 on one timeline, counted in years from creation (Anno Mundi) using the Hebrew text's ages. The overlaps are startling: a few lifetimes link Adam to Abraham. Tap a bar.</p>
+      <div class="vwrap" id="lifewrap"></div>
+      <div class="scrub"><div class="top"><div><div class="yr" id="lyr">Year 1656</div><div class="yrlbl" id="lev">Alive this year</div></div><div class="step"><button id="lym">◀ 10</button><button id="lyp">10 ▶</button></div></div><input type="range" id="lsl" min="0" max="2315" value="1656" aria-label="Year from creation"><div id="alive"></div></div>
+      <div class="grid" id="insights" style="margin-top:12px"></div>
+      <p class="intro" style="margin-top:10px">Abram's birth is placed when Terah was 130, reading Genesis 11:32 and 12:4 with Acts 7:4 (Abram left Haran after Terah died, aged 205, when Abram was 75). Genesis 11:26 gives Terah 70 when his first son was born; if Abram was that son, move Abram and his descendants 60 years earlier. The Greek Septuagint uses longer ages and gives different totals.</p>
+    </div>
+  </section>
+
+  <section id="vm" class="view">
+    <p class="intro">Identical from Abraham to David, then two different sons of David, meeting briefly at Shealtiel and Zerubbabel and again at Joseph. Matthew counts three sets of 14 (Matt 1:17); Luke runs back to Adam, “which was the son of God.”</p>
+    <div class="cmp" id="cmp"></div>
+  </section>
+  <section id="vp" class="view">
+    <p class="intro">The high priesthood passed father to son from Aaron (1 Chronicles 6:1–15). It ends at the exile with no heir who could be the Messiah, because Jesus came from Judah, “of which tribe Moses spake nothing concerning priesthood” (Heb 7:14).</p>
+    <div id="pline"></div>
+  </section>
+  <section id="vn" class="view">
+    <p class="intro">Again and again the promised line came down to one life. Read in order, these moments look like a sustained attack on the seed, ending at Bethlehem (Rev 12:4–5).</p>
+    <div class="grid" id="nb"></div>
+  </section>
+  <section id="vs" class="view">
+    <p class="intro">Every genealogy in the Old Testament, in order, with what it covers and why it is there. Tap a <b style="color:var(--king)">branch</b> to open it.</p>
+    <div class="hinge"><b>The shape of Genesis</b>Genesis is built on ten “these are the generations of…” headings (Hebrew <i>toledot</i>): 2:4; 5:1; 6:9; 10:1; 11:10; 11:27; 25:12; 25:19; 36:1; 37:2. Matthew opens with the same phrase in Greek — “The book of the generation of Jesus Christ” (Matt 1:1), echoing “the book of the generations of Adam” (Gen 5:1). A new beginning, a new Adam.</div>
+    <div id="src"></div>
+  </section>
+
+  <section id="vw" class="view">
+    <p class="intro">Ancient genealogies usually listed only fathers. Matthew deliberately names five women, and each one's story would normally have been left out.</p>
+    <div class="grid" id="wm"></div>
+    <h3 class="sec">Other mothers of the promise</h3>
+    <div class="grid" id="wo"></div>
+  </section>
+</main>
+<footer><p>Ages and lifespans are from Genesis 5 and 11 (Hebrew text). Matthew and Luke spellings follow the KJV; Old Testament names use their Old Testament forms. The two explanations of Matthew and Luke's differences are presented as views held by interpreters, not settled fact. Quotations are from the King James Version.</p></footer>
+
+<div id="back"></div>
+<div id="sheet" role="dialog" aria-modal="true">
+  <div class="grab"><div class="nav"><button id="prev">◀ Prev</button><button id="next">Next ▶</button></div><button id="close">Close ✕</button></div>
+  <div class="body" id="sbody"></div>
+</div>
+
+<script>
+const KINGS_URL="https://ekakuman.github.io/kings-prophets-priests/";
+document.getElementById("kingsLink").href=KINGS_URL;
+
+/* ================= PEOPLE ================= */
+// id: [name, kjv/alt, ref, life, note, tags, kingsId]
+const D={
+adam:["Adam","","Gen 1–5; Luke 3:38","930 years · Seth born at 130","Made in God's image. After the fall he received the first promise of a Redeemer: the woman's seed would bruise the serpent's head (Gen 3:15). Luke ends his genealogy: “Adam, which was the son of God.” Paul calls Jesus “the last Adam” (1 Cor 15:45).",""],
+seth:["Seth","","Gen 4:25–5:8","912 years · Enosh born at 105","“God… hath appointed me another seed instead of Abel, whom Cain slew.” In his son's day “began men to call upon the name of the LORD” (Gen 4:26).",""],
+enosh:["Enosh","Enos","Gen 5:6–11","905 years · Kenan born at 90","His name means “mortal man.” Public worship of the LORD began in his days (Gen 4:26).",""],
+kenan:["Kenan","Cainan","Gen 5:9–14","910 years · Mahalalel born at 70","Called Cainan in Luke 3:37.",""],
+mahalalel:["Mahalalel","Maleleel","Gen 5:12–17","895 years · Jared born at 65","His name means “praise of God.”",""],
+jared:["Jared","","Gen 5:15–20","962 years · Enoch born at 162","The second-longest life recorded in Scripture.",""],
+enoch:["Enoch","","Gen 5:18–24; Heb 11:5; Jude 14","365 years, then taken · Methuselah born at 65","“Enoch walked with God: and he was not; for God took him.” Hebrews says he was translated so he should not see death. Jude records his prophecy: “Behold, the Lord cometh with ten thousands of his saints.”","R"],
+methuselah:["Methuselah","Mathusala","Gen 5:21–27","969 years · Lamech born at 187","The longest life recorded. By Genesis 5's numbers he died in the year of the flood.",""],
+lamech:["Lamech","","Gen 5:25–31","777 years · Noah born at 182","Named his son Noah: “This same shall comfort us concerning our work and toil of our hands, because of the ground which the LORD hath cursed.” (Not Cain's descendant Lamech of Gen 4.)",""],
+noah:["Noah","Noe","Gen 5:28–9:29; 2 Pet 2:5","950 years · sons born after 500","“Noah found grace in the eyes of the LORD.” Built the ark, “a preacher of righteousness.” God made a covenant with every living creature and set the rainbow as its sign.","R"],
+shem:["Shem","Sem","Gen 9:26; 11:10–11","600 years · Arphaxad born at 100","Noah's blessing: “Blessed be the LORD God of Shem.” The line of blessing narrows to Shem's descendants, the Semites.",""],
+arphaxad:["Arphaxad","","Gen 11:12–13; Luke 3:36","438 years · Shelah born at 35","Born two years after the flood. Luke 3:36 adds a Cainan between Arphaxad and Shelah, following the Greek Septuagint.",""],
+shelah:["Shelah","Sala","Gen 11:14–15","433 years · Eber born at 30","",""],
+eber:["Eber","Heber","Gen 10:21; 11:16–17","464 years · Peleg born at 34","The ancestor from whom the Hebrews are usually thought to take their name.",""],
+peleg:["Peleg","Phalec","Gen 10:25; 11:18–19","239 years · Reu born at 30","“In his days was the earth divided” — likely the scattering of the nations at Babel. Lifespans drop sharply from here.",""],
+reu:["Reu","Ragau","Gen 11:20–21","239 years · Serug born at 32","",""],
+serug:["Serug","Saruch","Gen 11:22–23","230 years · Nahor born at 30","",""],
+nahor:["Nahor","Nachor","Gen 11:24–25","148 years · Terah born at 29","The shortest lifespan in the Genesis 11 list.",""],
+terah:["Terah","Thara","Gen 11:26–32; Josh 24:2","205 years · Abram born when he was 70 or later","Lived in Ur and “served other gods” beyond the river. Set out for Canaan with Abram and Lot but stopped and died in Haran.",""],
+abraham:["Abraham","Abram","Gen 12–25; Gal 3:16","175 years · Isaac born at 100","Called out of Ur: “In thee shall all families of the earth be blessed.” He believed God, and it was counted to him for righteousness (Gen 15:6). Offered Isaac on Moriah. God called him a prophet (Gen 20:7). Paul: “to thy seed, which is Christ.”","R"],
+isaac:["Isaac","","Gen 21–35","180 years · twins born at 60","The child of promise, born to Sarah at 90. Laid on the altar on Moriah and spared: “God will provide himself a lamb” (Gen 22:8).",""],
+jacob:["Jacob","Israel","Gen 25–50","147 years","Renamed Israel after wrestling with God. Father of the twelve tribes. His deathbed blessings foretold each tribe's future (Gen 49).","R"],
+judah:["Judah","Judas, Juda","Gen 29:35; 38; 44; 49:8–12","","Offered himself in Benjamin's place (Gen 44:33). Jacob's blessing: “The sceptre shall not depart from Judah… until Shiloh come.” Jesus is “the Lion of the tribe of Juda” (Rev 5:5).",""],
+perez:["Perez","Phares","Gen 38:29; Ruth 4:18","","The twin who “broke forth” ahead of Zerah, born to Tamar. Ruth 4:18–22 traces the line from Perez to David.",""],
+hezron:["Hezron","Esrom","Gen 46:12; 1 Chr 2:5","","Went down to Egypt with Jacob's family.",""],
+ram:["Ram","Aram","Ruth 4:19; 1 Chr 2:9","","Lived during Israel's centuries in Egypt.",""],
+amminadab:["Amminadab","Aminadab","Exod 6:23; Ruth 4:19","","His daughter Elisheba married Aaron the high priest — the royal and priestly families joined by marriage.",""],
+nahshon:["Nahshon","Naasson","Num 1:7; 7:12","","Prince of Judah in the wilderness. Brought the first tribal offering at the tabernacle's dedication.",""],
+salmon:["Salmon","","Ruth 4:20–21; Matt 1:5","","Married Rahab of Jericho.",""],
+boaz:["Boaz","Booz","Ruth 2–4","","A man of wealth in Bethlehem who acted as kinsman-redeemer for Ruth — a picture of Christ redeeming his bride.",""],
+obed:["Obed","","Ruth 4:13–22","","“There is a son born to Naomi.” The family that died out in Moab lives again.",""],
+jesse:["Jesse","","1 Sam 16; Isa 11:1","","A Bethlehem farmer with eight sons. “There shall come forth a rod out of the stem of Jesse, and a Branch shall grow out of his roots.”",""],
+david:["David","","1 Sam 16 – 1 Kgs 2; Acts 2:30","Reigned 40 years","The youngest son, anointed king; “a man after his own heart.” God promised him an everlasting throne (2 Sam 7:16). Peter calls him a prophet (Acts 2:30). Jesus is “the Son of David” — and David's Lord (Matt 22:42–45).","KR","david"],
+solomon:["Solomon","","1 Kgs 1–11; Matt 1:6","Reigned 40 years","Son of David and Bathsheba. Built the temple; his heart turned to other gods in old age. Matthew follows the throne through him.","K","solomon"],
+rehoboam:["Rehoboam","Roboam","1 Kgs 12; 14","Reigned 17 years","His harsh answer split the kingdom; ten tribes left.","K","rehoboam"],
+abijah:["Abijah","Abia","1 Kgs 15:1–8; 2 Chr 13","Reigned 3 years","","K","abijah"],
+asa:["Asa","","1 Kgs 15:9–24; 2 Chr 14–16","Reigned 41 years","A reforming king who later trusted Damascus rather than God.","K","asa"],
+jehoshaphat:["Jehoshaphat","Josaphat","2 Chr 17–20","Reigned 25 years","Taught the law across Judah — but married his son to Ahab's daughter Athaliah.","K","jehoshaphat"],
+joram:["Jehoram","Joram","2 Kgs 8:16–24; 2 Chr 21","Reigned 8 years","Murdered his six brothers. Raiders later killed all his sons but the youngest: the line of David hung on one boy, spared “because of the covenant that he had made with David” (2 Chr 21:7).","K","jehoramJ"],
+uzziah:["Uzziah","Ozias","2 Kgs 15:1–7; 2 Chr 26","Reigned 52 years","Matthew 1:8 goes straight from Joram to Ozias, leaving out three kings.","K","uzziah"],
+jotham:["Jotham","Joatham","2 Kgs 15:32–38","Reigned 16 years","","K","jotham"],
+ahaz:["Ahaz","Achaz","2 Kgs 16; Isa 7","Reigned 16 years","Refused to ask a sign, so God gave one to the house of David: “Behold, a virgin shall conceive… Immanuel.”","K","ahaz"],
+hezekiah:["Hezekiah","Ezekias","2 Kgs 18–20","Reigned 29 years","Trusted the LORD; Jerusalem was delivered from Assyria.","K","hezekiah"],
+manasseh:["Manasseh","Manasses","2 Kgs 21; 2 Chr 33","Reigned 55 years","Judah's most wicked king, who repented late in life — grace in the line again.","K","manasseh"],
+amon:["Amon","","2 Kgs 21:19–26","Reigned 2 years","","K","amon"],
+josiah:["Josiah","Josias","2 Kgs 22–23","Reigned 31 years","Named by prophecy 300 years before his birth. Matthew 1:11 moves from Josiah to Jechonias, leaving out Jehoiakim.","K","josiah"],
+jeconiah:["Jeconiah","Jechonias, Coniah","Jer 22:24–30; Matt 1:11–12","Reigned 3 months","Exiled in 597 BC. Jeremiah: “Write ye this man childless… no man of his seed shall prosper, sitting upon the throne of David.” Released after 37 years (2 Kgs 25:27).","K","jehoiachin"],
+shealtiel:["Shealtiel","Salathiel","1 Chr 3:17; Matt 1:12; Luke 3:27","","Born in Babylonian exile. Matthew calls him son of Jechonias; Luke, son of Neri — one of the puzzles of the two lists.",""],
+zerubbabel:["Zerubbabel","Zorobabel","Ezra 3; Hag 2:23; Zech 4","","Led the first return from Babylon (538 BC) and laid the foundation of the second temple. God's word to him reversed Jeconiah's curse: “I will take thee… and will make thee as a signet: for I have chosen thee.” “Not by might, nor by power, but by my spirit” (Zech 4:6).",""],
+abiud:["Abiud","","Matt 1:13","","From here to Jacob, the names are known only from Matthew's genealogy. These generations lived through the Persian, Greek and Roman eras — the centuries of silence after Malachi.",""],
+eliakim:["Eliakim","","Matt 1:13","","Known only from Matthew's genealogy.",""],
+azor:["Azor","","Matt 1:13–14","","Known only from Matthew's genealogy.",""],
+zadokM:["Zadok","Sadoc","Matt 1:14","","Known only from Matthew's genealogy (not the high priest Zadok).",""],
+achim:["Achim","","Matt 1:14","","Known only from Matthew's genealogy.",""],
+eliud:["Eliud","","Matt 1:14–15","","Known only from Matthew's genealogy.",""],
+eleazarM:["Eleazar","","Matt 1:15","","Known only from Matthew's genealogy.",""],
+matthan:["Matthan","","Matt 1:15","","Joseph's grandfather in Matthew.",""],
+jacobM:["Jacob","","Matt 1:15–16","","Joseph's father in Matthew.",""],
+joseph:["Joseph","","Matt 1:16–25; Luke 3:23","","“A just man.” Obeyed the angel, took Mary as his wife, named the child Jesus and protected him in Egypt. Through Joseph, Jesus is David's legal heir; Luke: Jesus was “(as was supposed) the son of Joseph.”",""],
+jesus:["Jesus Christ","","Matt 1:16; Luke 3:23","","“The book of the generation of Jesus Christ, the son of David, the son of Abraham” (Matt 1:1). Born of the virgin Mary. Prophet, Priest and King.",""],
+/* Luke's line via Nathan */
+nathan:["Nathan","","2 Sam 5:14; 1 Chr 3:5; Luke 3:31","","Son of David and Bathsheba (1 Chr 3:5) — so Bathsheba is the mother of both Solomon's line and Nathan's. Never king, yet Zechariah 12:12 names “the family of the house of Nathan” beside David's house.",""],
+mattatha:["Mattatha","","Luke 3:31","","Named only in Luke's genealogy.",""],menan:["Menan","","Luke 3:31","","Named only in Luke's genealogy.",""],melea:["Melea","","Luke 3:31","","Named only in Luke's genealogy.",""],
+eliakimL:["Eliakim","","Luke 3:30","","Named only in Luke's genealogy.",""],jonan:["Jonan","","Luke 3:30","","Named only in Luke's genealogy.",""],josephL1:["Joseph","","Luke 3:30","","Named only in Luke's genealogy.",""],judaL1:["Juda","","Luke 3:30","","Named only in Luke's genealogy.",""],simeon:["Simeon","","Luke 3:30","","Named only in Luke's genealogy.",""],
+leviL1:["Levi","","Luke 3:29","","Named only in Luke's genealogy.",""],matthatL1:["Matthat","","Luke 3:29","","Named only in Luke's genealogy.",""],jorim:["Jorim","","Luke 3:29","","Named only in Luke's genealogy.",""],eliezer:["Eliezer","","Luke 3:29","","Named only in Luke's genealogy.",""],jose:["Jose","","Luke 3:29","","Named only in Luke's genealogy.",""],
+er:["Er","","Luke 3:28","","Named only in Luke's genealogy.",""],elmodam:["Elmodam","","Luke 3:28","","Named only in Luke's genealogy.",""],cosam:["Cosam","","Luke 3:28","","Named only in Luke's genealogy.",""],addi:["Addi","","Luke 3:28","","Named only in Luke's genealogy.",""],melchiL1:["Melchi","","Luke 3:28","","Named only in Luke's genealogy.",""],
+neri:["Neri","","Luke 3:27","","Shealtiel's father in Luke (Matthew gives Jechonias).",""],
+rhesa:["Rhesa","","Luke 3:27","","In Luke, a son of Zerubbabel; from here Luke's names differ entirely from Matthew's.",""],joanna:["Joanna","","Luke 3:27","","Named only in Luke's genealogy.",""],
+judaL2:["Juda","","Luke 3:26","","Named only in Luke's genealogy.",""],josephL2:["Joseph","","Luke 3:26","","Named only in Luke's genealogy.",""],semei:["Semei","","Luke 3:26","","Named only in Luke's genealogy.",""],mattathiasL1:["Mattathias","","Luke 3:26","","Named only in Luke's genealogy.",""],maath:["Maath","","Luke 3:26","","Named only in Luke's genealogy.",""],
+nagge:["Nagge","","Luke 3:25","","Named only in Luke's genealogy.",""],esli:["Esli","","Luke 3:25","","Named only in Luke's genealogy.",""],naum:["Naum","","Luke 3:25","","Named only in Luke's genealogy.",""],amos:["Amos","","Luke 3:25","","Named only in Luke's genealogy (not the prophet).",""],mattathiasL2:["Mattathias","","Luke 3:25","","Named only in Luke's genealogy.",""],
+josephL3:["Joseph","","Luke 3:24","","Named only in Luke's genealogy.",""],janna:["Janna","","Luke 3:24","","Named only in Luke's genealogy.",""],melchiL2:["Melchi","","Luke 3:24","","Named only in Luke's genealogy.",""],leviL2:["Levi","","Luke 3:24","","Named only in Luke's genealogy.",""],matthatL2:["Matthat","","Luke 3:24","","Named only in Luke's genealogy.",""],
+heli:["Heli","","Luke 3:23","","Joseph's father in Luke. Many read Heli as Mary's father, Joseph being called his son as son-in-law. Others see Heli as Joseph's legal father through a levirate marriage (an explanation going back to Julius Africanus, around AD 220).",""],
+/* women */
+eve:["Eve","","Gen 3:15, 20; 4:25","","“The mother of all living.” To her came the first promise of the seed who would crush the serpent. At Seth's birth she said God had appointed “another seed.”","W"],
+sarah:["Sarah","Sarai","Gen 17:15–19; 21:1–7; Heb 11:11","","Barren until 90. “Is any thing too hard for the LORD?” (Gen 18:14). Twice taken into a foreign king's household, and twice God intervened.","W"],
+rebekah:["Rebekah","","Gen 24; 25:21–23","","Barren until Isaac prayed. Told before the twins' birth: “the elder shall serve the younger.”","W"],
+leah:["Leah","","Gen 29:31–35","","The unloved wife whom God saw. She bore both Levi (the priestly tribe) and Judah (the royal tribe). At Judah's birth: “Now will I praise the LORD.”","W"],
+tamar:["Tamar","Thamar","Gen 38; Matt 1:3","","Widowed twice by Judah's sons and denied the third, she disguised herself and conceived by Judah. He confessed: “She hath been more righteous than I.” Mother of Perez. Probably a Canaanite.","W"],
+rahab:["Rahab","Rachab","Josh 2; 6:25; Heb 11:31; Jas 2:25; Matt 1:5","","A Canaanite harlot of Jericho who hid Israel's spies by faith: “the LORD your God, he is God in heaven above.” Spared with her family; married Salmon; mother of Boaz.","WG"],
+ruth:["Ruth","","Ruth 1–4; Matt 1:5","","A Moabitess, from a people barred from Israel's assembly (Deut 23:3). “Thy people shall be my people, and thy God my God.” Redeemed by Boaz; great-grandmother of David.","WG"],
+bathsheba:["Bathsheba","“her that had been the wife of Urias”","2 Sam 11–12; 1 Kgs 1; 1 Chr 3:5; Matt 1:6","","Wife of Uriah the Hittite. Matthew names David's sin inside the genealogy itself. She became the mother of Solomon (Matthew's line) and of Nathan (Luke's line).","W"],
+mary:["Mary","","Matt 1:16–25; Luke 1–2","","A virgin of Nazareth, betrothed to Joseph. “Behold the handmaid of the Lord; be it unto me according to thy word.” Matthew carefully says Jesus was born “of whom” — of Mary, not of Joseph.","W"],
+elisheba:["Elisheba","","Exod 6:23","","Daughter of Amminadab of Judah, sister of Nahshon, and wife of Aaron the high priest. Mother of the priestly line.","W"],
+elizabeth:["Elizabeth","","Luke 1:5–60","","“Of the daughters of Aaron,” wife of the priest Zechariah, and Mary's relative. Mother of John the Baptist. The priestly and royal families stood side by side at Jesus' birth.","W"]
+};
+const P=id=>{const d=D[id];return{id,n:d[0],alt:d[1],ref:d[2],life:d[3],note:d[4],tags:d[5]||"",kid:d[6]}};
+
+/* ================= LINES ================= */
+const PRE=["adam","seth","enosh","kenan","mahalalel","jared","enoch","methuselah","lamech","noah","shem","arphaxad","shelah","eber","peleg","reu","serug","nahor","terah","abraham","isaac","jacob","judah","perez","hezron","ram","amminadab","nahshon","salmon","boaz","obed","jesse","david"];
+const MT=["solomon","rehoboam","abijah","asa","jehoshaphat","joram","uzziah","jotham","ahaz","hezekiah","manasseh","amon","josiah","jeconiah","shealtiel","zerubbabel","abiud","eliakim","azor","zadokM","achim","eliud","eleazarM","matthan","jacobM","joseph","jesus"];
+const LK=["nathan","mattatha","menan","melea","eliakimL","jonan","josephL1","judaL1","simeon","leviL1","matthatL1","jorim","eliezer","jose","er","elmodam","cosam","addi","melchiL1","neri","shealtiel","zerubbabel","rhesa","joanna","judaL2","josephL2","semei","mattathiasL1","maath","nagge","esli","naum","amos","mattathiasL2","josephL3","janna","melchiL2","leviL2","matthatL2","heli","joseph","jesus"];
+const ERAS={adam:["Creation to the Flood","Genesis 5 · Luke 3:36–38"],shem:["The Flood to Abraham","Genesis 11 · Luke 3:34–36"],abraham:["The Patriarchs","Genesis 12–50 · Matt 1:2"],perez:["Egypt, the Wilderness and the Judges","Ruth 4:18–22 · Matt 1:3–5"],obed:["Toward the Throne","Ruth 4 · 1 Samuel 16"],solomon:["The Kings of Judah","Matthew 1:6–11 · royal line"],nathan:["Nathan's Line","Luke 3:27–31 · David's son who never reigned"],shealtiel:["Exile and Return","Babylon to the second temple"],abiud:["The Silent Centuries","Matthew 1:13–16 · Persian, Greek and Roman eras"],rhesa:["The Silent Centuries","Luke 3:23–27 · Persian, Greek and Roman eras"],joseph:["The Fullness of Time","“When the fulness of the time was come, God sent forth his Son” (Gal 4:4)"]};
+const HINGE={
+adam:["The first promise","“I will put enmity between thee and the woman, and between thy seed and her seed; it shall bruise thy head.” (Gen 3:15)"],
+seth:["Another seed","“God… hath appointed me another seed instead of Abel.” (Gen 4:25)"],
+noah:["Grace through judgment","“But Noah found grace in the eyes of the LORD.” (Gen 6:8)"],
+shem:["Narrowed to Shem","“Blessed be the LORD God of Shem.” (Gen 9:26)"],
+abraham:["Narrowed to one man","“In thee shall all families of the earth be blessed.” (Gen 12:3) — “to thy seed, which is Christ.” (Gal 3:16)"],
+isaac:["Isaac, not Ishmael","“In Isaac shall thy seed be called.” (Gen 21:12)"],
+jacob:["Jacob, not Esau","“The elder shall serve the younger.” (Gen 25:23)"],
+judah:["The royal tribe","“The sceptre shall not depart from Judah… until Shiloh come.” (Gen 49:10)"],
+david:["The royal house","“Thine house and thy kingdom shall be established for ever before thee.” (2 Sam 7:16)"],
+zerubbabel:["The signet restored","“I will take thee, O Zerubbabel… and will make thee as a signet: for I have chosen thee.” (Hag 2:23)"],
+jesus:["Fulfilled","“The Lord God shall give unto him the throne of his father David… and of his kingdom there shall be no end.” (Luke 1:32–33)"]
+};
+const THREAT={
+seth:["Cain murders Abel","Gen 4:8"],
+noah:["The world corrupted; the flood","Gen 6:5–7"],
+isaac:["Sarah barren, and twice taken into a king's house","Gen 12:15; 20:2; 18:11"],
+jacob:["Rebekah barren; then Esau vows to kill Jacob","Gen 25:21; 27:41"],
+perez:["Judah's sons die; Tamar left childless","Gen 38:7–11"],
+ram:["Pharaoh orders the Hebrew boys drowned","Exod 1:22"],
+obed:["Naomi's husband and sons die in Moab","Ruth 1:3–5"],
+david:["Saul hunts David for years","1 Sam 23:14"],
+joram:["All the king's sons killed but the youngest","2 Chr 21:17"],
+uzziah:["Athaliah destroys the royal seed; infant Joash hidden","2 Kgs 11:1–3"],
+jeconiah:["Exile, and a curse on Jeconiah's line","Jer 22:30"],
+abiud:["Haman's decree to destroy every Jew","Esth 3:13"],
+jesus:["Herod kills Bethlehem's children","Matt 2:16"]
+};
+const SKIP={uzziah:"Matthew skips Ahaziah, Joash and Amaziah here (Matt 1:8) — so Joash, the hidden infant, is passed over in silence.",jeconiah:"Matthew skips Jehoiakim here (Matt 1:11).",shelah:"Luke 3:36 places a Cainan here, as in the Greek Septuagint."};
+const WOMEN={adam:[["eve","wife"]],isaac:[["sarah","mother"]],jacob:[["rebekah","mother"]],judah:[["leah","mother"]],perez:[["tamar","mother"]],boaz:[["rahab","mother"],["ruth","wife"]],solomon:[["bathsheba","mother"]],nathan:[["bathsheba","mother"]],joseph:[["mary","wife"]],jesus:[["mary","mother"]]};
+const BR={adam:"Cain, Abel, other sons and daughters",noah:"Ham, Japheth",terah:"Nahor, Haran (father of Lot)",abraham:"Ishmael; sons of Keturah",isaac:"Esau (Edom)",jacob:"Reuben, Simeon, Levi (priestly line), Joseph and seven more",judah:"Er, Onan, Shelah; Zerah (Perez's twin)",jesse:"Eliab, Abinadab, Shammah and four more",david:"Nathan (Luke's line), Amnon, Absalom, Adonijah and more",zerubbabel:"Abiud (Matthew), Rhesa (Luke)"};
+
+/* ================= LINE VIEW ================= */
+let mode="M", curList=[];
+const tgs=t=>[...t].map(c=>`<span class="tg ${c}">${{K:"King",R:"Prophet",W:"Woman",G:"Gentile",P:"Priest"}[c]}</span>`).join(" ");
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function renderLine(){
+  curList=PRE.concat(mode==="M"?MT:LK);
+  let h="", open=false;
+  curList.forEach((id,i)=>{
+    const p=P(id);
+    if(ERAS[id]&&!(mode==="M"&&id==="rhesa")&&!(mode==="L"&&id==="abiud")){
+      if(open)h+="</div>";
+      h+=`<div class="era"><h2>${ERAS[id][0]}</h2><small>${esc(ERAS[id][1])}</small></div><div class="chain">`;open=true;
+    }
+    if(HINGE[id])h+=`<div class="hinge"><b>Promise · ${esc(HINGE[id][0])}</b>${esc(HINGE[id][1])}</div>`;
+    if(THREAT[id])h+=`<div class="threat"><b>Near break</b>${esc(THREAT[id][0])} <span style="color:var(--muted)">(${esc(THREAT[id][1])})</span></div>`;
+    if(mode==="M"&&SKIP[id]&&id!=="shelah")h+=`<div class="skip">${esc(SKIP[id])}</div>`;
+    if(id==="shelah")h+=`<div class="skip">${esc(SKIP.shelah)}</div>`;
+    if(id==="jesus"){
+      h+=`<div class="node Jesus"><span class="dot"></span>${christCard(i+1)}</div>`;return;
+    }
+    const w=(WOMEN[id]||[]).map(([wid,rel])=>`<span class="pill w" data-id="${wid}">${rel}: ${esc(D[wid][0])}</span>`).join("");
+    const br=(BRPILL[id]?`<span class="pill bx" data-br="${BRPILL[id]}">Branch: ${esc(BRNAME[BRPILL[id]])} →</span>`:"")+(BR[id]?`<span class="pill br">Also: ${esc(BR[id])}</span>`:"");
+    const lv=id==="jacob"?`<span class="pill go" data-go="vp">Levi → priestly line</span>`:"";
+    const nt=id==="david"?`<span class="pill go" data-mode="${mode==="M"?"L":"M"}">Follow ${mode==="M"?"Nathan (Luke)":"Solomon (Matthew)"} →</span>`:"";
+    h+=`<div class="node ${p.tags.includes("K")?"K":""}"><span class="dot"></span><button class="card" data-id="${id}">
+      <div class="top"><span class="g">${i+1}</span><span class="nm">${esc(p.n)}</span>${p.alt?`<span class="alt">${esc(p.alt)}</span>`:""} ${tgs(p.tags)}</div>
+      ${p.note?`<div class="ln">${esc((p.note.match(/^[\s\S]*?[.!?]”?(?=\s|$)/)||[p.note])[0])}</div>`:""}
+      <div class="meta">${esc(p.ref)}${p.life?" · "+esc(p.life):""}</div>
+      ${(w||br||lv||nt)?`<div class="pills">${w}${lv}${nt}${br}</div>`:""}
+    </button></div>`;
+  });
+  if(open)h+="</div>";
+  const el=document.getElementById("line"); el.innerHTML=h; bind(el);
+  el.querySelectorAll("[data-mode]").forEach(b=>b.onclick=e=>{e.stopPropagation();setMode(b.dataset.mode)});
+  el.querySelectorAll("[data-go]").forEach(b=>b.onclick=e=>{e.stopPropagation();tab(b.dataset.go)});
+  bindBr(el);
+}
+function christCard(g){
+  return `<div class="christ">
+    <div style="font-size:11px;color:#cbbd9f;font-weight:700;letter-spacing:.06em">GENERATION ${g} ${mode==="M"?"(Matthew counts three sets of 14)":"(Luke: about 77 names, back to God)"}</div>
+    <h3>Jesus Christ</h3>
+    <p>Every line ends in him. He is the King the royal line was waiting for, the Priest the Levitical line could not produce, and the Prophet no line could supply.</p>
+    <div class="three"><div><b style="color:#f3d98b">King</b>Son of David by law through Joseph; “the throne of his father David” (Luke 1:32)</div><div><b style="color:#8fe0d6">Priest</b>Not of Levi, but “after the order of Melchisedec” (Heb 7:17)</div><div><b style="color:#c9b8ff">Prophet</b>The Prophet like Moses (Deut 18:15) — the Word made flesh (John 1:14)</div></div>
+    <div class="kv">“God… hath in these last days <span class="p">spoken unto us by his Son</span>, whom he hath <span class="k">appointed heir of all things</span>… when he had <span class="r">by himself purged our sins</span>, sat down on the right hand of the Majesty on high.”</div>
+    <p style="margin-top:6px;font-size:12px;color:#cbbd9f">Hebrews 1:1–3</p>
+    <p style="margin:10px 0 0">And the line continues: “as many as received him, to them gave he power to become the sons of God” (John 1:12).</p>
+    <p style="margin:10px 0 0"><a href="${KINGS_URL}#christ" target="_blank" rel="noopener">See “Fulfilled in Christ” on the Kings, Prophets &amp; Priests page →</a></p>
+  </div>`;
+}
+function setMode(m){mode=m;document.querySelectorAll("#mode button").forEach(b=>b.classList.toggle("on",b.dataset.m===m));renderLine();
+  const d=document.querySelector(`#line [data-id="${m==="M"?"solomon":"nathan"}"]`); if(d)d.scrollIntoView({behavior:"smooth",block:"center"});}
+document.querySelectorAll("#mode button").forEach(b=>b.onclick=()=>setMode(b.dataset.m));
+
+/* ================= MATTHEW & LUKE ================= */
+const NBN={abraham:"Abraham",jacob:"Jacob"};
+function nb(id,extra){const p=P(id);return `<button class="nb" data-id="${id}">${esc(NBN[id]||(p.alt&&!/^“/.test(p.alt)?p.alt.split(",")[0]:p.n))}${extra?`<small>${esc(extra)}</small>`:""}</button>`}
+function renderCmp(){
+  let h=`<div class="hd m">Matthew 1<small>Forward, from Abraham</small></div><div class="hd l">Luke 3<small>Backward, to Adam (shown top-down)</small></div>`;
+  h+=`<div class="div">Adam to Terah</div><div class="col"><div class="empty">Matthew begins with Abraham — he writes as a son of Abraham to sons of Abraham.</div></div><div class="col">${PRE.slice(0,19).map(id=>nb(id)).join("")}<div class="empty">Luke 3:38: “…Adam, which was the son of God.”</div></div>`;
+  h+=`<div class="div">Abraham to David — identical in both</div><div class="both"><div class="grp" style="text-align:center">Matthew's first 14</div></div>`;
+  PRE.slice(19).forEach(id=>{h+=`<div class="both">${nb(id)}</div>`});
+  h+=`<div class="note">At David the lists divide. Matthew follows Solomon, who inherited the throne. Luke follows Nathan, another son of Bathsheba who never reigned.</div>`;
+  h+=`<div class="div">David's son to the exile</div>`;
+  h+=`<div class="col"><div class="grp">Matthew's second 14</div>${MT.slice(0,14).map(id=>nb(id,id==="uzziah"?"3 kings skipped before him":id==="jeconiah"?"Jehoiakim skipped before him":"")).join("")}</div>`;
+  h+=`<div class="col">${LK.slice(0,20).map(id=>nb(id)).join("")}</div>`;
+  h+=`<div class="div">The lists meet</div>`;
+  h+=`<div class="both">${nb("shealtiel","Matthew: son of Jechonias · Luke: son of Neri")}</div><div class="both">${nb("zerubbabel","Leader of the return from Babylon")}</div>`;
+  h+=`<div class="div">The silent centuries</div>`;
+  h+=`<div class="col"><div class="grp">Matthew's third 14 (from Shealtiel)</div>${MT.slice(16,25).map(id=>nb(id)).join("")}</div>`;
+  h+=`<div class="col">${LK.slice(22,40).map(id=>nb(id,id==="heli"?"Mary's father, or Joseph's legal father?":"")).join("")}</div>`;
+  h+=`<div class="div">The lists meet again</div><div class="both">${nb("joseph","Matthew: “the husband of Mary” · Luke: “as was supposed” the father")}</div><div class="both">${nb("jesus","“Of whom was born Jesus, who is called Christ”")}</div>`;
+  h+=`<div class="note"><b>Two common explanations.</b> (1) Luke gives Mary's line: Heli was Mary's father, so Jesus is David's son by blood through Nathan and his legal heir through Joseph and Solomon — and Jeconiah's curse passes only as a legal title. (2) Both lists are Joseph's: Matthew the legal line, Luke the natural line, joined by a levirate marriage (Deut 25:5–6). Either way, Jesus is the legal heir of David.</div>`;
+  h+=`<div class="note"><b>Matthew's 14s.</b> Matthew skips generations to keep three sets of 14 (Matt 1:17). The third set has 13 names unless Jechonias is counted twice or Mary is counted as a generation. Many note that the Hebrew letters of David's name (D-V-D) add up to 14.</div>`;
+  const el=document.getElementById("cmp"); el.innerHTML=h; bind(el);
+}
+
+/* ================= PRIESTLY LINE ================= */
+const PL=[
+["levi","Levi","Gen 29:34; Exod 32:26–29; Deut 18:2","Third son of Jacob and Leah. His tribe stood with Moses after the golden calf and was set apart for God: “The LORD is their inheritance.”",""],
+["kohath","Kohath","Num 4:15","His clan carried the most holy things of the tabernacle.",""],
+["amram","Amram","Exod 6:20","Married Jochebed; father of Aaron, Moses and Miriam.",""],
+["aaron","Aaron","Exod 28; Lev 8; Num 17","The first high priest. Made the golden calf, yet was consecrated; his rod budded to confirm his priesthood. Married Elisheba of Judah, Nahshon's sister — the priestly and royal families joined.","elisheba"],
+["eleazar","Eleazar","Num 20:28; Josh 14:1","Succeeded Aaron on Mount Hor. His brothers Nadab and Abihu died offering strange fire (Lev 10); Ithamar's branch later produced Eli.",""],
+["phinehas","Phinehas","Num 25:10–13; Ps 106:30","Stopped the plague at Baal-peor and received “the covenant of an everlasting priesthood.”",""],
+["abishua","Abishua · Bukki · Uzzi · Zerahiah · Meraioth","1 Chr 6:4–7","High priests during the period of the judges. The list in 1 Chronicles likely condenses generations.",""],
+["amariah1","Amariah · Ahitub","1 Chr 6:7–8","Zadok's father and grandfather in this list.",""],
+["zadok","Zadok","2 Sam 15:24; 1 Kgs 1:39; Ezek 44:15","Anointed Solomon. After Abiathar (Eli's line) was removed, Zadok's house held the high priesthood. Ezekiel's future temple is served by “the sons of Zadok.”","",true],
+["ahimaaz","Ahimaaz","2 Sam 18:19–29","The swift runner who brought David news of Absalom's defeat.",""],
+["azariahS","Azariah · Johanan · Azariah","1 Kgs 4:2; 1 Chr 6:9–10","An Azariah heads Solomon's officials; another “executed the priest's office in the temple that Solomon built.”","",true],
+["amariah2","Amariah · Ahitub · Zadok · Shallum","1 Chr 6:11–13","Priests of the divided kingdom. An Amariah was Jehoshaphat's chief priest (2 Chr 19:11).",""],
+["hilkiah","Hilkiah","2 Kgs 22:8","Found the Book of the Law in 622 BC, sparking Josiah's reform.","",true],
+["azariah3","Azariah","1 Chr 6:13–14","",""],
+["seraiah","Seraiah","2 Kgs 25:18–21","The last high priest of the first temple, executed at Riblah in 586 BC.","",true],
+["jehozadak","Jehozadak","1 Chr 6:15","“Went into captivity, when the LORD carried away Judah and Jerusalem by the hand of Nebuchadnezzar.”",""],
+["joshua","Joshua (Jeshua)","Hag 1:1; Zech 3; 6:11–13","High priest of the return. Satan accused him and God clothed him in clean garments; then Zechariah crowned him as a sign of “the BRANCH… a priest upon his throne.” Joshua is the Hebrew form of the name Jesus. Ezra the scribe was also descended from Seraiah (Ezra 7:1–5).",""]
+];
+const KPRI=["zadok","azariahS","hilkiah","seraiah"];
+function renderPriests(){
+  let h=`<div class="mel"><span class="tg P">Priest-King</span> <span class="nm">Melchizedek</span>
+    <div style="font-size:13.5px;margin-top:4px">King of Salem and “priest of the most high God,” who blessed Abraham and received his tithe (Gen 14:18–20). Scripture gives him no parents and no descendants: “without father, without mother, without descent… made like unto the Son of God; abideth a priest continually” (Heb 7:3).</div>
+    <div class="pills"><span class="pill go">Ps 110:4 — “a priest for ever after the order of Melchizedek”</span></div></div>`;
+  h+=`<div class="era"><h2>The Aaronic line</h2><small>1 Chronicles 6:1–15</small></div><div class="chain pchain">`;
+  PL.forEach(([id,n,ref,note,wife,link],i)=>{
+    if(id==="zadok")h+=`<div class="skip">Side branch: Eli, of Ithamar's line, served at Shiloh. His great-grandson Ahimelech was killed by Saul, and Abiathar was removed by Solomon, “that he might fulfil the word of the LORD… concerning the house of Eli” (1 Kgs 2:27).</div>`;
+    if(id==="seraiah")h+=`<div class="threat"><b>The line cut off</b>Jerusalem falls; the temple is burned (2 Kgs 25:9)</div>`;
+    h+=`<div class="node main"><span class="dot"></span><div class="card"><div class="top"><span class="nm">${esc(n)}</span>${link?`<a class="pill go" style="text-decoration:none" href="${KINGS_URL}#k-${id}" target="_blank" rel="noopener">On Kings page →</a>`:""}</div>${note?`<div class="ln">${esc(note)}</div>`:""}<div class="meta">${esc(ref)}</div>${wife?`<div class="pills"><span class="pill w" data-id="${wife}">wife: Elisheba of Judah</span></div>`:""}</div></div>`;
+  });
+  h+=`<div class="pills" style="margin:0 0 10px 30px"><span class="pill bx" data-br="priests2">Branch: High priests after the exile →</span></div>`;
+  h+=`</div><div class="hinge"><b>The gap</b>No son of Aaron could be the Messiah: the promised King was to come from Judah. “It is evident that our Lord sprang out of Juda; of which tribe Moses spake nothing concerning priesthood.” (Heb 7:14)</div>`;
+  h+=`<div class="node"><div class="card" style="border-color:#cfe6e4;background:#eef6f5"><div class="top"><span class="nm">At Jesus' birth</span></div><div class="ln">The priest Zechariah and Elizabeth, “of the daughters of Aaron,” Mary's relative, became parents of John the Baptist (Luke 1:5, 36). The priestly family stood beside the royal one.</div><div class="pills"><span class="pill w" data-id="elizabeth">Elizabeth</span></div></div></div>`;
+  h+=`<div class="christ" style="margin-top:10px"><h3>A Priest for ever</h3><p>Jesus' priesthood rests “not after the law of a carnal commandment, but after the power of an endless life” (Heb 7:16). Aaron's priests died and had to be replaced; “this man, because he continueth ever, hath an unchangeable priesthood” (Heb 7:24).</p><div class="kv">“He ever liveth to make intercession for them… for this he did once, when he offered up himself.”</div><p style="margin-top:6px;font-size:12px;color:#cbbd9f">Hebrews 7:25–27</p></div>`;
+  h+=`<div class="hinge" style="margin-top:14px;background:#f3f0fa;border-color:#d9d0f0"><b style="color:var(--pro)">And the prophets?</b>Prophecy had no family line. “I was no prophet, neither was I a prophet's son… and the LORD took me” (Amos 7:14–15). God promised to <i>raise up</i> the final Prophet himself (Deut 18:15) — fulfilled in the Word made flesh (John 1:14).</div>`;
+  const el=document.getElementById("pline"); el.innerHTML=h; bind(el); bindBr(el);
+}
+
+/* ================= NEAR BREAKS ================= */
+const NB=[
+["Cain murders Abel","Seth is born, “another seed instead of Abel.”","Gen 4:8, 25","seth"],
+["The world corrupted; the flood","Noah “found grace”; eight people saved in the ark.","Gen 6:5–8; 1 Pet 3:20","noah"],
+["Sarah barren, then twice taken into a king's house","God intervenes with Pharaoh and Abimelech; Isaac born when Sarah is 90.","Gen 12:17; 20:3; 21:1–2","sarah"],
+["Rebekah barren","Isaac prays; twins are born.","Gen 25:21","rebekah"],
+["Esau vows to kill Jacob","Jacob flees; the brothers are reconciled twenty years later.","Gen 27:41; 33:4","jacob"],
+["Judah's sons die; Tamar left childless","Tamar's bold act; Perez is born.","Gen 38","tamar"],
+["Famine in Canaan","Joseph in Egypt: “God sent me before you to preserve you a posterity.”","Gen 45:7","jacob"],
+["Pharaoh orders the Hebrew boys drowned","The midwives fear God; Moses saved from the river.","Exod 1:17–22; 2:1–10","ram"],
+["Naomi's husband and sons die in Moab","Ruth clings to Naomi; Boaz redeems; Obed is born.","Ruth 1:16; 4:13–17","ruth"],
+["Saul hunts David for years","“God delivered him not into his hand.”","1 Sam 23:14","david"],
+["Jehoram murders his brothers; raiders kill all his sons but one","The youngest survives, “because of the covenant that he had made with David.”","2 Chr 21:4, 7, 17","joram"],
+["Athaliah destroys the royal seed","Infant Joash hidden six years in the temple by Jehosheba and Jehoiada.","2 Kgs 11:1–3","uzziah"],
+["Haman's decree to destroy all Jews","Esther and Mordecai; the decree is countered.","Esth 3:13; 8:11","abiud"],
+["Exile, and a curse on Jeconiah's line","Jeconiah released; Zerubbabel made God's “signet.”","2 Kgs 25:27; Hag 2:23","zerubbabel"],
+["Herod kills Bethlehem's boys","Joseph warned in a dream; the child hidden in Egypt.","Matt 2:13–16","joseph"]
+];
+function renderNB(){
+  const el=document.getElementById("nb");
+  el.innerHTML=NB.map(([t,s,r,id],i)=>`<button class="box t" data-id="${id}"><div class="sub">${i+1} of ${NB.length}</div><div class="th"><b>Threat</b>${esc(t)}</div><div class="sv"><b>Preserved</b>${esc(s)}</div><div class="ref">${esc(r)} · ${esc(D[id][0])}</div></button>`).join("")+
+  `<div class="box" style="grid-column:1/-1;background:#2a2118;color:#f3e9d5;border:0"><div class="nm" style="color:#f3d98b">The dragon and the child</div><p>“The dragon stood before the woman… for to devour her child as soon as it was born. And she brought forth a man child, who was to rule all nations… and her child was caught up unto God, and to his throne.” (Rev 12:4–5)</p></div>`;
+  bind(el);
+}
+
+/* ================= WOMEN ================= */
+function wcard(id){const p=P(id);return `<button class="box w" data-id="${id}"><div class="nm">${esc(p.n)} ${tgs(p.tags.replace("W",""))}</div>${p.alt?`<div class="sub">${esc(p.alt)}</div>`:""}<p>${esc(p.note)}</p><div class="ref">${esc(p.ref)}</div></button>`}
+function renderWomen(){
+  document.getElementById("wm").innerHTML=["tamar","rahab","ruth","bathsheba","mary"].map(wcard).join("")+`<div class="box" style="grid-column:1/-1"><p style="margin:0">Rahab and Ruth were Gentiles, Tamar probably was, and Bathsheba's husband Uriah was a Hittite. Before Jesus is born, the genealogy already shows sinners and outsiders brought into the line by grace — the very people he came to save: “he shall save his people from their sins” (Matt 1:21).</p></div>`;
+  document.getElementById("wo").innerHTML=["eve","sarah","rebekah","leah","elisheba","elizabeth"].map(wcard).join("");
+  bind(document.getElementById("vw"));
+}
+
+
+/* ================= BRANCHES ================= */
+const BRANCH={
+cain:{t:"Cain's line",ref:"Genesis 4:17–24",intro:"The first genealogy in the Bible is the line that does not lead to Christ. It is set beside Seth's line on purpose.",
+list:[["Cain","murdered Abel; built the first city and named it after his son"],["Enoch","the city's namesake (not the Enoch who walked with God)"],["Irad",""],["Mehujael",""],["Methusael",""],["Lamech","took two wives, Adah and Zillah"],["Jabal · Jubal · Tubal-cain · Naamah","fathers of herding, music (harp and organ) and metalwork in bronze and iron"]],
+teach:"Cain's line builds cities, culture and technology, but ends in Lamech's boast: “If Cain shall be avenged sevenfold, truly Lamech seventy and sevenfold” (Gen 4:24). Jesus reverses it: forgive “until seventy times seven” (Matt 18:22). Seth's line records no achievements — only “and he died,” Enoch who walked with God, and men who “call upon the name of the LORD” (Gen 4:26). Two Enochs, two Lamechs, two ways of life."},
+nations:{t:"The Table of Nations",ref:"Genesis 10; 1 Chronicles 1:5–23",intro:"Seventy nations descend from Noah's three sons — the whole world that God would later promise to bless through Abraham.",
+list:[["Japheth — 14 nations","Gomer, Magog, Madai (the Medes), Javan (Greece), Tubal, Meshech, Tiras… “the isles of the Gentiles” (10:5)"],["Ham — 30 nations","Cush, Mizraim (Egypt), Phut, Canaan. Nimrod, “a mighty hunter before the LORD,” founded Babel and Nineveh (10:8–11)"],["Shem — 26 nations","Elam, Asshur (Assyria), Arphaxad, Lud, Aram. Through Eber came Peleg (Abraham's line) and Joktan (the Arabian tribes)"]],
+teach:"Genesis 10 comes before Babel and Abraham, so that when God says “in thee shall all families of the earth be blessed” (Gen 12:3), we already know who those families are. “When the most High divided to the nations their inheritance… he set the bounds of the people according to the number of the children of Israel” (Deut 32:8). The story ends with “a great multitude… of all nations, and kindreds, and people, and tongues” before the throne (Rev 7:9)."},
+ishmael:{t:"Ishmael and Keturah's sons",ref:"Genesis 25:1–4, 12–18; 1 Chronicles 1:28–33",intro:"Abraham's other sons are recorded before the story moves on to Isaac.",
+list:[["Ishmael's twelve princes","Nebajoth, Kedar, Adbeel, Mibsam, Mishma, Dumah, Massa, Hadar, Tema, Jetur, Naphish, Kedemah"],["Keturah's six sons","Zimran, Jokshan, Midian, Medan, Ishbak, Shuah"],["Midian","ancestor of the Midianites — including Jethro, Moses' father-in-law"]],
+teach:"God promised Abraham about Ishmael: “twelve princes shall he beget, and I will make him a great nation” (Gen 17:20) — and Genesis 25 shows it fulfilled. God keeps his word even to those outside the chosen line. Isaiah sees “the flocks of Kedar” coming “with acceptance on mine altar” (Isa 60:7)."},
+esau:{t:"Esau's line: Edom",ref:"Genesis 36; 1 Chronicles 1:35–54",intro:"Esau's descendants get a whole chapter: sons, chiefs (dukes) and kings.",
+list:[["Esau (Edom)","sons Eliphaz, Reuel, Jeush, Jalam, Korah"],["Eliphaz → Amalek","born of the concubine Timna; ancestor of the Amalekites, Israel's long enemy"],["The dukes of Edom","clan chiefs listed by name"],["Eight kings of Edom","“before there reigned any king over the children of Israel” (36:31)"]],
+teach:"Edom had kings centuries before Israel did; Jacob's line had to wait for God's timing. The rivalry runs the length of the Bible: Obadiah condemns Edom's pride, and Herod the Great — an Idumean, a descendant of Edom — tried to kill the newborn King of the Jews (Matt 2:16)."},
+seventy:{t:"The seventy into Egypt",ref:"Genesis 46:8–27; Exodus 1:1–5; Acts 7:14",intro:"Jacob's whole family, listed by mother, as they go down to Egypt.",
+list:[["Leah","Reuben, Simeon, Levi, Judah, Issachar, Zebulun, and Dinah"],["Zilpah","Gad, Asher"],["Rachel","Joseph (already in Egypt, with Manasseh and Ephraim), Benjamin"],["Bilhah","Dan, Naphtali"],["Total: 70 souls","Stephen says 75 (Acts 7:14), following the Greek Septuagint, which counts more of Joseph's descendants"]],
+teach:"Seventy people went down; a nation came out: “the children of Israel were fruitful, and increased abundantly, and multiplied” (Exod 1:7). Seventy in Egypt mirrors the seventy nations of Genesis 10 — Israel as a small picture of the whole world God means to bless."},
+chr3:{t:"David's house after the exile",ref:"1 Chronicles 3:1–24",intro:"Written after the exile, when there was no king. The Chronicler keeps David's line alive on paper — a statement of hope.",
+list:[["David's sons","six born in Hebron; in Jerusalem Shimea, Shobab, Nathan and Solomon by Bath-shua (Bathsheba), and nine more"],["Solomon → Josiah","the kings of Judah"],["Josiah's sons","Johanan, Jehoiakim, Zedekiah, Shallum"],["Jeconiah's seven sons","Salathiel, Malchiram, Pedaiah, Shenazar, Jecamiah, Hoshama, Nedabiah (3:17–18) — “childless” meant no son would reign (Jer 22:30)"],["Zerubbabel","here called son of Pedaiah (3:19), while Ezra and Haggai call him son of Shealtiel — perhaps by levirate marriage, or Shealtiel's heir"],["Meshullam, Hananiah, Shelomith…","Zerubbabel's children; Hananiah's line continues about six more generations"],["The seven sons of Elioenai","the last recorded members of David's house in the Old Testament (3:24)"]],
+teach:"Neither Matthew's Abiud nor Luke's Rhesa appears among Zerubbabel's children here — they may be other sons, or other names for the same men. Either way, Chronicles proves the house of David survived the exile, waiting for the King. The Old Testament ends, in the Hebrew order, with Chronicles: the throne empty, the line intact."},
+priests2:{t:"High priests after the exile",ref:"Nehemiah 12:10–11; Ezra 2:61–63",intro:"The Aaronic line continued after the return, but it had no king beside it.",
+list:[["Jeshua (Joshua)","high priest of the return"],["Joiakim",""],["Eliashib","high priest in Nehemiah's day; built the sheep gate (Neh 3:1)"],["Joiada",""],["Jonathan (Johanan)",""],["Jaddua","the last name in the list"]],
+teach:"Some priests returning from Babylon “sought their register among those that were reckoned by genealogy, but they were not found: therefore were they, as polluted, put from the priesthood” (Ezra 2:62). Under the law, a priest without a genealogy could not serve. That makes Hebrews 7:3 striking: Melchizedek, “without descent,” and Christ after his order, are priests by God's oath, not by a family record."}
+};
+const BRPILL={adam:"cain",noah:"nations",abraham:"ishmael",isaac:"esau",jacob:"seventy",zerubbabel:"chr3",david:"chr3"};
+const BRNAME={cain:"Cain's line",nations:"Table of Nations",ishmael:"Ishmael & Keturah",esau:"Esau / Edom",seventy:"The 70 into Egypt",chr3:"1 Chronicles 3",priests2:"Priests after the exile"};
+function openBranch(k){
+  const b=BRANCH[k]; cur=null; seq=[];
+  let h=`<div><span class="role branch" style="margin-left:0">Side branch</span></div><h2>${esc(b.t)}</h2><div class="alt">${esc(b.ref)}</div><p>${esc(b.intro)}</p><div class="blist">${b.list.map(([n,x])=>`<div><b>${esc(n)}</b>${x?`<br><span>${esc(x)}</span>`:""}</div>`).join("")}</div><div class="teach"><b>Why it is there</b>${esc(b.teach)}</div>`;
+  document.getElementById("sbody").innerHTML=h;
+  document.getElementById("sheet").scrollTop=0;document.getElementById("back").style.display="block";
+  requestAnimationFrame(()=>document.getElementById("sheet").classList.add("on"));
+  document.getElementById("prev").disabled=true;document.getElementById("next").disabled=true;
+}
+function bindBr(el){el.querySelectorAll("[data-br]").forEach(b=>b.onclick=e=>{e.stopPropagation();openBranch(b.dataset.br)})}
+
+/* ================= OT SOURCES ================= */
+const SRC=[
+["Genesis",[
+["Gen 4:17–24","Cain's line","Cain to Lamech's children","branch","The line that builds cities and ends in vengeance — a deliberate contrast to Seth's.","cain"],
+["Gen 4:25–5:32","“The book of the generations of Adam”","Adam to Noah, with ages","main","Ten generations; the refrain “and he died” eight times — broken by Enoch, whom God took.",""],
+["Gen 10","The Table of Nations","Noah's sons to 70 nations","branch","The world God will bless through Abraham, listed before Babel.","nations"],
+["Gen 11:10–26","The generations of Shem","Shem to Abram, with ages","main","Ten generations again; lifespans fall from 600 to 205.",""],
+["Gen 11:27–32; 22:20–24","Terah's and Nahor's families","Abram, Nahor, Haran, Lot; Rebekah's family","branch","Sets up the family Isaac and Jacob will marry into.",""],
+["Gen 25:1–18","Keturah's sons; Ishmael's twelve princes","Abraham's other sons","branch","God keeps his promise to Ishmael (Gen 17:20).","ishmael"],
+["Gen 35:22–26","Jacob's twelve sons","By mother: Leah, Rachel, Bilhah, Zilpah","tribes","The twelve tribes named for the first time together.",""],
+["Gen 36","The generations of Esau","Edom's sons, dukes and eight kings","branch","Edom had kings before Israel; the rivalry runs to Herod.","esau"],
+["Gen 46:8–27","The seventy into Egypt","Jacob's household","tribes","Seventy go down; a nation comes out (Exod 1:7).","seventy"]]],
+["Exodus to Ruth",[
+["Exod 6:14–25","Reuben, Simeon, Levi","To Moses, Aaron and Phinehas","pri","Placed in the middle of the Exodus story to establish who Moses and Aaron are.",""],
+["Num 3; 26","The Levites; the second census by clans","Every tribe's clans","tribes","The basis for dividing the land; the daughters of Zelophehad follow (Num 27).",""],
+["Ruth 4:18–22","The generations of Pharez","Perez to David, ten generations","main","A love story that ends in a genealogy: the book was always about David — and David's Son.",""]]],
+["Samuel and Kings",[
+["1 Sam 9:1; 14:49–51","Saul's family","Benjamin's royal family","branch","The first king's line, which God set aside.",""],
+["2 Sam 3:2–5; 5:13–16","David's sons","Born in Hebron and Jerusalem","main","Among them Solomon and Nathan — the two lines of Matthew and Luke.",""]]],
+["1 Chronicles 1–9",[
+["1 Chr 1","Adam to Israel and Edom","Genesis 5–36 in summary","main","Chronicles starts with Adam: Israel's story is part of humanity's story.",""],
+["1 Chr 2:1–4:23","Judah","The longest tribal record; includes David (2:13–15) and Caleb","main","Judah goes first because the King comes from Judah.",""],
+["1 Chr 3","David's royal line","Through the kings and past the exile","main","The house of David survives the exile, waiting for its King.","chr3"],
+["1 Chr 4:24–5:26","Simeon; Reuben, Gad and half-Manasseh","The southern and eastern tribes","tribes","The eastern tribes were carried off by Assyria “because they transgressed” (5:25–26).",""],
+["1 Chr 6","Levi","High priests (6:1–15), singers Heman, Asaph and Ethan, Levitical cities","pri","The priestly line at the centre of the tribal lists.",""],
+["1 Chr 7","Issachar, Benjamin, Naphtali, Manasseh, Ephraim, Asher","Including Joshua son of Nun (7:27)","tribes","Zebulun and Dan get no genealogy in 1 Chronicles 2–8.",""],
+["1 Chr 8","Benjamin","To Saul and Jonathan's descendants","tribes","Saul's line continues through Mephibosheth's son Micah (8:34).",""],
+["1 Chr 9","Those who resettled Jerusalem","Returnees: Israelites, priests, Levites, gatekeepers","ret","“So all Israel were reckoned by genealogies” (9:1) — the people's identity kept through exile.",""]]],
+["Ezra and Nehemiah",[
+["Ezra 2; Neh 7","The returnees from Babylon","42,360 by family and town","ret","Priests without a recorded genealogy were barred from serving (Ezra 2:62).","priests2"],
+["Ezra 7:1–5","Ezra's line","Ezra to Aaron, through Seraiah and Zadok","pri","The scribe of the return has impeccable priestly credentials.",""],
+["Ezra 10:18–44","Those who married foreign wives","Priests, Levites and laymen","ret","Lineage and faithfulness after the exile.",""],
+["Neh 11–12","Settlers of Jerusalem; priests and Levites","High priests Jeshua to Jaddua (12:10–11)","pri","The priesthood continues with no king beside it.","priests2"]]],
+["New Testament",[
+["Matt 1:1–17","The book of the generation of Jesus Christ","Abraham to Jesus, three sets of 14","nt","The royal line through Solomon.",""],
+["Luke 3:23–38","The genealogy of Jesus","Jesus back to Adam and God","nt","The line through Nathan, placed between Jesus' baptism and temptation.",""],
+["Heb 7:3","Melchizedek, “without descent”","A priest with no genealogy","nt","Christ's priesthood rests on God's oath, not a family record.",""],
+["1 Tim 1:4; Titus 3:9","“Endless genealogies”","A warning","nt","Paul warns against genealogies used for speculation and quarrels. The point of every list is the One it leads to.",""]]]
+];
+const RL={main:"Main line",branch:"Branch",pri:"Priestly",tribes:"Tribes",ret:"Return",nt:"New Testament"};
+function renderSrc(){
+  const el=document.getElementById("src");
+  el.innerHTML=SRC.map(([g,arr])=>`<h3 class="sgrp">${esc(g)}</h3>`+arr.map(([r,t,c,role,w,br])=>`<div class="src"><div class="r">${esc(r)}<span class="role ${role}">${RL[role]}</span></div><div class="t">${esc(t)}</div><div class="c">${esc(c)}</div><div class="w">${esc(w)}</div>${br?`<div class="pills"><span class="pill bx" data-br="${br}">Open: ${esc(BRNAME[br])} →</span></div>`:""}</div>`).join("")).join("");
+  bindBr(el);
+}
+
+
+/* ================= VISUALS ================= */
+let VSTEP=46;
+const nm=id=>id==="jesus"?"Jesus":D[id][0];
+function mapSVG(){
+  const X0=40, X=i=>X0+i*VSTEP, MY=270, LY=350, PY=470, MZ=585, H=650;
+  const pos={};
+  PRE.forEach((id,i)=>pos[id]=[X(i),MY]);
+  MT.slice(0,14).forEach((id,k)=>pos[id]=[X(32+(k+1)*21/15),MY]);
+  LK.slice(0,20).forEach((id,k)=>pos[id]=[X(33+k),LY]);
+  pos.shealtiel=[X(53),MY];pos.zerubbabel=[X(54),MY];
+  MT.slice(16,25).forEach((id,k)=>pos[id]=[X(54+(k+1)*19/10),MY]);
+  LK.slice(22,40).forEach((id,k)=>pos[id]=[X(55+k),LY]);
+  pos.joseph=[X(73.2),MY];pos.jesus=[X(74.8),MY];
+  const PLX={levi:22,kohath:23.6,amram:25,aaron:26.6,eleazar:27.8,phinehas:29,abishua:30.2,amariah1:31.3,zadok:32.7,ahimaaz:34.2,azariahS:35.8,amariah2:40.5,hilkiah:50.2,azariah3:50.9,seraiah:51.6,jehozadak:52.8,joshua:54};
+  const W=X(76)+40;
+  let g="";
+  // eras
+  const ER=[[0,9.5,"Creation to the Flood"],[9.5,18.5,"Flood to Abraham"],[18.5,22.5,"Patriarchs"],[22.5,29.5,"Egypt · Judges"],[29.5,32.5,"To David"],[32.5,52.5,"The Kings of Judah · Nathan's line"],[52.5,54.5,"Exile"],[54.5,72.6,"The silent centuries"],[72.6,76,"Christ"]];
+  ER.forEach(([a,b,t],i)=>{g+=`<rect x="${X(a)}" y="30" width="${X(b)-X(a)}" height="${H-40}" fill="${i%2?"#f3ece0":"#faf6ee"}"/><text x="${X(a)+6}" y="48" font-size="12" font-weight="700" fill="#6e604f">${t}</text>`});
+  // side branches
+  const BRS=[["adam","cain","Cain's line"],["noah","nations","Ham & Japheth · 70 nations"],["abraham","ishmael","Ishmael · Keturah"],["isaac","esau","Esau · Edom"],["jacob","seventy","11 tribes · 70 into Egypt"],["zerubbabel","chr3","1 Chronicles 3"]];
+  BRS.forEach(([id,k,t],i)=>{const [x,y]=pos[id];const ty=i%2?110:84;g+=`<g data-br="${k}"><path d="M${x} ${y} C ${x} ${y-70}, ${x+20} ${ty+20}, ${x+34} ${ty+8}" fill="none" stroke="#b9ad98" stroke-width="3" stroke-dasharray="1 0"/><circle cx="${x+34}" cy="${ty+8}" r="4" fill="#b9ad98"/><text x="${x+42}" y="${ty+12}" font-size="12" font-weight="600" fill="#6e604f">${t} ›</text></g>`});
+  // royal & luke lines
+  const pt=id=>pos[id];
+  const seg=(ids,col,w)=>{let d="";ids.forEach((id,i)=>{const [x,y]=pt(id);d+=(i?"L":"M")+x+" "+y+" "});return `<path d="${d}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`};
+  const curve=(a,b,col,w,dash)=>{const [x1,y1]=pt(a),[x2,y2]=pt(b);const mx=(x1+x2)/2;return `<path d="M${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}" fill="none" stroke="${col}" stroke-width="${w}" ${dash?'stroke-dasharray="6 6"':""}/>`};
+  // priestly
+  Object.entries(PLX).forEach(([k,v])=>pos["pl_"+k]=[X(v),PY]);
+  g+=`<path d="M${pos.jacob[0]} ${MY} C ${pos.jacob[0]} ${PY}, ${pos.pl_levi[0]-30} ${PY}, ${pos.pl_levi[0]} ${PY}" fill="none" stroke="var(--pri)" stroke-width="5"/>`;
+  g+=seg(Object.keys(PLX).map(k=>"pl_"+k),"var(--pri)",5);
+  const jx=pos.pl_joshua[0];
+  g+=`<g data-br="priests2"><path d="M${jx} ${PY} H ${X(58)}" stroke="var(--pri)" stroke-width="5" stroke-dasharray="3 5" opacity=".6"/><text x="${X(58)+8}" y="${PY+4}" font-size="12" font-weight="600" fill="var(--pri)">to Jaddua · no king beside it ›</text></g>`;
+  g+=`<text x="${X(56)}" y="${PY+30}" font-size="11.5" fill="#6e604f">Ezra 2:62 — no genealogy, no priesthood</text>`;
+  // melchizedek
+  const ab=pos.abraham[0], jz=pos.jesus;
+  g+=`<g data-pl="melchizedek"><path d="M${ab} ${MZ} H ${X(72)} C ${X(74.2)} ${MZ}, ${jz[0]} ${MZ-120}, ${jz[0]} ${MY+12}" fill="none" stroke="var(--pri)" stroke-width="3" stroke-dasharray="8 7"/><circle cx="${ab}" cy="${MZ}" r="9" fill="var(--card)" stroke="var(--pri)" stroke-width="3"/><text x="${ab-8}" y="${MZ+28}" font-size="13" font-weight="700" fill="var(--pri)">Melchizedek</text><text x="${ab+90}" y="${MZ-8}" font-size="12" fill="var(--pri)">Gen 14 · “without father, without mother, without descent” (Heb 7:3) — “a priest for ever after the order of Melchizedek” (Ps 110:4) ›</text></g>`;
+  g+=`<path d="M${ab} ${MY} V ${MZ-9}" stroke="var(--pri)" stroke-width="1.5" stroke-dasharray="2 4"/>`;
+  // royal
+  g+=seg(PRE,"var(--gold)",7);
+  g+=seg(["david"].concat(MT.slice(0,16)),"var(--gold)",7);
+  g+=seg(["zerubbabel"].concat(MT.slice(16)),"var(--gold)",7);
+  g+=curve("david","nathan","var(--pro)",6);
+  g+=seg(LK.slice(0,20),"var(--pro)",6);
+  g+=curve("neri","shealtiel","var(--pro)",6);
+  g+=curve("zerubbabel","rhesa","var(--pro)",6);
+  g+=seg(LK.slice(22,40),"var(--pro)",6);
+  g+=curve("heli","joseph","var(--pro)",6);
+  // stations
+  const stn=(id,below,col)=>{const [x,y]=pos[id];const th=THREAT[id],hg=HINGE[id];const big=id==="jesus";
+    let r=`<g data-id="${id}">`;
+    if(th)r+=`<circle cx="${x}" cy="${y}" r="12" fill="none" stroke="var(--threat)" stroke-width="2.5"/>`;
+    r+=hg&&!big?`<rect x="${x-7}" y="${y-7}" width="14" height="14" transform="rotate(45 ${x} ${y})" fill="var(--gold)" stroke="#fff" stroke-width="2"/>`:`<circle cx="${x}" cy="${y}" r="${big?13:6}" fill="${big?"var(--gold)":"#fff"}" stroke="${col}" stroke-width="3"/>`;
+    const lbl=nm(id);
+    r+=below?`<text x="${x+4}" y="${y+16}" transform="rotate(40 ${x+4} ${y+16})" font-size="11.5" fill="#43382c">${lbl}</text>`:`<text x="${x+3}" y="${y-14}" transform="rotate(-40 ${x+3} ${y-14})" font-size="${big?15:11.5}" font-weight="${big||D[id][5].includes("K")?700:500}" fill="#2a2118">${lbl}</text>`;
+    return r+"</g>"};
+  PRE.forEach(id=>g+=stn(id,false,"var(--gold)"));
+  MT.forEach(id=>g+=stn(id,false,"var(--gold)"));
+  LK.filter(id=>!["shealtiel","zerubbabel","joseph","jesus"].includes(id)).forEach(id=>g+=stn(id,true,"var(--pro)"));
+  Object.keys(PLX).forEach(k=>{const [x,y]=pos["pl_"+k];const e=PL.find(r=>r[0]===k);g+=`<g data-pl="${k}"><circle cx="${x}" cy="${y}" r="6" fill="#fff" stroke="var(--pri)" stroke-width="3"/><text x="${x+4}" y="${y+16}" transform="rotate(40 ${x+4} ${y+16})" font-size="11.5" fill="#1d5b58">${e[1].split(" · ")[0]}</text></g>`});
+  g+=`<text x="${X(33)}" y="${LY+90}" font-size="12" font-weight="700" fill="var(--pro)">Luke 3 · via Nathan</text><text x="${X(36)}" y="${MY-110}" font-size="12" font-weight="700" fill="var(--king)">Matthew 1 · via Solomon</text><text x="${pos.pl_levi[0]}" y="${PY+80}" font-size="12" font-weight="700" fill="var(--pri)">Priestly line · 1 Chronicles 6</text>`;
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="Inter,system-ui,sans-serif" role="img" aria-label="Line map of the genealogy from Adam to Christ">${g}</svg>`;
+}
+function renderMap(){const w=document.getElementById("mapwrap");const c=w.scrollLeft/(w.scrollWidth||1);w.innerHTML=mapSVG();w.scrollLeft=c*w.scrollWidth;bindSVG(w)}
+function bindSVG(el){
+  el.querySelectorAll("[data-id]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();seq=PRE.concat(mode==="M"?MT:LK);open(b.dataset.id)}));
+  el.querySelectorAll("[data-br]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openBranch(b.dataset.br)}));
+  el.querySelectorAll("[data-pl]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();openPL(b.dataset.pl)}));
+}
+document.getElementById("mzi").onclick=()=>{VSTEP=Math.min(80,VSTEP+10);renderMap()};
+document.getElementById("mzo").onclick=()=>{VSTEP=Math.max(30,VSTEP-8);renderMap()};
+function openPL(k){
+  cur=null;seq=[];let h;
+  if(k==="melchizedek"){h=`<div><span class="tg P">Priest-King</span></div><h2>Melchizedek</h2><div class="alt">Genesis 14:18–20 · Psalm 110:4 · Hebrews 5–7</div><p>King of Salem and “priest of the most high God.” He brought bread and wine to Abraham, blessed him, and received a tenth of everything. Scripture records no parents and no descendants.</p><div class="teach"><b>Why it matters</b>“Without father, without mother, without descent, having neither beginning of days, nor end of life; but made like unto the Son of God; abideth a priest continually” (Heb 7:3). Jesus is a priest not by Aaron's genealogy but by God's oath: “The Lord sware and will not repent, Thou art a priest for ever after the order of Melchisedec” (Heb 7:21).</div>`}
+  else{const e=PL.find(r=>r[0]===k);h=`<div><span class="tg P">Priest</span></div><h2>${esc(e[1])}</h2><div class="alt">${esc(e[2])}</div><p>${esc(e[3]||"Named in the high-priestly line of 1 Chronicles 6.")}</p>${e[5]?`<a class="go-btn" href="${KINGS_URL}#k-${k}" target="_blank" rel="noopener">Open on the Kings page →</a>`:""}`}
+  document.getElementById("sbody").innerHTML=h;document.getElementById("sheet").scrollTop=0;document.getElementById("back").style.display="block";
+  requestAnimationFrame(()=>document.getElementById("sheet").classList.add("on"));document.getElementById("prev").disabled=true;document.getElementById("next").disabled=true;
+}
+/* lifespans */
+const LIFE=[["adam",0,930,130],["seth",130,1042,105],["enosh",235,1140,90],["kenan",325,1235,70],["mahalalel",395,1290,65],["jared",460,1422,162],["enoch",622,987,65],["methuselah",687,1656,187],["lamech",874,1651,182],["noah",1056,2006,502],["shem",1558,2158,100],["arphaxad",1658,2096,35],["shelah",1693,2126,30],["eber",1723,2187,34],["peleg",1757,1996,30],["reu",1787,2026,32],["serug",1819,2049,30],["nahor",1849,1997,29],["terah",1878,2083,130],["abraham",2008,2183,100],["isaac",2108,2288,60],["jacob",2168,2315,0]];
+const LEV=[[1656,"The flood"],[1757,"Peleg born: “the earth divided”"],[2083,"Abram leaves Haran"]];
+let lyear=1656;
+function lifeSVG(){
+  const SC=0.6, L=16, X=y=>L+y*SC, RH=26, T=92, W=X(2350)+20, H=T+LIFE.length*RH+20;
+  let g="";
+  for(let y=0;y<=2300;y+=100){g+=`<line x1="${X(y)}" x2="${X(y)}" y1="${T-8}" y2="${H-10}" stroke="#eee6d6"/><text x="${X(y)+3}" y="${T-14}" font-size="11" fill="#6e604f">${y}</text>`}
+  LEV.forEach(([y,t],i)=>{const ly=16+i*18;g+=`<line x1="${X(y)}" x2="${X(y)}" y1="${ly-11}" y2="${H-10}" stroke="var(--threat)" stroke-width="1.5" stroke-dasharray="4 4"/><rect x="${X(y)+3}" y="${ly-12}" width="${(String(y).length+3+t.length)*6.4+8}" height="16" rx="4" fill="#fffcf6"/><text x="${X(y)+7}" y="${ly}" font-size="11.5" font-weight="700" fill="var(--threat)">${y} · ${t}</text>`});
+  LIFE.forEach(([id,b,d,son],i)=>{const y=T+i*RH;const w=(d-b)*SC;const taken=id==="enoch";
+    g+=`<g data-id="${id}"><rect x="${X(b)}" y="${y}" width="${w}" height="18" rx="5" fill="${taken?"#f3ece0":"#efe2bf"}" stroke="var(--gold)" stroke-width="1.2" ${taken?'stroke-dasharray="4 3"':""}/>`;
+    if(son)g+=`<line x1="${X(b+son)}" x2="${X(b+son)}" y1="${y-1}" y2="${y+19}" stroke="var(--king)" stroke-width="2"/>`;
+    g+=`<text x="${X(b)+6}" y="${y+13}" font-size="12" font-weight="700" fill="#2a2118">${nm(id)}</text><text x="${X(d)+5}" y="${y+13}" font-size="11" fill="#6e604f">${d-b}${taken?" · taken":""}</text></g>`});
+  g+=`<line id="lcur" x1="${X(lyear)}" x2="${X(lyear)}" y1="${T-8}" y2="${H-10}" stroke="#2a2118" stroke-width="2"/>`;
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" font-family="Inter,system-ui,sans-serif" role="img" aria-label="Lifespans from Adam to Jacob">${g}</svg>`;
+}
+function renderLife(){const w=document.getElementById("lifewrap");w.innerHTML=lifeSVG();bindSVG(w);setLY(lyear);w.scrollLeft=16+lyear*0.6-w.clientWidth/2;}
+function setLY(y){lyear=Math.max(0,Math.min(2315,y));document.getElementById("lsl").value=lyear;document.getElementById("lyr").textContent="Year "+lyear+" from creation";
+  const c=document.getElementById("lcur");if(c){const x=16+lyear*0.6;c.setAttribute("x1",x);c.setAttribute("x2",x)}
+  const ev=LEV.find(e=>Math.abs(e[0]-lyear)<=2);document.getElementById("lev").textContent=ev?ev[1]:"Alive this year";
+  const al=LIFE.filter(([id,b,d])=>b<=lyear&&lyear<=d);
+  const el=document.getElementById("alive");el.innerHTML=al.length?al.map(([id,b])=>`<span class="pill" data-id="${id}">${nm(id)} · age ${lyear-b}</span>`).join(""):'<span class="pill br">No one in this list</span>';bind(el);}
+document.getElementById("lsl").oninput=e=>setLY(+e.target.value);
+document.getElementById("lym").onclick=()=>setLY(lyear-10);document.getElementById("lyp").onclick=()=>setLY(lyear+10);
+const INS=[["Methuselah knew Adam and Noah","He was 243 when Adam died and lived 600 years alongside Noah. Three lives — Adam, Methuselah, Noah — span creation to the flood.",930],
+["Methuselah died in the year of the flood","By Genesis 5's numbers he died in year 1656, the year the flood came (Gen 7:6). His father Lamech had died five years earlier.",1656],
+["Lamech knew Adam","Noah's father was 56 when Adam died. The account of Eden was one conversation away from Noah.",900],
+["Noah outlived Peleg and Nahor","Peleg and Nahor, both born after the flood, died before Noah did. Noah died in year 2006, just two years before Abram was born.",2000],
+["Shem outlived Abraham's father","Shem, who survived the flood, was still alive when Isaac was born — he died when Abraham was 150.",2150],
+["Eber outlived Abraham","Eber, from whom the Hebrews may take their name, died four years after Abraham, when Jacob was 19.",2185]];
+function renderIns(){const el=document.getElementById("insights");el.innerHTML=INS.map(([t,x,y])=>`<button class="box" data-y="${y}"><div class="nm" style="font-size:18px">${esc(t)}</div><p>${esc(x)}</p><div class="ref">Show year ${y} ›</div></button>`).join("");el.querySelectorAll("[data-y]").forEach(b=>b.onclick=()=>{setLY(+b.dataset.y);const w=document.getElementById("lifewrap");w.scrollTo({left:16+lyear*0.6-w.clientWidth/2,behavior:"smooth"});w.scrollIntoView({behavior:"smooth",block:"center"})})}
+document.querySelectorAll("#vseg button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#vseg button").forEach(x=>x.classList.toggle("on",x===b));document.getElementById("vmap").style.display=b.dataset.s==="map"?"":"none";document.getElementById("vlife").style.display=b.dataset.s==="life"?"":"none";if(b.dataset.s==="life")renderLife();});
+
+/* ================= SHEET ================= */
+let cur=null, seq=[];
+function bind(el){el.querySelectorAll("[data-id]").forEach(b=>b.onclick=e=>{e.stopPropagation();const v=document.querySelector(".view.on").id;seq=v==="vl"?curList:v==="vm"?PRE.concat(mode==="M"?MT:LK):v==="vw"?["tamar","rahab","ruth","bathsheba","mary","eve","sarah","rebekah","leah","elisheba","elizabeth"]:[];open(b.dataset.id)})}
+function open(id){
+  cur=id; const p=P(id);
+  const inM=PRE.slice(19).includes(id)||MT.includes(id), inL=PRE.includes(id)||LK.includes(id);
+  const gm=PRE.concat(MT).indexOf(id), gl=PRE.concat(LK).indexOf(id);
+  const w=Object.entries(WOMEN).filter(([k,v])=>v.some(x=>x[0]===id)).map(([k,v])=>k);
+  let h=`<div>${tgs(p.tags)}</div><h2>${esc(p.n)}</h2>${p.alt?`<div class="alt">${esc(p.alt)}</div>`:""}
+  <div class="facts">${p.life?`<div><small>Life / reign</small><b>${esc(p.life)}</b></div>`:""}<div><small>Read</small><b>${esc(p.ref)}</b></div>
+  ${gm>=0||gl>=0?`<div><small>Generation from Adam</small><b>${gm>=0&&gl>=0&&gm!==gl?`${gm+1} (Matthew's line) · ${gl+1} (Luke's)`:(Math.max(gm,gl)+1)}</b></div>`:""}
+  ${(inM||inL)&&!p.tags.includes("W")?`<div><small>Named in</small><b>${[inM?"Matthew 1":"",inL?"Luke 3":""].filter(Boolean).join(" & ")}</b></div>`:""}</div>
+  <p>${esc(p.note||"Named in the genealogy.")}</p>`;
+  if(HINGE[id])h+=`<div class="hinge"><b>Promise · ${esc(HINGE[id][0])}</b>${esc(HINGE[id][1])}</div>`;
+  if(THREAT[id])h+=`<div class="threat"><b>Near break</b>${esc(THREAT[id][0])} (${esc(THREAT[id][1])})</div>`;
+  if(BR[id])h+=`<h3>Other children</h3><p>${esc(BR[id])}</p>`;
+  if(BRPILL[id])h+=`<div class="pills"><span class="pill bx" data-br="${BRPILL[id]}">Open branch: ${esc(BRNAME[BRPILL[id]])} →</span></div>`;
+  const ws=(WOMEN[id]||[]);
+  if(ws.length)h+=`<h3>Women of the line</h3><div class="pills">${ws.map(([wid,rel])=>`<span class="pill w" data-id="${wid}">${rel}: ${esc(D[wid][0])}</span>`).join("")}</div>`;
+  if(w.length)h+=`<h3>In the line</h3><div class="pills">${[...new Set(w)].map(k=>`<span class="pill" data-id="${k}">${esc(D[k][0])}</span>`).join("")}</div>`;
+  if(p.kid)h+=`<a class="go-btn" href="${KINGS_URL}#k-${p.kid}" target="_blank" rel="noopener">Open ${esc(p.n)} on the Kings page →</a>`;
+  if(id==="jesus")h+=`<a class="go-btn" href="${KINGS_URL}#christ" target="_blank" rel="noopener">Fulfilled in Christ →</a>`;
+  const sb=document.getElementById("sbody"); sb.innerHTML=h;
+  sb.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>open(b.dataset.id));
+  bindBr(sb);
+  document.getElementById("sheet").scrollTop=0;
+  document.getElementById("back").style.display="block";
+  requestAnimationFrame(()=>document.getElementById("sheet").classList.add("on"));
+  const i=seq.indexOf(id); document.getElementById("prev").disabled=i<=0; document.getElementById("next").disabled=i<0||i>=seq.length-1;
+}
+function closeS(){document.getElementById("sheet").classList.remove("on");document.getElementById("back").style.display="none"}
+document.getElementById("close").onclick=closeS;document.getElementById("back").onclick=closeS;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeS()});
+document.getElementById("prev").onclick=()=>{const i=seq.indexOf(cur);if(i>0)open(seq[i-1])};
+document.getElementById("next").onclick=()=>{const i=seq.indexOf(cur);if(i>=0&&i<seq.length-1)open(seq[i+1])};
+
+/* ================= TABS ================= */
+function tab(v){document.querySelectorAll("nav.tabs button").forEach(x=>x.classList.toggle("on",x.dataset.v===v));document.querySelectorAll(".view").forEach(s=>s.classList.toggle("on",s.id===v));window.scrollTo({top:0});}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>tab(b.dataset.v));
+
+renderLine();renderCmp();renderPriests();renderNB();renderWomen();renderSrc();renderMap();renderIns();
+</script>
+</body>
+</html>

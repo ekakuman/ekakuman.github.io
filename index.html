@@ -10,35 +10,111 @@
 @media (prefers-color-scheme:dark){:root{--bg:#1a1715;--card:#24201d;--ink:#efe8df;--muted:#b3a89c;--line:#3a332d;--accent:#e0a37c}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Source Sans 3","Noto Sans Telugu",system-ui,sans-serif}
-main{max-width:860px;margin:0 auto;padding:40px 20px 60px}
+main{max-width:980px;margin:0 auto;padding:40px 20px 60px}
 h1{font-family:Fraunces,Georgia,serif;font-size:clamp(28px,5vw,40px);margin:0 0 4px}
+h2.group{font-family:Fraunces,Georgia,serif;font-size:20px;margin:34px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h2.group span{font-family:"Noto Sans Telugu",sans-serif;font-size:15px;color:var(--muted);font-weight:600;margin-left:8px}
 .te{font-family:"Noto Sans Telugu",sans-serif}
-.sub{color:var(--muted);margin:0 0 28px}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.sub{color:var(--muted);margin:0}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
 a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:14px;padding:18px;transition:transform .15s}
 a.card:hover{transform:translateY(-2px)}
-.card h2{font-family:Fraunces,Georgia,serif;font-size:20px;margin:0 0 2px}
+.card h3{font-family:Fraunces,Georgia,serif;font-size:19px;margin:0 0 2px;line-height:1.25}
 .card .te{color:var(--accent);font-weight:600;font-size:15px}
 .card p{color:var(--muted);margin:8px 0 0;font-size:15px}
-footer{color:var(--muted);font-size:13.5px;text-align:center;margin-top:36px}
+footer{color:var(--muted);font-size:13.5px;text-align:center;margin-top:40px}
 </style>
 </head>
 <body>
 <main>
   <h1>Bible Studies</h1>
   <p class="sub"><span class="te">బైబిలు అధ్యయనములు</span> · Scripture explaining Scripture</p>
+
+  <h2 class="group">God's Plan and Purpose<span>దేవుని ప్రణాళిక</span></h2>
   <div class="grid">
+    <a class="card" href="divineblueprint/">
+      <h3>Divine Blueprint Map</h3>
+      <div class="te">దైవ ప్రణాళిక పటము</div>
+      <p>Five stages (Purpose, Provision, People, Goal, Consummation) traced across Scripture, with themes and a guide for living the blueprint.</p>
+    </a>
     <a class="card" href="in-him/">
-      <h2>In Him</h2>
+      <h3>In Him</h3>
       <div class="te">ఆయనయందు</div>
       <p>Types of Christ, His three offices, God's eternal purpose, and our walk.</p>
     </a>
+    <a class="card" href="thekingdomofgod/">
+      <h3>The Kingdom: When, Who, How</h3>
+      <div class="te">దేవుని రాజ్యము</div>
+      <p>The kingdom of God traced through Scripture: God's intention, man's response, and the questions of when, who and how.</p>
+    </a>
+    <a class="card" href="ascending-and-descending/">
+      <h3>Ascending and Descending</h3>
+      <div class="te">ఎక్కుట, దిగుట</div>
+      <p>How heaven and earth connect in Scripture: God's initiative, angelic activity, what rises from earth, and the spiritual battle.</p>
+    </a>
+  </div>
+
+  <h2 class="group">Christ in the Old Testament<span>పాత నిబంధనలో క్రీస్తు</span></h2>
+  <div class="grid">
+    <a class="card" href="shadow-and-substance/">
+      <h3>Shadow &amp; Substance</h3>
+      <div class="te">ఛాయ, నిజస్వరూపము</div>
+      <p>Prophets, priests and kings fulfilled in Christ, in English and Telugu.</p>
+    </a>
+    <a class="card" href="kings-prophets-priests/">
+      <h3>Kings, Prophets &amp; Priests of Israel and Judah</h3>
+      <div class="te">రాజులు, ప్రవక్తలు, యాజకులు</div>
+      <p>From Saul to the fall of Jerusalem: every king, the prophets God sent to them, and the priests who served alongside them.</p>
+    </a>
+    <a class="card" href="genealogies-to-christ/">
+      <h3>Genealogies to Christ</h3>
+      <div class="te">క్రీస్తు వరకు వంశావళులు</div>
+      <p>The promise of Genesis 3:15 carried through real families: the royal line, the priestly line, and the prophets.</p>
+    </a>
+  </div>
+
+  <h2 class="group">The Church and Its Walk<span>సంఘము, నడక</span></h2>
+  <div class="grid">
     <a class="card" href="church-in-scripture/">
-      <h2>The Church According to Scripture</h2>
+      <h3>The Church According to Scripture</h3>
       <div class="te">లేఖనాల ప్రకారం సంఘము</div>
       <p>Body, gifts, offices and ministries — the text held up against today's practice.</p>
     </a>
+    <a class="card" href="churchtraditions/">
+      <h3>Four Traditions</h3>
+      <div class="te">నాలుగు సంప్రదాయాలు</div>
+      <p>Evangelical, Latter-day Saint, Jehovah's Witness and Roman Catholic beliefs compared side by side.</p>
+    </a>
+    <a class="card" href="family-yeilding/">
+      <h3>The Family Yielding Process</h3>
+      <div class="te">కుటుంబములో లోబడుట</div>
+      <p>An interactive view of how each family member's choice to yield shapes the harmony of the home.</p>
+    </a>
   </div>
+
+  <h2 class="group">The Unseen World and Man<span>అదృశ్య లోకము, మనుష్యుడు</span></h2>
+  <div class="grid">
+    <a class="card" href="angelsinscriptures/">
+      <h3>Angels in Scripture</h3>
+      <div class="te">దేవదూతలు</div>
+      <p>The heavenly orders, their work among nations and people, and the fallen angels. KJV and Telugu.</p>
+    </a>
+    <a class="card" href="body-soul-spirit/">
+      <h3>Spirit · Soul · Body</h3>
+      <div class="te">ఆత్మ · ప్రాణము · దేహము</div>
+      <p>Every combination of body, soul and spirit in Scripture, Clarence Larkin's threefold chart, and earthly vs spiritual contrasts.</p>
+    </a>
+  </div>
+
+  <h2 class="group">Prayer<span>ప్రార్థన</span></h2>
+  <div class="grid">
+    <a class="card" href="prayers-promises/">
+      <h3>Prayers &amp; Promises for Every Occasion</h3>
+      <div class="te">ప్రార్థనలు, వాగ్దానములు</div>
+      <p>Scripture-anchored prayers and God's promises for every occasion of life, short and detailed, in English and Telugu.</p>
+    </a>
+  </div>
+
   <footer>Read every reference in its chapter before teaching it.</footer>
 </main>
 </body>

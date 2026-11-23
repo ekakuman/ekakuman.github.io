@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shadow &amp; Substance — Prophets, Priests &amp; Kings Fulfilled in Christ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5efe3;--card:#fffcf6;--ink:#2a2118;--muted:#6e604f;--line:#e3d8c4;--soft:#efe6d5;
+  --good:#2e7a57;--evil:#a3322c;--mixed:#b9831a;--none:#8a8174;
+  --isr:#365d8c;--jud:#8b5a28;--uni:#5f6b3a;--pro:#5a4796;--pri:#2d6f73;--ev:#3d3328;
+  --earth:#8a6f57;--earthbg:#f1e8dc;--eter:#9a7414;--eterbg:#fbf3dc;--christ:#2a2118;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans Telugu",system-ui,sans-serif;font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%}
+h1,h2,h3,.serif{font-family:"Cormorant Garamond","Noto Sans Telugu",Georgia,serif}
+svg{font-family:Inter,"Noto Sans Telugu",sans-serif}
+button{font:inherit;color:inherit;cursor:pointer}
+header{padding:18px 16px 4px;max-width:1150px;margin:0 auto}
+header h1{font-size:31px;line-height:1.05;margin:0 0 4px;font-weight:700}
+header p{margin:0;color:var(--muted);font-size:13.5px;max-width:760px}
+nav.tabs{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.tabs .in{max-width:1150px;margin:0 auto;padding:8px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.tabrow{display:flex;gap:4px;flex:1 1 420px}
+.tabrow button{flex:1;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 6px;font-weight:600;font-size:13px;white-space:nowrap}
+.tabrow button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.lens{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card);flex:0 0 auto}
+.lens button{border:0;background:none;padding:7px 11px;font-size:12.5px;font-weight:600}
+.lens button.on[data-l=earthly]{background:var(--earth);color:#fff}
+.lens button.on[data-l=both]{background:var(--ink);color:#fff}
+.lens button.on[data-l=eternal]{background:var(--eter);color:#fff}
+main{max-width:1150px;margin:0 auto;padding:12px 12px 70px}
+.view{display:none}.view.on{display:block}
+.intro{font-size:13.5px;color:var(--muted);margin:2px 2px 12px;max-width:820px}
+.k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.ref{font-size:12px;color:var(--muted)}
+.pill{display:inline-block;font-size:11px;font-weight:600;border-radius:999px;padding:1px 8px;border:1px solid var(--line);background:var(--soft);color:var(--muted);margin:0 4px 4px 0}
+.pill.t{background:var(--eterbg);border-color:#ead9a6;color:var(--eter);cursor:pointer}
+/* earthly/eternal blocks */
+.ee{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.ee>div{border-radius:10px;padding:8px 10px;font-size:13px;transition:opacity .25s,filter .25s}
+.ee .earthly{background:var(--earthbg);border-left:3px solid var(--earth)}
+.ee .eternal{background:var(--eterbg);border-left:3px solid var(--eter)}
+.ee .k{display:block;margin-bottom:2px}
+.ee .earthly .k{color:var(--earth)}.ee .eternal .k{color:var(--eter)}
+body.l-earthly .eternal,body.l-earthly .dim-earthly{opacity:.28;filter:saturate(.3)}
+body.l-eternal .earthly,body.l-eternal .dim-eternal{opacity:.28;filter:saturate(.3)}
+.limit{font-size:12.5px;color:var(--muted);margin-top:6px}
+.limit b{color:var(--evil);font-weight:600}
+@media(max-width:620px){.ee{grid-template-columns:1fr}}
+/* offices */
+.diagram{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;margin-bottom:14px}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram .node{cursor:pointer}
+.diagram .node:hover rect,.diagram .node:hover circle{stroke-width:2.5}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.col h2{font-size:25px;margin:0;line-height:1.1}
+.colhead{border-radius:14px;padding:12px 14px;color:#fff;margin-bottom:10px;cursor:pointer}
+.colhead p{margin:4px 0 0;font-size:13px;opacity:.92}
+.colhead .q{font-family:"Cormorant Garamond","Noto Sans Telugu",serif;font-size:17px;font-style:italic;margin-top:6px;line-height:1.25}
+.colhead.prophet{background:var(--pro)}.colhead.priest{background:var(--pri)}.colhead.king{background:var(--jud)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:9px;cursor:pointer;position:relative}
+.card:hover{border-color:#cdbb9c}
+.card h3{font-size:20px;margin:0;line-height:1.1}
+.card .meta{font-size:12px;color:var(--muted)}
+.card .typeflag{position:absolute;top:9px;right:10px;font-size:10.5px;font-weight:700;color:var(--eter);background:var(--eterbg);border:1px solid #ead9a6;border-radius:999px;padding:0 7px}
+.card .ctr{position:absolute;top:9px;right:10px;font-size:10.5px;font-weight:700;color:var(--evil);background:#f8e7e4;border:1px solid #eac7c2;border-radius:999px;padding:0 7px}
+.colfilter{display:flex;gap:6px;flex-wrap:wrap;margin:0 2px 12px}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 11px;font-size:12.5px;font-weight:600}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.christbar{background:var(--christ);color:#fbf3dc;border-radius:14px;padding:14px 16px;margin:6px 0 14px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.christbar h3{font-size:21px;margin:0 0 3px;color:#f1d98a}
+.christbar p{margin:0;font-size:13px;opacity:.9}
+@media(max-width:760px){.christbar{grid-template-columns:1fr}}
+/* timeline */
+.toolbar{display:flex;align-items:center;gap:8px;margin:0 2px 8px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.toolbar button{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:4px 10px;font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted);margin:2px 2px 8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-2px}
+.tlwrap{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:auto;position:relative;-webkit-overflow-scrolling:touch}
+.tl{position:relative}
+.trow{position:relative;border-top:1px solid var(--soft);transition:opacity .25s,filter .25s}
+.trow .lab{position:sticky;left:0;z-index:5;width:104px;height:100%;position:absolute;background:linear-gradient(90deg,var(--card) 80%,rgba(255,252,246,0));font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 8px;line-height:1.2}
+.trow.eternalrow{background:linear-gradient(180deg,#fdf7e6,#fbf1d4)}
+.trow.eternalrow .lab{background:linear-gradient(90deg,#fcf4dd 80%,rgba(252,244,221,0));color:var(--eter)}
+.it{position:absolute;height:22px;font-size:11.5px;white-space:nowrap;cursor:pointer;display:flex;align-items:center}
+.it .bar{position:absolute;left:0;top:3px;height:16px;border-radius:4px}
+.it .tx{position:relative;padding:0 5px;font-weight:600;color:#fff;text-shadow:0 0 2px rgba(0,0,0,.25)}
+.it.out .tx{color:var(--ink);text-shadow:none}
+.it.pt .dot{width:11px;height:11px;transform:rotate(45deg);border-radius:2px;margin:0 4px 0 -5px;flex:0 0 auto}
+.it.pt .tx{color:var(--ink);text-shadow:none;padding-left:2px}
+.it .star{position:absolute;top:-4px;left:-3px;width:9px;height:9px;border-radius:50%;background:#f1c94a;border:1.5px solid var(--eter);z-index:2}
+.axis{position:sticky;top:0;z-index:6;height:24px;background:var(--card);border-bottom:1px solid var(--line)}
+.axis span{position:absolute;top:4px;font-size:10.5px;color:var(--muted);transform:translateX(-50%)}
+.gl{position:absolute;top:24px;bottom:0;width:1px;background:var(--soft);pointer-events:none}
+.endcap{font-family:"Cormorant Garamond","Noto Sans Telugu",serif;position:absolute;top:24px;bottom:0;background:linear-gradient(90deg,rgba(42,33,24,0),rgba(42,33,24,.92) 30%);color:#f1d98a;display:flex;align-items:center;justify-content:flex-end;padding-right:14px;font-family:"Cormorant Garamond",serif;font-size:19px;font-weight:700;text-align:right;line-height:1.15;cursor:pointer}
+body.l-earthly .trow.eternalrow{opacity:.3;filter:saturate(.2)}
+body.l-eternal .trow.earthrow{opacity:.3;filter:saturate(.2)}
+.tlnote{font-size:12.5px;color:var(--muted);margin:8px 2px}
+/* types */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:10px}
+.tcard h3{font-size:20px}
+.tcard .refs{font-size:12px;color:var(--muted);margin-top:2px}
+/* contrast */
+.chartbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:14px}
+.chartbox h2{font-size:22px;margin:0 0 2px}
+.chartbox svg{width:100%;height:auto;display:block}
+.ctable{display:grid;gap:8px}
+.crow{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.crow h3{font-size:20px;margin:0}
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(30,22,14,.38);z-index:40;display:none}
+.sheet{position:fixed;z-index:41;background:var(--card);display:none;overflow:auto;box-shadow:0 10px 40px rgba(0,0,0,.25)}
+@media(min-width:821px){.sheet{top:0;right:0;bottom:0;width:470px;border-left:1px solid var(--line)}}
+@media(max-width:820px){.sheet{left:0;right:0;bottom:0;max-height:86vh;border-radius:18px 18px 0 0}}
+.sheet.on,.scrim.on{display:block}
+.sheet .hd{position:sticky;top:0;background:var(--card);padding:14px 16px 8px;border-bottom:1px solid var(--line);z-index:2}
+.sheet .hd h2{margin:0;font-size:28px;line-height:1.05}
+.sheet .x{position:absolute;right:12px;top:12px;border:1px solid var(--line);background:var(--soft);border-radius:999px;width:32px;height:32px;font-size:18px;line-height:1}
+.sheet .bd{padding:10px 16px 30px}
+.sheet .bd .ee{grid-template-columns:1fr}
+.sheet h4{margin:14px 0 4px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sheet .lnk{display:inline-block;border:1px solid var(--line);background:var(--soft);border-radius:8px;padding:2px 8px;margin:0 4px 5px 0;font-size:12.5px;cursor:pointer}
+.sheet .lnk.pro{border-left:3px solid var(--pro)}.sheet .lnk.pri{border-left:3px solid var(--pri)}.sheet .lnk.isr{border-left:3px solid var(--isr)}.sheet .lnk.jud{border-left:3px solid var(--jud)}.sheet .lnk.uni{border-left:3px solid var(--uni)}.sheet .lnk.typ{border-left:3px solid var(--eter)}
+.verdict{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:1px 8px;color:#fff;margin-left:4px;vertical-align:3px}
+footer{max-width:1150px;margin:0 auto;padding:0 14px 30px;font-size:12px;color:var(--muted)}
+/* ---- new tabs ---- */
+.te{font-family:"Noto Sans Telugu",Inter,sans-serif}
+.tabrow{overflow-x:auto;scrollbar-width:none;flex:1 1 600px}
+.tabrow::-webkit-scrollbar{display:none}
+.tabrow button{flex:0 0 auto;padding:5px 13px;line-height:1.15}
+.tabrow button small{display:block;font-family:"Noto Sans Telugu",sans-serif;font-weight:500;font-size:10.5px;opacity:.75}
+.lens button small{display:block;font-family:"Noto Sans Telugu",sans-serif;font-weight:500;font-size:10px;opacity:.8}
+body.l-earthly .is-eternal{opacity:.22;filter:saturate(.3)}
+body.l-eternal .is-earthly{opacity:.22;filter:saturate(.3)}
+.h2te{font-size:15px;color:var(--muted);font-weight:500;margin-left:6px}
+.svgwrap{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:auto;-webkit-overflow-scrolling:touch}
+.svgwrap svg{display:block}
+#metroBox .ln{cursor:pointer;transition:opacity .2s}
+#metroBox.sel .ln{opacity:.12}#metroBox.sel .ln.on{opacity:1}
+.chips2{display:flex;flex-wrap:wrap;gap:6px;margin:0 2px 10px}
+.chips2 button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px}
+.chips2 button i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.chips2 button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.rest{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.rest h3{font-size:22px;margin:0;line-height:1.1}
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:8px}
+.chain>div{border-radius:10px;padding:7px 9px;font-size:12.5px;position:relative;transition:opacity .25s,filter .25s}
+.chain .k{display:block;margin-bottom:2px;font-size:10px}
+.chain .k .te{text-transform:none;letter-spacing:0;font-weight:500}
+.chain .r{display:block;color:var(--muted);font-size:11.5px;margin-top:3px}
+.c0{background:#f6e3df;border-left:3px solid var(--evil)}.c0 .k{color:var(--evil)}
+.c1{background:var(--earthbg);border-left:3px solid var(--earth)}.c1 .k{color:var(--earth)}
+.c2{background:#2a2118;color:#fbf3dc}.c2 .k{color:#f1d98a}.c2 .r{color:#d9ccb0}
+.c3{background:#e5f0ea;border-left:3px solid var(--good)}.c3 .k{color:var(--good)}
+.c4{background:var(--eterbg);border-left:3px solid var(--eter)}.c4 .k{color:var(--eter)}
+@media(max-width:820px){.chain{grid-template-columns:1fr}}
+.views{background:var(--card);border:2px solid var(--mixed);border-radius:14px;padding:12px 14px;margin:6px 0 14px}
+.views h3{font-size:23px;margin:0}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.vgrid>div{background:var(--soft);border-radius:10px;padding:9px 11px;font-size:12.8px}
+.vgrid h4{margin:0 0 3px;font-size:14px}
+.vgrid .who{font-size:11.5px;color:var(--muted);margin-bottom:4px}
+.common{margin-top:8px;font-size:12.8px;background:#e5f0ea;border-radius:10px;padding:8px 11px}
+@media(max-width:820px){.vgrid{grid-template-columns:1fr}}
+.gwrap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px;align-items:start}
+@media(max-width:860px){.gwrap{grid-template-columns:1fr}}
+.gsvg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px}
+.gsvg svg{width:100%;height:auto;display:block}
+.gsvg .ring{cursor:pointer}.gsvg .ring:hover{filter:brightness(1.06)}
+.steps{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.steps h3{font-size:22px;margin:0 0 6px}
+.steps ol{margin:0;padding-left:20px;font-size:13.5px}
+.steps li{margin-bottom:8px}
+.steps li .r{color:var(--muted);font-size:12px}
+.seedside{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:13px;margin-top:12px}
+
+/* ---- language ---- */
+body.lang-te .colhead .q{font-style:normal;font-size:15px}
+.tl{display:block;font-size:.93em;color:var(--muted);margin-top:3px;line-height:1.55}
+.ti{font-size:.72em;color:var(--muted);font-weight:500;font-family:"Noto Sans Telugu",sans-serif}
+.christbar .tl,.c2 .tl,.colhead .tl,.colhead .ti,.christbar .ti,.c2 .ti{color:inherit;opacity:.85}
+.chip.on .ti,.chips2 button.on .ti{color:inherit;opacity:.8}
+body.lang-te{line-height:1.7}
+body.lang-te .te{font-size:.97em}
+body.lang-te h3 .te,body.lang-te h2 .te{font-family:"Noto Sans Telugu",sans-serif;font-weight:700}
+body.lang-te .card h3,body.lang-te .rest h3,body.lang-te .crow h3{font-size:17px}
+body.lang-te .colhead h2,body.lang-te .sheet .hd h2,body.lang-te header h1{font-size:23px}
+header{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:flex-start;justify-content:space-between}
+header .htext{flex:1 1 520px}
+.langsw{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card);flex:0 0 auto;margin-top:6px}
+.langsw button{border:0;background:none;padding:7px 13px;font-size:13px;font-weight:600}
+.langsw button.on{background:var(--pro);color:#fff}
+.langsw .k2{display:none}
+</style>
+</head>
+<body class="l-both lang-both">
+<header>
+  <div class="htext"><h1 id="h1"></h1><p id="hsub"></p></div>
+  <div class="langsw" role="group" aria-label="Language"><button data-lang="en">English</button><button data-lang="both">Both · రెండూ</button><button data-lang="te">తెలుగు</button></div>
+</header>
+<nav class="tabs"><div class="in"><div class="tabrow"></div><div class="lens" aria-label="Lens"></div></div></nav>
+<main>
+  <section class="view" id="v-offices"><p class="intro" data-intro="offices"></p><div class="diagram" id="diagram"></div><div class="christbar" id="christbar"></div><div class="colfilter" id="offfilter"></div><div class="cols" id="cols"></div></section>
+  <section class="view" id="v-timeline"><p class="intro" data-intro="timeline"></p><div class="legend" id="legend"></div><div class="toolbar"><span id="zoomlab"></span><button id="zout">−</button><button id="zin">+</button><span id="zlab"></span></div><div class="tlwrap" id="tlwrap"><div class="tl" id="tl"></div></div><p class="tlnote" id="tlnote"></p></section>
+  <section class="view" id="v-types"><p class="intro" data-intro="types"></p><div class="colfilter" id="typefilter"></div><div class="grid" id="tgrid"></div></section>
+  <section class="view" id="v-contrast"><p class="intro" data-intro="contrast"></p><div class="chartbox" id="chartbox"></div><div class="ctable" id="ctable"></div></section>
+  <section class="view" id="v-metro"><p class="intro" data-intro="metro"></p><div class="chips2" id="metrochips"></div><div class="svgwrap"><div id="metroBox"></div></div><p class="tlnote" id="metronote"></p></section>
+  <section class="view" id="v-seed"><p class="intro" data-intro="seed"></p><div class="svgwrap"><div id="seedBox"></div></div><div class="seedside" id="seedside"></div></section>
+  <section class="view" id="v-restore"><p class="intro" data-intro="restore"></p><div id="restlist"></div></section>
+  <section class="view" id="v-gather"><p class="intro" data-intro="gather"></p><div class="gwrap"><div class="gsvg" id="gatherBox"></div><div class="steps" id="gsteps"></div></div></section>
+</main>
+<footer id="foot"></footer>
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet"><div class="hd"><button class="x" id="x" aria-label="Close">×</button><div id="shd"></div></div><div class="bd" id="sbd"></div></aside>
+<script>
+/* ---------- DATA ---------- */
+// office people (detailed). y1/y2 = BC start/end
+const OFF = [
+ // PROPHETS
+ {id:"moses",o:"prophet",name:"Moses",y1:1446,y2:1406,when:"c. 1446–1406 BC · Exodus to Deuteronomy",
+  earthly:"Spoke God's law at Sinai and led Israel out of Egypt. Mediator of the old covenant, he spoke with God “face to face, as a man speaketh unto his friend” (Exod 33:11).",
+  limit:"Barred from Canaan for striking the rock (Num 20:12). Died outside the land. Faithful “as a servant” (Heb 3:5).",
+  eternal:"The Prophet like Moses (Deut 18:15–18), whom Peter names as Jesus (Acts 3:22–23). Faithful “as a son over his own house” (Heb 3:6). “The law was given by Moses, but grace and truth came by Jesus Christ” (John 1:17).",
+  refs:"Deut 18:15–18; Num 12:7 → Acts 3:22–23; Heb 3:1–6; John 1:17",types:["moses"]},
+ {id:"samuel",o:"prophet",name:"Samuel",y1:1060,y2:1010,when:"c. 1060–1010 BC · 1 Samuel",also:"Also served at the tabernacle in a linen ephod (1 Sam 2:18) and judged Israel.",
+  earthly:"Last judge and first of the great prophets. Anointed both Saul and David.",
+  limit:"His sons “turned aside after lucre” (1 Sam 8:3), and the people asked for a king “like all the nations” (1 Sam 8:5).",
+  eternal:"Samuel anointed the anointed; Christ is the Anointed One Himself, “anointed… with the Holy Ghost and with power” (Acts 10:38). Peter says all the prophets “from Samuel” foretold these days (Acts 3:24).",
+  refs:"1 Sam 3; 16:13 → Acts 3:24; 13:20–23"},
+ {id:"nathan",o:"prophet",name:"Nathan",y1:1000,y2:960,when:"c. 1000–960 BC · 2 Samuel, 1 Kings 1",
+  earthly:"Brought David the covenant of an everlasting house (2 Sam 7) and confronted him after Bathsheba: “Thou art the man” (2 Sam 12:7).",
+  limit:"He first told David to build the temple and had to correct himself by the word of the Lord that night (2 Sam 7:3–5).",
+  eternal:"“Thy throne shall be established for ever” (2 Sam 7:16) is applied to Jesus: “of his kingdom there shall be no end” (Luke 1:32–33; Acts 2:30).",
+  refs:"2 Sam 7:12–16 → Luke 1:32–33; Acts 2:30; Heb 1:5"},
+ {id:"elijah",o:"prophet",name:"Elijah",y1:875,y2:848,when:"c. 875–848 BC · 1 Kings 17 – 2 Kings 2",
+  earthly:"Stood against Ahab, Jezebel and Baal; fire fell on Carmel (1 Ki 18). Taken up by a whirlwind.",
+  limit:"Fled in despair: “O LORD, take away my life” (1 Ki 19:4). The northern kingdom did not turn.",
+  eternal:"Malachi promised Elijah before the day of the Lord (Mal 4:5). Jesus says John the Baptist “is Elias, which was for to come” (Matt 11:14). Elijah stands with Christ at the Transfiguration (Matt 17:3). He prepares the way for Christ rather than picturing Him.",
+  refs:"Mal 4:5 → Matt 11:14; 17:3, 10–13; Luke 1:17"},
+ {id:"elisha",o:"prophet",name:"Elisha",y1:848,y2:797,when:"c. 848–797 BC · 2 Kings 2–13",
+  earthly:"Healed Naaman the Syrian, raised the Shunammite's son, fed a hundred men with twenty loaves (2 Ki 4:42–44).",
+  limit:"“Fallen sick of his sickness whereof he died” (2 Ki 13:14).",
+  eternal:"Jesus cites Naaman to show grace reaching the Gentiles (Luke 4:27). His feeding of five thousand far exceeds Elisha's hundred, though that parallel is drawn by readers rather than stated in the text.",
+  refs:"2 Ki 5; 4:42–44 → Luke 4:27; John 6:9–13"},
+ {id:"jonah",o:"prophet",name:"Jonah",y1:793,y2:753,when:"c. 790–760 BC · Jonah; 2 Ki 14:25",
+  earthly:"Ran from God, spent three days and nights in the fish, then preached to Nineveh, which repented.",
+  limit:"Angry that God showed mercy (Jonah 4:1–3).",
+  eternal:"“As Jonas was three days and three nights in the whale's belly; so shall the Son of man be three days and three nights in the heart of the earth.” “A greater than Jonas is here” (Matt 12:40–41).",
+  refs:"Jonah 1–3 → Matt 12:39–41; Luke 11:29–32",types:["jonah"]},
+ {id:"isaiah",o:"prophet",name:"Isaiah",y1:740,y2:681,when:"c. 740–681 BC · Uzziah to Hezekiah",
+  earthly:"Called “in the year that king Uzziah died” (Isa 6:1). Counselled Ahaz and Hezekiah through the Assyrian crisis.",
+  limit:"Told from the start the people would hear and not understand (Isa 6:9–10). Hebrews 11:37 (“sawn asunder”) is often linked to him by tradition, but Scripture does not record his death.",
+  eternal:"“These things said Esaias, when he saw his glory, and spake of him” (John 12:41). Immanuel (7:14), the child-King (9:6–7), the suffering Servant (53).",
+  refs:"Isa 6; 7:14; 9:6–7; 53 → John 12:38–41; Matt 1:23; Acts 8:32–35"},
+ {id:"jeremiah",o:"prophet",name:"Jeremiah",y1:627,y2:586,when:"627–586 BC · Josiah to the fall of Jerusalem",
+  earthly:"Warned Judah for forty years, through the last kings, that Babylon would come.",
+  limit:"Beaten, imprisoned, thrown in a dungeon, and finally carried off to Egypt (Jer 38; 43).",
+  eternal:"Promised the new covenant written on the heart (Jer 31:31–34), quoted in full in Hebrews 8:8–12, and the Branch called “THE LORD OUR RIGHTEOUSNESS” (Jer 23:5–6).",
+  refs:"Jer 23:5–6; 31:31–34 → Heb 8:8–12; Luke 22:20"},
+ {id:"ezekiel",o:"prophet",name:"Ezekiel",y1:593,y2:571,when:"593–571 BC · in exile in Babylon",also:"Also a priest (Ezek 1:3) who never served in the temple.",
+  earthly:"Saw the glory leave the temple (Ezek 10–11) and the dry bones live (Ezek 37).",
+  limit:"A priest in exile with no temple; spoke to captives.",
+  eternal:"“I will set up one shepherd over them… even my servant David” (Ezek 34:23), fulfilled in “I am the good shepherd… one fold, and one shepherd” (John 10:11, 16).",
+  refs:"Ezek 34:11–24; 37:24–25 → John 10:11–16; Heb 13:20"},
+ {id:"daniel",o:"prophet",name:"Daniel",y1:605,y2:536,when:"605–536 BC · Babylon and Persia",
+  earthly:"Served in the courts of Nebuchadnezzar, Belshazzar and Darius.",
+  limit:"Lived his whole life in exile; the kingdom was not restored in his day.",
+  eternal:"A stone cut without hands becomes a kingdom “which shall never be destroyed” (Dan 2:44). One “like the Son of man” receives “an everlasting dominion” (Dan 7:13–14), the title Jesus claims before the high priest (Matt 26:64).",
+  refs:"Dan 2:34–45; 7:13–14 → Matt 26:64; Rev 1:13"},
+ {id:"malachi",o:"prophet",name:"Malachi",y1:440,y2:420,when:"c. 430 BC · after the return",
+  earthly:"Last of the Old Testament prophets, rebuking careless priests and people.",
+  limit:"After him, about four hundred years without a recorded prophet.",
+  eternal:"“I will send my messenger, and he shall prepare the way before me” (Mal 3:1), applied to John the Baptist going before Jesus (Mark 1:2). Then God “hath in these last days spoken unto us by his Son” (Heb 1:2).",
+  refs:"Mal 3:1; 4:5–6 → Mark 1:2; Heb 1:1–2"},
+ // PRIESTS
+ {id:"melchizedek",o:"priest",o2:"king",name:"Melchizedek",y1:2085,y2:2085,when:"Time of Abraham · Genesis 14",
+  earthly:"King of Salem and priest of the most high God. Brought bread and wine and blessed Abram, who gave him a tenth (Gen 14:18–20).",
+  limit:"Only three verses in Genesis. Hebrews' “without father, without mother” (Heb 7:3) describes the silence of the record, which is the point of the type.",
+  eternal:"“Thou art a priest for ever after the order of Melchizedek” (Ps 110:4; Heb 5:6). Priest and king in one, a priesthood “after the power of an endless life” (Heb 7:16), not by descent from Levi.",
+  refs:"Gen 14:18–20; Ps 110:4 → Heb 5:6–10; 7:1–28",types:["melchizedek"]},
+ {id:"aaron",o:"priest",name:"Aaron",y1:1446,y2:1407,when:"c. 1446–1407 BC · Exodus to Numbers",
+  earthly:"First high priest. Wore the breastplate with the twelve tribes and entered the holiest once a year on the Day of Atonement (Lev 16).",
+  limit:"Made the golden calf (Exod 32). Offered first for his own sins (Heb 5:3). Died on Mount Hor (Num 20:28).",
+  eternal:"Christ was called of God “as was Aaron” (Heb 5:4–5), but is “holy, harmless, undefiled”, and offered Himself once (Heb 7:26–27), entering “into heaven itself” (Heb 9:24).",
+  refs:"Exod 28; Lev 16 → Heb 5:1–10; 7:26–28; 9:24",types:["highpriest","atonement"]},
+ {id:"eli",o:"priest",name:"Eli",y1:1100,y2:1060,when:"c. 1100–1060 BC · 1 Samuel 1–4",
+  earthly:"High priest at Shiloh who raised the boy Samuel.",
+  limit:"Would not restrain his sons (1 Sam 3:13). The ark was captured and the glory departed: “Ichabod” (1 Sam 4:21).",
+  eternal:"God promised “a faithful priest, that shall do according to that which is in mine heart” (1 Sam 2:35). Zadok's line partly fulfilled it, but Hebrews calls Christ “a merciful and faithful high priest” (Heb 2:17). The link to Christ is drawn by interpreters.",
+  refs:"1 Sam 2:27–36 → Heb 2:17; 3:1–2"},
+ {id:"abiathar",o:"priest",name:"Ahimelech & Abiathar",y1:1020,y2:970,when:"c. 1020–970 BC · Saul and David",
+  earthly:"Ahimelech gave the fleeing David the shewbread at Nob (1 Sam 21). Saul massacred the priests for it (1 Sam 22). Abiathar escaped and served David.",
+  limit:"Solomon banished Abiathar for backing Adonijah, fulfilling the word against Eli's house (1 Ki 2:27).",
+  eternal:"Jesus cites David eating the shewbread “in the days of Abiathar” (Mark 2:26) and adds, “in this place is one greater than the temple” and “the Son of man is Lord even of the sabbath” (Matt 12:6, 8).",
+  refs:"1 Sam 21–22 → Mark 2:25–28; Matt 12:3–8"},
+ {id:"zadok",o:"priest",name:"Zadok",y1:1000,y2:960,when:"c. 1000–960 BC · David and Solomon",
+  earthly:"Stayed loyal to David and anointed Solomon king (1 Ki 1:39). His line held the high priesthood until the exile, and Ezekiel's future temple is served by “the sons of Zadok” (Ezek 44:15).",
+  limit:"Still a line of dying men: “they truly were many priests, because they were not suffered to continue by reason of death” (Heb 7:23).",
+  eternal:"Christ “because he continueth ever, hath an unchangeable priesthood” (Heb 7:24).",
+  refs:"1 Ki 1:32–40; Ezek 44:15 → Heb 7:23–25"},
+ {id:"jehoiada",o:"priest",name:"Jehoiada",y1:841,y2:800,when:"c. 841–800 BC · Athaliah and Joash",
+  earthly:"Hid the infant Joash from Athaliah for six years, crowned him, and led a covenant renewal (2 Ki 11). Buried “among the kings” (2 Chr 24:16).",
+  limit:"After his death Joash turned to idols and stoned Jehoiada's son Zechariah in the temple court (2 Chr 24:17–22).",
+  eternal:"By hiding one child he kept the royal seed of David alive when it was nearly wiped out (2 Ki 11:1–2), so the line to Christ stood (Matt 1). Jesus' words about Zacharias slain “between the altar and the temple” (Luke 11:51) are usually taken to mean his son, though the name in Matthew 23:35 is debated.",
+  refs:"2 Ki 11; 2 Chr 24 → Matt 1:6–16; Luke 11:51"},
+ {id:"azariah",o:"priest",name:"Azariah",y1:760,y2:750,when:"c. 750 BC · reign of Uzziah",
+  earthly:"With eighty priests he withstood King Uzziah when the king went in to burn incense: “It appertaineth not unto thee” (2 Chr 26:18).",
+  limit:"Uzziah was struck with leprosy, but the kingdom kept sliding.",
+  eternal:"In Israel the throne and the altar were kept apart. Christ comes from Judah, “of which tribe Moses spake nothing concerning priesthood” (Heb 7:14), yet holds both by God's oath (Ps 110:1, 4).",
+  refs:"2 Chr 26:16–21 → Heb 7:13–17"},
+ {id:"hilkiah",o:"priest",name:"Hilkiah",y1:625,y2:620,when:"622 BC · reign of Josiah",
+  earthly:"Found the book of the law while the temple was being repaired (2 Ki 22:8), which set off Josiah's reform.",
+  limit:"The reform did not change the nation's heart; Jerusalem fell within forty years.",
+  eternal:"The law found in a book points to the law written on hearts: “I will put my laws into their mind, and write them in their hearts” (Jer 31:33; Heb 8:10).",
+  refs:"2 Ki 22–23 → Heb 8:10; 2 Cor 3:3"},
+ {id:"seraiah",o:"priest",name:"Seraiah",y1:595,y2:586,when:"586 BC · the fall of Jerusalem",
+  earthly:"The chief priest when Jerusalem fell, executed by Nebuchadnezzar at Riblah (2 Ki 25:18–21).",
+  limit:"The temple was burned and the earthly priesthood's center was gone.",
+  eternal:"“Destroy this temple, and in three days I will raise it up… he spake of the temple of his body” (John 2:19–21).",
+  refs:"2 Ki 25:8–21 → John 2:19–21"},
+ {id:"joshua",o:"priest",o2:"king",name:"Joshua (Jeshua)",y1:538,y2:515,when:"538–515 BC · the return",
+  earthly:"High priest of the returning exiles. Zechariah saw his filthy garments replaced (Zech 3) and then a crown set on his head: “the BRANCH… shall be a priest upon his throne” (Zech 6:11–13).",
+  limit:"Joshua himself never ruled. The crowns were laid up in the temple as a memorial (Zech 6:14).",
+  eternal:"His name is the Hebrew form of “Jesus”. The New Testament does not quote Zechariah 6, but it describes Christ as exactly this: “an high priest, who is set on the right hand of the throne” (Heb 8:1).",
+  refs:"Zech 3; 6:9–15 → Heb 8:1; 10:12"},
+ {id:"ezra",o:"priest",name:"Ezra",y1:458,y2:440,when:"458 BC onward · Ezra–Nehemiah",
+  earthly:"Priest and scribe who “prepared his heart to seek the law of the LORD, and to do it, and to teach” (Ezra 7:10). Read the law to the people (Neh 8).",
+  limit:"The people slid back into the same sins (Neh 13).",
+  eternal:"Christ opened the Scriptures: “beginning at Moses and all the prophets, he expounded unto them… the things concerning himself” (Luke 24:27).",
+  refs:"Ezra 7; Neh 8 → Luke 24:27, 44–45"},
+ // KINGS
+ {id:"saul",o:"king",name:"Saul",y1:1050,y2:1010,when:"1050–1010 BC · United kingdom",counter:true,
+  earthly:"The people's choice, a king “like all the nations” (1 Sam 8:5). Won early victories.",
+  limit:"Offered the burnt offering himself instead of waiting for Samuel (1 Sam 13:9–13). Spared Amalek (1 Sam 15). Died by his own sword.",
+  eternal:"A counter-type: the king men chose, against the king God chose (1 Sam 16:1). Paul moves from Saul to David to Jesus in one sermon (Acts 13:21–23).",
+  refs:"1 Sam 8–31 → Acts 13:21–23"},
+ {id:"david",o:"king",name:"David",y1:1010,y2:970,when:"1010–970 BC · United kingdom",
+  earthly:"Shepherd boy anointed king, a man after God's own heart. Took Jerusalem and received the covenant of an everlasting throne (2 Sam 7).",
+  limit:"Adultery and murder (2 Sam 11). Not allowed to build the temple (1 Chr 22:8). “He is both dead and buried” (Acts 2:29).",
+  eternal:"Jesus is the Son of David whose kingdom has no end (Luke 1:32–33), and also David's Lord (Ps 110:1; Matt 22:41–45): “the root and the offspring of David” (Rev 22:16).",
+  refs:"1 Sam 16; 2 Sam 7; Ps 110:1 → Luke 1:32–33; Acts 2:29–36; Rev 22:16",types:["david"]},
+ {id:"solomon",o:"king",name:"Solomon",y1:970,y2:931,when:"970–931 BC · United kingdom",
+  earthly:"Wisdom, wealth and peace. Built the temple; the kingdom at its height.",
+  limit:"“His wives turned away his heart after other gods” (1 Ki 11:4). The kingdom split after him.",
+  eternal:"“A greater than Solomon is here” (Matt 12:42). Christ is “made unto us wisdom” (1 Cor 1:30) and builds the true temple of living stones (Eph 2:20–22).",
+  refs:"1 Ki 3–11 → Matt 12:42; 1 Cor 1:24, 30; Eph 2:20–22",types:["solomon","temple"]},
+ {id:"jeroboam1",o:"king",name:"Jeroboam I",y1:931,y2:910,when:"931–910 BC · Israel",counter:true,
+  earthly:"Led the ten tribes away from David's house. Set up golden calves at Bethel and Dan and made priests “of the lowest of the people” (1 Ki 12:28–31).",
+  limit:"“The sin of Jeroboam” became the verdict on almost every northern king. Israel never had a king who did right.",
+  eternal:"A counter-type: worship and priesthood made by man to hold power. Christ is the true way to the Father and the true worship “in spirit and in truth” (John 4:23; 14:6).",
+  refs:"1 Ki 12:25–33 → John 4:21–24; 14:6"},
+ {id:"uzziah",o:"king",name:"Uzziah",y1:792,y2:740,when:"792–740 BC · Judah",
+  earthly:"Fifty-two years of strength and prosperity (2 Chr 26:1–15).",
+  limit:"“When he was strong, his heart was lifted up” and he went in to burn incense. Struck with leprosy until his death (2 Chr 26:16–21).",
+  eternal:"“In the year that king Uzziah died I saw also the Lord sitting upon a throne” (Isa 6:1). The earthly king who grasped at the priesthood dies; the eternal King is seen. John says Isaiah saw Christ's glory (John 12:41).",
+  refs:"2 Chr 26; Isa 6:1 → John 12:41"},
+ {id:"hezekiah",o:"king",name:"Hezekiah",y1:715,y2:686,when:"715–686 BC · Judah",
+  earthly:"Trusted God against Assyria and reformed worship. Broke in pieces the brass serpent Moses had made, because Israel burned incense to it (2 Ki 18:4).",
+  limit:"Showed his treasures to Babylon's envoys; Isaiah foretold the exile (Isa 39:6). His son Manasseh was Judah's worst king.",
+  eternal:"The brass serpent was a type (John 3:14), not an object of worship. The pointer had to be destroyed when it was mistaken for the reality.",
+  refs:"2 Ki 18–20 → John 3:14–15",types:["serpent"]},
+ {id:"josiah",o:"king",name:"Josiah",y1:640,y2:609,when:"640–609 BC · Judah",
+  earthly:"The great reformer: “like unto him was there no king before him” (2 Ki 23:25).",
+  limit:"“Notwithstanding the LORD turned not from the fierceness of his great wrath” (2 Ki 23:26). Killed at Megiddo by Pharaoh Necho.",
+  eternal:"Even the best reform could not change hearts; Jeremiah, called in Josiah's reign, promised a new covenant that would (Jer 31:33). The national mourning for Josiah (2 Chr 35:25) is echoed in Zechariah's mourning “for him whom they have pierced” (Zech 12:10–11), which John applies to the cross (John 19:37).",
+  refs:"2 Ki 22–23; Zech 12:10–11 → John 19:37; Heb 8:6–13"},
+ {id:"jehoiachin",o:"king",name:"Jehoiachin (Coniah)",y1:598,y2:597,when:"598–597 BC · Judah",
+  earthly:"Reigned three months, then was carried to Babylon. Released from prison in 562 BC and fed at the king's table (2 Ki 25:27–30).",
+  limit:"“Write ye this man childless… no man of his seed shall prosper, sitting upon the throne of David” (Jer 22:30).",
+  eternal:"He appears as Jechonias in Matthew's genealogy (Matt 1:11–12), the legal line through Joseph. Many interpreters see the virgin birth as how the throne passes to Christ without breaking Jeremiah's word; that is an inference, not a New Testament statement.",
+  refs:"Jer 22:24–30; 2 Ki 25:27–30 → Matt 1:11–16; Luke 3:23"},
+ {id:"zedekiah",o:"king",name:"Zedekiah",y1:597,y2:586,when:"597–586 BC · last king of Judah",
+  earthly:"Babylon's puppet who rebelled. Blinded after seeing his sons killed; Jerusalem burned (2 Ki 25:7).",
+  limit:"The end of the earthly throne of David.",
+  eternal:"“Remove the diadem, and take off the crown… until he come whose right it is; and I will give it him” (Ezek 21:26–27). The crown is set aside for the true heir: “the Lord God shall give unto him the throne of his father David” (Luke 1:32).",
+  refs:"Ezek 21:25–27; 2 Ki 25 → Luke 1:32–33"},
+ {id:"zerubbabel",o:"king",name:"Zerubbabel",y1:538,y2:515,when:"538–515 BC · governor after the return",
+  earthly:"Grandson of Jehoiachin and governor of Judah under Persia. Laid the foundation of the second temple.",
+  limit:"Never a king, only a governor; the second temple was small beside the first (Hag 2:3).",
+  eternal:"“I will make thee as a signet” (Hag 2:23), reversing the signet torn from Coniah (Jer 22:24). He stands in both genealogies of Jesus (Matt 1:12–13; Luke 3:27). “The glory of this latter house shall be greater than of the former” (Hag 2:9).",
+  refs:"Hag 2:20–23; Zech 4 → Matt 1:12–13; Luke 3:27"}
+];
+const CHRIST = {
+ prophet:{t:"Christ the Prophet",q:"“God… hath in these last days spoken unto us by his Son” (Heb 1:1–2)",p:"The prophets carried the word; He is the Word made flesh (John 1:1, 14). The Prophet like Moses (Acts 3:22)."},
+ priest:{t:"Christ the Priest",q:"“A priest for ever after the order of Melchisedec” (Heb 5:6)",p:"One offering, once, into heaven itself, by His own blood (Heb 9:12, 24; 10:12). He ever lives to intercede (Heb 7:25)."},
+ king:{t:"Christ the King",q:"“Of his kingdom there shall be no end” (Luke 1:33)",p:"Son of David and David's Lord (Matt 22:42–45). “My kingdom is not of this world” (John 18:36). King of kings (Rev 19:16)."}
+};
+// all kings for timeline
+const KINGS = [
+ ["saul","Saul",1050,1010,"uni","evil","Rejected for disobedience (1 Sam 15)."],
+ ["david","David",1010,970,"uni","good","Man after God's heart; everlasting covenant."],
+ ["solomon","Solomon",970,931,"uni","mixed","Built the temple; heart turned by his wives."],
+ ["jeroboam1","Jeroboam I",931,910,"isr","evil","Golden calves at Bethel and Dan."],
+ ["nadab","Nadab",910,909,"isr","evil","Killed by Baasha."],
+ ["baasha","Baasha",909,886,"isr","evil","Wiped out Jeroboam's house; walked in his sin."],
+ ["elah","Elah",886,885,"isr","evil","Murdered while drunk."],
+ ["zimri","Zimri",885,885,"isr","evil","Reigned seven days."],
+ ["omri","Omri",885,874,"isr","evil","Built Samaria."],
+ ["ahab","Ahab",874,853,"isr","evil","Married Jezebel; Baal worship; opposed by Elijah."],
+ ["ahaziahI","Ahaziah",853,852,"isr","evil","Sought Baal-zebub."],
+ ["joramI","Joram",852,841,"isr","evil","Killed by Jehu."],
+ ["jehu","Jehu",841,814,"isr","mixed","Destroyed Baal worship but kept the calves."],
+ ["jehoahazI","Jehoahaz",814,798,"isr","evil","Oppressed by Syria."],
+ ["jehoashI","Jehoash",798,782,"isr","evil","Visited the dying Elisha."],
+ ["jeroboam2","Jeroboam II",793,753,"isr","evil","Prosperity; Jonah, Amos and Hosea active."],
+ ["zechariahI","Zechariah",753,752,"isr","evil","Six months; end of Jehu's line."],
+ ["shallum","Shallum",752,752,"isr","evil","One month."],
+ ["menahem","Menahem",752,742,"isr","evil","Paid tribute to Assyria."],
+ ["pekahiah","Pekahiah",742,740,"isr","evil","Killed by Pekah."],
+ ["pekah","Pekah",752,732,"isr","evil","Rival reign; allied with Syria against Judah."],
+ ["hoshea","Hoshea",732,722,"isr","evil","Last king; Samaria fell to Assyria."],
+ ["rehoboam","Rehoboam",931,913,"jud","evil","His harsh answer split the kingdom."],
+ ["abijah","Abijah",913,911,"jud","evil","Walked in his father's sins."],
+ ["asa","Asa",911,870,"jud","good","Removed idols; later relied on Syria."],
+ ["jehoshaphat","Jehoshaphat",872,848,"jud","good","Sent teachers of the law; allied with Ahab."],
+ ["jehoram","Jehoram",853,841,"jud","evil","Married Ahab's daughter."],
+ ["ahaziahJ","Ahaziah",841,841,"jud","evil","Killed by Jehu."],
+ ["athaliah","Athaliah",841,835,"jud","evil","Tried to destroy the royal seed."],
+ ["joash","Joash",835,796,"jud","mixed","Good while Jehoiada lived, then turned."],
+ ["amaziah","Amaziah",796,767,"jud","mixed","Did right, “but not with a perfect heart”."],
+ ["uzziah","Uzziah",792,740,"jud","mixed","Strong, then struck with leprosy for burning incense."],
+ ["jotham","Jotham",750,732,"jud","good","Did right; people still corrupt."],
+ ["ahaz","Ahaz",735,715,"jud","evil","Rejected Isaiah's sign; copied a Damascus altar."],
+ ["hezekiah","Hezekiah",715,686,"jud","good","Trusted God against Assyria."],
+ ["manasseh","Manasseh",697,642,"jud","evil","Worst of the kings; repented late."],
+ ["amon","Amon",642,640,"jud","evil","Murdered by servants."],
+ ["josiah","Josiah",640,609,"jud","good","Found the law; great reform."],
+ ["jehoahazJ","Jehoahaz",609,609,"jud","evil","Three months; taken to Egypt."],
+ ["jehoiakim","Jehoiakim",609,598,"jud","evil","Burned Jeremiah's scroll."],
+ ["jehoiachin","Jehoiachin",598,597,"jud","evil","Carried to Babylon."],
+ ["zedekiah","Zedekiah",597,586,"jud","evil","Last king; Jerusalem burned."],
+ ["zerubbabel","Zerubbabel",538,515,"jud","none","Governor, not king; rebuilt the temple."]
+];
+const PROPHETS = [
+ ["samuel","Samuel",1060,1010],["gad","Gad",1015,975,"David's seer (1 Sam 22:5; 2 Sam 24)."],["nathan","Nathan",1000,960],["ahijah","Ahijah",935,910,"Tore the cloak into twelve pieces (1 Ki 11:29–39)."],
+ ["elijah","Elijah",875,848],["micaiah","Micaiah",855,853,"Foretold Ahab's death (1 Ki 22)."],["elisha","Elisha",848,797],["joel","Joel",835,796,"Date debated; the Spirit poured out (Joel 2:28; Acts 2:16)."],
+ ["jonah","Jonah",790,760],["amos","Amos",760,750,"Justice in Israel; the tabernacle of David raised (Amos 9:11; Acts 15:16)."],["hosea","Hosea",755,715,"God's faithful love to unfaithful Israel; “out of Egypt” (Hos 11:1)."],
+ ["isaiah","Isaiah",740,681],["micah","Micah",735,700,"Ruler from Bethlehem (Mic 5:2; Matt 2:6)."],["nahum","Nahum",660,630,"The fall of Nineveh."],["zephaniah","Zephaniah",640,621,"The day of the Lord."],
+ ["jeremiah","Jeremiah",627,586],["habakkuk","Habakkuk",609,598,"“The just shall live by his faith” (Hab 2:4; Rom 1:17)."],["daniel","Daniel",605,536],["ezekiel","Ezekiel",593,571],["obadiah","Obadiah",586,580,"Against Edom; date debated."],
+ ["haggai","Haggai",520,520,"The glory of the latter house (Hag 2:9)."],["zechariahP","Zechariah",520,480,"The Branch, the King on a donkey (Zech 9:9; Matt 21:5)."],["malachi","Malachi",440,420]
+];
+const PRIESTS = [
+ ["eli","Eli",1100,1060],["abiathar","Ahimelech & Abiathar",1020,970],["zadok","Zadok",1000,960],["jehoiada","Jehoiada",841,800],
+ ["azariah","Azariah",760,750],["urijah","Urijah",735,725,"Built Ahaz's altar copied from Damascus (2 Ki 16:10–16)."],["hilkiah","Hilkiah",625,620],["seraiah","Seraiah",595,586],["joshua","Joshua",538,515],["ezra","Ezra",458,440]
+];
+const EVENTS = [
+ [1003,"Jerusalem taken","2 Sam 5:6–9"],[959,"First temple dedicated","1 Ki 8"],[931,"Kingdom splits","1 Ki 12"],[722,"Samaria falls to Assyria","2 Ki 17"],[701,"Sennacherib turned back","2 Ki 19"],[605,"First captives to Babylon","Dan 1:1"],[586,"Jerusalem & temple burned","2 Ki 25"],[538,"Cyrus decree; return","Ezra 1"],[516,"Second temple finished","Ezra 6:15"],[445,"Walls rebuilt","Neh 6:15"]
+];
+const PROMISES = [
+ {y:1000,t:"Everlasting throne",r:"2 Sam 7:12–16",nt:"Luke 1:32–33",o:"king",d:"A son of David whose throne is established for ever."},
+ {y:990,t:"Priest-King forever",r:"Ps 110:1, 4",nt:"Heb 5:6; Matt 22:44",o:"priest",d:"David's Lord, seated at God's right hand, a priest for ever after Melchizedek."},
+ {y:985,t:"The Son enthroned",r:"Ps 2:6–7",nt:"Acts 13:33; Heb 1:5",o:"king",d:"“Yet have I set my king upon my holy hill of Zion. Thou art my Son.”"},
+ {y:735,t:"Immanuel",r:"Isa 7:14",nt:"Matt 1:23",o:"king",d:"A sign given to faithless Ahaz: a virgin shall conceive."},
+ {y:730,t:"Child on David's throne",r:"Isa 9:6–7",nt:"Luke 1:32–33",o:"king",d:"“Of the increase of his government and peace there shall be no end.”"},
+ {y:710,t:"Ruler from Bethlehem",r:"Mic 5:2",nt:"Matt 2:6",o:"king",d:"“Whose goings forth have been from of old, from everlasting.”"},
+ {y:700,t:"Suffering Servant",r:"Isa 52:13–53:12",nt:"Acts 8:32–35; 1 Pet 2:24",o:"priest",d:"Priest and offering in one: “he bare the sin of many.”"},
+ {y:600,t:"The righteous Branch",r:"Jer 23:5–6",nt:"1 Cor 1:30",o:"king",d:"A King who reigns and prospers: “THE LORD OUR RIGHTEOUSNESS.”"},
+ {y:603,t:"Kingdom never destroyed",r:"Dan 2:44",nt:"Luke 1:33",o:"king",d:"A stone cut without hands fills the whole earth."},
+ {y:590,t:"New covenant",r:"Jer 31:31–34",nt:"Heb 8:8–12; Luke 22:20",o:"priest",d:"The law written on the heart; sins remembered no more."},
+ {y:586,t:"Until he come whose right it is",r:"Ezek 21:26–27",nt:"Luke 1:32",o:"king",d:"The crown removed from Zedekiah and kept for the true heir."},
+ {y:585,t:"One Shepherd",r:"Ezek 34:23–24",nt:"John 10:11–16",o:"king",d:"“My servant David… he shall be their shepherd.”"},
+ {y:553,t:"Son of man's dominion",r:"Dan 7:13–14",nt:"Matt 26:64",o:"king",d:"“An everlasting dominion, which shall not pass away.”"},
+ {y:519,t:"Priest upon his throne",r:"Zech 6:12–13",nt:"Heb 8:1",o:"priest",d:"The Branch shall build the temple and bear the glory, priest and king."},
+ {y:518,t:"King on a donkey",r:"Zech 9:9",nt:"Matt 21:5",o:"king",d:"“Thy King cometh unto thee… lowly, and riding upon an ass.”"},
+ {y:430,t:"The messenger & the Lord",r:"Mal 3:1",nt:"Mark 1:2",o:"prophet",d:"A forerunner, then “the Lord… shall suddenly come to his temple.”"}
+];
+const TYPES = [
+ {id:"adam",n:"Adam & the Last Adam",c:"Person",o:[],ot:"Gen 1–3",nt:"Rom 5:14–19; 1 Cor 15:45–49",s:"Head of the human race; his one disobedience brought sin and death to all.",u:"The Last Adam, whose one obedience brings righteousness and life; “a quickening spirit”.",x:"A type mostly by contrast: Christ undoes what Adam did."},
+ {id:"passover",n:"The Passover lamb",c:"Event",o:["priest"],ot:"Exod 12",nt:"1 Cor 5:7; John 1:29; 19:36; 1 Pet 1:18–19",s:"A lamb without blemish; its blood on the doorposts spared the firstborn one night in Egypt.",u:"“Christ our passover is sacrificed for us.” Not a bone broken (Exod 12:46; John 19:36).",x:"The yearly meal, the setting in Egypt and the household details are not carried over."},
+ {id:"serpent",n:"The brass serpent",c:"Object",o:["king"],ot:"Num 21:8–9; 2 Ki 18:4",nt:"John 3:14–15",s:"Bitten Israelites looked at a bronze serpent on a pole and lived.",u:"The Son of man “lifted up”, that whoever believes should have eternal life.",x:"The object had no power of its own. When Israel worshipped it, Hezekiah broke it."},
+ {id:"melchizedek",n:"Melchizedek",c:"Office",o:["priest","king"],ot:"Gen 14:18–20; Ps 110:4",nt:"Heb 5:6–10; 7:1–28",s:"King of Salem and priest of the most high God, outside Levi.",u:"A priest for ever, king of righteousness and peace, by an endless life.",x:"“Without father, without mother” speaks of the record's silence, not a supernatural origin."},
+ {id:"manna",n:"Manna",c:"Object",o:[],ot:"Exod 16",nt:"John 6:31–35, 48–51",s:"Daily bread from heaven that fed bodies in the wilderness and spoiled by morning.",u:"“I am the bread of life.” Whoever eats of Him “shall live for ever”.",x:"“Your fathers did eat manna in the wilderness, and are dead” (John 6:49)."},
+ {id:"rock",n:"The smitten rock",c:"Object",o:[],ot:"Exod 17:6; Num 20:8–11",nt:"1 Cor 10:4; John 7:37–39",s:"Water poured from the rock Moses struck in the desert.",u:"“That Rock was Christ.” Living water, which is the Spirit.",x:"Moses striking a second time brought judgment on him; not every detail is given a meaning."},
+ {id:"sabbath",n:"Sabbath rest",c:"Institution",o:[],ot:"Gen 2:2–3; Exod 20:8–11",nt:"Heb 4:1–11; Matt 11:28; Col 2:16–17",s:"A weekly rest from labor, and the rest of the land under Joshua.",u:"“There remaineth therefore a rest to the people of God.” “The body is of Christ.”",x:"Churches differ on how the Sabbath applies to the Lord's Day."},
+ {id:"ark",n:"Noah's ark",c:"Event",o:[],ot:"Gen 6–8",nt:"1 Pet 3:20–21; Matt 24:37–39",s:"Eight souls saved through the water in the ark.",u:"Salvation “by the resurrection of Jesus Christ”; baptism is the figure.",x:"Peter adds that it is “not the putting away of the filth of the flesh”."},
+ {id:"isaac",n:"Isaac offered",c:"Event",o:["priest"],ot:"Gen 22",nt:"Heb 11:17–19; Rom 8:32; John 3:16",s:"Abraham offered his only son on Moriah and received him back “in a figure”.",u:"God “spared not his own Son”, who truly died and rose.",x:"Isaac was spared and a ram died instead. Christ was not spared."},
+ {id:"tabernacle",n:"The tabernacle",c:"Institution",o:["priest"],ot:"Exod 25–40",nt:"John 1:14; Heb 8:5; 9:11",s:"God dwelling in a tent among Israel, made after the pattern shown to Moses.",u:"“The Word was made flesh, and dwelt among us”; the “greater and more perfect tabernacle”.",x:"The New Testament does not assign meanings to boards, sockets or curtains."},
+ {id:"highpriest",n:"The high priest",c:"Office",o:["priest"],ot:"Exod 28; Lev 16",nt:"Heb 4:14–5:10; 7:23–28",s:"Aaron's line, entering the holiest once a year with blood, for himself and the people.",u:"A great high priest “passed into the heavens”, without sin, who lives for ever to intercede.",x:"Christ needs no offering for Himself, and His priesthood is not by Levi's descent."},
+ {id:"veil",n:"The veil",c:"Object",o:["priest"],ot:"Exod 26:31–33",nt:"Heb 10:19–20; Matt 27:51",s:"A curtain barring the way into the holiest place.",u:"A new and living way “through the veil, that is to say, his flesh”, torn at His death.",x:"Hebrews draws this one link; the veil's colors and cherubim are not explained."},
+ {id:"atonement",n:"The Day of Atonement",c:"Event",o:["priest"],ot:"Lev 16",nt:"Heb 9:7–14, 25–28; 13:11–12",s:"Once a year, blood carried behind the veil for the sins of the nation.",u:"Christ entered once “by his own blood… having obtained eternal redemption”, and suffered “without the gate”.",x:"The New Testament does not explicitly name the scapegoat; Hebrews 13 uses the offering burned outside the camp."},
+ {id:"temple",n:"The temple",c:"Institution",o:["priest","king"],ot:"1 Ki 6–8",nt:"John 2:19–21; Matt 12:6; Eph 2:20–22",s:"Solomon's house for God's name in Jerusalem, burned in 586 BC.",u:"“He spake of the temple of his body.” “One greater than the temple.”",x:"Also applied to the church built on Him; the stones and measurements are not given meanings."},
+ {id:"jonah",n:"Jonah",c:"Person",o:["prophet"],ot:"Jonah 1–3",nt:"Matt 12:39–41; Luke 11:29–32",s:"Three days and nights in the fish, then preaching that brought Nineveh to repentance.",u:"Three days in the heart of the earth, then resurrection. “A greater than Jonas is here.”",x:"Jonah fled from God and resented mercy; Christ came willingly."},
+ {id:"moses",n:"The Prophet like Moses",c:"Office",o:["prophet"],ot:"Deut 18:15–18",nt:"Acts 3:22–23; 7:37; Heb 3:1–6",s:"Moses, mediator of the law, spoke with God face to face.",u:"Jesus is the promised Prophet; faithful as a Son, not a servant.",x:"Moses was a sinner kept from the land; Christ is greater in glory (Heb 3:3)."},
+ {id:"ladder",n:"Jacob's ladder",c:"Event",o:[],ot:"Gen 28:12",nt:"John 1:51",s:"A ladder between heaven and earth at Bethel, angels going up and down.",u:"Angels “ascending and descending upon the Son of man”: He is the meeting place of heaven and earth.",x:"Jesus applies the image to Himself without explaining the ladder's details."},
+ {id:"cornerstone",n:"The rejected cornerstone",c:"Object",o:["king"],ot:"Ps 118:22; Isa 28:16",nt:"Matt 21:42; 1 Pet 2:6–8; Eph 2:20",s:"A stone the builders rejected that became the head of the corner.",u:"Christ rejected by Israel's leaders and made the foundation of God's house.",x:"Psalm 118 first speaks of the king and nation delivered; the fullness is in Christ."},
+ {id:"bridegroom",n:"Bridegroom & bride",c:"Institution",o:[],ot:"Gen 2:24; Hos 2:19–20",nt:"Eph 5:31–32; John 3:29; Rev 19:7",s:"Marriage, and God's covenant love for Israel as a husband.",u:"“This is a great mystery: but I speak concerning Christ and the church.”",x:"Eve formed from Adam's side as a picture of the church from Christ's pierced side is church tradition, not a New Testament statement."},
+ {id:"solomon",n:"Greater than Solomon",c:"Person",o:["king"],ot:"1 Ki 3–10",nt:"Matt 12:42; Luke 11:31",s:"The wise king whose fame drew the queen of Sheba.",u:"“A greater than Solomon is here”, the wisdom of God in person.",x:"Solomon's idolatry and his many wives are no part of the type."},
+ {id:"david",n:"David the shepherd-king",c:"Person",o:["king"],ot:"1 Sam 16–17; Ps 23; Ezek 34:23",nt:"John 10:11; Matt 22:41–45; Rev 22:16",s:"The shepherd boy who defeated Goliath and became king.",u:"The Good Shepherd who gives His life; Son of David and David's Lord.",x:"David's sins and the troubles in his house are not part of the type."},
+ {id:"covenantblood",n:"The blood of the covenant",c:"Event",o:["priest"],ot:"Exod 24:6–8",nt:"Matt 26:28; Luke 22:20; Heb 9:18–22",s:"Moses sprinkled blood on the people: “Behold the blood of the covenant.”",u:"“This is my blood of the new testament, which is shed for many for the remission of sins.”",x:"The old covenant was written on stone and broken; the new is written on the heart."},
+ {id:"mercyseat",n:"The mercy seat",c:"Object",o:["priest"],ot:"Exod 25:17–22; Lev 16:14",nt:"Rom 3:25; Heb 9:5",s:"The gold lid of the ark, where blood was sprinkled on the Day of Atonement.",u:"God set forth Christ “to be a propitiation” (the Greek word used for the mercy seat in the Greek Old Testament).",x:"Whether Romans 3:25 means “mercy seat” or “propitiation” more broadly is debated."},
+ {id:"sacrifices",n:"The end of the sacrifices",c:"Institution",o:["priest"],ot:"Lev 1–7; Ps 40:6–8",nt:"Heb 10:1–14",s:"Daily and yearly offerings that “can never take away sins”.",u:"“By one offering he hath perfected for ever them that are sanctified.”",x:"Matching every part of each offering to Christ is speculation. “A body hast thou prepared me” follows the Greek Old Testament."},
+ {id:"israelson",n:"Israel, God's son",c:"Person",o:[],ot:"Exod 4:22–23; Hos 11:1; Deut 8:2–3",nt:"Matt 2:15; 4:1–11",s:"Called out of Egypt, through the sea, forty years tested in the wilderness, and failed.",u:"Jesus is called out of Egypt, baptized, tested forty days, and answers from Deuteronomy. The obedient Son.",x:"Hosea 11:1 is history about Israel; Matthew reads it as a pattern fulfilled in Christ."}
+];
+const THEMES = [
+ ["Kingdom","Israel and Judah: united, divided in 931, ended in 722 and 586 BC.","A kingdom “which shall never be destroyed” (Dan 2:44); “not of this world” (John 18:36).","1 Ki 12; 2 Ki 17; 25 → Dan 2:44; John 18:36"],
+ ["Throne","David's throne in Jerusalem; the crown taken off Zedekiah (Ezek 21:26).","“The throne of his father David… of his kingdom there shall be no end” (Luke 1:32–33).","2 Sam 7:16; Ezek 21:26–27 → Luke 1:32–33"],
+ ["Prophet's word","God spoke “at sundry times and in divers manners” through many men, often rejected.","“Hath in these last days spoken unto us by his Son” (Heb 1:1–2). He is the Word (John 1:14).","Heb 1:1–2; John 1:1–14"],
+ ["Priesthood","Many priests, because death kept them from continuing (Heb 7:23).","One priest with “an unchangeable priesthood”, who “ever liveth to make intercession” (Heb 7:24–25).","Heb 7:23–28"],
+ ["Sacrifice","Daily and yearly offerings that “can never take away sins” (Heb 10:11).","“One sacrifice for sins for ever” (Heb 10:12).","Lev 1–7; 16 → Heb 10:1–14"],
+ ["Temple","Solomon's temple burned in 586; the second temple smaller (Hag 2:3).","The temple of His body (John 2:21); believers built into “an holy temple in the Lord” (Eph 2:21).","1 Ki 8; 2 Ki 25:9 → John 2:19–21; Eph 2:19–22"],
+ ["Covenant","Written on stone; “which my covenant they brake” (Jer 31:32).","Written on the heart; sins remembered no more (Jer 31:33–34; Heb 8:10–12).","Exod 24; Jer 31:31–34 → Heb 8:6–13"],
+ ["Jerusalem","An earthly city, besieged and burned.","“Jerusalem which is above is free” (Gal 4:26); “the heavenly Jerusalem” (Heb 12:22).","2 Ki 25 → Gal 4:25–26; Heb 12:22; Rev 21:2"],
+ ["Rest & land","Joshua gave Israel rest in Canaan, but it did not last (Heb 4:8).","“There remaineth therefore a rest to the people of God” (Heb 4:9).","Josh 21:44 → Heb 4:1–11"],
+ ["Anointing","Oil poured on prophets, priests and kings (1 Ki 19:16; Exod 29:7; 1 Sam 16:13).","Jesus, the Christ (“Anointed”), anointed “with the Holy Ghost and with power” (Acts 10:38).","Ps 2:2; Isa 61:1 → Luke 4:18; Acts 10:38"]
+];
+
+
+const LINES=[
+ {id:"temple",en:"Temple",te:"ఆలయము",c:"#8b5a28",ot:[["Tabernacle","Exod 25:8; 40:34"],["Solomon's temple","1 Ki 8:10–11"]],christ:["Temple of His body","John 2:19–21; 1:14"],church:["Ye are the temple","1 Cor 3:16; Eph 2:21–22"],full:["Lamb is the temple","Rev 21:22"]},
+ {id:"priest",en:"Priesthood",te:"యాజకత్వము",c:"#2d6f73",ot:[["Melchizedek","Gen 14:18; Ps 110:4"],["Aaron","Exod 28:1"]],christ:["High priest for ever","Heb 7:24–25"],church:["Royal priesthood","1 Pet 2:9; Rom 12:1"],full:["Priests of God","Rev 5:10; 20:6"]},
+ {id:"king",en:"Kingship",te:"రాజరికము",c:"#a0522d",ot:[["David's throne","2 Sam 7:16"],["Crown removed","Ezek 21:26–27"]],christ:["King of kings","Luke 1:32–33; Rev 19:16"],church:["Kingdom of His Son","Col 1:13; Rom 14:17"],full:["Reign for ever","Rev 11:15; 22:5"]},
+ {id:"prophet",en:"Prophet & Word",te:"ప్రవక్త, వాక్యము",c:"#5a4796",ot:[["Moses","Deut 18:15–18"],["The prophets","Heb 1:1; 1 Pet 1:10–11"]],christ:["The Word made flesh","John 1:14; Heb 1:2"],church:["Spirit poured out","Acts 2:17; 1 Cor 14:1"],full:["See His face","1 Cor 13:12; Rev 22:4"]},
+ {id:"lamb",en:"Lamb & Sacrifice",te:"గొఱ్ఱెపిల్ల, బలి",c:"#a3322c",ot:[["A lamb provided","Gen 22:8"],["Passover; Isa 53","Exod 12; Isa 53:7"]],christ:["Lamb of God","John 1:29; 1 Cor 5:7"],church:["Living sacrifices","Rom 12:1; Heb 13:15"],full:["Lamb on the throne","Rev 5:6; 22:1"]},
+ {id:"bread",en:"Bread",te:"రొట్టె",c:"#b9831a",ot:[["Manna","Exod 16:15"],["Shewbread","Lev 24:5–9"]],christ:["Bread of life","John 6:35, 51"],church:["One bread, one body","1 Cor 10:16–17"],full:["Marriage supper","Rev 19:9; 2:17"]},
+ {id:"water",en:"Living water",te:"జీవజలము",c:"#3a7ca5",ot:[["Water from the rock","Exod 17:6"],["River from the temple","Ezek 47:1–9"]],christ:["Living water","John 4:14; 7:37–39"],church:["Drink one Spirit","1 Cor 12:13"],full:["River of life","Rev 22:1, 17"]},
+ {id:"rest",en:"Rest",te:"విశ్రాంతి",c:"#5f6b3a",ot:[["The Sabbath","Gen 2:2–3; Exod 20:8"],["Rest in Canaan","Josh 21:44"]],christ:["I will give you rest","Matt 11:28–29"],church:["We enter into rest","Heb 4:3, 9–10"],full:["Rest from labours","Rev 14:13"]},
+ {id:"bride",en:"Bride",te:"పెండ్లికుమార్తె",c:"#b0567a",ot:[["Eve","Gen 2:22–24"],["Israel the wife","Hos 2:19–20"]],christ:["The Bridegroom","John 3:29; Mark 2:19"],church:["Espoused to Christ","2 Cor 11:2; Eph 5:25–32"],full:["Marriage of the Lamb","Rev 19:7; 21:2"]},
+ {id:"adam",en:"New humanity",te:"నూతన మనుష్యుడు",c:"#6e604f",ot:[["Adam in God's image","Gen 1:26–27"],["In Adam's likeness","Gen 5:3"]],christ:["Last Adam; image of God","1 Cor 15:45; Col 1:15"],church:["One new man","Eph 2:15; 4:24"],full:["Bear His image","1 Cor 15:49; 1 John 3:2"]},
+ {id:"seed",en:"The Seed",te:"సంతానము",c:"#365d8c",ot:[["Seed of the woman","Gen 3:15"],["Abraham's & David's seed","Gen 22:18; 2 Sam 7:12"]],christ:["The Seed is Christ","Gal 3:16; 4:4"],church:["Abraham's seed in Him","Gal 3:29"],full:["Every nation","Rev 7:9"]},
+ {id:"zion",en:"Jerusalem & Zion",te:"యెరూషలేము, సీయోను",c:"#7a3e8e",ot:[["David takes Zion","2 Sam 5:7"],["City destroyed","2 Ki 25:9–10"]],christ:["Suffered outside the gate","Luke 19:41; Heb 13:12"],church:["Come unto mount Sion","Heb 12:22; Gal 4:26"],full:["New Jerusalem","Rev 21:2, 10"]},
+ {id:"glory",en:"Glory & Light",te:"మహిమ, వెలుగు",c:"#c08a10",ot:[["Glory fills the tent","Exod 40:34"],["Glory departs","Ezek 10:18"]],christ:["We beheld His glory","John 1:14; 8:12"],church:["Light of the world","Matt 5:14; 2 Cor 4:6"],full:["The Lamb is the light","Rev 21:23"]},
+ {id:"tree",en:"Tree of life",te:"జీవవృక్షము",c:"#2e7a57",ot:[["Tree in Eden","Gen 2:9"],["Way barred","Gen 3:24"]],christ:["Bore our sins on the tree","1 Pet 2:24; John 14:6"],church:["Eternal life now","1 John 5:11–12"],full:["Tree of life again","Rev 22:2, 14"]}
+];
+const SEED=[
+ {n:"Adam",te:"ఆదాము",r:"Gen 5:1; Luke 3:38",d:"Head of all mankind. Luke's genealogy runs all the way back to “Adam, which was the son of God.”",aside:""},
+ {n:"Seth",te:"షేతు",r:"Gen 4:25–26",d:"“God… hath appointed me another seed instead of Abel.”",aside:"Cain's line"},
+ {n:"Noah",te:"నోవహు",r:"Gen 6:8–9; 9:1",d:"Eight souls carry the promise through the flood.",aside:"The world of the flood"},
+ {n:"Shem",te:"షేము",r:"Gen 9:26; 11:10",d:"“Blessed be the LORD God of Shem.”",aside:"Ham & Japheth: the nations (Gen 10)"},
+ {n:"Abraham",te:"అబ్రాహాము",r:"Gen 12:3; 22:18",d:"“In thy seed shall all the nations of the earth be blessed.” One man is chosen for the sake of all nations.",aside:"Nations scattered at Babel (Gen 11)"},
+ {n:"Isaac",te:"ఇస్సాకు",r:"Gen 21:12",d:"“In Isaac shall thy seed be called.”",aside:"Ishmael"},
+ {n:"Jacob",te:"యాకోబు",r:"Gen 28:14",d:"Renamed Israel; the twelve tribes come from him.",aside:"Esau (Edom)"},
+ {n:"Judah",te:"యూదా",r:"Gen 49:10",d:"“The sceptre shall not depart from Judah… until Shiloh come.”",aside:"The other eleven tribes"},
+ {n:"David",te:"దావీదు",r:"2 Sam 7:12–16",d:"The royal seed with an everlasting throne.",aside:"Saul's house"},
+ {n:"Solomon & Nathan",te:"సొలొమోను, నాతాను",r:"Matt 1:6; Luke 3:31",d:"Matthew traces the line through Solomon, the kings' legal line. Luke traces it through Nathan, another son of David.",aside:"Jeconiah's line barred from the throne (Jer 22:30)"},
+ {n:"Zerubbabel",te:"జెరుబ్బాబెలు",r:"Matt 1:12; Luke 3:27",d:"Named in both genealogies; “I will make thee as a signet” (Hag 2:23).",aside:"Kingdom lost; Judah under Persia"}
+];
+const SPREAD=[
+ {n:"The 120 in Jerusalem",te:"యెరూషలేములో 120 మంది",r:"Acts 1:8, 15",d:"“Ye shall be witnesses unto me both in Jerusalem, and in all Judaea, and in Samaria, and unto the uttermost part of the earth.”",ins:""},
+ {n:"Pentecost: 3,000",te:"పెంతెకొస్తు",r:"Acts 2:5–11, 41",d:"Jews “out of every nation under heaven” hear in their own tongues.",ins:"Tongues of Babel heard as one"},
+ {n:"Samaria believes",te:"సమరయ",r:"Acts 8:5–17",d:"The old northern kingdom's land receives the word and the Spirit.",ins:"Israel–Judah division healed"},
+ {n:"The Ethiopian",te:"ఐతియొపీయుడు",r:"Acts 8:27–38",d:"An official of Ethiopia (Cush, a son of Ham, Gen 10:6) is baptized.",ins:"Ham's line"},
+ {n:"Cornelius",te:"కొర్నేలీ",r:"Acts 10:34–48",d:"“God is no respecter of persons.” The Spirit falls on Gentiles.",ins:"Gentiles"},
+ {n:"Antioch & the nations",te:"అంతియొకయ, అన్యజనులు",r:"Acts 11:20–26; 13:47",d:"“I have set thee to be a light of the Gentiles… unto the ends of the earth.”",ins:"The ends of the earth"},
+ {n:"In all the world",te:"సర్వలోకములో",r:"Col 1:6, 23",d:"The gospel “bringeth forth fruit… in all the world.”",ins:""},
+ {n:"Every nation & tongue",te:"ప్రతి జనము, భాష",r:"Rev 5:9; 7:9",d:"“A great multitude… of all nations, and kindreds, and people, and tongues.”",ins:"All brought in"}
+];
+const REST=[
+ {en:"Tongues",te:"భాషలు",b:["Language confused at Babel; the nations scattered","Gen 11:7–9"],p:["A pure language to call on the LORD","Zeph 3:9"],c:["The Spirit poured out by the risen Christ","Acts 2:33"],a:["Pentecost: each hears in his own tongue","Acts 2:6–11"],n:["Every tongue confesses Jesus is Lord","Phil 2:11; Rev 7:9"]},
+ {en:"Jew & Gentile",te:"యూదులు, అన్యజనులు",b:["Gentiles “aliens… strangers from the covenants”","Eph 2:12"],p:["A light to the Gentiles","Isa 49:6"],c:["“He is our peace… hath broken down the middle wall”","Eph 2:14–16"],a:["One body; neither Jew nor Greek in Christ","Gal 3:28; Eph 3:6"],n:["One fold, one shepherd; all nations before the throne","John 10:16; Rev 7:9"]},
+ {en:"Israel & Judah",te:"ఇశ్రాయేలు, యూదా",b:["The kingdom torn in two","1 Ki 12:16–20"],p:["Two sticks made one; one king","Ezek 37:16–24"],c:["The Son of David, the one Shepherd","John 10:11, 16"],a:["Samaria receives the word","Acts 8:14–17"],n:["Twelve tribes named on the gates","Rev 21:12"]},
+ {en:"God's presence",te:"దేవుని సన్నిధి",b:["Driven out from God's presence; later the glory leaves the temple","Gen 3:23–24; Ezek 10:18"],p:["“My tabernacle also shall be with them”","Ezek 37:27"],c:["Immanuel, God with us; the veil torn","Matt 1:23; 27:51"],a:["The Spirit dwells in believers","1 Cor 3:16; John 14:23"],n:["“The tabernacle of God is with men”","Rev 21:3"]},
+ {en:"Eden & tree of life",te:"ఏదెను, జీవవృక్షము",b:["Cherubim guard the way to the tree","Gen 3:24"],p:["Trees by the river, leaves for healing","Ezek 47:12"],c:["“I am the way, the truth, and the life”","John 14:6"],a:["Eternal life given now in the Son","1 John 5:11–12"],n:["Right to the tree of life","Rev 22:2, 14"]},
+ {en:"The curse",te:"శాపము",b:["“Cursed is the ground for thy sake”","Gen 3:17–18"],p:["Thorns give way to fir trees","Isa 55:13"],c:["“Made a curse for us”; crowned with thorns","Gal 3:13; John 19:2"],a:["Redeemed from the curse of the law","Gal 3:13–14"],n:["“There shall be no more curse”; creation set free","Rev 22:3; Rom 8:21"]},
+ {en:"Death",te:"మరణము",b:["“Thou shalt surely die”; death reigns from Adam","Gen 2:17; Rom 5:14"],p:["He will swallow up death in victory","Isa 25:8; Hos 13:14"],c:["Risen, the firstfruits of them that slept","1 Cor 15:20"],a:["Passed from death unto life","John 5:24"],n:["The last enemy destroyed; no more death","1 Cor 15:26; Rev 21:4"]},
+ {en:"Dominion",te:"ఏలుబడి",b:["Adam's rule over creation marred","Gen 1:28; 3:17–19"],p:["“Thou madest him to have dominion”","Ps 8:4–6"],c:["“We see Jesus… crowned with glory”","Heb 2:8–9"],a:["Raised and seated with Christ","Eph 2:6"],n:["“They shall reign for ever and ever”","Rev 22:5; 2 Tim 2:12"]},
+ {en:"Sonship",te:"కుమారత్వము",b:["Adam the son of God falls; Israel the son rebels","Luke 3:38; Hos 11:1–2"],p:["“I will be his father”","2 Sam 7:14"],c:["The only begotten Son, obedient","John 1:14; Heb 5:8"],a:["Adoption; we cry “Abba, Father”","Gal 4:4–6; Rom 8:15"],n:["Manifestation of the sons of God","Rom 8:19, 23; Rev 21:7"]},
+ {en:"Man & woman",te:"పురుషుడు, స్త్రీ",b:["Enmity and rule after the fall","Gen 3:16"],p:["One flesh as at the beginning","Gen 2:24; Matt 19:4–6"],c:["Christ loved the church and gave himself","Eph 5:25"],a:["“Heirs together of the grace of life”","1 Pet 3:7; Gal 3:28"],n:["The marriage of the Lamb","Rev 19:7"]},
+ {en:"The nations",te:"జనములు",b:["Nations under idols and darkness","Rom 1:21–23; Eph 4:18"],p:["All nations flow to the mountain of the LORD","Isa 2:2–4"],c:["“All power… go ye therefore, and teach all nations”","Matt 28:18–19"],a:["The gospel bears fruit in all the world","Col 1:6"],n:["Leaves of the tree for the healing of the nations","Rev 22:2; 21:24"]}
+];
+const VIEWS3=[
+ {h:"A distinct future for national Israel",who:"Dispensational premillennialism",t:"Israel and the Church are two peoples in God's plan. “All Israel” (Rom 11:26) is the Jewish nation turning to Christ at His return. The land and throne promises are fulfilled literally to national Israel in a coming thousand-year reign.",k:"Rom 11:25–29; Ezek 36–37; Zech 12:10; Rev 20:1–6"},
+ {h:"A future turning of Jews into the one Church",who:"Historic premillennialism and many Reformed/Puritan writers",t:"There is one people of God, the one olive tree. Still, “all Israel” points to a large future turning of ethnic Jews to Christ, grafted back into that same tree, not a separate program.",k:"Rom 11:12, 15, 23–26; 2 Cor 3:16"},
+ {h:"One people in Christ; promises fulfilled in Him",who:"Amillennial and covenant theology",t:"“All Israel” means the full number of God's elect: either all elect Jews saved through history, or the whole Church of Jew and Gentile (compare Gal 6:16). The land, temple and throne promises are fulfilled in Christ and the new creation.",k:"Rom 2:28–29; 9:6–8; Gal 3:29; 6:16; Eph 2:11–22; Heb 11:10, 16"}
+];
+const RINGS=[
+ {en:"All creation made new",te:"సర్వసృష్టి నూతనపరచబడుట",c:"#efe2c3",r:"Rom 8:19–21; Rev 21:1, 5",d:"Creation, groaning now, is set free from its bondage. “Behold, I make all things new.”"},
+ {en:"Things in heaven and on earth",te:"పరలోకమందున్నవి, భూమిమీదనున్నవి",c:"#ead7a6",r:"Eph 1:10; Col 1:16–20; Phil 2:10",d:"All things were made by Him and for Him, and by Him God reconciles all things to Himself. Every knee bows."},
+ {en:"Every nation, tribe & tongue",te:"ప్రతి జనము, వంశము, భాష",c:"#e2c77d",r:"Rev 5:9; 7:9–10",d:"A multitude no man could number, from every nation and tongue, crying “Salvation to our God… and unto the Lamb.”"},
+ {en:"Jew & Gentile, one new man",te:"యూదులు, అన్యజనులు — ఒక్క నూతన పురుషుడు",c:"#d6b158",r:"Eph 2:14–16; 3:6",d:"The middle wall broken down; fellow heirs of the same body."},
+ {en:"The Church, His body & bride",te:"సంఘము — ఆయన శరీరము, వధువు",c:"#c39a35",r:"Eph 1:22–23; 5:27; Rev 21:2",d:"“The fulness of him that filleth all in all,” presented “a glorious church, not having spot, or wrinkle.”"},
+ {en:"Christ, the Head",te:"క్రీస్తు — శిరస్సు",c:"#2a2118",r:"Col 1:18; Eph 1:22",d:"“That in all things he might have the preeminence.”"}
+];
+/* ================= TELUGU (BSI vocabulary) ================= */
+const TE={};
+TE.off={
+ moses:{name:"మోషే",when:"సుమారు క్రీ.పూ. 1446–1406 · నిర్గమకాండము నుండి ద్వితీయోపదేశకాండము",
+  earthly:"సీనాయి కొండయొద్ద దేవుని ధర్మశాస్త్రమును ప్రకటించి, ఇశ్రాయేలీయులను ఐగుప్తులోనుండి నడిపించెను. పాత నిబంధనకు మధ్యవర్తి; మనుష్యుడు తన స్నేహితునితో మాటలాడునట్లు యెహోవా అతనితో ముఖాముఖిగా మాటలాడెను (నిర్గమ. 33:11).",
+  limit:"బండను కొట్టినందున కనానులో ప్రవేశింపలేదు (సంఖ్యా. 20:12). దేశము వెలుపలనే మృతిపొందెను. దాసునివలె నమ్మకముగా నుండెను (హెబ్రీ. 3:5).",
+  eternal:"తనవంటి ఒక ప్రవక్తను దేవుడు పుట్టించునని మోషే చెప్పెను (ద్వితీ. 18:15–18); ఆయన యేసే అని పేతురు ప్రకటించెను (అపొ. 3:22–23). క్రీస్తు కుమారుడై దేవుని ఇంటిమీద నమ్మకముగా ఉన్నాడు (హెబ్రీ. 3:6). ధర్మశాస్త్రము మోషేద్వారా అనుగ్రహింపబడెను; కృపయు సత్యమును యేసుక్రీస్తుద్వారా కలిగెను (యోహా. 1:17)."},
+ samuel:{name:"సమూయేలు",when:"సుమారు క్రీ.పూ. 1060–1010 · 1 సమూయేలు",also:"ఏఫోదు ధరించి ప్రత్యక్షపు గుడారములో సేవచేసెను (1 సమూ. 2:18); ఇశ్రాయేలీయులకు న్యాయము తీర్చెను.",
+  earthly:"చివరి న్యాయాధిపతియు గొప్ప ప్రవక్తలలో మొదటివాడును. సౌలును దావీదును రాజులుగా అభిషేకించెను.",
+  limit:"అతని కుమారులు లంచములు పుచ్చుకొని న్యాయము తప్పిరి (1 సమూ. 8:3); సమస్త జనములవలె తమకును ఒక రాజు కావలెనని జనులు అడిగిరి (1 సమూ. 8:5).",
+  eternal:"సమూయేలు అభిషిక్తులను అభిషేకించెను; క్రీస్తు ఆ అభిషిక్తుడే — దేవుడు ఆయనను పరిశుద్ధాత్మతోను శక్తితోను అభిషేకించెను (అపొ. 10:38). సమూయేలు మొదలుకొని ప్రవక్తలందరు ఈ దినములనుగూర్చి ప్రకటించిరని పేతురు చెప్పెను (అపొ. 3:24)."},
+ nathan:{name:"నాతాను",when:"సుమారు క్రీ.పూ. 1000–960 · 2 సమూయేలు, 1 రాజులు 1",
+  earthly:"నిత్యమైన సింహాసనమునుగూర్చిన నిబంధనను దావీదునకు తెలియజేసెను (2 సమూ. 7); బత్షెబ విషయములో అతని గద్దించి — ఆ మనుష్యుడవు నీవే అనెను (2 సమూ. 12:7).",
+  limit:"మొదట మందిరము కట్టుమని దావీదుతో చెప్పి, ఆ రాత్రి యెహోవా వాక్కుచేత సరిదిద్దబడెను (2 సమూ. 7:3–5).",
+  eternal:"నీ సింహాసనము నిత్యము స్థిరపరచబడును (2 సమూ. 7:16) అను వాగ్దానము యేసునందు నెరవేరెను: ఆయన రాజ్యము అంతములేనిదై యుండును (లూకా 1:32–33; అపొ. 2:30)."},
+ elijah:{name:"ఏలీయా",when:"సుమారు క్రీ.పూ. 875–848 · 1 రాజులు 17 – 2 రాజులు 2",
+  earthly:"అహాబు, యెజెబెలు, బయలు ఎదుట నిలిచెను; కర్మెలు పర్వతముమీద అగ్ని దిగెను (1 రాజు. 18). సుడిగాలిచేత పరలోకమునకు కొనిపోబడెను.",
+  limit:"నిరాశచెంది — యెహోవా, నా ప్రాణము తీసికొనుము అని వేడుకొనెను (1 రాజు. 19:4). ఉత్తర రాజ్యము మారుమనస్సు పొందలేదు.",
+  eternal:"యెహోవా దినము రాకమునుపు ఏలీయాను పంపెదనని మలాకీ ప్రవచించెను (మలా. 4:5). రాబోవు ఏలీయా బాప్తిస్మమిచ్చు యోహానే అని యేసు చెప్పెను (మత్త. 11:14). రూపాంతరమునందు ఏలీయా క్రీస్తుతో కనబడెను (మత్త. 17:3). అతడు క్రీస్తునకు సాదృశ్యము కాడు గాని ఆయనకు మార్గము సిద్ధపరచువాడు."},
+ elisha:{name:"ఎలీషా",when:"సుమారు క్రీ.పూ. 848–797 · 2 రాజులు 2–13",
+  earthly:"సిరియనుడైన నయమానును బాగుచేసెను, షూనేమీయురాలి కుమారుని బ్రదికించెను, ఇరువది రొట్టెలతో నూరుమందికి పెట్టెను (2 రాజు. 4:42–44).",
+  limit:"మరణకరమైన వ్యాధిచేత రోగియై మృతిపొందెను (2 రాజు. 13:14).",
+  eternal:"అన్యజనులకు కృప చేరుటను చూపుటకు యేసు నయమానును ఉదాహరించెను (లూకా 4:27). ఐదువేలమందికి ఆయన పెట్టినది ఎలీషా పెట్టిన నూరుమందిని మించినది; అయితే ఈ పోలికను వచనము చెప్పలేదు, చదువరులు గమనించినది."},
+ jonah:{name:"యోనా",when:"సుమారు క్రీ.పూ. 790–760 · యోనా; 2 రాజు. 14:25",
+  earthly:"యెహోవా సన్నిధినుండి పారిపోయి, మూడు దినములు మూడు రాత్రులు మత్స్యము కడుపులో ఉండి, పిమ్మట నీనెవెకు ప్రకటించెను; ఆ పట్టణము మారుమనస్సు పొందెను.",
+  limit:"దేవుడు కనికరము చూపినందుకు కోపపడెను (యోనా 4:1–3).",
+  eternal:"యోనా మూడు దినములు మూడు రాత్రులు తిమింగలము కడుపులో ఏలాగుండెనో, ఆలాగే మనుష్యకుమారుడు మూడు దినములు మూడు రాత్రులు భూగర్భములో ఉండును. యోనాకంటె గొప్పవాడు ఇక్కడ ఉన్నాడు (మత్త. 12:40–41)."},
+ isaiah:{name:"యెషయా",when:"సుమారు క్రీ.పూ. 740–681 · ఉజ్జియా నుండి హిజ్కియా వరకు",
+  earthly:"రాజైన ఉజ్జియా మరణమైన సంవత్సరమున పిలువబడెను (యెష. 6:1). అష్షూరు ఆపదలో ఆహాజునకును హిజ్కియాకును ఆలోచన చెప్పెను.",
+  limit:"జనులు విని గ్రహింపరని మొదటినుండియే అతనికి చెప్పబడెను (యెష. 6:9–10). హెబ్రీ. 11:37 లోని ‘రంపములచేత కోయబడిరి’ అను మాట పారంపర్యముగా అతనికి అన్వయింపబడును, కాని అతని మరణమును లేఖనము వ్రాయలేదు.",
+  eternal:"యెషయా ఆయన మహిమను చూచెను గనుక ఆయననుగూర్చి ఈ మాటలు చెప్పెను (యోహా. 12:41). ఇమ్మానుయేలు (7:14), దావీదు సింహాసనముమీది శిశువు (9:6–7), శ్రమపడు సేవకుడు (53)."},
+ jeremiah:{name:"యిర్మీయా",when:"క్రీ.పూ. 627–586 · యోషీయా నుండి యెరూషలేము పతనము వరకు",
+  earthly:"బబులోను వచ్చునని నలువది సంవత్సరములు చివరి రాజులకును యూదాకును హెచ్చరిక చేసెను.",
+  limit:"కొట్టబడి, బంధింపబడి, గోతిలో వేయబడి, చివరకు ఐగుప్తునకు కొనిపోబడెను (యిర్మీ. 38; 43).",
+  eternal:"హృదయములమీద వ్రాయబడు క్రొత్త నిబంధనను వాగ్దానము చేసెను (యిర్మీ. 31:31–34); హెబ్రీ. 8:8–12 దానిని సంపూర్ణముగా ఉదహరించుచున్నది. యెహోవా మనకు నీతియై యున్నాడను పేరుగల నీతిచిగురును ప్రవచించెను (యిర్మీ. 23:5–6)."},
+ ezekiel:{name:"యెహెజ్కేలు",when:"క్రీ.పూ. 593–571 · బబులోనులో చెరలో",also:"ఇతడు యాజకుడు కూడ (యెహె. 1:3), కాని ఎన్నడును దేవాలయములో సేవచేయలేదు.",
+  earthly:"మహిమ దేవాలయమును విడిచిపోవుటను (యెహె. 10–11), ఎండిన యెముకలు బ్రదుకుటను (యెహె. 37) చూచెను.",
+  limit:"దేవాలయము లేని చెరలో యాజకుడు; చెరపట్టబడినవారితో మాటలాడెను.",
+  eternal:"వాటిమీద ఒక కాపరిని, అనగా నా సేవకుడైన దావీదును నియమించెదను (యెహె. 34:23) — ఇది ‘నేను గొఱ్ఱెలకు మంచి కాపరిని… మంద ఒక్కటియు కాపరి ఒక్కడును అగును’ (యోహా. 10:11, 16) అనుదానియందు నెరవేరెను."},
+ daniel:{name:"దానియేలు",when:"క్రీ.పూ. 605–536 · బబులోను, పారసీక రాజ్యములు",
+  earthly:"నెబుకద్నెజరు, బెల్షస్సరు, దర్యావేషుల సభలలో సేవచేసెను.",
+  limit:"తన జీవితమంతయు చెరలోనే గడిపెను; అతని దినములలో రాజ్యము పునరుద్ధరింపబడలేదు.",
+  eternal:"చేతిసహాయము లేక తీయబడిన రాయి ఎన్నటికిని నాశనము కాని రాజ్యమాయెను (దాని. 2:44). మనుష్యకుమారుని పోలిన యొకనికి శాశ్వతమైన ఆధిపత్యము ఇయ్యబడెను (దాని. 7:13–14); ప్రధానయాజకుని యెదుట యేసు ఈ పేరునే తనకు అన్వయించుకొనెను (మత్త. 26:64)."},
+ malachi:{name:"మలాకీ",when:"సుమారు క్రీ.పూ. 430 · చెరనుండి తిరిగివచ్చిన తరువాత",
+  earthly:"పాత నిబంధన ప్రవక్తలలో చివరివాడు; అజాగ్రత్తగల యాజకులను జనులను గద్దించెను.",
+  limit:"అతని తరువాత సుమారు నాలుగువందల సంవత్సరములు ప్రవక్త ఎవడును నమోదు కాలేదు.",
+  eternal:"నా దూతను పంపుచున్నాను, అతడు నా ముందర మార్గము సిద్ధపరచును (మలా. 3:1) — ఇది యేసునకు ముందుగా వచ్చిన బాప్తిస్మమిచ్చు యోహానునకు అన్వయింపబడెను (మార్కు 1:2). పిమ్మట దేవుడు ఈ దినముల అంతమందు కుమారుని ద్వారా మనతో మాటలాడెను (హెబ్రీ. 1:2)."},
+ melchizedek:{name:"మెల్కీసెదెకు",when:"అబ్రాహాము కాలము · ఆదికాండము 14",
+  earthly:"షాలేము రాజును సర్వోన్నతుడగు దేవునికి యాజకుడును. రొట్టెయు ద్రాక్షారసమును తెచ్చి అబ్రామును ఆశీర్వదించెను; అబ్రాము అతనికి దశమభాగమిచ్చెను (ఆది. 14:18–20).",
+  limit:"ఆదికాండములో మూడు వచనములే. ‘తండ్రి లేనివాడు, తల్లి లేనివాడు’ (హెబ్రీ. 7:3) అనునది లేఖనములోని మౌనమును సూచించును; అదే ఈ సాదృశ్యపు ముఖ్యాంశము.",
+  eternal:"నీవు మెల్కీసెదెకు క్రమము చొప్పున నిరంతరము యాజకుడవై యున్నావు (కీర్త. 110:4; హెబ్రీ. 5:6). రాజును యాజకుడును ఒక్కరే; లేవి వంశమువలన కాక నాశనములేని జీవమునకున్న శక్తినిబట్టి కలిగిన యాజకత్వము (హెబ్రీ. 7:16)."},
+ aaron:{name:"అహరోను",when:"సుమారు క్రీ.పూ. 1446–1407 · నిర్గమకాండము నుండి సంఖ్యాకాండము",
+  earthly:"మొదటి ప్రధానయాజకుడు. పండ్రెండు గోత్రముల పేర్లుగల పతకమును ధరించి, సంవత్సరమునకు ఒకసారి ప్రాయశ్చిత్తదినమున అతిపరిశుద్ధస్థలములో ప్రవేశించెను (లేవీ. 16).",
+  limit:"బంగారు దూడను చేసెను (నిర్గమ. 32). మొదట తన పాపముల నిమిత్తము అర్పించవలసివచ్చెను (హెబ్రీ. 5:3). హోరు కొండమీద మృతిపొందెను (సంఖ్యా. 20:28).",
+  eternal:"అహరోనువలె క్రీస్తును దేవునిచేత పిలువబడెను (హెబ్రీ. 5:4–5); కాని ఆయన పవిత్రుడును నిర్దోషియు నిష్కల్మషుడునై, తన్నుతానే ఒక్కసారే అర్పించుకొని (హెబ్రీ. 7:26–27), పరలోకములోనికే ప్రవేశించెను (హెబ్రీ. 9:24)."},
+ eli:{name:"ఏలీ",when:"సుమారు క్రీ.పూ. 1100–1060 · 1 సమూయేలు 1–4",
+  earthly:"షిలోహులో ప్రధానయాజకుడు; బాలుడైన సమూయేలును పెంచెను.",
+  limit:"తన కుమారులను అదుపుచేయలేదు (1 సమూ. 3:13). మందసము పట్టబడి మహిమ ఇశ్రాయేలును విడిచిపోయెను — ఈకాబోదు (1 సమూ. 4:21).",
+  eternal:"నా హృదయాభిప్రాయముచొప్పున జరిగించు నమ్మకమైన యాజకుని నేను నియమించెదనని దేవుడు సెలవిచ్చెను (1 సమూ. 2:35). సాదోకు వంశము దీనిని కొంతమట్టుకు నెరవేర్చెను; హెబ్రీయులకు వ్రాసిన పత్రిక క్రీస్తును కనికరముగల నమ్మకమైన ప్రధానయాజకుడని పిలుచుచున్నది (హెబ్రీ. 2:17). క్రీస్తుతో ఈ సంబంధమును వ్యాఖ్యాతలు చూపిరి."},
+ abiathar:{name:"అహీమెలెకు, అబ్యాతారు",when:"సుమారు క్రీ.పూ. 1020–970 · సౌలు, దావీదు",
+  earthly:"పారిపోవుచున్న దావీదునకు అహీమెలెకు నోబులో సన్నిధి రొట్టెలు ఇచ్చెను (1 సమూ. 21). అందుకై సౌలు యాజకులను హతము చేయించెను (1 సమూ. 22). అబ్యాతారు తప్పించుకొని దావీదునకు సేవచేసెను.",
+  limit:"అదోనీయా పక్షమున నిలిచినందుకు సొలొమోను అబ్యాతారును తొలగించెను; ఏలీ ఇంటినిగూర్చిన మాట నెరవేరెను (1 రాజు. 2:27).",
+  eternal:"అబ్యాతారు ప్రధానయాజకుడై యుండగా దావీదు సన్నిధి రొట్టెలు తినెనని యేసు చెప్పి (మార్కు 2:26) — దేవాలయముకంటె గొప్పవాడు ఇక్కడ ఉన్నాడు; మనుష్యకుమారుడు విశ్రాంతిదినమునకు ప్రభువై యున్నాడు అనెను (మత్త. 12:6, 8)."},
+ zadok:{name:"సాదోకు",when:"సుమారు క్రీ.పూ. 1000–960 · దావీదు, సొలొమోను",
+  earthly:"దావీదునకు నమ్మకముగా నిలిచి సొలొమోనును రాజుగా అభిషేకించెను (1 రాజు. 1:39). అతని వంశము చెర వరకు ప్రధానయాజకత్వము వహించెను; యెహెజ్కేలు దర్శనములోని మందిరములో సాదోకు సంతతివారే సేవచేయుదురు (యెహె. 44:15).",
+  limit:"అయినను మరణించు మనుష్యుల వంశమే: మరణము కారణముగా వారు నిలిచియుండలేకపోయిరి గనుక అనేకులు యాజకులైరి (హెబ్రీ. 7:23).",
+  eternal:"క్రీస్తు నిరంతరము ఉండువాడు గనుక మార్పులేని యాజకత్వము గలవాడై యున్నాడు (హెబ్రీ. 7:24)."},
+ jehoiada:{name:"యెహోయాదా",when:"సుమారు క్రీ.పూ. 841–800 · అతల్యా, యోవాషు",
+  earthly:"అతల్యాకు తెలియకుండ బాలుడైన యోవాషును ఆరు సంవత్సరములు దాచి, అతనికి పట్టాభిషేకము చేసి, నిబంధన చేయించెను (2 రాజు. 11). రాజుల మధ్య పాతిపెట్టబడెను (2 దిన. 24:16).",
+  limit:"అతని మరణము తరువాత యోవాషు విగ్రహములవైపు తిరిగి, యెహోయాదా కుమారుడైన జెకర్యాను మందిరపు ఆవరణములో రాళ్లతో కొట్టించెను (2 దిన. 24:17–22).",
+  eternal:"ఒక్క బాలుని దాచుటచేత, దావీదు రాజసంతతి దాదాపు నశించిన సమయములో దానిని కాపాడెను (2 రాజు. 11:1–2); అందువలన క్రీస్తు వరకు ఆ వంశము నిలిచెను (మత్త. 1). బలిపీఠమునకును దేవాలయమునకును మధ్య చంపబడిన జెకర్యా (లూకా 11:51) అని యేసు చెప్పినది సాధారణముగా ఇతని కుమారునిగా తీసికొనబడును; మత్త. 23:35 లోని పేరు విషయము వాదనలో ఉన్నది."},
+ azariah:{name:"అజర్యా",when:"సుమారు క్రీ.పూ. 750 · ఉజ్జియా పరిపాలన",
+  earthly:"రాజైన ఉజ్జియా ధూపము వేయుటకు లోపలికి వెళ్లినప్పుడు ఎనుబదిమంది యాజకులతో అతనిని ఎదిరించి — ఇది నీకు తగదు అనెను (2 దిన. 26:18).",
+  limit:"ఉజ్జియా కుష్ఠరోగియాయెను, కాని రాజ్యము క్షీణించుచునే యుండెను.",
+  eternal:"ఇశ్రాయేలులో సింహాసనమును బలిపీఠమును వేరుగా ఉంచబడెను. క్రీస్తు యూదా గోత్రమువాడు — ఆ గోత్రమునుగూర్చి మోషే యాజకత్వము విషయమై ఏమియు చెప్పలేదు (హెబ్రీ. 7:14) — అయినను దేవుని ప్రమాణముచేత రెండును ఆయనకున్నవి (కీర్త. 110:1, 4)."},
+ hilkiah:{name:"హిల్కీయా",when:"క్రీ.పూ. 622 · యోషీయా పరిపాలన",
+  earthly:"మందిరము బాగుచేయబడుచుండగా ధర్మశాస్త్ర గ్రంథమును కనుగొనెను (2 రాజు. 22:8); దానివలన యోషీయా సంస్కరణ ఆరంభమాయెను.",
+  limit:"ఆ సంస్కరణ జనుల హృదయమును మార్చలేదు; నలువది సంవత్సరములలోపుగా యెరూషలేము పడిపోయెను.",
+  eternal:"గ్రంథములో కనుగొనబడిన ధర్మశాస్త్రము హృదయములమీద వ్రాయబడు ధర్మశాస్త్రమును సూచించుచున్నది: నా ధర్మవిధులను వారి మనస్సులో ఉంచి వారి హృదయములమీద వాటిని వ్రాయుదును (యిర్మీ. 31:33; హెబ్రీ. 8:10)."},
+ seraiah:{name:"శెరాయా",when:"క్రీ.పూ. 586 · యెరూషలేము పతనము",
+  earthly:"యెరూషలేము పడిపోయినప్పుడు ప్రధానయాజకుడు; రిబ్లాలో నెబుకద్నెజరు అతనిని చంపించెను (2 రాజు. 25:18–21).",
+  limit:"మందిరము కాల్చబడెను; భూలోక యాజకత్వపు కేంద్రము పోయెను.",
+  eternal:"ఈ దేవాలయమును పడగొట్టుడి, మూడు దినములలో దీనిని లేపుదును… ఆయన తన శరీరమను దేవాలయమునుగూర్చి ఈ మాట చెప్పెను (యోహా. 2:19–21)."},
+ joshua:{name:"యెహోషువ (యేషూవ)",when:"క్రీ.పూ. 538–515 · చెరనుండి తిరిగిరాక",
+  earthly:"తిరిగివచ్చినవారికి ప్రధానయాజకుడు. అతని మలినవస్త్రములు తీసివేయబడుటను జెకర్యా చూచెను (జెక. 3); పిమ్మట అతని తలమీద కిరీటము ఉంచబడెను: చిగురు అను ఒకడు… తన సింహాసనముమీద యాజకుడుగా ఉండును (జెక. 6:11–13).",
+  limit:"యెహోషువ స్వయముగా ఎన్నడును పరిపాలించలేదు. ఆ కిరీటములు జ్ఞాపకార్థముగా మందిరములో ఉంచబడెను (జెక. 6:14).",
+  eternal:"అతని పేరు ‘యేసు’ అను పేరు యొక్క హెబ్రీ రూపము. క్రొత్త నిబంధన జెకర్యా 6ను ఉదహరించదు, అయినను క్రీస్తును సరిగా ఇట్లే వర్ణించుచున్నది: పరలోకమందు మహామహుని సింహాసనమునకు కుడిపార్శ్వమున కూర్చుండిన ప్రధానయాజకుడు (హెబ్రీ. 8:1)."},
+ ezra:{name:"ఎజ్రా",when:"క్రీ.పూ. 458 నుండి · ఎజ్రా–నెహెమ్యా",
+  earthly:"యెహోవా ధర్మశాస్త్రమును పరిశోధించి దాని చొప్పున నడచుకొనుటకును బోధించుటకును మనస్సు నిలుపుకొనిన యాజకుడును శాస్త్రియును (ఎజ్రా 7:10). జనులకు ధర్మశాస్త్రము చదివి వినిపించెను (నెహె. 8).",
+  limit:"జనులు మరల అవే పాపములలోనికి జారిపోయిరి (నెహె. 13).",
+  eternal:"క్రీస్తు లేఖనములను విప్పెను: మోషేయు సమస్త ప్రవక్తలును మొదలుకొని లేఖనములన్నిటిలో తన్నుగూర్చిన వచనముల భావమును వారికి తెలిపెను (లూకా 24:27)."},
+ saul:{name:"సౌలు",when:"క్రీ.పూ. 1050–1010 · ఐక్య రాజ్యము",
+  earthly:"జనులు కోరుకొనిన రాజు; సమస్త జనములవలె ఒక రాజు (1 సమూ. 8:5). ఆరంభములో జయములు పొందెను.",
+  limit:"సమూయేలు కొరకు కనిపెట్టక తానే దహనబలి అర్పించెను (1 సమూ. 13:9–13). అమాలేకీయులను విడిచిపెట్టెను (1 సమూ. 15). తన ఖడ్గముమీదనే పడి చనిపోయెను.",
+  eternal:"విరుద్ధ సాదృశ్యము: మనుష్యులు కోరుకొనిన రాజు, దేవుడు ఏర్పరచుకొనిన రాజునకు ఎదురుగా (1 సమూ. 16:1). పౌలు ఒకే ప్రసంగములో సౌలునుండి దావీదునకు, దావీదునుండి యేసునకు వచ్చుచున్నాడు (అపొ. 13:21–23)."},
+ david:{name:"దావీదు",when:"క్రీ.పూ. 1010–970 · ఐక్య రాజ్యము",
+  earthly:"రాజుగా అభిషేకింపబడిన గొఱ్ఱెల కాపరి; దేవుని హృదయానుసారుడైన మనుష్యుడు. యెరూషలేమును పట్టుకొని, నిత్యమైన సింహాసనమునుగూర్చిన నిబంధనను పొందెను (2 సమూ. 7).",
+  limit:"వ్యభిచారము, నరహత్య (2 సమూ. 11). మందిరము కట్టుటకు అనుమతింపబడలేదు (1 దిన. 22:8). అతడు చనిపోయి సమాధి చేయబడెను (అపొ. 2:29).",
+  eternal:"యేసు దావీదు కుమారుడు, ఆయన రాజ్యము అంతములేనిది (లూకా 1:32–33); దావీదునకు ప్రభువు కూడ (కీర్త. 110:1; మత్త. 22:41–45): దావీదు వేరు, చిగురు, సంతానము (ప్రక. 22:16)."},
+ solomon:{name:"సొలొమోను",when:"క్రీ.పూ. 970–931 · ఐక్య రాజ్యము",
+  earthly:"జ్ఞానము, ఐశ్వర్యము, సమాధానము. మందిరమును కట్టెను; రాజ్యము ఉన్నతస్థితిలో ఉండెను.",
+  limit:"అతని భార్యలు అతని హృదయమును ఇతర దేవతలతట్టు త్రిప్పిరి (1 రాజు. 11:4). అతని తరువాత రాజ్యము రెండాయెను.",
+  eternal:"సొలొమోనుకంటె గొప్పవాడు ఇక్కడ ఉన్నాడు (మత్త. 12:42). క్రీస్తు మనకు జ్ఞానమాయెను (1 కొరిం. 1:30); సజీవమైన రాళ్లతో నిజమైన ఆలయమును కట్టుచున్నాడు (ఎఫె. 2:20–22)."},
+ jeroboam1:{name:"మొదటి యరొబాము",when:"క్రీ.పూ. 931–910 · ఇశ్రాయేలు",
+  earthly:"పది గోత్రములను దావీదు సంతతినుండి వేరుచేసెను. బేతేలులోను దానులోను బంగారు దూడలను నిలిపి, జనులలో అల్పులను యాజకులుగా నియమించెను (1 రాజు. 12:28–31).",
+  limit:"‘యరొబాము పాపము’ దాదాపు ప్రతి ఉత్తర రాజుమీద తీర్పాయెను. ఇశ్రాయేలునకు యెహోవా దృష్టికి యథార్థముగా ప్రవర్తించిన రాజు ఒక్కడును లేడు.",
+  eternal:"విరుద్ధ సాదృశ్యము: అధికారమును నిలుపుకొనుటకు మనుష్యుడు కల్పించిన ఆరాధనయు యాజకత్వమును. క్రీస్తే తండ్రియొద్దకు నిజమైన మార్గము; ఆత్మతోను సత్యముతోను చేయు నిజమైన ఆరాధన (యోహా. 4:23; 14:6)."},
+ uzziah:{name:"ఉజ్జియా",when:"క్రీ.పూ. 792–740 · యూదా",
+  earthly:"ఏబది రెండు సంవత్సరముల బలమును అభివృద్ధియు (2 దిన. 26:1–15).",
+  limit:"అతడు బలవంతుడైనప్పుడు అతని హృదయము గర్వించెను; ధూపము వేయుటకు లోపలికి వెళ్లెను. మరణదినము వరకు కుష్ఠరోగియై యుండెను (2 దిన. 26:16–21).",
+  eternal:"రాజైన ఉజ్జియా మరణమైన సంవత్సరమున సింహాసనముమీద ఆసీనుడైయున్న ప్రభువును నేను చూచితిని (యెష. 6:1). యాజకత్వమును ఆశించిన భూలోక రాజు చనిపోవును; నిత్యరాజు కనబడును. యెషయా క్రీస్తు మహిమను చూచెనని యోహాను చెప్పుచున్నాడు (యోహా. 12:41)."},
+ hezekiah:{name:"హిజ్కియా",when:"క్రీ.పూ. 715–686 · యూదా",
+  earthly:"అష్షూరు ఎదుట దేవుని నమ్ముకొని ఆరాధనను సంస్కరించెను. మోషే చేసిన ఇత్తడి సర్పమునకు ఇశ్రాయేలీయులు ధూపము వేయుచుండిరి గనుక దానిని తుత్తునియలుగా విరుగగొట్టెను (2 రాజు. 18:4).",
+  limit:"బబులోను దూతలకు తన ధనమంతయు చూపించెను; యెషయా చెరను ముందుగా తెలిపెను (యెష. 39:6). అతని కుమారుడైన మనష్షే యూదా రాజులలో అతి దుష్టుడు.",
+  eternal:"ఇత్తడి సర్పము ఒక సాదృశ్యము (యోహా. 3:14), పూజింపదగిన వస్తువు కాదు. సూచనే వాస్తవమని పొరబడినప్పుడు దానిని నాశనము చేయవలసివచ్చెను."},
+ josiah:{name:"యోషీయా",when:"క్రీ.పూ. 640–609 · యూదా",
+  earthly:"గొప్ప సంస్కర్త: అతనికి ముందుండిన రాజులలో అతనివంటివాడు ఒకడును లేడు (2 రాజు. 23:25).",
+  limit:"అయినను యెహోవా తన మహోగ్రతనుండి తిరుగలేదు (2 రాజు. 23:26). మెగిద్దోలో ఫరో నెకోచేత చంపబడెను.",
+  eternal:"అత్యుత్తమ సంస్కరణకూడ హృదయములను మార్చలేకపోయెను; యోషీయా దినములలో పిలువబడిన యిర్మీయా హృదయములను మార్చు క్రొత్త నిబంధనను వాగ్దానము చేసెను (యిర్మీ. 31:33). యోషీయా నిమిత్తము జరిగిన విలాపము (2 దిన. 35:25) తాము పొడిచినవానిని చూచి చేయు విలాపమునందు ప్రతిధ్వనించును (జెక. 12:10–11); యోహాను దానిని సిలువకు అన్వయించెను (యోహా. 19:37)."},
+ jehoiachin:{name:"యెహోయాకీను (కొన్యా)",when:"క్రీ.పూ. 598–597 · యూదా",
+  earthly:"మూడు నెలలు ఏలి బబులోనునకు కొనిపోబడెను. క్రీ.పూ. 562లో చెరసాలనుండి విడిపింపబడి రాజు బల్లయొద్ద భోజనము చేసెను (2 రాజు. 25:27–30).",
+  limit:"సంతానహీనుడని ఈ మనుష్యునిగూర్చి వ్రాయుడి… అతని సంతానములో ఎవడును దావీదు సింహాసనముమీద కూర్చుండి వర్ధిల్లడు (యిర్మీ. 22:30).",
+  eternal:"మత్తయి వంశావళిలో యెకొన్యాగా కనబడుచున్నాడు (మత్త. 1:11–12) — యోసేపు ద్వారా చట్టబద్ధమైన వంశము. యిర్మీయా మాట భంగము కాకుండ సింహాసనము క్రీస్తునకు చేరిన విధానము కన్యకాజననమే అని అనేకులు భావించుదురు; ఇది అనుమానము, క్రొత్త నిబంధన స్పష్టముగా చెప్పినది కాదు."},
+ zedekiah:{name:"సిద్కియా",when:"క్రీ.పూ. 597–586 · యూదా చివరి రాజు",
+  earthly:"బబులోను నియమించిన రాజు, తిరుగుబాటు చేసెను. తన కుమారులు చంపబడుట చూచిన పిమ్మట అతని కన్నులు ఊడదీయబడెను; యెరూషలేము కాల్చబడెను (2 రాజు. 25:7).",
+  limit:"దావీదు భూలోక సింహాసనమునకు అంతము.",
+  eternal:"తలపాగాను తీసివేయుము, కిరీటమును ఎత్తుము… హక్కుదారుడు వచ్చువరకు అది యుండదు; అప్పుడు దానిని అతనికిచ్చెదను (యెహె. 21:26–27). నిజమైన వారసుని కొరకు కిరీటము ఉంచబడెను: ప్రభువైన దేవుడు ఆయన తండ్రియైన దావీదు సింహాసనమును ఆయనకిచ్చును (లూకా 1:32)."},
+ zerubbabel:{name:"జెరుబ్బాబెలు",when:"క్రీ.పూ. 538–515 · తిరిగివచ్చిన తరువాత అధికారి",
+  earthly:"యెహోయాకీను మనుమడు; పారసీకుల క్రింద యూదాకు అధికారి. రెండవ మందిరపు పునాది వేసెను.",
+  limit:"ఎన్నడును రాజు కాలేదు, అధికారి మాత్రమే; రెండవ మందిరము మొదటిదానితో పోల్చగా అల్పముగా నుండెను (హగ్గ. 2:3).",
+  eternal:"నిన్ను ముద్ర ఉంగరముగా చేసెదను (హగ్గ. 2:23) — కొన్యానుండి తీసివేయబడిన ముద్ర ఉంగరమునకు (యిర్మీ. 22:24) ఇది విరుద్ధము. యేసు వంశావళులు రెండిటిలోను ఇతడున్నాడు (మత్త. 1:12–13; లూకా 3:27). ఈ కడవరి మందిరపు మహిమ మునుపటి మందిరపు మహిమకంటె అధికమగును (హగ్గ. 2:9)."}
+};
+TE.christ={
+ prophet:{t:"ప్రవక్తయైన క్రీస్తు",q:"దేవుడు… ఈ దినముల అంతమందు కుమారుని ద్వారా మనతో మాటలాడెను (హెబ్రీ. 1:1–2)",p:"ప్రవక్తలు వాక్యమును మోసికొనివచ్చిరి; ఆయనే శరీరధారియైన వాక్యము (యోహా. 1:1, 14). మోషేవంటి ప్రవక్త (అపొ. 3:22)."},
+ priest:{t:"యాజకుడైన క్రీస్తు",q:"నీవు మెల్కీసెదెకు క్రమము చొప్పున నిరంతరము యాజకుడవు (హెబ్రీ. 5:6)",p:"ఒక్క అర్పణ, ఒక్కసారే, తన స్వరక్తముతో పరలోకములోనికే (హెబ్రీ. 9:12, 24; 10:12). మనకొరకు విజ్ఞాపనము చేయుటకు ఆయన నిరంతరము జీవించుచున్నాడు (హెబ్రీ. 7:25)."},
+ king:{t:"రాజైన క్రీస్తు",q:"ఆయన రాజ్యము అంతములేనిదై యుండును (లూకా 1:33)",p:"దావీదు కుమారుడును దావీదు ప్రభువును (మత్త. 22:42–45). నా రాజ్యము ఈ లోకసంబంధమైనది కాదు (యోహా. 18:36). రాజులకు రాజు (ప్రక. 19:16)."}
+};
+TE.kings={
+ saul:["సౌలు","అవిధేయతనుబట్టి విసర్జింపబడెను (1 సమూ. 15)."],david:["దావీదు","దేవుని హృదయానుసారుడు; నిత్య నిబంధన."],solomon:["సొలొమోను","మందిరమును కట్టెను; భార్యలచేత హృదయము త్రిప్పబడెను."],
+ jeroboam1:["మొదటి యరొబాము","బేతేలు, దానులలో బంగారు దూడలు."],nadab:["నాదాబు","బయెషాచేత చంపబడెను."],baasha:["బయెషా","యరొబాము ఇంటిని నాశనముచేసి అతని పాపములోనే నడచెను."],elah:["ఏలా","త్రాగి మత్తుడైయుండగా చంపబడెను."],zimri:["జిమ్రీ","ఏడు దినములు ఏలెను."],omri:["ఒమ్రీ","షోమ్రోనును కట్టెను."],ahab:["అహాబు","యెజెబెలును పెండ్లిచేసికొనెను; బయలు పూజ; ఏలీయా ఎదిరించెను."],ahaziahI:["అహజ్యా","బయల్జెబూబునొద్ద విచారించెను."],joramI:["యెహోరాము","యెహూచేత చంపబడెను."],jehu:["యెహూ","బయలు పూజను నాశనముచేసెను గాని దూడలను ఉంచెను."],jehoahazI:["యెహోయాహాజు","సిరియనులచేత బాధింపబడెను."],jehoashI:["యెహోయాషు","మరణశయ్యమీదనున్న ఎలీషాను దర్శించెను."],jeroboam2:["రెండవ యరొబాము","అభివృద్ధి; యోనా, ఆమోసు, హోషేయ పరిచర్య."],zechariahI:["జెకర్యా","ఆరు నెలలు; యెహూ వంశమునకు అంతము."],shallum:["షల్లూము","ఒక నెల."],menahem:["మెనహేము","అష్షూరునకు కప్పము చెల్లించెను."],pekahiah:["పెకహ్యా","పెకహుచేత చంపబడెను."],pekah:["పెకహు","పోటీ పరిపాలన; యూదాకు విరోధముగా సిరియాతో జతకట్టెను."],hoshea:["హోషేయ","చివరి రాజు; షోమ్రోను అష్షూరుచేత పడెను."],
+ rehoboam:["రెహబాము","అతని కఠినమైన జవాబు రాజ్యమును రెండుగా చేసెను."],abijah:["అబీయా","తన తండ్రి పాపములలో నడచెను."],asa:["ఆసా","విగ్రహములను తీసివేసెను; తరువాత సిరియాను ఆశ్రయించెను."],jehoshaphat:["యెహోషాపాతు","ధర్మశాస్త్రము బోధించుటకు బోధకులను పంపెను; అహాబుతో సంబంధము చేసికొనెను."],jehoram:["యెహోరాము","అహాబు కుమార్తెను పెండ్లిచేసికొనెను."],ahaziahJ:["అహజ్యా","యెహూచేత చంపబడెను."],athaliah:["అతల్యా","రాజసంతతిని నాశనము చేయ ప్రయత్నించెను."],joash:["యోవాషు","యెహోయాదా బ్రదికియున్నంతకాలము మంచివాడు, తరువాత తొలగిపోయెను."],amaziah:["అమజ్యా","యథార్థముగా ప్రవర్తించెను గాని పూర్ణహృదయముతో కాదు."],uzziah:["ఉజ్జియా","బలవంతుడు; ధూపము వేసినందుకు కుష్ఠరోగియాయెను."],jotham:["యోతాము","యథార్థముగా ప్రవర్తించెను; జనులు ఇంకను చెడిపోయిరి."],ahaz:["ఆహాజు","యెషయా సూచనను తిరస్కరించెను; దమస్కు బలిపీఠపు నమూనాను అనుకరించెను."],hezekiah:["హిజ్కియా","అష్షూరు ఎదుట దేవుని నమ్ముకొనెను."],manasseh:["మనష్షే","రాజులలో అతి దుష్టుడు; చివరకు మారుమనస్సు పొందెను."],amon:["ఆమోను","తన సేవకులచేత చంపబడెను."],josiah:["యోషీయా","ధర్మశాస్త్ర గ్రంథము కనుగొనబడెను; గొప్ప సంస్కరణ."],jehoahazJ:["యెహోయాహాజు","మూడు నెలలు; ఐగుప్తునకు కొనిపోబడెను."],jehoiakim:["యెహోయాకీము","యిర్మీయా గ్రంథపు చుట్టను కాల్చెను."],jehoiachin:["యెహోయాకీను","బబులోనునకు కొనిపోబడెను."],zedekiah:["సిద్కియా","చివరి రాజు; యెరూషలేము కాల్చబడెను."],zerubbabel:["జెరుబ్బాబెలు","రాజు కాడు, అధికారి; మందిరమును తిరిగి కట్టెను."]
+};
+TE.prophets={samuel:["సమూయేలు"],gad:["గాదు","దావీదునకు దీర్ఘదర్శి (1 సమూ. 22:5; 2 సమూ. 24)."],nathan:["నాతాను"],ahijah:["అహీయా","వస్త్రమును పండ్రెండు ముక్కలుగా చింపెను (1 రాజు. 11:29–39)."],elijah:["ఏలీయా"],micaiah:["మీకాయా","అహాబు మరణమును ముందుగా తెలిపెను (1 రాజు. 22)."],elisha:["ఎలీషా"],joel:["యోవేలు","కాలము వాదనలో ఉన్నది; ఆత్మ కుమ్మరింపబడుట (యోవే. 2:28; అపొ. 2:16)."],jonah:["యోనా"],amos:["ఆమోసు","ఇశ్రాయేలులో న్యాయము; పడిపోయిన దావీదు గుడారము మరల లేపబడుట (ఆమో. 9:11; అపొ. 15:16)."],hosea:["హోషేయ","ద్రోహియైన ఇశ్రాయేలుపట్ల దేవుని నమ్మకమైన ప్రేమ; ఐగుప్తులోనుండి నా కుమారుని పిలిచితిని (హోషే. 11:1)."],isaiah:["యెషయా"],micah:["మీకా","బేత్లెహేమునుండి ఏలువాడు (మీకా 5:2; మత్త. 2:6)."],nahum:["నహూము","నీనెవె పతనము."],zephaniah:["జెఫన్యా","యెహోవా దినము."],jeremiah:["యిర్మీయా"],habakkuk:["హబక్కూకు","నీతిమంతుడు విశ్వాసమూలముగా బ్రదుకును (హబ. 2:4; రోమా. 1:17)."],daniel:["దానియేలు"],ezekiel:["యెహెజ్కేలు"],obadiah:["ఓబద్యా","ఎదోమునకు విరోధముగా; కాలము వాదనలో ఉన్నది."],haggai:["హగ్గయి","ఈ కడవరి మందిరపు మహిమ (హగ్గ. 2:9)."],zechariahP:["జెకర్యా","చిగురు; గాడిదనెక్కి వచ్చు రాజు (జెక. 9:9; మత్త. 21:5)."],malachi:["మలాకీ"]};
+TE.priests={eli:["ఏలీ"],abiathar:["అహీమెలెకు, అబ్యాతారు"],zadok:["సాదోకు"],jehoiada:["యెహోయాదా"],azariah:["అజర్యా"],urijah:["ఊరియా","దమస్కు నమూనాపై ఆహాజు బలిపీఠమును కట్టెను (2 రాజు. 16:10–16)."],hilkiah:["హిల్కీయా"],seraiah:["శెరాయా"],joshua:["యెహోషువ"],ezra:["ఎజ్రా"]};
+TE.events={1003:"యెరూషలేము పట్టబడెను",959:"మొదటి మందిర ప్రతిష్ఠ",931:"రాజ్యము రెండాయెను",722:"షోమ్రోను అష్షూరుచేత పడెను",701:"సన్హెరీబు వెనుకకు త్రిప్పబడెను",605:"మొదటి చెర బబులోనుకు",586:"యెరూషలేము, మందిరము కాల్చబడెను",538:"కోరెషు ఆజ్ఞ; తిరిగిరాక",516:"రెండవ మందిరము పూర్తి",445:"ప్రాకారములు తిరిగి కట్టబడెను"};
+TE.prom=[
+ ["నిత్యమైన సింహాసనము","దావీదు కుమారుడు; అతని సింహాసనము నిత్యము స్థిరపరచబడును."],
+ ["నిరంతర యాజక-రాజు","దేవుని కుడిపార్శ్వమున కూర్చుండిన దావీదు ప్రభువు; మెల్కీసెదెకు క్రమము చొప్పున నిరంతర యాజకుడు."],
+ ["సింహాసనాసీనుడైన కుమారుడు","నేను నా పరిశుద్ధ పర్వతమైన సీయోనుమీద నా రాజును ఆసీనునిగా చేసియున్నాను; నీవు నా కుమారుడవు."],
+ ["ఇమ్మానుయేలు","విశ్వాసములేని ఆహాజునకు ఇయ్యబడిన సూచన: కన్యక గర్భవతియై కుమారుని కనును."],
+ ["దావీదు సింహాసనముమీది శిశువు","ఆయన ప్రభుత్వమునకును సమాధానమునకును అంతము లేదు."],
+ ["బేత్లెహేమునుండి ఏలువాడు","పురాతన కాలము మొదలుకొని, అనాదికాలము మొదలుకొని ఆయన ఉత్పత్తి కలిగియున్నది."],
+ ["శ్రమపడు సేవకుడు","యాజకుడును అర్పణయు ఒక్కరే: ఆయన అనేకుల పాపమును భరించెను."],
+ ["నీతిచిగురు","రాజుగా ఏలి వర్ధిల్లునొకడు: యెహోవా మనకు నీతి."],
+ ["నాశనము కాని రాజ్యము","చేతిసహాయము లేక తీయబడిన రాయి భూమియంతటను నిండెను."],
+ ["క్రొత్త నిబంధన","హృదయముమీద వ్రాయబడు ధర్మశాస్త్రము; పాపములు ఇక జ్ఞాపకము చేసికొనబడవు."],
+ ["హక్కుదారుడు వచ్చువరకు","సిద్కియానుండి కిరీటము తీసివేయబడి నిజమైన వారసుని కొరకు ఉంచబడెను."],
+ ["ఒక్కడే కాపరి","నా సేవకుడైన దావీదు వారికి కాపరిగా ఉండును."],
+ ["మనుష్యకుమారుని ఆధిపత్యము","గతించిపోని శాశ్వతమైన ఆధిపత్యము."],
+ ["సింహాసనముమీది యాజకుడు","చిగురు మందిరమును కట్టి మహిమను వహించును; యాజకుడును రాజును ఆయనే."],
+ ["గాడిదనెక్కి వచ్చు రాజు","నీ రాజు దీనుడై గాడిదనెక్కి నీయొద్దకు వచ్చుచున్నాడు."],
+ ["దూతయు ప్రభువును","ముందుగా ఒక దూత; తరువాత ప్రభువు హఠాత్తుగా తన ఆలయమునకు వచ్చును."]
+];
+TE.themes=[
+ ["రాజ్యము","ఇశ్రాయేలు, యూదా: ఐక్యముగా, 931లో విభజింపబడి, 722లోను 586లోను అంతమాయెను.","ఎన్నటికిని నాశనము కాని రాజ్యము (దాని. 2:44); ఈ లోకసంబంధమైనది కాదు (యోహా. 18:36)."],
+ ["సింహాసనము","యెరూషలేములో దావీదు సింహాసనము; సిద్కియానుండి కిరీటము తీసివేయబడెను (యెహె. 21:26).","ప్రభువైన దేవుడు ఆయన తండ్రియైన దావీదు సింహాసనమును ఆయనకిచ్చును… ఆయన రాజ్యము అంతములేనిదై యుండును (లూకా 1:32–33)."],
+ ["ప్రవక్తల వాక్యము","పూర్వకాలమందు నానాసమయములలో నానావిధములుగా అనేకుల ద్వారా దేవుడు మాటలాడెను; తరచు వారు తిరస్కరింపబడిరి.","ఈ దినముల అంతమందు కుమారుని ద్వారా మనతో మాటలాడెను (హెబ్రీ. 1:1–2). ఆయనే వాక్యము (యోహా. 1:14)."],
+ ["యాజకత్వము","మరణము కారణముగా నిలిచియుండలేకపోయినందున అనేకులు యాజకులైరి (హెబ్రీ. 7:23).","మార్పులేని యాజకత్వము గల ఒక్క యాజకుడు; విజ్ఞాపనము చేయుటకు నిరంతరము జీవించుచున్నాడు (హెబ్రీ. 7:24–25)."],
+ ["బలి","పాపములను ఎన్నటికిని తీసివేయలేని అనుదిన, వార్షిక బలులు (హెబ్రీ. 10:11).","పాపముల నిమిత్తము సదాకాలము నిలుచు ఏకబలి (హెబ్రీ. 10:12)."],
+ ["ఆలయము","సొలొమోను మందిరము 586లో కాల్చబడెను; రెండవ మందిరము అల్పమైనది (హగ్గ. 2:3).","ఆయన శరీరమను దేవాలయము (యోహా. 2:21); విశ్వాసులు ప్రభువునందు పరిశుద్ధ దేవాలయముగా కట్టబడుచున్నారు (ఎఫె. 2:21)."],
+ ["నిబంధన","రాతిపలకలమీద వ్రాయబడెను; వారు ఆ నిబంధనను భంగము చేసిరి (యిర్మీ. 31:32).","హృదయములమీద వ్రాయబడెను; పాపములు ఇక జ్ఞాపకము చేసికొనబడవు (యిర్మీ. 31:33–34; హెబ్రీ. 8:10–12)."],
+ ["యెరూషలేము","ముట్టడివేయబడి కాల్చబడిన భూలోక పట్టణము.","పైనున్న యెరూషలేము స్వతంత్రురాలు (గల. 4:26); పరలోకపు యెరూషలేము (హెబ్రీ. 12:22)."],
+ ["విశ్రాంతి, దేశము","యెహోషువ కనానులో విశ్రాంతి ఇచ్చెను, గాని అది నిలువలేదు (హెబ్రీ. 4:8).","కాబట్టి దేవుని ప్రజలకు విశ్రాంతి నిలిచియున్నది (హెబ్రీ. 4:9)."],
+ ["అభిషేకము","ప్రవక్తలు, యాజకులు, రాజులమీద తైలము పోయబడెను (1 రాజు. 19:16; నిర్గమ. 29:7; 1 సమూ. 16:13).","యేసే క్రీస్తు, అనగా అభిషిక్తుడు; దేవుడు ఆయనను పరిశుద్ధాత్మతోను శక్తితోను అభిషేకించెను (అపొ. 10:38)."]
+];
+TE.types={
+ adam:["ఆదాము, కడపటి ఆదాము","మానవజాతికి శిరస్సు; అతని ఒక్క అవిధేయతవలన పాపమును మరణమును అందరికి వచ్చెను.","కడపటి ఆదాము; ఆయన ఒక్క విధేయతవలన నీతియు జీవమును కలుగును; జీవింపజేయు ఆత్మ.","ఎక్కువగా వ్యత్యాసముచేత సాదృశ్యము: ఆదాము చేసినదానిని క్రీస్తు సరిచేయును."],
+ passover:["పస్కా గొఱ్ఱెపిల్ల","నిర్దోషమైన గొఱ్ఱెపిల్ల; ద్వారబంధములమీది దాని రక్తము ఐగుప్తులో ఆ రాత్రి తొలిచూలులను కాపాడెను.","మన పస్కాపశువైన క్రీస్తు వధింపబడెను. ఆయన యెముకలలో ఒక్కటియైనను విరువబడలేదు (నిర్గమ. 12:46; యోహా. 19:36).","ప్రతి సంవత్సరపు భోజనము, ఐగుప్తు సందర్భము, ఇంటి వివరములు అన్వయింపబడవు."],
+ serpent:["ఇత్తడి సర్పము","పాము కరచిన ఇశ్రాయేలీయులు స్తంభముమీది ఇత్తడి సర్పమును చూచి బ్రదికిరి.","విశ్వసించు ప్రతివాడును నిత్యజీవము పొందునట్లు మనుష్యకుమారుడు ఎత్తబడవలెను.","ఆ వస్తువునకు స్వశక్తి లేదు. ఇశ్రాయేలు దానిని పూజించినప్పుడు హిజ్కియా దానిని విరుగగొట్టెను."],
+ melchizedek:["మెల్కీసెదెకు","షాలేము రాజు, సర్వోన్నతుడగు దేవుని యాజకుడు; లేవి గోత్రమువాడు కాడు.","నిరంతర యాజకుడు; నీతికి రాజు, సమాధానమునకు రాజు; నాశనములేని జీవముచేత.","‘తండ్రి లేనివాడు, తల్లి లేనివాడు’ అనునది లేఖనపు మౌనమును సూచించును, అలౌకిక జన్మను కాదు."],
+ manna:["మన్నా","అరణ్యములో శరీరములను పోషించి ఉదయమునకు చెడిపోయిన పరలోకపు అనుదిన ఆహారము.","జీవాహారము నేనే. దానిని తినువాడు నిరంతరము జీవించును.","మీ పితరులు అరణ్యములో మన్నాను తినినను చనిపోయిరి (యోహా. 6:49)."],
+ rock:["కొట్టబడిన బండ","మోషే కొట్టిన బండనుండి అరణ్యములో నీళ్లు ప్రవహించెను.","ఆ బండ క్రీస్తే. జీవజలము, అనగా ఆత్మ.","మోషే రెండవసారి కొట్టినందున అతనిమీదికి తీర్పు వచ్చెను; ప్రతి వివరమునకు అర్థము ఇయ్యబడలేదు."],
+ sabbath:["విశ్రాంతిదినము","వారమునకొకసారి పనినుండి విశ్రాంతి; యెహోషువ క్రింద దేశములో విశ్రాంతి.","కాబట్టి దేవుని ప్రజలకు విశ్రాంతి నిలిచియున్నది. నిజస్వరూపము క్రీస్తులో ఉన్నది.","ప్రభువు దినమునకు విశ్రాంతిదినము ఎట్లు అన్వయించునను విషయములో సంఘములు భిన్నముగా ఉన్నవి."],
+ ark:["నోవహు ఓడ","ఓడలో ఎనిమిది మంది నీటిద్వారా రక్షింపబడిరి.","యేసుక్రీస్తు పునరుత్థానము ద్వారా రక్షణ; బాప్తిస్మము దానికి సాదృశ్యము.","అది శరీర మాలిన్యమును తీసివేయుట కాదు అని పేతురు చెప్పుచున్నాడు."],
+ isaac:["అర్పింపబడిన ఇస్సాకు","అబ్రాహాము తన ఏకైక కుమారుని మోరీయాలో అర్పించి, ఉపమానరూపముగా అతనిని తిరిగి పొందెను.","దేవుడు తన సొంత కుమారుని అనుగ్రహించుటకు వెనుకతీయలేదు; ఆయన నిజముగా చనిపోయి లేచెను.","ఇస్సాకు కాపాడబడెను, అతనికి బదులుగా పొట్టేలు చనిపోయెను. క్రీస్తు కాపాడబడలేదు."],
+ tabernacle:["ప్రత్యక్షపు గుడారము","మోషేకు చూపబడిన మాదిరిచొప్పున చేయబడి, ఇశ్రాయేలు మధ్య దేవుడు నివసించిన గుడారము.","వాక్యము శరీరధారియై మన మధ్య నివసించెను; హస్తకృతము కాని మరి శ్రేష్ఠమును పరిపూర్ణమునైన గుడారము.","పలకలు, దిమ్మలు, తెరలకు క్రొత్త నిబంధన అర్థములు ఇయ్యలేదు."],
+ highpriest:["ప్రధానయాజకుడు","అహరోను వంశము; తనకొరకును జనులకొరకును రక్తముతో సంవత్సరమునకొకసారి అతిపరిశుద్ధస్థలములో ప్రవేశించెను.","ఆకాశమండలముగుండ వెళ్లిన గొప్ప ప్రధానయాజకుడు; పాపము లేనివాడు; విజ్ఞాపనము చేయుటకు నిరంతరము జీవించుచున్నాడు.","క్రీస్తునకు తనకొరకు అర్పణ అవసరము లేదు; ఆయన యాజకత్వము లేవి వంశమువలన కాదు."],
+ veil:["తెర","అతిపరిశుద్ధస్థలపు మార్గమును అడ్డగించిన తెర.","తెర, అనగా ఆయన శరీరముద్వారా క్రొత్తదియు జీవముగలదియునైన మార్గము; ఆయన మరణమప్పుడు అది చినిగెను.","హెబ్రీయులకు వ్రాసిన పత్రిక ఈ ఒక్క సంబంధమునే చూపును; తెర రంగులు, కెరూబులు వివరింపబడలేదు."],
+ atonement:["ప్రాయశ్చిత్తదినము","సంవత్సరమునకొకసారి జనముయొక్క పాపముల నిమిత్తము రక్తము తెరలోపలికి తేబడెను.","క్రీస్తు తన స్వరక్తముతో ఒక్కసారే ప్రవేశించి నిత్యమైన విమోచన సంపాదించెను; గవిని వెలుపల శ్రమపొందెను.","అజాజేలు మేకను క్రొత్త నిబంధన స్పష్టముగా పేర్కొనదు; హెబ్రీ. 13 పాళెము వెలుపల కాల్చబడిన అర్పణను వాడుచున్నది."],
+ temple:["దేవాలయము","యెరూషలేములో దేవుని నామము కొరకు సొలొమోను కట్టిన మందిరము; క్రీ.పూ. 586లో కాల్చబడెను.","ఆయన తన శరీరమను దేవాలయమునుగూర్చి ఈ మాట చెప్పెను. దేవాలయముకంటె గొప్పవాడు.","ఆయనమీద కట్టబడిన సంఘమునకును అన్వయించును; రాళ్లు, కొలతలకు అర్థములు ఇయ్యబడలేదు."],
+ jonah:["యోనా","మత్స్యము కడుపులో మూడు దినములు మూడు రాత్రులు; తరువాత అతని ప్రకటనవలన నీనెవె మారుమనస్సు పొందెను.","భూగర్భములో మూడు దినములు, తరువాత పునరుత్థానము. యోనాకంటె గొప్పవాడు ఇక్కడ ఉన్నాడు.","యోనా దేవునినుండి పారిపోయి కనికరమునకు కోపపడెను; క్రీస్తు ఇష్టపూర్వకముగా వచ్చెను."],
+ moses:["మోషేవంటి ప్రవక్త","ధర్మశాస్త్రమునకు మధ్యవర్తియైన మోషే దేవునితో ముఖాముఖిగా మాటలాడెను.","యేసే వాగ్దానము చేయబడిన ప్రవక్త; దాసునివలె కాక కుమారునివలె నమ్మకముగా ఉన్నాడు.","మోషే పాపి, దేశములోనికి వెళ్లకుండ ఆపబడెను; క్రీస్తు మహిమలో అధికుడు (హెబ్రీ. 3:3)."],
+ ladder:["యాకోబు నిచ్చెన","బేతేలులో భూమికి ఆకాశమునకు మధ్య నిచ్చెన; దేవదూతలు ఎక్కుచు దిగుచుండిరి.","దేవదూతలు మనుష్యకుమారునిపైగా ఎక్కుటయు దిగుటయు: ఆకాశమును భూమియు ఆయనయందు కలియును.","యేసు ఈ దృశ్యమును తనకు అన్వయించుకొనెను గాని నిచ్చెన వివరములను విశదపరచలేదు."],
+ cornerstone:["విసర్జింపబడిన మూలరాయి","ఇల్లు కట్టువారు నిషేధించిన రాయి మూలకు తలరాయి ఆయెను.","ఇశ్రాయేలు నాయకులు క్రీస్తును విసర్జించిరి; దేవుడు ఆయనను తన ఇంటికి పునాదిగా చేసెను.","కీర్తన 118 మొదట విడిపింపబడిన రాజునుగూర్చియు జనమునుగూర్చియు చెప్పును; దాని పరిపూర్ణత క్రీస్తులో ఉన్నది."],
+ bridegroom:["పెండ్లికుమారుడు, పెండ్లికుమార్తె","వివాహము; భర్తవలె ఇశ్రాయేలుపట్ల దేవుని నిబంధన ప్రేమ.","ఈ మర్మము గొప్పది; అయితే నేను క్రీస్తునుగూర్చియు సంఘమునుగూర్చియు చెప్పుచున్నాను.","ఆదాము ప్రక్కనుండి హవ్వ రూపింపబడుట క్రీస్తు పొడువబడిన ప్రక్కనుండి సంఘము పుట్టుటకు చిత్రమనునది సంఘ సంప్రదాయము, క్రొత్త నిబంధన చెప్పినది కాదు."],
+ solomon:["సొలొమోనుకంటె గొప్పవాడు","షేబ దేశపు రాణిని ఆకర్షించిన జ్ఞానియైన రాజు.","సొలొమోనుకంటె గొప్పవాడు ఇక్కడ ఉన్నాడు; దేవుని జ్ఞానము వ్యక్తిరూపముగా.","సొలొమోను విగ్రహారాధనయు అనేక భార్యలును ఈ సాదృశ్యములో భాగము కావు."],
+ david:["కాపరియైన రాజు దావీదు","గొల్యాతును జయించి రాజైన గొఱ్ఱెల కాపరి బాలుడు.","తన ప్రాణము పెట్టు మంచి కాపరి; దావీదు కుమారుడు, దావీదు ప్రభువు.","దావీదు పాపములు, అతని ఇంటి కలతలు ఈ సాదృశ్యములో భాగము కావు."],
+ covenantblood:["నిబంధన రక్తము","మోషే రక్తమును జనులమీద ప్రోక్షించి — ఇదిగో నిబంధన రక్తము అనెను.","ఇది పాపక్షమాపణ నిమిత్తము అనేకుల కొరకు చిందింపబడుచున్న నిబంధన సంబంధమైన నా రక్తము.","పాత నిబంధన రాతిమీద వ్రాయబడి భంగము చేయబడెను; క్రొత్తది హృదయముమీద వ్రాయబడెను."],
+ mercyseat:["కరుణాపీఠము","మందసముమీది బంగారు మూత; ప్రాయశ్చిత్తదినమున దానిమీద రక్తము ప్రోక్షింపబడెను.","దేవుడు క్రీస్తును కరుణాధారముగా బయలుపరచెను (గ్రీకు పాత నిబంధనలో కరుణాపీఠమునకు వాడిన పదమే).","రోమా. 3:25 ‘కరుణాపీఠము’ అనా, విస్తృతముగా ‘కరుణాధారము’ అనా అను విషయము వాదనలో ఉన్నది."],
+ sacrifices:["బలుల అంతము","పాపములను ఎన్నటికిని తీసివేయలేని అనుదిన, వార్షిక అర్పణలు.","ఒక్క అర్పణచేత పరిశుద్ధపరచబడువారిని సదాకాలమునకు సంపూర్ణులుగా చేసెను.","ప్రతి అర్పణలోని ప్రతి భాగమును క్రీస్తునకు జతపరచుట ఊహాకల్పన. ‘నాకు శరీరమును అమర్చితివి’ అనునది గ్రీకు పాత నిబంధనను అనుసరించును."],
+ israelson:["దేవుని కుమారుడైన ఇశ్రాయేలు","ఐగుప్తులోనుండి పిలువబడి, సముద్రముగుండ దాటి, నలువది సంవత్సరములు అరణ్యములో శోధింపబడి, విఫలమాయెను.","యేసు ఐగుప్తులోనుండి పిలువబడి, బాప్తిస్మము పొంది, నలువది దినములు శోధింపబడి, ద్వితీయోపదేశకాండమునుండి జవాబిచ్చెను: విధేయుడైన కుమారుడు.","హోషే. 11:1 ఇశ్రాయేలునుగూర్చిన చరిత్ర; మత్తయి దానిని క్రీస్తునందు నెరవేరిన మాదిరిగా చదువుచున్నాడు."]
+};
+TE.cat={Person:"వ్యక్తి",Event:"సంఘటన",Institution:"విధి",Object:"వస్తువు",Office:"పదవి",All:"అన్నియు"};
+TE.lines={
+ temple:[["ప్రత్యక్షపు గుడారము","సొలొమోను మందిరము"],"ఆయన శరీరమను ఆలయము","మీరు దేవుని ఆలయము","గొఱ్ఱెపిల్లయే ఆలయము"],
+ priest:[["మెల్కీసెదెకు","అహరోను"],"నిరంతర ప్రధానయాజకుడు","రాజులైన యాజకసమూహము","దేవుని యాజకులు"],
+ king:[["దావీదు సింహాసనము","కిరీటము తీసివేయబడెను"],"రాజులకు రాజు","కుమారుని రాజ్యము","యుగయుగములు ఏలుట"],
+ prophet:[["మోషే","ప్రవక్తలు"],"శరీరధారియైన వాక్యము","ఆత్మ కుమ్మరింపబడెను","ఆయన ముఖము చూచుట"],
+ lamb:[["దేవుడే గొఱ్ఱెపిల్లను చూచుకొనును","పస్కా; యెష. 53"],"దేవుని గొఱ్ఱెపిల్ల","సజీవ యాగములు","సింహాసనముమీది గొఱ్ఱెపిల్ల"],
+ bread:[["మన్నా","సన్నిధి రొట్టెలు"],"జీవాహారము","ఒక్క రొట్టె, ఒక్క శరీరము","గొఱ్ఱెపిల్ల వివాహ విందు"],
+ water:[["బండనుండి నీళ్లు","మందిరమునుండి నది"],"జీవజలము","ఒక్క ఆత్మను పానముచేయుట","జీవజల నది"],
+ rest:[["విశ్రాంతిదినము","కనానులో విశ్రాంతి"],"నేను విశ్రాంతి కలుగజేతును","విశ్రాంతిలో ప్రవేశించుచున్నాము","ప్రయాసములనుండి విశ్రాంతి"],
+ bride:[["హవ్వ","భార్యయైన ఇశ్రాయేలు"],"పెండ్లికుమారుడు","క్రీస్తునకు ప్రధానము చేయబడెను","గొఱ్ఱెపిల్ల వివాహము"],
+ adam:[["దేవుని స్వరూపములో ఆదాము","ఆదాము పోలికలో"],"కడపటి ఆదాము; దేవుని స్వరూపము","ఒక్క నూతన పురుషుడు","ఆయన పోలికను ధరించుట"],
+ seed:[["స్త్రీ సంతానము","అబ్రాహాము, దావీదుల సంతానము"],"ఆ సంతానము క్రీస్తే","ఆయనలో అబ్రాహాము సంతానము","ప్రతి జనము"],
+ zion:[["దావీదు సీయోనును పట్టుకొనెను","పట్టణము నాశనమాయెను"],"గవిని వెలుపల శ్రమపొందెను","సీయోను కొండకు వచ్చితిరి","నూతన యెరూషలేము"],
+ glory:[["మహిమ గుడారమును నింపెను","మహిమ వెడలిపోయెను"],"ఆయన మహిమను కనుగొంటిమి","లోకమునకు వెలుగు","గొఱ్ఱెపిల్లయే దీపము"],
+ tree:[["ఏదెనులో వృక్షము","మార్గము మూయబడెను"],"మ్రానుమీద మన పాపములను భరించెను","ఇప్పుడే నిత్యజీవము","మరల జీవవృక్షము"]
+};
+TE.seed=[
+ ["సమస్త మానవజాతికి శిరస్సు. లూకా వంశావళి దేవుని కుమారుడైన ఆదాము వరకు వెళ్లుచున్నది.",""],
+ ["హేబెలునకు ప్రతిగా దేవుడు నాకు వేరొక సంతానమును అనుగ్రహించెను.","కయీను వంశము"],
+ ["ఎనిమిది మంది జలప్రళయముగుండ వాగ్దానమును మోసికొనిపోయిరి.","జలప్రళయపు లోకము"],
+ ["షేము దేవుడైన యెహోవా స్తుతింపబడును గాక.","హాము, యాపెతు: జనములు (ఆది. 10)"],
+ ["నీ సంతానమువలన భూమిమీదనున్న సమస్త జనములు ఆశీర్వదింపబడును. సమస్త జనముల నిమిత్తము ఒక్క మనుష్యుడు ఏర్పరచబడెను.","బాబెలు వద్ద చెదరగొట్టబడిన జనములు (ఆది. 11)"],
+ ["ఇస్సాకువలననైనది నీ సంతానమనబడును.","ఇష్మాయేలు"],
+ ["ఇశ్రాయేలు అని పేరు పొందెను; పండ్రెండు గోత్రములు అతనినుండి వచ్చెను.","ఏశావు (ఎదోము)"],
+ ["షిలోహు వచ్చువరకు యూదాయొద్దనుండి రాజదండము తొలగదు.","మిగిలిన పదకొండు గోత్రములు"],
+ ["నిత్యమైన సింహాసనముగల రాజసంతానము.","సౌలు ఇల్లు"],
+ ["మత్తయి వంశమును సొలొమోను ద్వారా, అనగా రాజుల చట్టబద్ధ వంశము ద్వారా చూపును. లూకా దావీదు మరియొక కుమారుడైన నాతాను ద్వారా చూపును.","సింహాసనమునుండి నిషేధింపబడిన యెకొన్యా వంశము (యిర్మీ. 22:30)"],
+ ["రెండు వంశావళులలోను పేర్కొనబడెను; నిన్ను ముద్ర ఉంగరముగా చేసెదను (హగ్గ. 2:23).","రాజ్యము పోయెను; పారసీకుల క్రింద యూదా"]
+];
+TE.spread=[
+ ["మీరు యెరూషలేములోను యూదయ సమరయ దేశములయందంతటను భూదిగంతముల వరకును నాకు సాక్షులైయుందురు.",""],
+ ["ఆకాశము క్రిందనుండు ప్రతి జనములోనుండి వచ్చిన యూదులు తమ తమ భాషలలో వినిరి.","బాబెలు భాషలు ఏకముగా వినబడెను"],
+ ["పూర్వపు ఉత్తర రాజ్యపు దేశము వాక్యమును ఆత్మను పొందెను.","ఇశ్రాయేలు–యూదా విభజన బాగుపడెను"],
+ ["ఐతియొపీయ (కూషు, హాము కుమారుడు, ఆది. 10:6) అధికారి బాప్తిస్మము పొందెను.","హాము వంశము"],
+ ["దేవుడు పక్షపాతి కాడు. అన్యజనులమీద ఆత్మ దిగెను.","అన్యజనులు"],
+ ["నీవు భూదిగంతముల వరకు రక్షణార్థముగా ఉండునట్లు నిన్ను అన్యజనులకు వెలుగుగా ఉంచియున్నాను.","భూదిగంతములు"],
+ ["సువార్త సర్వలోకములో ఫలించుచున్నది.",""],
+ ["ప్రతి జనములోనుండియు ప్రతి వంశములోనుండియు ప్రజలలోనుండియు ఆ యా భాషలు మాటలాడువారిలోనుండియు వచ్చిన గొప్ప సమూహము.","అందరును చేర్చబడిరి"]
+];
+TE.seedside="<b>రెండు వంశావళులు, ఒక్కడే క్రీస్తు.</b> మత్తయి అబ్రాహామునుండి ఆరంభించి సొలొమోను, రాజుల ద్వారా వెళ్లును (మత్త. 1:1–17) — ఇశ్రాయేలునకు న్యాయమైన రాజును చూపుచున్నాడు. లూకా నాతాను ద్వారా వెనుకకు దేవుని కుమారుడైన ఆదాము వరకు వెళ్లును (లూకా 3:23–38) — సమస్త మానవజాతికి మనుష్యకుమారుని చూపుచున్నాడు. దావీదుకును యోసేపుకును మధ్య ఇవి ఎందుకు భిన్నముగా ఉన్నవనునది చిరకాల ప్రశ్న: లూకా మరియ వంశమును ఇచ్చుచున్నాడని అనేకులు, ఒకటి చట్టబద్ధ వంశము మరియొకటి సహజ వంశమని మరికొందరు భావించుదురు.";
+TE.rest=[
+ ["భాషలు",["బాబెలు వద్ద భాష తారుమారాయెను; జనములు చెదరిపోయిరి"],["అందరు యెహోవా నామమునుబట్టి ప్రార్థించునట్లు పవిత్రమైన పెదవులు"],["లేచిన క్రీస్తు ఆత్మను కుమ్మరించెను"],["పెంతెకొస్తు: ప్రతివాడును తన స్వభాషలో వినెను"],["ప్రతి నాలుకయు యేసుక్రీస్తు ప్రభువని ఒప్పుకొనును"]],
+ ["యూదులు, అన్యజనులు",["అన్యజనులు ఇశ్రాయేలు పౌరస్థితిలో పాలులేనివారును నిబంధనలకు పరులును"],["అన్యజనులకు వెలుగు"],["ఆయనే మన సమాధానము; మధ్యగోడను పడగొట్టెను"],["క్రీస్తునందు యూదుడని గ్రీసుదేశస్థుడని లేదు; ఒక్క శరీరము"],["ఒక్క మంద, ఒక్క కాపరి; సమస్త జనములు సింహాసనము ఎదుట"]],
+ ["ఇశ్రాయేలు, యూదా",["రాజ్యము రెండుగా చీలెను"],["రెండు కర్రలు ఒక్కటాయెను; ఒక్కడే రాజు"],["దావీదు కుమారుడు, ఒక్కడే కాపరి"],["సమరయ వాక్యమును అంగీకరించెను"],["గుమ్మములమీద పండ్రెండు గోత్రముల పేర్లు"]],
+ ["దేవుని సన్నిధి",["దేవుని సన్నిధినుండి వెళ్లగొట్టబడిరి; తరువాత మహిమ మందిరమును విడిచెను"],["నా నివాసస్థలము వారిమధ్య ఉండును"],["ఇమ్మానుయేలు, దేవుడు మనకు తోడు; తెర చినిగెను"],["ఆత్మ విశ్వాసులలో నివసించుచున్నాడు"],["దేవుని నివాసము మనుష్యులతో కూడ ఉన్నది"]],
+ ["ఏదెను, జీవవృక్షము",["జీవవృక్షమునకు పోవు మార్గమును కెరూబులు కాచుచుండిరి"],["నదీతీరమున వృక్షములు; వాటి ఆకులు ఔషధములు"],["నేనే మార్గమును, సత్యమును, జీవమును"],["కుమారునియందు ఇప్పుడే నిత్యజీవము"],["జీవవృక్షమునకు హక్కు"]],
+ ["శాపము",["నీ నిమిత్తము నేల శపింపబడియున్నది"],["ముండ్లపొదలకు బదులుగా దేవదారు వృక్షములు"],["మనకోసము శాపమాయెను; ముండ్ల కిరీటము ధరించెను"],["ధర్మశాస్త్రపు శాపమునుండి విమోచింపబడితిమి"],["ఇక శాపము ఉండదు; సృష్టి విడుదల పొందును"]],
+ ["మరణము",["నిశ్చయముగా చచ్చెదవు; ఆదాము మొదలుకొని మరణము ఏలెను"],["మరణమును జయించి మ్రింగివేయును"],["నిద్రించినవారిలో ప్రథమఫలముగా లేపబడెను"],["మరణములోనుండి జీవములోనికి దాటియున్నాడు"],["కడపటి శత్రువైన మరణము నశింపజేయబడును; ఇక మరణము ఉండదు"]],
+ ["ఏలుబడి",["సృష్టిపై ఆదాము అధికారము చెడిపోయెను"],["నీ చేతిపనులమీద వానికి అధికారమిచ్చియున్నావు"],["మహిమాప్రభావములతో కిరీటము ధరించిన యేసును చూచుచున్నాము"],["క్రీస్తుతో కూడ లేపబడి కూర్చుండబెట్టబడితిమి"],["వారు యుగయుగములు ఏలుదురు"]],
+ ["కుమారత్వము",["దేవుని కుమారుడైన ఆదాము పడిపోయెను; కుమారుడైన ఇశ్రాయేలు తిరుగబడెను"],["నేను అతనికి తండ్రినైయుందును"],["అద్వితీయ కుమారుడు, విధేయుడు"],["దత్తపుత్రత్వము; అబ్బా తండ్రీ అని మొఱ్ఱపెట్టుచున్నాము"],["దేవుని కుమారుల ప్రత్యక్షత"]],
+ ["పురుషుడు, స్త్రీ",["పతనము తరువాత విరోధము, ఏలుబడి"],["ఆదినుండి ఉన్నట్లు ఏకశరీరము"],["క్రీస్తు సంఘమును ప్రేమించి దానికొరకు తన్నుతాను అప్పగించుకొనెను"],["జీవమను కృపావరములో పాలివారు"],["గొఱ్ఱెపిల్ల వివాహము"]],
+ ["జనములు",["విగ్రహములు, అంధకారము క్రింద జనములు"],["సమస్త జనములు యెహోవా పర్వతమునకు ప్రవాహముగా వచ్చును"],["పరలోకమందును భూమిమీదను నాకు సర్వాధికారము ఇయ్యబడియున్నది; సమస్త జనులను శిష్యులనుగా చేయుడి"],["సువార్త సర్వలోకములో ఫలించుచున్నది"],["వృక్షపు ఆకులు జనములను స్వస్థపరచుటకు"]]
+];
+TE.views3=[
+ ["జాతీయ ఇశ్రాయేలునకు ప్రత్యేక భవిష్యత్తు","డిస్పెన్సేషనల్ వెయ్యేండ్ల-పూర్వవాదము","దేవుని ప్రణాళికలో ఇశ్రాయేలు, సంఘము రెండు వేర్వేరు ప్రజలు. ‘ఇశ్రాయేలీయులందరు’ (రోమా. 11:26) అనగా ఆయన రాకడలో క్రీస్తువైపు తిరుగు యూదు జనము. దేశము, సింహాసనమునుగూర్చిన వాగ్దానములు రాబోవు వెయ్యేండ్ల పరిపాలనలో జాతీయ ఇశ్రాయేలునకు అక్షరశః నెరవేరును."],
+ ["యూదులు ఒక్క సంఘములోనికి భవిష్యత్తులో తిరుగుట","చారిత్రిక వెయ్యేండ్ల-పూర్వవాదము, అనేక రిఫార్మ్డ్/ప్యూరిటన్ రచయితలు","దేవుని ప్రజలు ఒక్కరే, ఒక్క ఒలీవ వృక్షము. అయినను ‘ఇశ్రాయేలీయులందరు’ అనునది భవిష్యత్తులో యూదులు పెద్ద సంఖ్యలో క్రీస్తువైపు తిరిగి అదే వృక్షములో మరల అంటుకట్టబడుటను సూచించును; వేరొక ప్రణాళిక కాదు."],
+ ["క్రీస్తునందు ఒక్కటే ప్రజ; వాగ్దానములు ఆయనలో నెరవేరెను","వెయ్యేండ్ల-రహితవాదము, నిబంధన వేదాంతము","‘ఇశ్రాయేలీయులందరు’ అనగా దేవుడు ఏర్పరచుకొనినవారి పూర్ణసంఖ్య: చరిత్ర పొడుగున రక్షింపబడు ఏర్పరచబడిన యూదులందరు, లేక యూదులును అన్యజనులునుగల సంఘమంతయు (గల. 6:16 పోల్చుము). దేశము, మందిరము, సింహాసనమునుగూర్చిన వాగ్దానములు క్రీస్తునందును నూతన సృష్టియందును నెరవేరును."]
+];
+TE.common="<b>అందరు అంగీకరించునది:</b> యూదులకును అన్యజనులకును రక్షణ క్రీస్తునందు మాత్రమే (అపొ. 4:12; రోమా. 10:12–13). దేవుడు తన ప్రజలను విసర్జింపలేదు (రోమా. 11:1–2). అన్యజనులు ఒక్క ఒలీవ వృక్షములో అంటుకట్టబడిరి (రోమా. 11:17–24). దేవుడు తన కృపావరముల విషయములోను పిలుపు విషయములోను పశ్చాత్తాపపడడు (రోమా. 11:29).";
+TE.rings=[
+ "ఇప్పుడు మూలుగుచున్న సృష్టి దాని దాస్యమునుండి విడిపింపబడును. ఇదిగో సమస్తమును నూతనమైనవిగా చేయుచున్నాను.",
+ "సమస్తమును ఆయనద్వారాను ఆయననుబట్టియు సృజింపబడెను; ఆయనద్వారా దేవుడు సమస్తమును తనతో సమాధానపరచుకొనెను. ప్రతి మోకాలును వంగును.",
+ "ప్రతి జనములోనుండి, ప్రతి భాషలోనుండి లెక్కింప శక్యముకాని గొప్ప సమూహము — సింహాసనాసీనుడైన మా దేవునికిని గొఱ్ఱెపిల్లకును రక్షణ అని కేకలు వేయుచున్నది.",
+ "మధ్యగోడ పడగొట్టబడెను; అదే శరీరములో తోటి వారసులు.",
+ "సమస్తమును సమస్తములో నింపుచున్న వాని సంపూర్ణత; కళంకమైనను ముడతయైనను లేని మహిమగల సంఘము.",
+ "అన్నిటిలో ఆయన ప్రాముఖ్యము కలిగియుండునట్లు."
+];
+TE.intro={
+ offices:"ఇశ్రాయేలు మూడు అభిషిక్త పదవులను వేరుగా ఉంచెను. ప్రవక్త దేవుని పక్షమున జనులతో మాటలాడెను; యాజకుడు జనుల పక్షమున దేవునియొద్దకు వెళ్లెను; రాజు దేవుని క్రింద జనులను ఏలెను. యాజకుని పనిలో చేయిపెట్టిన రాజులు తీర్పుపొందిరి. దేవుని అంగీకారముతో పదవులను కలిపినవారుగా లేఖనము ఇద్దరినే చూపుచున్నది: మెల్కీసెదెకు, వాగ్దానము చేయబడిన చిగురు. క్రొత్త నిబంధన ఈ మూడును క్రీస్తునందు ఏకమైనట్లు చూపుచున్నది.",
+ timeline:"సమూయేలు నుండి మలాకీ వరకు రాజులు, ప్రవక్తలు, యాజకులు ఒకే కాలరేఖపై; పైన భూలోక సంఘటనలు, క్రింద నిత్య వాగ్దానములు. భూలోక సింహాసనము ఇరుకై పడిపోవుచుండగా, విఫలము కాని రాజును యాజకుని ప్రవక్తను గూర్చిన వాగ్దానములు మరింత స్పష్టమగుచున్నవి. బంగారు చుక్క క్రొత్త నిబంధన స్వయముగా క్రీస్తునకు సాదృశ్యమని పేర్కొనిన వ్యక్తిని సూచించును.",
+ types:"ప్రతి సాదృశ్యము ఆ సంబంధమును స్వయముగా చూపు క్రొత్త నిబంధన వచనముతో ఆరంభమగును. భూలోక పార్శ్వము ఛాయ: ఇశ్రాయేలు చరిత్రలోని వ్యక్తి, సంఘటన లేక వస్తువు. నిత్య పార్శ్వము క్రీస్తునందలి నిజస్వరూపము. చివరి వాక్యము పోలిక ఎక్కడ ఆగవలెనో చెప్పును, ఆ సాదృశ్యమును లేఖనము చెప్పినదానికంటె మించి లాగకుండునట్లు.",
+ contrast:"భూలోక రాజ్యమును నిత్య రాజ్యమును విషయమువారీగా ప్రక్కప్రక్కన.",
+ metro:"పాత నిబంధనలోని ప్రతి సూత్రము — వస్తువైనను, పదవియైనను, వ్యక్తియైనను, వాగ్దానమైనను — ఒకే స్టేషనువైపు నడచు రైలు మార్గమువలె క్రీస్తువైపు నడచును. ఆయననుండి ప్రతి మార్గము సంఘములోనికి కొనసాగి అక్కడ జీవింపబడును; తరువాత అంతిమ సమకూర్పులోనికి వెళ్లి అన్నియు ఆయనయందు ముగియును. మార్గమును అనుసరించుటకు ఒక గీతను లేక రంగు బటనును తాకండి.",
+ seed:"వాగ్దాన సంతానము సమస్త మానవజాతినుండి ఒక్క మనుష్యునికి ఇరుకగును; తరువాత ఆ ఒక్కనినుండి ప్రతి జనమునకు, భాషకు విస్తరించును. అందరికి మార్గము తెరచుటకు దేవుడు ఒక్కనికి ఇరుకుచేసెను. వివరముల కొరకు పేరును తాకండి.",
+ restore:"పాపము విరుగగొట్టినదానిని క్రీస్తు తిరిగి కలుపుచున్నాడు. ప్రతి వరుస ఒక విరుగుడును దాని బాగుపాటు వరకు అనుసరించును. ఆకుపచ్చ ‘ఇప్పటికే’ గడి క్రీస్తు ఇప్పుడు సంఘములో ఆరంభించినది; బంగారు ‘ఇంకా రాబోవునది’ గడి ఆయన రాకడ కొరకు కనిపెట్టుచున్నది.",
+ gather:"ఆయన… కాలము సంపూర్ణమైనప్పుడు పరలోకమందున్నవేగాని భూమియందున్నవేగాని సమస్తమును క్రీస్తునందు ఏకముగా సమకూర్చవలెనని (ఎఫె. 1:10). ఒక వలయమును తాకండి."
+};
+
+/* ================= I18N HELPERS ================= */
+let LANG="both";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const BOOKS=[["1 Thess","1 థెస్స."],["1 Sam","1 సమూ."],["2 Sam","2 సమూ."],["1 Ki","1 రాజు."],["2 Ki","2 రాజు."],["1 Chr","1 దిన."],["2 Chr","2 దిన."],["1 Cor","1 కొరిం."],["2 Cor","2 కొరిం."],["2 Tim","2 తిమో."],["1 Pet","1 పేతు."],["1 John","1 యోహా."],["Gen","ఆది."],["Exod","నిర్గమ."],["Lev","లేవీ."],["Num","సంఖ్యా."],["Deut","ద్వితీ."],["Josh","యెహో."],["Ps","కీర్త."],["Isa","యెష."],["Jer","యిర్మీ."],["Ezek","యెహె."],["Dan","దాని."],["Hos","హోషే."],["Joel","యోవే."],["Amos","ఆమో."],["Jonah","యోనా"],["Mic","మీకా"],["Hab","హబ."],["Zeph","జెఫ."],["Hag","హగ్గ."],["Zech","జెక."],["Mal","మలా."],["Matt","మత్త."],["Mark","మార్కు"],["Luke","లూకా"],["John","యోహా."],["Acts","అపొ."],["Rom","రోమా."],["Gal","గల."],["Eph","ఎఫె."],["Phil","ఫిలి."],["Col","కొలొ."],["Heb","హెబ్రీ."],["Rev","ప్రక."],["Ezra","ఎజ్రా"],["Neh","నెహె."]];
+const BOOKRE=new RegExp("(^|[^A-Za-z0-9])("+BOOKS.map(b=>b[0].replace(/ /g,"\\s")).join("|")+")(?![A-Za-z])","g");
+const BOOKMAP=Object.fromEntries(BOOKS.map(b=>[b[0],b[1]]));
+function teRef(r){return String(r).replace(BOOKRE,(m,p,b)=>p+(BOOKMAP[b.replace(/\s+/g," ")]||b))}
+const RF=r=>LANG==="te"?teRef(r):r;
+// block text: en / te / both (te under en)
+function T(en,te){if(LANG==="en"||!te)return esc(en);if(LANG==="te")return `<span class="te">${esc(te)}</span>`;return esc(en)+`<span class="tl te">${esc(te)}</span>`}
+// inline title
+function Ti(en,te){if(LANG==="en"||!te)return esc(en);if(LANG==="te")return `<span class="te">${esc(te)}</span>`;return esc(en)+` <span class="ti te">${esc(te)}</span>`}
+// plain pick (svg / attributes)
+const P=(en,te)=>LANG==="te"&&te?te:en;
+const yr=(a,b)=>LANG==="te"?(a===b?`క్రీ.పూ. ${a}`:`క్రీ.పూ. ${a}–${b}`):(a===b?a+" BC":a+"–"+b+" BC");
+const U={
+ earthly:["Earthly · temporal","భూలోకమైనది · తాత్కాలికము"],eternal:["Eternal · spiritual","నిత్యమైనది · ఆత్మసంబంధము"],
+ limit:["Limit:","పరిమితి:"],stops:["Where it stops:","పోలిక ఎక్కడ ఆగును:"],note:["Note:","గమనిక:"],
+ ntType:["NT type","క్రొ.ని. సాదృశ్యము"],counter:["Counter-type","విరుద్ధ సాదృశ్యము"],
+ fAll:["All","అన్నియు"],fTypes:["NT-named types only","క్రొ.ని. పేర్కొనిన సాదృశ్యములు"],fCounter:["Counter-types","విరుద్ధ సాదృశ్యములు"],fCross:["Offices crossed","పదవులు దాటినవారు"],
+ prophets:["Prophets","ప్రవక్తలు"],priests:["Priests","యాజకులు"],kings:["Kings","రాజులు"],
+ prophet:["Prophet","ప్రవక్త"],priest:["Priest","యాజకుడు"],king:["King","రాజు"],
+ subP:["Spoke for God to the people","దేవుని పక్షమున జనులతో మాటలాడెను"],subQ:["Went to God for the people","జనుల పక్షమున దేవునియొద్దకు వెళ్లెను"],subK:["Ruled the people under God","దేవుని క్రింద జనులను ఏలెను"],
+ none:["None in this filter.","ఈ వడపోతలో ఏమియు లేవు."],
+ scripture:["Scripture","లేఖనములు"],ntTypes:["NT-named types","క్రొ.ని. పేర్కొనిన సాదృశ్యములు"],same:["Living at the same time","అదే కాలములో జీవించినవారు"],promPeriod:["Eternal promises given in this period","ఈ కాలములో ఇయ్యబడిన నిత్య వాగ్దానములు"],
+ ot:["Old Testament","పాత నిబంధన"],nt:["New Testament","క్రొత్త నిబంధన"],onTl:["On the timeline","కాలరేఖలో"],officeOf:["Office it belongs to","సంబంధిత పదవి"],
+ typeOf:["Type of Christ","క్రీస్తు సాదృశ్యము"],eternalProm:["Eternal promise","నిత్య వాగ్దానము"],promise:["Promise","వాగ్దానము"],fulfilled:["Fulfilled in the New Testament","క్రొత్త నిబంధనలో నెరవేర్పు"],whileKings:["While these kings reigned","ఈ రాజులు ఏలుచుండగా"],
+ tEvent:["Temporal event","భూలోక సంఘటన"],atTime:["Living at the time","ఆ సమయములో జీవించినవారు"],fulfil:["Fulfilment","నెరవేర్పు"],related:["Related types","సంబంధిత సాదృశ్యములు"],
+ christAll:["Jesus Christ: Prophet, Priest & King","యేసుక్రీస్తు: ప్రవక్త, యాజకుడు, రాజు"],
+ pointedP:["Prophets who pointed to Him","ఆయనను సూచించిన ప్రవక్తలు"],pointedQ:["Priests who pointed to Him","ఆయనను సూచించిన యాజకులు"],pointedK:["Kings who pointed to Him","ఆయనను సూచించిన రాజులు"],
+ israel:["Israel","ఇశ్రాయేలు"],judah:["Judah","యూదా"],united:["United kingdom","ఐక్య రాజ్యము"],
+ good:["Did right","యథార్థముగా ప్రవర్తించెను"],evil:["Did evil","దుష్టత్వము చేసెను"],mixed:["Mixed","మిశ్రమము"],gov:["Governor","అధికారి"],
+ line:["Line","మార్గము"],shadow:["Shadow","ఛాయ"],inChrist:["In Christ","క్రీస్తునందు"],inChurch:["In the Church","సంఘములో"],fullness:["Fullness","సంపూర్ణత"],
+ narrowLine:["The narrowing line","ఇరుకగు వంశము"],widen:["The widening","విస్తరించుట"],setAside:["Set aside from the line:","వంశమునుండి ప్రక్కకు పెట్టబడినది:"],broughtIn:["Brought in:","చేర్చబడినవారు:"],
+ finalG:["The final gathering","అంతిమ సమకూర్పు"],howEnds:["How it ends","అంతము"],
+ broken:["Broken","విరిగినది"],promised:["Promised","వాగ్దానము"],already:["Already","ఇప్పటికే"],notyet:["Not yet","ఇంకా రాబోవునది"],
+ differ:["Where Christians differ","క్రైస్తవులు భిన్నముగా ఉన్న విషయము"],israelFuture:["Israel's future (Romans 11)","ఇశ్రాయేలు భవిష్యత్తు (రోమా. 11)"],
+ zoom:["Zoom","పెద్దది/చిన్నది"],pxyr:["px / year","px / సంవత్సరము"]
+};
+const u=k=>P(U[k][0],U[k][1]);
+const uT=k=>Ti(U[k][0],U[k][1]);
+
+/* ================= LOOKUPS ================= */
+const OFFMAP={};OFF.forEach(p=>OFFMAP[p.id]=p);
+const TYPEMAP={};TYPES.forEach(t=>TYPEMAP[t.id]=t);
+const KMAP={};KINGS.forEach(k=>KMAP[k[0]]={id:k[0],name:k[1],y1:k[2],y2:k[3],row:k[4],v:k[5],note:k[6]});
+const PMAP={};PROPHETS.forEach(p=>PMAP[p[0]]={id:p[0],name:p[1],y1:p[2],y2:p[3],note:p[4]});
+const QMAP={};PRIESTS.forEach(p=>QMAP[p[0]]={id:p[0],name:p[1],y1:p[2],y2:p[3],note:p[4]});
+const VCOL={good:"var(--good)",evil:"var(--evil)",mixed:"var(--mixed)",none:"var(--none)"};
+const VKEY={good:"good",evil:"evil",mixed:"mixed",none:"gov"};
+const OCOL={prophet:"var(--pro)",priest:"var(--pri)",king:"var(--jud)"};
+const ROWKEY={isr:"israel",jud:"judah",uni:"united"};
+const ot=id=>TE.off[id]||{};
+const teName=id=>(TE.off[id]&&TE.off[id].name)||(TE.kings[id]&&TE.kings[id][0])||(TE.prophets[id]&&TE.prophets[id][0])||(TE.priests[id]&&TE.priests[id][0])||"";
+const teNote=id=>(TE.kings[id]&&TE.kings[id][1])||(TE.prophets[id]&&TE.prophets[id][1])||(TE.priests[id]&&TE.priests[id][1])||"";
+const nameOf=(id,en)=>P(en,teName(id));
+const typesFor=id=>TYPES.filter(t=>(OFFMAP[id]&&OFFMAP[id].types||[]).includes(t.id));
+const peopleForType=tid=>OFF.filter(p=>(p.types||[]).includes(tid));
+function ee(e,ete,t,tte,lim,limte){return `<div class="ee"><div class="earthly"><span class="k">${uT("earthly")}</span>${T(e,ete)}</div><div class="eternal"><span class="k">${uT("eternal")}</span>${T(t,tte)}</div></div>`+(lim?`<div class="limit"><b>${u("limit")}</b> ${T(lim,limte)}</div>`:"")}
+const mctx=document.createElement("canvas").getContext("2d");
+function tw(text,size,weight){mctx.font=`${weight||600} ${size||11.5}px Inter, "Noto Sans Telugu", sans-serif`;return mctx.measureText(text).width}
+
+/* ================= STATIC TEXT ================= */
+const STATIC={
+ title:["Shadow & Substance","ఛాయ మరియు నిజస్వరూపము"],
+ sub:["The prophets, priests and kings of Israel and Judah, and the Old Testament types of Christ, read two ways: the earthly, temporal office that rose and fell, and the eternal, spiritual reality the New Testament says it pointed to. Use the lens to bring either side forward. Tap anything for detail.","ఇశ్రాయేలు యూదాల ప్రవక్తలు, యాజకులు, రాజులు, పాత నిబంధనలోని క్రీస్తు సాదృశ్యములు — రెండు విధములుగా: లేచి పడిపోయిన భూలోకమైన, తాత్కాలికమైన పదవి; అది సూచించినదని క్రొత్త నిబంధన చెప్పు నిత్యమైన, ఆత్మసంబంధమైన వాస్తవము. ఏ పార్శ్వమునైనను ముందుకు తెచ్చుటకు దృష్టి బటనులను వాడండి. వివరముల కొరకు దేనినైనను తాకండి."],
+ foot:["English quotations are from the King James Version. Telugu text follows the vocabulary of the BSI Telugu Bible; Telugu verse wording is mostly paraphrased, so check it against your Bible before teaching. Where a link is drawn by interpreters rather than stated in the New Testament, the page says so.","ఆంగ్ల ఉల్లేఖనలు కింగ్ జేమ్స్ అనువాదమునుండి. తెలుగు పాఠము BSI తెలుగు బైబిలు పదజాలమును అనుసరించును; తెలుగు వచనములు చాలావరకు భావానువాదములు — బోధించుటకు ముందు మీ బైబిలుతో సరిచూడండి. క్రొత్త నిబంధన స్పష్టముగా చెప్పక వ్యాఖ్యాతలు చూపిన సంబంధములను ఈ పేజీ అట్లే గుర్తించుచున్నది."],
+ tlnote:["Dates are approximate and follow Thiele's chronology for the kings. Prophet and priest spans are estimated from the books and narratives. Tap a king to see the Bible's verdict on his reign.","తేదీలు సుమారైనవి; రాజుల కాలములు థీలే కాలగణనను అనుసరించును. ప్రవక్తల, యాజకుల కాలములు గ్రంథములనుండి అంచనా వేయబడినవి. రాజు పరిపాలనపై బైబిలు తీర్పు చూచుటకు అతని పేరును తాకండి."],
+ metronote:["Left of the center station is the shadow, in the earthly lens. Right of it are the substance, the Church's expression and the fullness, in the eternal lens.","మధ్య స్టేషనుకు ఎడమవైపు ఛాయ (భూలోక దృష్టి). కుడివైపు నిజస్వరూపము, సంఘములో వ్యక్తీకరణ, సంపూర్ణత (నిత్య దృష్టి)."]
+};
+const INTRO_EN={
+ offices:"Israel kept three anointed offices apart. The prophet spoke for God to the people, the priest went to God for the people, and the king ruled the people under God. Kings who reached into the priest's work were judged for it. Scripture holds out only two figures who join offices with God's approval, Melchizedek and the promised Branch, and the New Testament finds all three joined in Christ.",
+ timeline:"The kings, prophets and priests from Samuel to Malachi on one time axis, with the temporal events along the top and the eternal promises along the bottom. As the earthly throne narrows and falls, the promises of a King, Priest and Prophet who will not fail grow clearer. A gold dot marks a figure the New Testament itself names as a type of Christ.",
+ types:"Each type starts from a New Testament text that makes the link itself. The earthly side is the shadow: the person, event or object in Israel's history. The eternal side is the substance in Christ. The last line says where the comparison stops, so the type is not pushed past what Scripture says.",
+ contrast:"The earthly kingdom and the eternal kingdom side by side, theme by theme.",
+ metro:"Every thread in the Old Testament, whether an object, an office, a person or a promise, runs like a train line toward one station: Christ. From Him each line runs on into the Church, where it is lived out, and then into the final gathering, where they all end in Him. Tap a line or a colored chip to follow its route.",
+ seed:"The promised Seed narrows from all mankind to one Man, and then widens again from that one Man to every nation and tongue. God narrows to one so that He can open the way to all. Tap a name for detail.",
+ restore:"What sin broke, Christ is putting back together. Each row follows one break through to its repair. The green “already” cell is what Christ has begun in the Church now; the gold “not yet” cell waits for His return.",
+ gather:"“That in the dispensation of the fulness of times he might gather together in one all things in Christ, both which are in heaven, and which are on earth” (Eph 1:10). Tap a ring."
+};
+const TABS=[["offices","Three offices","మూడు పదవులు"],["timeline","Timeline","కాలరేఖ"],["types","Types of Christ","క్రీస్తు సాదృశ్యములు"],["contrast","Two kingdoms","రెండు రాజ్యములు"],["metro","All lines to Christ","క్రీస్తులో కలిసే మార్గములు"],["seed","The Seed","వాగ్దాన సంతానము"],["restore","Restoration","పునరుద్ధరణ"],["gather","Final gathering","అంతిమ సమకూర్పు"]];
+const LENS=[["earthly","Earthly","భూలోకము"],["both","Both","రెండూ"],["eternal","Eternal","నిత్యము"]];
+const LEG=[["var(--uni)","United kingdom","ఐక్య రాజ్యము",""],["var(--isr)","Israel (north)","ఇశ్రాయేలు (ఉత్తర)",""],["var(--jud)","Judah (south)","యూదా (దక్షిణ)",""],["var(--pro)","Prophet","ప్రవక్త",""],["var(--pri)","Priest","యాజకుడు",""],["var(--eter)","Eternal promise","నిత్య వాగ్దానము",""],["#f1c94a","NT-named type","క్రొ.ని. పేర్కొనిన సాదృశ్యము","50%"]];
+function two(en,te,cls){ // for tab-like buttons: both = en + small te
+ if(LANG==="en")return esc(en);if(LANG==="te")return `<span class="te">${esc(te)}</span>`;return esc(en)+`<small>${esc(te)}</small>`}
+function renderStatic(){
+ document.documentElement.lang=LANG==="te"?"te":"en";
+ $("#h1").innerHTML=Ti(...STATIC.title);
+ $("#hsub").innerHTML=T(...STATIC.sub);
+ $("#foot").innerHTML=T(...STATIC.foot);
+ $("#tlnote").innerHTML=T(...STATIC.tlnote);
+ $("#metronote").innerHTML=T(...STATIC.metronote);
+ document.querySelectorAll("[data-intro]").forEach(e=>{const k=e.dataset.intro;e.innerHTML=T(INTRO_EN[k],TE.intro[k])});
+ $(".tabrow").innerHTML=TABS.map(t=>`<button data-v="${t[0]}">${two(t[1],t[2])}</button>`).join("");
+ document.querySelectorAll(".tabrow button").forEach(b=>b.onclick=()=>{location.hash=b.dataset.v});
+ $(".lens").innerHTML=LENS.map(l=>`<button data-l="${l[0]}">${two(l[1],l[2])}</button>`).join("");
+ document.querySelectorAll(".lens button").forEach(b=>b.onclick=()=>setLens(b.dataset.l));
+ $("#legend").innerHTML=LEG.map(l=>`<span><i style="background:${l[0]};${l[3]?"border-radius:50%":""}"></i>${esc(P(l[1],l[2]))}</span>`).join("");
+ $("#zoomlab").textContent=u("zoom");
+ document.querySelectorAll(".langsw button").forEach(b=>b.classList.toggle("on",b.dataset.lang===LANG));
+}
+
+/* ================= OFFICES ================= */
+let offFilter="all";
+function renderOffices(){
+ $("#christbar").innerHTML=["prophet","priest","king"].map(o=>`<div><h3>${Ti(CHRIST[o].t,TE.christ[o].t)}</h3><p>${T(CHRIST[o].q,TE.christ[o].q)}</p></div>`).join("");
+ const fs=[["all","fAll"],["types","fTypes"],["counter","fCounter"],["crossing","fCross"]];
+ $("#offfilter").innerHTML=fs.map(f=>`<button class="chip ${offFilter===f[0]?"on":""}" data-f="${f[0]}">${uT(f[1])}</button>`).join("");
+ $("#offfilter").querySelectorAll("button").forEach(b=>b.onclick=()=>{offFilter=b.dataset.f;renderOffices()});
+ const crossing=["samuel","ezekiel","melchizedek","joshua","saul","uzziah","azariah"];
+ const heads={prophet:["prophets","subP"],priest:["priests","subQ"],king:["kings","subK"]};
+ $("#cols").innerHTML=["prophet","priest","king"].map(o=>{
+  let list=OFF.filter(p=>p.o===o).sort((a,b)=>b.y1-a.y1);
+  if(offFilter==="types")list=list.filter(p=>p.types);
+  if(offFilter==="counter")list=list.filter(p=>p.counter);
+  if(offFilter==="crossing")list=list.filter(p=>crossing.includes(p.id));
+  const head=`<div class="colhead ${o}" data-christ="${o}"><h2>${uT(heads[o][0])}</h2><p>${uT(heads[o][1])}</p><div class="q">${T(CHRIST[o].p,TE.christ[o].p)}</div></div>`;
+  return `<div class="col">${head}${list.map(p=>{const t=ot(p.id);return `<div class="card" data-p="${p.id}">${p.types?`<span class="typeflag">${u("ntType")}</span>`:p.counter?`<span class="ctr">${u("counter")}</span>`:""}<h3>${Ti(p.name,t.name)}</h3><div class="meta">${esc(P(p.when,t.when))}</div>${ee(p.earthly,t.earthly,p.eternal,t.eternal,p.limit,t.limit)}</div>`}).join("")||`<p class="ref" style="padding:4px 6px">${u("none")}</p>`}</div>`;
+ }).join("");
+ $("#cols").querySelectorAll("[data-p]").forEach(c=>c.onclick=()=>openPerson(c.dataset.p));
+ $("#cols").querySelectorAll("[data-christ]").forEach(c=>c.onclick=()=>openChrist(c.dataset.christ));
+}
+function renderDiagram(){
+ const W=1000,H=300,X={prophet:170,priest:500,king:830};
+ const node=(id,x,y,sub,subte,col)=>{const nm=nameOf(id,OFFMAP[id].name);return `<g class="node" data-p="${id}" transform="translate(${x},${y})"><rect x="-86" y="-20" width="172" height="40" rx="10" fill="#fffcf6" stroke="${col}" stroke-width="1.6"/><text text-anchor="middle" y="-2" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="${LANG==="te"?14:17}" font-weight="700" fill="#2a2118">${esc(nm.replace(/ \(.*\)/,""))}</text><text text-anchor="middle" y="13" font-size="10" fill="#6e604f">${esc(P(sub,subte))}</text></g>`};
+ let s=`<svg viewBox="0 0 ${W} ${H}" role="img"><defs><linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9831a" stop-opacity=".15"/><stop offset="1" stop-color="#9a7414" stop-opacity=".9"/></linearGradient><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#9a7414"/></marker></defs>`;
+ s+=`<text x="12" y="22" font-size="11" font-weight="700" letter-spacing="1.2" fill="#8a6f57">${esc(u("earthly").toUpperCase())}</text><text x="12" y="${H-12}" font-size="11" font-weight="700" letter-spacing="1.2" fill="#9a7414">${esc(u("eternal").toUpperCase())}</text><line x1="10" y1="190" x2="${W-10}" y2="190" stroke="#e3d8c4" stroke-dasharray="4 4"/>`;
+ [["prophet","#5a4796"],["priest","#2d6f73"],["king","#8b5a28"]].forEach(([k,c])=>{s+=`<g class="node" data-christ="${k}"><rect x="${X[k]-70}" y="34" width="140" height="34" rx="17" fill="${c}"/><text x="${X[k]}" y="56" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">${esc(u(k))}</text></g><path d="M${X[k]},${k==="priest"?130:118} C ${X[k]},210 500,200 500,232" fill="none" stroke="url(#gold)" stroke-width="3" marker-end="url(#ar)"/>`});
+ s+=node("saul",830,104,"king offers sacrifice · rejected","రాజు బలి అర్పించెను · విసర్జింపబడెను","#a3322c");
+ s+=node("uzziah",720,150,"king burns incense · leprosy","రాజు ధూపము వేసెను · కుష్ఠు","#a3322c");
+ s+=node("samuel",170,104,"prophet · judge · ephod","ప్రవక్త · న్యాయాధిపతి · ఏఫోదు","#5a4796");
+ s+=node("melchizedek",630,104,"priest & king · Ps 110:4","యాజకుడు, రాజు · కీర్త. 110:4","#9a7414");
+ s+=node("joshua",510,150,"crowned priest · Zech 6:13","కిరీటము ధరించిన యాజకుడు · జెక. 6:13","#9a7414");
+ s+=node("moses",300,150,"prophet · mediator","ప్రవక్త · మధ్యవర్తి","#5a4796");
+ s+=`<g class="node" data-christ="all"><rect x="320" y="238" width="360" height="50" rx="25" fill="#2a2118"/><text x="500" y="262" text-anchor="middle" fill="#f1d98a" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="${LANG==="te"?18:22}" font-weight="700">${esc(P("Jesus Christ","యేసుక్రీస్తు"))}</text><text x="500" y="279" text-anchor="middle" fill="#fbf3dc" font-size="11">${esc(P("Prophet · Priest · King — for ever","ప్రవక్త · యాజకుడు · రాజు — నిరంతరము"))}</text></g></svg>`;
+ $("#diagram").innerHTML=s;
+ $("#diagram").querySelectorAll("[data-p]").forEach(n=>n.onclick=()=>openPerson(n.dataset.p));
+ $("#diagram").querySelectorAll("[data-christ]").forEach(n=>n.onclick=()=>openChrist(n.dataset.christ));
+}
+
+/* ================= TIMELINE ================= */
+const T0=1110,T1=400;let SC=2.1;
+const xOf=y=>(T0-y)*SC+110;
+function pack(items,pt){const lanes=[];items.sort((a,b)=>b.y1-a.y1).forEach(it=>{const x=xOf(it.y1),bw=pt?0:Math.max((it.y1-it.y2)*SC,5),w=tw(it.label,11.5,600)+(pt?20:12);const right=x+(pt?w:(bw<w?bw+w:bw))+6;let L=lanes.findIndex(r=>r<=x);if(L<0){L=lanes.length;lanes.push(0)}lanes[L]=right;Object.assign(it,{_x:x,_bw:bw,_tw:w,_lane:L})});return Math.max(lanes.length,1)}
+const ROWLAB={events:["Temporal events","భూలోక సంఘటనలు"],uni:["United kingdom","ఐక్య రాజ్యము"],isr:["Israel","ఇశ్రాయేలు"],jud:["Judah","యూదా"],pro:["Prophets","ప్రవక్తలు"],pri:["Priests","యాజకులు"],prom:["Eternal promises","నిత్య వాగ్దానములు"]};
+function renderTimeline(){
+ const W=xOf(T1)+60;
+ const kn=k=>P(k[1],(TE.kings[k[0]]||[])[0]);
+ const rows=[
+  {k:"events",cls:"earthrow",pt:true,items:EVENTS.map(e=>({id:"ev"+e[0],label:P(e[1],TE.events[e[0]]),y1:e[0],y2:e[0],col:"var(--ev)",kind:"event"}))},
+  {k:"uni",cls:"earthrow",items:KINGS.filter(k=>k[4]==="uni").map(k=>({id:k[0],label:kn(k),y1:k[2],y2:k[3],col:"var(--uni)",kind:"king"}))},
+  {k:"isr",cls:"earthrow",items:KINGS.filter(k=>k[4]==="isr").map(k=>({id:k[0],label:kn(k),y1:k[2],y2:k[3],col:"var(--isr)",kind:"king"}))},
+  {k:"jud",cls:"earthrow",items:KINGS.filter(k=>k[4]==="jud").map(k=>({id:k[0],label:kn(k),y1:k[2],y2:k[3],col:"var(--jud)",kind:"king"}))},
+  {k:"pro",cls:"",items:PROPHETS.map(p=>({id:p[0],label:P(p[1],(TE.prophets[p[0]]||[])[0]),y1:p[2],y2:p[3],col:"var(--pro)",kind:"prophet"}))},
+  {k:"pri",cls:"",items:PRIESTS.map(p=>({id:p[0],label:P(p[1],(TE.priests[p[0]]||[])[0]),y1:p[2],y2:p[3],col:"var(--pri)",kind:"priest"}))},
+  {k:"prom",cls:"eternalrow",pt:true,items:PROMISES.map((p,i)=>({id:"pr"+i,label:P(p.t,TE.prom[i][0]),y1:p.y,y2:p.y,col:"var(--eter)",kind:"promise"}))}
+ ];
+ let h=`<div class="axis" style="width:${W}px">`;for(let y=1100;y>=400;y-=50)h+=`<span style="left:${xOf(y)}px">${y}</span>`;h+=`</div>`;
+ for(let y=1100;y>=400;y-=50)h+=`<div class="gl" style="left:${xOf(y)}px"></div>`;
+ rows.forEach(r=>{const n=pack(r.items,r.pt),hh=n*25+10;
+  h+=`<div class="trow ${r.cls}" style="height:${hh}px;width:${W}px"><div class="lab">${esc(P(...ROWLAB[r.k]))}</div>`;
+  r.items.forEach(it=>{const top=6+it._lane*25,star=(OFFMAP[it.id]&&OFFMAP[it.id].types)?'<span class="star"></span>':"";
+   if(r.pt)h+=`<div class="it pt" data-k="${it.kind}" data-id="${it.id}" style="left:${it._x}px;top:${top}px"><span class="dot" style="background:${it.col}"></span><span class="tx">${esc(it.label)}</span></div>`;
+   else{const out=it._bw<it._tw;h+=`<div class="it ${out?"out":""}" data-k="${it.kind}" data-id="${it.id}" style="left:${it._x}px;top:${top}px;width:${out?it._bw+it._tw:it._bw}px" title="${esc(it.label)} · ${yr(it.y1,it.y2)}">${star}<span class="bar" style="width:${it._bw}px;background:${it.col}"></span><span class="tx" ${out?`style="padding-left:${it._bw+3}px"`:""}>${esc(it.label)}</span></div>`}
+  });h+=`</div>`});
+ h+=`<div class="endcap" style="left:${xOf(445)}px;width:${xOf(T1)+60-xOf(445)}px">${LANG==="te"?"400 మౌన సంవత్సరములు<br>→ క్రీస్తు: ప్రవక్త,<br>యాజకుడు, రాజు":"400 silent years<br>→ Christ: Prophet,<br>Priest &amp; King"}</div>`;
+ $("#tl").style.width=W+"px";$("#tl").innerHTML=h;
+ $("#zlab").textContent=Math.round(SC*10)/10+" "+u("pxyr");
+ $("#tl").querySelectorAll(".it").forEach(e=>e.onclick=()=>{const k=e.dataset.k,id=e.dataset.id;if(k==="promise")openPromise(+id.slice(2));else if(k==="event")openEvent(+id.slice(2));else openPerson(id)});
+ $("#tl").querySelector(".endcap").onclick=()=>openChrist("all");
+}
+$("#zin").onclick=()=>{SC=Math.min(SC*1.35,8);renderTimeline()};
+$("#zout").onclick=()=>{SC=Math.max(SC/1.35,1);renderTimeline()};
+
+/* ================= TYPES ================= */
+let tCat="All";
+function renderTypes(){
+ const cats=["All","Person","Event","Institution","Object","Office","Prophet","Priest","King"];
+ const cl=c=>["Prophet","Priest","King"].includes(c)?P("Linked to "+c.toLowerCase(),u(c.toLowerCase())+" సంబంధిత"):P(c,TE.cat[c]);
+ $("#typefilter").innerHTML=cats.map(c=>`<button class="chip ${tCat===c?"on":""}" data-c="${c}">${esc(cl(c))}</button>`).join("");
+ $("#typefilter").querySelectorAll("button").forEach(b=>b.onclick=()=>{tCat=b.dataset.c;renderTypes()});
+ let list=TYPES;
+ if(["Person","Event","Institution","Object","Office"].includes(tCat))list=list.filter(t=>t.c===tCat);
+ if(["Prophet","Priest","King"].includes(tCat))list=list.filter(t=>t.o.includes(tCat.toLowerCase()));
+ $("#tgrid").innerHTML=list.map(t=>{const x=TE.types[t.id]||[];return `<div class="card tcard" data-t="${t.id}"><span class="pill">${esc(P(t.c,TE.cat[t.c]))}</span>${t.o.map(o=>`<span class="pill" style="color:${OCOL[o]}">${esc(u(o))}</span>`).join("")}<h3>${Ti(t.n,x[0])}</h3><div class="refs">${LANG==="te"?"పా.ని.":"OT"} ${esc(RF(t.ot))} · ${LANG==="te"?"క్రొ.ని.":"NT"} ${esc(RF(t.nt))}</div>${ee(t.s,x[1],t.u,x[2])}<div class="limit"><b>${u("stops")}</b> ${T(t.x,x[3])}</div></div>`}).join("");
+ $("#tgrid").querySelectorAll("[data-t]").forEach(c=>c.onclick=()=>openType(c.dataset.t));
+}
+
+/* ================= CONTRAST ================= */
+function renderContrast(){
+ const W=1000,H=300,L=60,R=30,TOP=40,B=40;
+ const x=y=>L+(1050-y)/(1050-400)*(W-L-R);
+ const lvl=[[1050,3],[931,2],[722,1],[586,0],[538,0.5],[400,0.5]];
+ const yE=v=>TOP+(3-v)/3*(H-TOP-B);
+ let path="";lvl.forEach((p,i)=>{path+=(i?` H${x(p[0])} V${yE(p[1])}`:`M${x(p[0])},${yE(p[1])}`)});path+=` H${x(400)}`;
+ const proms=PROMISES.slice().sort((a,b)=>b.y-a.y),maxN=proms.length,yP=n=>TOP+(1-n/maxN)*(H-TOP-B);
+ let pp=`M${x(1050)},${yP(0)}`;proms.forEach((p,i)=>{pp+=` H${x(p.y)} V${yP(i+1)}`});pp+=` H${x(400)}`;
+ const ttl=Ti("As the earthly throne fell, the eternal promises grew","భూలోక సింహాసనము పడిపోయినకొలది నిత్య వాగ్దానములు పెరిగెను");
+ const desc=T(`Brown steps: the shape of the earthly kingdom (united → divided → Judah alone → no king → a governor under Persia). Gold steps: the running count of the ${maxN} messianic promises on this page. Tap a gold point.`,`గోధుమ రంగు మెట్లు: భూలోక రాజ్యపు స్థితి (ఐక్యము → విభజితము → యూదా మాత్రమే → రాజు లేడు → పారసీకుల క్రింద అధికారి). బంగారు మెట్లు: ఈ పేజీలోని ${maxN} మెస్సీయ వాగ్దానముల క్రమ సంఖ్య. బంగారు చుక్కను తాకండి.`);
+ let s=`<h2>${ttl}</h2><p class="ref" style="margin:0 0 6px">${desc}</p><svg viewBox="0 0 ${W} ${H}">`;
+ const lv=[["United kingdom","ఐక్య రాజ్యము"],["Divided kingdom","విభజిత రాజ్యము"],["Judah alone","యూదా మాత్రమే"],["No king","రాజు లేడు"]];
+ [3,2,1,0].forEach((v,i)=>{s+=`<line x1="${L}" x2="${W-R}" y1="${yE(v)}" y2="${yE(v)}" stroke="#efe6d5"/><text x="${L+4}" y="${yE(v)-4}" font-size="10.5" fill="#8a6f57">${esc(P(...lv[i]))}</text>`});
+ for(let y=1050;y>=400;y-=50)s+=`<text x="${x(y)}" y="${H-18}" text-anchor="middle" font-size="10.5" fill="#6e604f">${y}</text>`;
+ [[931,"Split","విభజన",0],[722,"Samaria falls","షోమ్రోను పతనము",0],[586,"Jerusalem falls","యెరూషలేము పతనము",0],[538,"Return","తిరిగిరాక",14]].forEach(e=>s+=`<line x1="${x(e[0])}" x2="${x(e[0])}" y1="${TOP-8}" y2="${H-B}" stroke="#d9c9ad" stroke-dasharray="3 3"/><text x="${x(e[0])+3}" y="${TOP-12+e[3]}" font-size="10.5" fill="#6e604f">${esc(P(e[1],e[2]))}</text>`);
+ s+=`<path d="${path}" fill="none" stroke="#8a6f57" stroke-width="3.5" class="is-earthly"/><path d="${pp}" fill="none" stroke="#9a7414" stroke-width="3.5" class="is-eternal"/>`;
+ proms.forEach((p,i)=>{const id=PROMISES.indexOf(p);s+=`<circle class="is-eternal" data-pr="${id}" cx="${x(p.y)}" cy="${yP(i+1)}" r="6" fill="#f1c94a" stroke="#9a7414" stroke-width="2" style="cursor:pointer"><title>${esc(P(p.t,TE.prom[id][0]))} (${esc(RF(p.r))})</title></circle>`});
+ s+=`<text x="${W-R}" y="${yP(maxN)-10}" text-anchor="end" font-size="12" font-weight="700" fill="#9a7414" class="is-eternal">${esc(P("Eternal promises: ","నిత్య వాగ్దానములు: "))}${maxN}</text><text x="${W-R}" y="${yE(0.5)-8}" text-anchor="end" font-size="12" font-weight="700" fill="#8a6f57" class="is-earthly">${esc(P("No throne · a governor under Persia","సింహాసనము లేదు · పారసీకుల క్రింద అధికారి"))}</text></svg>`;
+ $("#chartbox").innerHTML=s;
+ $("#chartbox").querySelectorAll("[data-pr]").forEach(c=>c.onclick=()=>openPromise(+c.dataset.pr));
+ $("#ctable").innerHTML=THEMES.map((t,i)=>{const x=TE.themes[i];return `<div class="crow"><h3>${Ti(t[0],x[0])}</h3>${ee(t[1],x[1],t[2],x[2])}<div class="ref" style="margin-top:6px">${esc(RF(t[3]))}</div></div>`}).join("");
+}
+
+/* ================= METRO ================= */
+let metroSel=null;
+function renderMetro(){
+ const N=LINES.length,gap=44,top=92,W=1190,H=top+(N-1)*gap+50,hubX=560,hubY=top+(N-1)*gap/2,endX=1125,X1=205,X2=360,XC=760,XF=950;
+ let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="min-width:980px;width:100%;height:auto">`;
+ const bands=[[150,470,"#f1e8dc","Shadow","ఛాయ","Old Testament","పాత నిబంధన","is-earthly"],[470,650,"#efe2c3","Substance","నిజస్వరూపము","Christ","క్రీస్తు","is-eternal"],[650,860,"#e5f0ea","Expression","వ్యక్తీకరణ","The Church","సంఘము","is-eternal"],[860,1190,"#fbf3dc","Fullness","సంపూర్ణత","The final gathering","అంతిమ సమకూర్పు","is-eternal"]];
+ bands.forEach(b=>{const cx=(b[0]+b[1])/2;s+=`<g class="${b[7]}"><rect x="${b[0]}" y="0" width="${b[1]-b[0]}" height="${H}" fill="${b[2]}" opacity=".55"/>`;
+  if(LANG==="te")s+=`<text x="${cx}" y="28" text-anchor="middle" font-family="Noto Sans Telugu" font-size="16" font-weight="700" fill="#2a2118">${b[4]}</text><text x="${cx}" y="50" text-anchor="middle" font-family="Noto Sans Telugu" font-size="11.5" fill="#6e604f">${b[6]}</text>`;
+  else s+=`<text x="${cx}" y="24" text-anchor="middle" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="19" font-weight="700" fill="#2a2118">${b[3]}</text>${LANG==="both"?`<text x="${cx}" y="42" text-anchor="middle" font-family="Noto Sans Telugu" font-size="12" fill="#6e604f">${b[4]}</text>`:""}<text x="${cx}" y="${LANG==="both"?58:44}" text-anchor="middle" font-size="11" fill="#6e604f">${b[5]}</text>`;
+  s+=`</g>`});
+ LINES.forEach((L,i)=>{const y=top+i*gap,t=TE.lines[L.id];
+  const a=`M150,${y} L${X2},${y} C${X2+110},${y} ${hubX-90},${hubY} ${hubX},${hubY}`;
+  const b=`M${hubX},${hubY} C${hubX+90},${hubY} ${XC-110},${y} ${XC},${y} L${XF},${y} C${XF+100},${y} ${endX-90},${hubY} ${endX},${hubY}`;
+  s+=`<g class="ln ${metroSel===L.id?"on":""}" data-l="${L.id}">`;
+  if(LANG==="both")s+=`<text x="10" y="${y-3}" font-size="12.5" font-weight="700" fill="${L.c}">${L.en}</text><text x="10" y="${y+13}" font-family="Noto Sans Telugu" font-size="11" fill="#6e604f">${L.te}</text>`;
+  else s+=`<text x="10" y="${y+4}" font-size="${LANG==="te"?12:12.5}" font-weight="700" fill="${L.c}" font-family="Inter,Noto Sans Telugu">${esc(P(L.en,L.te))}</text>`;
+  s+=`<path class="is-earthly" d="${a}" fill="none" stroke="${L.c}" stroke-width="5" stroke-linecap="round"/><path class="is-eternal" d="${b}" fill="none" stroke="${L.c}" stroke-width="5" stroke-linecap="round"/>`;
+  const st=(x,lab,labte,ref,cls)=>`<g class="${cls}"><circle cx="${x}" cy="${y}" r="6" fill="#fffcf6" stroke="${L.c}" stroke-width="3"><title>${esc(P(lab,labte))} · ${esc(RF(ref))}</title></circle><text x="${x}" y="${y-10}" text-anchor="middle" font-size="${LANG==="te"?9.5:10.5}" fill="#2a2118" font-family="Inter,Noto Sans Telugu">${esc(P(lab,labte))}</text></g>`;
+  s+=st(X1,L.ot[0][0],t[0][0],L.ot[0][1],"is-earthly")+st(X2,L.ot[1][0],t[0][1],L.ot[1][1],"is-earthly")+st(XC,L.church[0],t[2],L.church[1],"is-eternal")+st(XF,L.full[0],t[3],L.full[1],"is-eternal")+`</g>`;
+ });
+ const hubT=LANG==="te"?`<text x="${hubX}" y="${hubY+5}" text-anchor="middle" font-family="Noto Sans Telugu" font-size="16" font-weight="700" fill="#f1d98a">క్రీస్తు</text>`:`<text x="${hubX}" y="${hubY-6}" text-anchor="middle" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="22" font-weight="700" fill="#f1d98a">Christ</text>${LANG==="both"?`<text x="${hubX}" y="${hubY+13}" text-anchor="middle" font-family="Noto Sans Telugu" font-size="12" fill="#fbf3dc">క్రీస్తు</text>`:""}<text x="${hubX}" y="${hubY+28}" text-anchor="middle" font-size="9" fill="#d9ccb0">crucified · risen</text>`;
+ s+=`<g data-hub="1" style="cursor:pointer"><circle cx="${hubX}" cy="${hubY}" r="46" fill="#2a2118" stroke="#f1c94a" stroke-width="4"/>${hubT}</g>`;
+ const endT=LANG==="te"?`<text x="${endX}" y="${hubY-4}" text-anchor="middle" font-family="Noto Sans Telugu" font-size="12" font-weight="700" fill="#fff">సమస్తము</text><text x="${endX}" y="${hubY+14}" text-anchor="middle" font-family="Noto Sans Telugu" font-size="12" font-weight="700" fill="#fff">క్రీస్తునందు</text><text x="${endX}" y="${hubY+32}" text-anchor="middle" font-size="9.5" fill="#fbf3dc">ఎఫె. 1:10</text>`:`<text x="${endX}" y="${hubY-10}" text-anchor="middle" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="16" font-weight="700" fill="#fff">All things</text><text x="${endX}" y="${hubY+6}" text-anchor="middle" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="16" font-weight="700" fill="#fff">in Christ</text>${LANG==="both"?`<text x="${endX}" y="${hubY+22}" text-anchor="middle" font-family="Noto Sans Telugu" font-size="9.5" fill="#fff">సమస్తము క్రీస్తునందు</text>`:""}<text x="${endX}" y="${hubY+36}" text-anchor="middle" font-size="9.5" fill="#fbf3dc">Eph 1:10</text>`;
+ s+=`<g data-end="1" style="cursor:pointer" class="is-eternal"><circle cx="${endX}" cy="${hubY}" r="52" fill="#9a7414" stroke="#f1c94a" stroke-width="4"/>${endT}</g></svg>`;
+ const m=$("#metroBox");m.innerHTML=s;m.classList.toggle("sel",!!metroSel);
+ m.querySelectorAll(".ln").forEach(g=>g.onclick=()=>pickLine(g.dataset.l,true));
+ m.querySelector("[data-hub]").onclick=()=>openChrist("all");
+ m.querySelector("[data-end]").onclick=()=>openRing(0);
+ $("#metrochips").innerHTML=`<button data-l="" class="${metroSel?"":"on"}">${esc(P("All lines","అన్ని మార్గములు"))}</button>`+LINES.map(L=>`<button data-l="${L.id}" class="${metroSel===L.id?"on":""}"><i style="background:${L.c}"></i>${Ti(L.en,L.te)}</button>`).join("");
+ $("#metrochips").querySelectorAll("button").forEach(b=>b.onclick=()=>pickLine(b.dataset.l,!!b.dataset.l));
+}
+function pickLine(id,open){metroSel=id||null;renderMetro();if(open&&id)openLine(id)}
+function openLine(id){
+ const L=LINES.find(x=>x.id===id),t=TE.lines[id];
+ const row=(k,cls,lab,labte,ref)=>`<div class="${cls}" style="border-radius:10px;padding:8px 10px;margin-bottom:6px"><span class="k">${uT(k)}</span><b>${T(lab,labte)}</b><span class="r" style="display:block;font-size:12px;opacity:.8">${esc(RF(ref))}</span></div>`;
+ show(`<div class="k" style="color:${L.c}">${uT("line")}</div><h2>${Ti(L.en,L.te)}</h2>`,`<div class="chain" style="grid-template-columns:1fr">`+row("shadow","c1",L.ot[0][0],t[0][0],L.ot[0][1])+row("shadow","c1",L.ot[1][0],t[0][1],L.ot[1][1])+row("inChrist","c2",L.christ[0],t[1],L.christ[1])+row("inChurch","c3",L.church[0],t[2],L.church[1])+row("fullness","c4",L.full[0],t[3],L.full[1])+`</div>`);
+}
+
+/* ================= SEED ================= */
+function renderSeed(){
+ const W=980,cx=490,top=40,step=46,nT=SEED.length,waist=top+nT*step+30,nB=SPREAD.length,H=waist+40+nB*step+30;
+ const lab=(n,te)=>LANG==="en"?`${esc(n)}`:LANG==="te"?`<tspan font-family="Noto Sans Telugu" font-size="14">${esc(te)}</tspan>`:`${esc(n)} <tspan font-family="Noto Sans Telugu" font-size="11" font-weight="400" fill="#6e604f">${esc(te)}</tspan>`;
+ const est=p=>(LANG==="te"?tw(p.te,14,700):tw(p.n,16,700)+(LANG==="both"?tw(p.te,11,400)+6:0))+46;
+ let s=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="min-width:760px;width:100%;height:auto"><defs><linearGradient id="hgT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1e8dc"/><stop offset="1" stop-color="#e6d6bd"/></linearGradient><linearGradient id="hgB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6e7b8"/><stop offset="1" stop-color="#fbf3dc"/></linearGradient></defs>`;
+ s+=`<polygon class="is-earthly" points="${cx-430},${top-20} ${cx+430},${top-20} ${cx+40},${waist-34} ${cx-40},${waist-34}" fill="url(#hgT)"/><polygon class="is-eternal" points="${cx-40},${waist+34} ${cx+40},${waist+34} ${cx+430},${H-10} ${cx-430},${H-10}" fill="url(#hgB)"/>`;
+ s+=`<text x="16" y="${top-2}" font-size="11" font-weight="700" letter-spacing="1" fill="#8a6f57" class="is-earthly">${esc(P("NARROWING","ఇరుకగుట"))}</text><text x="${W-16}" y="${top-2}" text-anchor="end" font-size="11" font-weight="700" letter-spacing="1" fill="#8a6f57" class="is-earthly">${esc(P("SET ASIDE FROM THE LINE","వంశమునుండి ప్రక్కకు"))}</text>`;
+ SEED.forEach((p,i)=>{const y=top+20+i*step,w=Math.max(320-i*20,est(p)),t=TE.seed[i];
+  s+=`<g class="is-earthly" data-sd="${i}" style="cursor:pointer"><rect x="${cx-w/2}" y="${y-17}" width="${w}" height="34" rx="17" fill="#fffcf6" stroke="#8a6f57"/><text x="${cx}" y="${y-1}" text-anchor="middle" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="17" font-weight="700" fill="#2a2118">${lab(p.n,p.te)}</text><text x="${cx}" y="${y+12}" text-anchor="middle" font-size="9.5" fill="#6e604f">${esc(RF(p.r))}</text>`;
+  if(p.aside)s+=`<text x="${W-16}" y="${y+4}" text-anchor="end" font-size="11" fill="#a3322c" opacity=".8" font-family="Inter,Noto Sans Telugu">${esc(P(p.aside,t[1]))}</text>`;
+  s+=`</g>`});
+ s+=`<g data-hub="1" style="cursor:pointer"><rect x="${cx-160}" y="${waist-30}" width="320" height="60" rx="30" fill="#2a2118" stroke="#f1c94a" stroke-width="3"/><text x="${cx}" y="${waist-6}" text-anchor="middle" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="${LANG==="te"?18:22}" font-weight="700" fill="#f1d98a">${esc(LANG==="en"?"Jesus Christ":LANG==="te"?"యేసుక్రీస్తు":"Jesus Christ · యేసుక్రీస్తు")}</text><text x="${cx}" y="${waist+14}" text-anchor="middle" font-size="11" fill="#fbf3dc" font-family="Inter,Noto Sans Telugu">${esc(P("“thy seed, which is Christ” · Gal 3:16; 4:4","నీ సంతానము, అనగా క్రీస్తు · గల. 3:16; 4:4"))}</text></g>`;
+ s+=`<text x="16" y="${waist+60}" font-size="11" font-weight="700" letter-spacing="1" fill="#9a7414" class="is-eternal">${esc(P("WIDENING","విస్తరించుట"))}</text><text x="${W-16}" y="${waist+60}" text-anchor="end" font-size="11" font-weight="700" letter-spacing="1" fill="#2e7a57" class="is-eternal">${esc(P("BROUGHT IN","చేర్చబడినవారు"))}</text>`;
+ SPREAD.forEach((p,i)=>{const y=waist+90+i*step,w=Math.max(180+i*28,est(p)),t=TE.spread[i];
+  s+=`<g class="is-eternal" data-sp="${i}" style="cursor:pointer"><rect x="${cx-w/2}" y="${y-17}" width="${w}" height="34" rx="17" fill="#fffcf6" stroke="#9a7414"/><text x="${cx}" y="${y-1}" text-anchor="middle" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="16.5" font-weight="700" fill="#2a2118">${lab(p.n,p.te)}</text><text x="${cx}" y="${y+12}" text-anchor="middle" font-size="9.5" fill="#6e604f">${esc(RF(p.r))}</text>`;
+  if(p.ins)s+=`<text x="${W-16}" y="${y+4}" text-anchor="end" font-size="11" fill="#2e7a57" font-family="Inter,Noto Sans Telugu">${esc(P(p.ins,t[1]))}</text>`;
+  s+=`</g>`});
+ s+=`</svg>`;
+ $("#seedBox").innerHTML=s;
+ $("#seedBox").querySelectorAll("[data-sd]").forEach(g=>g.onclick=()=>{const i=+g.dataset.sd,p=SEED[i],t=TE.seed[i];show(`<div class="k" style="color:var(--earth)">${uT("narrowLine")}</div><h2>${Ti(p.n,p.te)}</h2>`,`<div class="ee" style="grid-template-columns:1fr"><div class="earthly"><span class="k">${esc(RF(p.r))}</span>${T(p.d,t[0])}</div></div>`+(p.aside?`<div class="limit"><b>${u("setAside")}</b> ${T(p.aside,t[1])}</div>`:""))});
+ $("#seedBox").querySelectorAll("[data-sp]").forEach(g=>g.onclick=()=>{const i=+g.dataset.sp,p=SPREAD[i],t=TE.spread[i];show(`<div class="k" style="color:var(--eter)">${uT("widen")}</div><h2>${Ti(p.n,p.te)}</h2>`,`<div class="ee" style="grid-template-columns:1fr"><div class="eternal"><span class="k">${esc(RF(p.r))}</span>${T(p.d,t[0])}</div></div>`+(p.ins?`<div class="limit"><b style="color:var(--good)">${u("broughtIn")}</b> ${T(p.ins,t[1])}</div>`:""))});
+ $("#seedBox").querySelector("[data-hub]").onclick=()=>openChrist("all");
+ const sideEn=`<b>Two genealogies, one Christ.</b> Matthew starts from Abraham and runs through Solomon and the kings (Matt 1:1–17), presenting the rightful King of Israel. Luke runs backward through Nathan to “Adam, which was the son of God” (Luke 3:23–38), presenting the Son of man for all mankind. Why they differ between David and Joseph is a long-standing question: many hold that Luke gives Mary's line, others that one list is legal descent and the other natural.`;
+ $("#seedside").innerHTML=LANG==="en"?sideEn:LANG==="te"?`<span class="te">${TE.seedside}</span>`:sideEn+`<span class="tl te" style="margin-top:6px">${TE.seedside}</span>`;
+}
+
+/* ================= RESTORATION ================= */
+function renderRestore(){
+ const keys=["b","p","c","a","n"],cls=["c0","c1","c2","c3","c4"],lab=["broken","promised","inChrist","already","notyet"],lens=["is-earthly","is-earthly","is-eternal","is-eternal","is-eternal"];
+ let h=REST.map((r,ri)=>{const t=TE.rest[ri];return `<div class="rest"><h3>${Ti(r.en,t[0])}</h3><div class="chain">${keys.map((k,j)=>`<div class="${cls[j]} ${lens[j]}"><span class="k">${uT(lab[j])}</span>${T(r[k][0],t[j+1][0])}<span class="r">${esc(RF(r[k][1]))}</span></div>`).join("")}</div></div>`}).join("");
+ const commonEn=`<b>Common ground:</b> salvation is in Christ alone for Jew and Gentile (Acts 4:12; Rom 10:12–13). God “hath not cast away his people” (Rom 11:1–2). Gentiles are grafted into one olive tree (Rom 11:17–24). “The gifts and calling of God are without repentance” (Rom 11:29).`;
+ const common=LANG==="en"?commonEn:LANG==="te"?`<span class="te">${TE.common}</span>`:commonEn+`<span class="tl te" style="margin-top:5px">${TE.common}</span>`;
+ h+=`<div class="views"><div class="k" style="color:var(--mixed)">${uT("differ")}</div><h3>${Ti(U.israelFuture[0],U.israelFuture[1])}</h3><p class="ref" style="margin:4px 0 0">${T("“And so all Israel shall be saved” (Rom 11:26). Bible-believing Christians read this in three main ways:","‘ఈ విధముగా ఇశ్రాయేలీయులందరును రక్షింపబడుదురు’ (రోమా. 11:26). బైబిలును నమ్ము క్రైస్తవులు దీనిని మూడు ప్రధాన విధములుగా చదువుదురు:")}</p><div class="vgrid">${VIEWS3.map((v,i)=>{const t=TE.views3[i];return `<div><h4>${T(v.h,t[0])}</h4><div class="who">${T(v.who,t[1])}</div>${T(v.t,t[2])}<div class="ref" style="margin-top:5px">${esc(RF(v.k))}</div></div>`}).join("")}</div><div class="common">${common}</div></div>`;
+ $("#restlist").innerHTML=h;
+}
+
+/* ================= GATHERING ================= */
+const STEPS=[["Christ the firstfruits, risen","1 Cor 15:20, 23","క్రీస్తు ప్రథమఫలముగా లేచెను"],["The gospel to all nations; the Church built","Matt 24:14; 16:18","సువార్త సర్వజనములకు; సంఘము కట్టబడుట"],["“Afterward they that are Christ's at his coming”","1 Cor 15:23; 1 Thess 4:16–17","తరువాత ఆయన రాకడయందు క్రీస్తు సంబంధులు"],["He reigns till all enemies are under His feet; death destroyed last","1 Cor 15:25–26","శత్రువులందరు ఆయన పాదముల క్రింద; కడపటి శత్రువైన మరణము నశించును"],["New heaven and new earth; God dwells with men","Rev 21:1–5","క్రొత్త ఆకాశము, క్రొత్త భూమి; దేవుడు మనుష్యులతో నివసించును"],["The Son delivers the kingdom to the Father, “that God may be all in all”","1 Cor 15:24, 28","కుమారుడు రాజ్యమును తండ్రికి అప్పగించును; దేవుడు సర్వములో సర్వమై యుండును"]];
+function openRing(i){const g=RINGS[i];show(`<div class="k" style="color:var(--eter)">${uT("finalG")}</div><h2>${Ti(g.en,g.te)}</h2>`,`<div class="ee" style="grid-template-columns:1fr"><div class="eternal"><span class="k">${esc(RF(g.r))}</span>${T(g.d,TE.rings[i])}</div></div>`)}
+function renderGather(){
+ const S=620,c=S/2;let s=`<svg viewBox="0 0 ${S} ${S}">`;
+ RINGS.forEach((g,i)=>{const R=290-i*48;s+=`<g class="ring" data-g="${i}"><circle cx="${c}" cy="${c}" r="${R}" fill="${g.c}" stroke="#fffcf6" stroke-width="3"/>`;
+  if(i<5){if(LANG==="te")s+=`<text x="${c}" y="${c-R+26}" text-anchor="middle" font-family="Noto Sans Telugu" font-size="12" font-weight="700" fill="#2a2118">${esc(g.te)}</text>`;
+   else s+=`<text x="${c}" y="${c-R+19}" text-anchor="middle" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="15.5" font-weight="700" fill="#2a2118">${esc(g.en)}</text>${LANG==="both"?`<text x="${c}" y="${c-R+35}" text-anchor="middle" font-family="Noto Sans Telugu" font-size="10" fill="#4a3d2e">${esc(g.te)}</text>`:""}`}
+  else s+=`<text x="${c}" y="${c-2}" text-anchor="middle" font-family="Cormorant Garamond,Noto Sans Telugu,serif" font-size="${LANG==="te"?17:21}" font-weight="700" fill="#f1d98a">${esc(P("Christ","క్రీస్తు"))}</text><text x="${c}" y="${c+16}" text-anchor="middle" font-family="Inter,Noto Sans Telugu" font-size="10.5" fill="#fbf3dc">${esc(P("the Head","శిరస్సు"))}</text><text x="${c}" y="${c+31}" text-anchor="middle" font-size="9.5" fill="#d9ccb0">${esc(RF("Col 1:18"))}</text>`;
+  s+=`</g>`});
+ s+=`</svg>`;$("#gatherBox").innerHTML=s;
+ $("#gatherBox").querySelectorAll("[data-g]").forEach(g=>g.onclick=e=>{e.stopPropagation();openRing(+g.dataset.g)});
+ $("#gsteps").innerHTML=`<h3>${uT("howEnds")}</h3><ol>${STEPS.map(x=>`<li>${T(x[0],x[2])} <span class="r">${esc(RF(x[1]))}</span></li>`).join("")}</ol><p class="ref" style="margin:8px 0 0">${T("The order of events around Christ's return (and the millennium of Rev 20) is read differently across churches; the steps above follow the order Paul gives in 1 Corinthians 15.","క్రీస్తు రాకడ చుట్టూ జరుగు సంఘటనల క్రమమును (ప్రక. 20 లోని వెయ్యి సంవత్సరములను) సంఘములు భిన్నముగా చదువును; పై క్రమము 1 కొరింథీయులకు 15లో పౌలు ఇచ్చిన క్రమమును అనుసరించును.")}</p>`;
+}
+
+/* ================= DETAIL SHEET ================= */
+const overlap=(a1,a2,b1,b2)=>a1>=b2&&b1>=a2;
+function contemporaries(y1,y2,self){const out=[];
+ KINGS.forEach(k=>{if(k[0]!==self&&overlap(y1,y2,k[2],k[3]))out.push({id:k[0],n:nameOf(k[0],k[1]),c:k[4],kind:"king"})});
+ PROPHETS.forEach(p=>{if(p[0]!==self&&overlap(y1,y2,p[2],p[3]))out.push({id:p[0],n:nameOf(p[0],p[1]),c:"pro",kind:"prophet"})});
+ PRIESTS.forEach(p=>{if(p[0]!==self&&overlap(y1,y2,p[2],p[3]))out.push({id:p[0],n:nameOf(p[0],p[1]),c:"pri",kind:"priest"})});
+ return out}
+const lnks=list=>list.map(c=>`<span class="lnk ${c.c}" data-go="${c.kind}:${c.id}">${esc(c.n)}</span>`).join("");
+let lastOpen=null;
+function show(hd,bd){$("#shd").innerHTML=hd;$("#sbd").innerHTML=bd;$("#sheet").classList.add("on");$("#scrim").classList.add("on");$("#sheet").scrollTop=0;
+ $("#sheet").querySelectorAll("[data-go]").forEach(e=>e.onclick=()=>{const [k,id]=e.dataset.go.split(":");if(k==="type")openType(id);else if(k==="promise")openPromise(+id);else openPerson(id)})}
+function closeSheet(){$("#sheet").classList.remove("on");$("#scrim").classList.remove("on");lastOpen=null}
+$("#x").onclick=closeSheet;$("#scrim").onclick=closeSheet;document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
+function track(fn,arg){lastOpen=[fn,arg]}
+function openPerson(id){track(openPerson,id);
+ const p=OFFMAP[id],k=KMAP[id],pr=PMAP[id],q=QMAP[id],base=p||k||pr||q;if(!base)return;
+ const src=k||pr||q||p,y1=src.y1,y2=src.y2,t=ot(id);
+ const roles=[];if(p)roles.push(p.o);if(p&&p.o2)roles.push(p.o2);if(!p)roles.push(k?"king":pr?"prophet":"priest");
+ let hd=`<div class="k">${roles.map(r=>`<span style="color:${OCOL[r]}">${esc(u(r))}</span>`).join(" · ")}${k?` · ${esc(u(ROWKEY[k.row]))}`:""}</div><h2>${Ti(base.name,teName(id))}</h2><div class="ref">${p?esc(P(p.when,t.when)):yr(y1,y2)}${k?`<span class="verdict" style="background:${VCOL[k.v]}">${esc(u(VKEY[k.v]))}</span>`:""}</div>`;
+ let bd="";
+ if(p){bd+=ee(p.earthly,t.earthly,p.eternal,t.eternal,p.limit,t.limit);
+  if(p.also)bd+=`<div class="limit"><b style="color:var(--pri)">${u("note")}</b> ${T(p.also,t.also)}</div>`;
+  bd+=`<h4>${uT("scripture")}</h4><div class="ref">${esc(RF(p.refs))}</div>`;
+  const ts=typesFor(id);if(ts.length)bd+=`<h4>${uT("ntTypes")}</h4>`+ts.map(x=>`<span class="lnk typ" data-go="type:${x.id}">${esc(P(x.n,(TE.types[x.id]||[])[0]))}</span>`).join("");
+ }else{const note=(k&&k.note)||(pr&&pr.note)||(q&&q.note)||"";bd+=`<div class="ee" style="grid-template-columns:1fr"><div class="earthly"><span class="k">${uT("earthly")}</span>${T(note,teNote(id))}</div></div>`}
+ if(y1<1200){const c=contemporaries(y1,y2,id);if(c.length)bd+=`<h4>${uT("same")}</h4>`+lnks(c)}
+ const prom=PROMISES.map((x,i)=>[x,i]).filter(([x])=>x.y<=y1+5&&x.y>=y2-5);
+ if(prom.length)bd+=`<h4>${uT("promPeriod")}</h4>`+prom.map(([x,i])=>`<span class="lnk typ" data-go="promise:${i}">${esc(P(x.t,TE.prom[i][0]))} · ${esc(RF(x.r))}</span>`).join("");
+ show(hd,bd)}
+function openType(id){track(openType,id);
+ const t=TYPEMAP[id],x=TE.types[id]||[];
+ let hd=`<div class="k">${uT("typeOf")} · ${esc(P(t.c,TE.cat[t.c]))}</div><h2>${Ti(t.n,x[0])}</h2>`;
+ let bd=ee(t.s,x[1],t.u,x[2])+`<div class="limit"><b>${u("stops")}</b> ${T(t.x,x[3])}</div><h4>${uT("ot")}</h4><div class="ref">${esc(RF(t.ot))}</div><h4>${uT("nt")}</h4><div class="ref">${esc(RF(t.nt))}</div>`;
+ const ps=peopleForType(id);if(ps.length)bd+=`<h4>${uT("onTl")}</h4>`+ps.map(p=>`<span class="lnk ${p.o==="prophet"?"pro":p.o==="priest"?"pri":"jud"}" data-go="${p.o}:${p.id}">${esc(nameOf(p.id,p.name))}</span>`).join("");
+ if(t.o.length)bd+=`<h4>${uT("officeOf")}</h4>`+t.o.map(o=>`<span class="pill" style="color:${OCOL[o]}">${esc(u(o))}</span>`).join("");
+ show(hd,bd)}
+function openPromise(i){track(openPromise,i);
+ const p=PROMISES[i],t=TE.prom[i];
+ const hd=`<div class="k" style="color:var(--eter)">${uT("eternalProm")} · ${esc(u(p.o))}</div><h2>${Ti(p.t,t[0])}</h2><div class="ref">${LANG==="te"?"సుమారు క్రీ.పూ. "+p.y:"c. "+p.y+" BC"} · ${esc(RF(p.r))}</div>`;
+ let bd=`<div class="ee" style="grid-template-columns:1fr"><div class="eternal"><span class="k">${uT("promise")}</span>${T(p.d,t[1])}</div></div><h4>${uT("fulfilled")}</h4><div class="ref">${esc(RF(p.nt))}</div>`;
+ const kings=KINGS.filter(k=>overlap(p.y+3,p.y-3,k[2],k[3]));
+ if(kings.length)bd+=`<h4>${uT("whileKings")}</h4>`+lnks(kings.map(k=>({id:k[0],n:nameOf(k[0],k[1]),c:k[4],kind:"king"})));
+ show(hd,bd)}
+function openEvent(y){track(openEvent,y);
+ const e=EVENTS.find(x=>x[0]===y);
+ show(`<div class="k" style="color:var(--earth)">${uT("tEvent")}</div><h2>${Ti(e[1],TE.events[y])}</h2><div class="ref">${yr(y,y)} · ${esc(RF(e[2]))}</div>`,`<h4>${uT("atTime")}</h4>${lnks(contemporaries(y,y,""))}`)}
+function openChrist(o){track(openChrist,o);
+ const keys=o==="all"?["prophet","priest","king"]:[o];
+ const hd=`<div class="k" style="color:var(--eter)">${uT("fulfil")}</div><h2>${o==="all"?Ti(U.christAll[0],U.christAll[1]):Ti(CHRIST[o].t,TE.christ[o].t)}</h2>`;
+ const pk={prophet:"pointedP",priest:"pointedQ",king:"pointedK"};
+ let bd=keys.map(k=>`<h4 style="color:${OCOL[k]}">${Ti(CHRIST[k].t,TE.christ[k].t)}</h4><div class="ee" style="grid-template-columns:1fr"><div class="eternal">${T(CHRIST[k].q,TE.christ[k].q)}<br><br>${T(CHRIST[k].p,TE.christ[k].p)}</div></div>`).join("");
+ keys.forEach(k=>{bd+=`<h4>${uT(pk[k])}</h4>`+OFF.filter(p=>p.o===k||p.o2===k).map(p=>`<span class="lnk ${k==="prophet"?"pro":k==="priest"?"pri":"jud"}" data-go="${p.o}:${p.id}">${esc(nameOf(p.id,p.name))}</span>`).join("")});
+ const ts=TYPES.filter(t=>keys.some(k=>t.o.includes(k)));
+ if(ts.length)bd+=`<h4>${uT("related")}</h4>`+ts.map(t=>`<span class="lnk typ" data-go="type:${t.id}">${esc(P(t.n,(TE.types[t.id]||[])[0]))}</span>`).join("");
+ show(hd,bd)}
+
+/* ================= ROUTING, LENS, LANGUAGE ================= */
+const VIEWS=["offices","timeline","types","contrast","metro","seed","restore","gather"];
+let CUR="offices";
+function go(v){if(!VIEWS.includes(v))v="offices";CUR=v;
+ document.querySelectorAll(".view").forEach(s=>s.classList.toggle("on",s.id==="v-"+v));
+ document.querySelectorAll(".tabrow button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));
+ if(v==="timeline")renderTimeline();
+ const tb=document.querySelector('.tabrow button[data-v="'+v+'"]'),tr=document.querySelector(".tabrow");
+ if(tb&&tr){const l=tb.offsetLeft-tr.offsetLeft;if(l<tr.scrollLeft||l+tb.offsetWidth>tr.scrollLeft+tr.clientWidth)tr.scrollLeft=l-20}}
+window.addEventListener("hashchange",()=>go(location.hash.slice(1)));
+let LENSV="both";
+function setLens(l){LENSV=l;document.body.classList.remove("l-earthly","l-both","l-eternal");document.body.classList.add("l-"+l);
+ document.querySelectorAll(".lens button").forEach(b=>b.classList.toggle("on",b.dataset.l===l));try{localStorage.setItem("ss-lens",l)}catch(e){}}
+function renderAll(){renderStatic();renderDiagram();renderOffices();renderTypes();renderContrast();renderMetro();renderSeed();renderRestore();renderGather();setLens(LENSV);go(CUR)}
+function setLang(l){LANG=l;document.body.classList.remove("lang-en","lang-both","lang-te");document.body.classList.add("lang-"+l);try{localStorage.setItem("ss-lang",l)}catch(e){}
+ renderAll();if(CUR==="timeline")renderTimeline();if(lastOpen&&$("#sheet").classList.contains("on"))lastOpen[0](lastOpen[1])}
+document.querySelectorAll(".langsw button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+try{LENSV=localStorage.getItem("ss-lens")||"both";LANG=localStorage.getItem("ss-lang")||"both"}catch(e){}
+CUR=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):"offices";
+setLang(LANG);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{if(CUR==="timeline")renderTimeline();renderSeed()});
+
+</script>
+</body>
+</html>

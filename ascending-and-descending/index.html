@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ascending and Descending</title>
+<meta name="description" content="An interactive map of how heaven and earth connect in Scripture: God's initiative, angelic activity, what rises from earth, and the spiritual battle, with KJV passages for each link.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M22 4v56M42 4v56M22 14h20M22 26h20M22 38h20M22 50h20' stroke='%23B07D1A' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Telugu:wght@400;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: Jacob's ladder — three stacked realms (heaven, the heavenly places, earth) with threads of traffic between them; a reading panel beside (desktop) or beneath (phone) */
+:root{
+  --bg:#f3f4ef; --ink:#1c2333; --muted:#5b6476; --faint:#8a92a3; --panel:#fffefb; --line:#d6d9df;
+  --heaven-a:#fbf2d6; --heaven-b:#eef0f8; --mid-a:#ebe7f6; --mid-b:#e9e6f1; --earth-a:#efe6d6; --earth-b:#e6dcc8;
+  --down:#a8761a; --up:#1d7d73; --angel:#6555b0; --battle:#b0452d; --gold:#a8761a;
+  --chip:#ffffff; --chip-on:#1c2333; --chip-on-ink:#ffffff; --node:#ffffffd9; --node-line:#c9cdd6;
+  --display:"Cinzel","Trajan Pro","Times New Roman",serif;
+  --body:"Spectral","Iowan Old Style",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --telugu:"Noto Sans Telugu",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0a0e19; --ink:#e8ebf2; --muted:#a0a8ba; --faint:#6f788c; --panel:#11172a; --line:#252e47;
+  --heaven-a:#221d3c; --heaven-b:#141a33; --mid-a:#161330; --mid-b:#120f25; --earth-a:#1b1611; --earth-b:#15110d;
+  --down:#e3b553; --up:#52c3b4; --angel:#ab9ff2; --battle:#e47b5f; --gold:#e3b553;
+  --chip:#141b31; --chip-on:#e8ebf2; --chip-on-ink:#0a0e19; --node:#0f1528e6; --node-line:#2d3754; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a0e19; --ink:#e8ebf2; --muted:#a0a8ba; --faint:#6f788c; --panel:#11172a; --line:#252e47;
+  --heaven-a:#221d3c; --heaven-b:#141a33; --mid-a:#161330; --mid-b:#120f25; --earth-a:#1b1611; --earth-b:#15110d;
+  --down:#e3b553; --up:#52c3b4; --angel:#ab9ff2; --battle:#e47b5f; --gold:#e3b553;
+  --chip:#141b31; --chip-on:#e8ebf2; --chip-on-ink:#0a0e19; --node:#0f1528e6; --node-line:#2d3754; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--up)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+[lang="te"]{font-family:var(--telugu)}
+
+/* hero */
+.hero{padding-block:36px 18px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:end}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(34px,5.4vw,64px);line-height:1.02;letter-spacing:.01em;margin:0;text-wrap:balance}
+h1 .te{display:block;font-family:var(--telugu);font-weight:400;font-size:.36em;letter-spacing:0;color:var(--muted);margin-top:10px}
+.lead{color:var(--muted);margin:14px 0 0;max-width:60ch}
+.anchor{border-left:2px solid var(--gold);padding:4px 0 4px 16px;margin:0}
+.anchor q{display:block;font-style:italic;font-size:19px;quotes:"\201C" "\201D"}
+.anchor cite{display:block;font-family:var(--mono);font-style:normal;font-size:12.5px;color:var(--muted);margin-top:6px}
+
+/* controls */
+.controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding-block:10px 14px;border-top:1px solid var(--line)}
+.ctl-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--chip);border-radius:999px;padding:5px 12px;font-family:var(--mono);font-size:12.5px;cursor:pointer;min-height:34px}
+.chip i{width:14px;height:3px;border-radius:2px;display:inline-block}
+.chip[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-ink);border-color:var(--chip-on)}
+select{font-family:var(--mono);font-size:13px;background:var(--chip);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-height:36px}
+
+/* stage */
+.main{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:22px;align-items:start;padding-bottom:30px}
+.stage{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.realm{position:relative;padding:16px 18px 18px;min-height:150px}
+.realm+.realm{border-top:1px dashed var(--line)}
+.realm.heaven{background:linear-gradient(180deg,var(--heaven-a),var(--heaven-b))}
+.realm.mid{background:linear-gradient(180deg,var(--mid-a),var(--mid-b))}
+.realm.earth{background:linear-gradient(180deg,var(--earth-a),var(--earth-b))}
+.rlabel{width:max-content;max-width:100%;padding:2px 8px 2px 0;border-radius:4px;background:color-mix(in srgb,var(--bg) 0%,transparent);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:16px;position:relative;z-index:2}
+.rlabel b{font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:.14em;text-transform:uppercase}
+.rlabel span{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.rlabel .te{font-family:var(--telugu);font-size:13px;color:var(--muted)}
+.nodes{display:flex;flex-wrap:wrap;justify-content:space-around;gap:14px 12px;position:relative;z-index:2}
+.mid .nodes{justify-content:space-between}
+.side{display:flex;gap:12px;flex-wrap:wrap}
+.side.dark .node{border-style:dashed}
+.node{border:1px solid var(--node-line);background:var(--node);border-radius:8px;padding:8px 12px;text-align:left;cursor:pointer;max-width:200px;backdrop-filter:blur(2px);transition:border-color .15s,box-shadow .15s,opacity .2s}
+.node strong{display:block;font-family:var(--body);font-weight:600;font-size:15px;line-height:1.2}
+.node small{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px;line-height:1.35}
+.node:hover{border-color:var(--ink)}
+.node.on{border-color:var(--gold);box-shadow:0 0 0 2px color-mix(in srgb,var(--gold) 35%,transparent)}
+.node.dim{opacity:.38}
+.midrule{position:absolute;top:44px;bottom:12px;left:50%;border-left:1px dotted var(--line);z-index:1}
+svg.wires{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+svg.wires path.w{fill:none;stroke-width:2;opacity:.38;transition:opacity .2s,stroke-width .2s}
+svg.wires path.hit{fill:none;stroke:transparent;stroke-width:14;pointer-events:stroke;cursor:pointer}
+svg.wires path.w.dash{stroke-dasharray:6 5}
+svg.wires path.w.dim{opacity:.07}
+svg.wires path.w.hot{opacity:1;stroke-width:3}
+svg.wires path.w.sel{opacity:1;stroke-width:3.5}
+svg.wires path.w.sel.flow{stroke-dasharray:10 7;animation:flow 1.1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-34}}
+@media (prefers-reduced-motion:reduce){svg.wires path.w.sel.flow{animation:none}}
+.ladder-note{font-family:var(--mono);font-size:11.5px;color:var(--faint);padding:8px 18px;border-top:1px dashed var(--line);background:var(--earth-b)}
+
+/* panel */
+.panel{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px 20px 22px;max-height:calc(100vh - 24px);overflow:auto}
+.panel h2{font-family:var(--display);font-weight:600;font-size:22px;line-height:1.2;margin:4px 0 8px;letter-spacing:.01em;text-wrap:balance}
+.panel h3{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:18px 0 6px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+.badge i{width:10px;height:10px;border-radius:50%}
+.route{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.verse{margin:10px 0;padding:10px 12px;border-left:3px solid var(--c,var(--gold));background:color-mix(in srgb,var(--c,var(--gold)) 8%,transparent);border-radius:0 6px 6px 0}
+.verse p{margin:0;font-style:italic}
+.verse cite{display:block;font-family:var(--mono);font-style:normal;font-size:12px;color:var(--muted);margin-top:4px}
+.panel p{margin:8px 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;text-decoration:none;color:var(--ink);background:var(--chip);cursor:pointer}
+a.tag:hover,button.tag:hover{border-color:var(--ink)}
+.linklist{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.linklist button{width:100%;text-align:left;border:1px solid var(--line);background:var(--chip);border-radius:8px;padding:8px 10px;cursor:pointer;display:flex;gap:10px;align-items:baseline}
+.linklist button i{flex:none;width:9px;height:9px;border-radius:50%;transform:translateY(-1px)}
+.linklist small{display:block;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.legend{display:grid;gap:8px;margin:10px 0}
+.legend div{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.legend svg{flex:none;margin-top:6px}
+.unseen{font-size:15.5px;background:color-mix(in srgb,var(--angel) 7%,transparent);border-radius:6px;padding:10px 12px}
+
+/* list + guardrails */
+section.sec{padding-block:26px 8px;border-top:1px solid var(--line)}
+section.sec h2{font-family:var(--display);font-weight:600;font-size:clamp(24px,3vw,32px);margin:0 0 6px}
+section.sec>p{color:var(--muted);max-width:70ch;margin:0 0 14px}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.group{border:1px solid var(--line);border-radius:10px;background:var(--panel);padding:14px 16px}
+.group h3{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 8px}
+.group h3 i{width:10px;height:10px;border-radius:50%}
+.group ol{margin:0;padding-left:1.3em}
+.group li{margin:6px 0}
+.group li button{background:none;border:0;padding:0;cursor:pointer;text-align:left;color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.group li button:hover{text-decoration-color:var(--ink)}
+.group li span{display:block;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.guards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.guard{border-top:2px solid var(--gold);padding-top:10px}
+.guard b{display:block;font-family:var(--display);font-weight:600;font-size:16px;margin-bottom:4px}
+.guard p{margin:0 0 6px;font-size:15.5px}
+.guard cite{font-family:var(--mono);font-style:normal;font-size:12px;color:var(--muted)}
+footer{padding-block:24px 40px;font-size:14px;color:var(--faint)}
+
+@media (min-width:981px){.heaven .nodes{flex-wrap:nowrap}.heaven .node{max-width:190px}}
+.toMap{display:none}
+@media (max-width:980px){
+  .toMap{display:inline-flex}
+  .main{grid-template-columns:minmax(0,1fr)}
+  .panel{position:static;max-height:none}
+  .hero{grid-template-columns:minmax(0,1fr);gap:16px}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .realm{padding:14px 10px 16px;min-height:0}
+  .node{padding:6px 9px;max-width:160px}
+  .node strong{font-size:13.5px}
+  .node small{display:none}
+  .nodes{gap:10px 8px}
+  .mid .nodes{justify-content:space-around}
+  .midrule{display:none}
+  .cols,.guards{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+</head>
+<body>
+
+
+<header class="wrap hero">
+  <div>
+    <p class="kicker">Living the divine plan · the seen and the unseen</p>
+    <h1>Ascending and Descending<span class="te" lang="te">పరలోకం · భూమి · దేవదూతలు — కనబడనిది, కనబడేది</span></h1>
+    <p class="lead">Heaven above, earth below, and the heavenly places between, where angels serve and hostile powers resist. Each line is one movement Scripture describes between them. Tap a line, a place, or a part of life to read the passages.</p>
+  </div>
+  <blockquote class="anchor">
+    <q>Hereafter ye shall see heaven open, and the angels of God ascending and descending upon the Son of man.</q>
+    <cite>John 1:51 · compare Genesis 28:12</cite>
+  </blockquote>
+</header>
+
+<div class="wrap">
+  <div class="controls" role="group" aria-label="Filters">
+    <span class="ctl-label">Show</span>
+    <div class="chips" id="cats"></div>
+    <span class="ctl-label">Part of life</span>
+    <select id="area" aria-label="Part of life"><option value="">All of life</option></select>
+  </div>
+</div>
+
+<div class="wrap main">
+  <div>
+    <div class="stage" id="stage">
+      <svg class="wires" id="wires" aria-hidden="true"></svg>
+      <section class="realm heaven" data-realm="heaven">
+        <div class="rlabel"><b>Heaven</b><span class="te" lang="te">పరలోకం</span><span>unseen · eternal</span></div>
+        <div class="nodes" id="n-heaven"></div>
+      </section>
+      <section class="realm mid" data-realm="mid">
+        <div class="midrule"></div>
+        <div class="rlabel"><b>The heavenly places</b><span class="te" lang="te">దేవదూతలు · శక్తులు</span><span>angels and powers (Eph. 6:12)</span></div>
+        <div class="nodes"><div class="side" id="n-holy"></div><div class="side dark" id="n-dark"></div></div>
+      </section>
+      <section class="realm earth" data-realm="earth">
+        <div class="rlabel"><b>Earth</b><span class="te" lang="te">భూమి</span><span>seen · temporal · natural</span></div>
+        <div class="nodes" id="n-earth"></div>
+      </section>
+      <div class="ladder-note">“Behold a ladder set up on the earth, and the top of it reached to heaven” (Gen. 28:12). Christ Himself is that ladder (John 1:51).</div>
+    </div>
+  </div>
+  <aside class="panel" id="panel" aria-live="polite"></aside>
+</div>
+
+<div class="wrap">
+  <section class="sec" id="all">
+    <h2>Every connection, as a list</h2>
+    <p>The same passages grouped by direction, for reading, teaching or printing notes. Choose one to see it on the map.</p>
+    <div class="cols" id="groups"></div>
+  </section>
+  <section class="sec">
+    <h2>Reading this map well</h2>
+    <p>Scripture shows enough of the unseen to steady our faith, not to satisfy curiosity. Three guardrails keep the picture in proportion.</p>
+    <div class="guards">
+      <div class="guard"><b>Worship God alone</b><p>Angels are fellow servants. When John fell at an angel’s feet he was told, “See thou do it not … worship God.” We neither pray to angels nor seek them; we pray to the Father through Christ.</p><cite>Rev. 22:8–9 · Col. 2:18 · Heb. 1:14</cite></div>
+      <div class="guard"><b>The enemy is real, and defeated</b><p>The battle is serious but not equal. Christ has already “spoiled principalities and powers,” and “greater is he that is in you, than he that is in the world.”</p><cite>Col. 2:15 · 1 John 4:4 · James 4:7</cite></div>
+      <div class="guard"><b>We see in part</b><p>“The secret things belong unto the LORD our God: but those things which are revealed belong unto us.” The map draws only what is written, and holds it with humility.</p><cite>Deut. 29:29 · 1 Cor. 13:12 · 2 Cor. 5:7</cite></div>
+    </div>
+  </section>
+  <footer>Scripture quotations from the King James Version (public domain). Part of the <a id="homeLink" href="https://ekakuman.github.io/divineblueprint/">Divine Blueprint</a> series.</footer>
+</div>
+
+<script>
+/* Where the Divine Blueprint study pages are hosted. Change this if the site moves. */
+const STUDY_SITE = "https://ekakuman.github.io/divineblueprint/studies/";
+
+const CATS = {
+  down:   {label:"From heaven",          te:"పరలోకం నుండి",   color:"--down",   dash:false, note:"God’s initiative reaching earth"},
+  angels: {label:"Angels at work",       te:"దేవదూతల పని",    color:"--angel",  dash:false, note:"Holy angels sent to serve"},
+  up:     {label:"To heaven",            te:"పరలోకానికి",      color:"--up",     dash:false, note:"What rises from earth and is noticed in heaven"},
+  battle: {label:"Battle and victory",   te:"ఆత్మీయ పోరాటం",  color:"--battle", dash:true,  note:"Opposition (dashed) and Christ’s victory (solid)"}
+};
+
+const NODES = [
+  {id:"throne", realm:"heaven", label:"The throne of God", sub:"the Father’s rule and purpose"},
+  {id:"lamb",   realm:"heaven", label:"The Lamb", sub:"Christ at the right hand"},
+  {id:"books",  realm:"heaven", label:"The books", sub:"names and remembrance"},
+  {id:"city",   realm:"heaven", label:"Mount Sion", sub:"the city, treasure, reward"},
+  {id:"holy",   realm:"holy",   label:"Holy angels", sub:"ministering spirits, Michael, Gabriel"},
+  {id:"powers", realm:"dark",   label:"Principalities and powers", sub:"rulers of the darkness"},
+  {id:"accuser",realm:"dark",   label:"The accuser", sub:"the devil, the adversary"},
+  {id:"believer",realm:"earth", label:"The believer", sub:"prayer, faith, repentance"},
+  {id:"church", realm:"earth",  label:"The church gathered", sub:"worship and witness"},
+  {id:"home",   realm:"earth",  label:"Home and family", sub:"marriage, children, guests"},
+  {id:"work",   realm:"earth",  label:"Work and money", sub:"labour, needs, giving"},
+  {id:"nations",realm:"earth",  label:"Nations and rulers", sub:"cities, kingdoms, the world"},
+  {id:"trial",  realm:"earth",  label:"Suffering and death", sub:"loss, agony, the last hour"}
+];
+
+const THEMES = {
+  "theme-kingdom":"The Kingdom of God","theme-counsel":"The Counsel and Will of God","theme-grace":"The Grace of God",
+  "theme-priesthood":"The Priesthood","theme-lamb":"The Lamb of God","theme-spirit":"The Spirit of God","theme-dwelling":"God’s Dwelling Place",
+  "theme-son":"The Son: Word and Wisdom","theme-mystery":"The Mystery of God","theme-mercy":"The Mercy of God","theme-glory":"The Glory of God",
+  "theme-inheritance":"The Inheritance","theme-book":"The Book of Life","theme-bride":"The Bride","theme-glorification":"Glorification",
+  "theme-judgment":"The Final Judgment","theme-headup":"All Things Headed Up in Christ","theme-redemption":"Redemption and the Blood",
+  "theme-faith":"Faith","theme-truth":"Truth and Faithfulness","theme-peace":"Peace","theme-love":"The Love of God","theme-holiness":"The Holiness of God",
+  "theme-rest":"The Rest of God","theme-purpose":"The Eternal Purpose of God","theme-newcreation":"The New Creation"
+};
+
+const AREAS = {
+  marriage:{name:"Marriage", unseen:"“This is a great mystery: but I speak concerning Christ and the church” (Ephesians 5:32). Every marriage is a living picture of an unseen union. How a husband and wife love, forgive and keep faith displays Christ and His church — before each other, before the watching world, and before the unseen powers (Ephesians 3:10)."},
+  work:{name:"Work and vocation", unseen:"“Knowing that your Master also is in heaven; neither is there respect of persons with him” (Ephesians 6:9). Behind every earthly employer stands an unseen Master. “For ye serve the Lord Christ” (Colossians 3:24): ordinary work, done heartily, is service offered in the unseen realm and rewarded there."},
+  parenting:{name:"Parenting and family", unseen:"“For this cause I bow my knees unto the Father of our Lord Jesus Christ, of whom the whole family in heaven and earth is named” (Ephesians 3:14–15). Earthly families take their name from an unseen Father. Parents are a visible picture of His fatherhood to their children, and Jesus warns that little ones are precious in heaven’s sight (Matthew 18:10)."},
+  money:{name:"Money and possessions", unseen:"“But lay up for yourselves treasures in heaven ... For where your treasure is, there will your heart be also” (Matthew 6:20–21). “Ye cannot serve God and mammon” (6:24). Jesus names money as an unseen rival master competing for worship. Every financial decision quietly answers which master we serve, and treasure stored in the unseen is the only kind that lasts."},
+  singleness:{name:"Singleness", unseen:"“For in the resurrection they neither marry, nor are given in marriage, but are as the angels of God in heaven” (Matthew 22:30). The single believer’s life already points to the unseen age to come, when union with Christ fills every longing. Undivided devotion to the Lord (1 Corinthians 7:32–35) is a visible sign of that invisible reality."},
+  health:{name:"Health and the body", unseen:"“What? know ye not that your body is the temple of the Holy Ghost which is in you, which ye have of God, and ye are not your own?” (1 Corinthians 6:19). The body is the dwelling place of an unseen Guest. Caring for it, using it in purity, and enduring its weakness are all done in His presence."},
+  relationships:{name:"Friendships and conflict", unseen:"“Be ye angry, and sin not: let not the sun go down upon your wrath: neither give place to the devil” (Ephesians 4:26–27). Paul forgives “lest Satan should get an advantage of us: for we are not ignorant of his devices” (2 Corinthians 2:11). Unresolved conflict hands ground to an unseen enemy; forgiveness takes it back."},
+  church:{name:"Church and fellowship", unseen:"“But ye are come unto mount Sion ... and to an innumerable company of angels, to the general assembly and church of the firstborn, which are written in heaven” (Hebrews 12:22–23). Every gathering, however small, joins an unseen assembly in heaven. And through the church God’s manifold wisdom is made known “unto the principalities and powers in heavenly places” (Ephesians 3:10)."},
+  suffering:{name:"Suffering and loss", unseen:"Behind Job’s losses lay a conversation in heaven he never heard (Job 1:6–12; 2:1–6). Believers rarely see why they suffer, but Scripture assures them that suffering is never outside God’s sight or permission, and that “our light affliction, which is but for a moment, worketh for us a far more exceeding and eternal weight of glory” (2 Corinthians 4:17) — a weight measured in the unseen."},
+  time:{name:"Time and rest", unseen:"“For a thousand years in thy sight are but as yesterday when it is past” (Psalm 90:4). Every day is lived before the eternal God. Paul says to redeem the time “because the days are evil” (Ephesians 5:16): there is an unseen pull to waste, distract and exhaust. Rest itself is an act of trust in the One who “shall neither slumber nor sleep” (Psalm 121:4)."},
+  mind:{name:"Mind and speech", unseen:"“For though we walk in the flesh, we do not war after the flesh ... casting down imaginations ... and bringing into captivity every thought to the obedience of Christ” (2 Corinthians 10:3, 5). The mind is a battlefield in an unseen war. The first sin began with a lie whispered by the serpent (Genesis 3:1–5), and James says an unbridled tongue “is set on fire of hell” (James 3:6)."},
+  community:{name:"Community and citizenship", unseen:"“The most High ruleth in the kingdom of men, and giveth it to whomsoever he will” (Daniel 4:17). Behind earthly nations stand unseen powers (Daniel 10:13, 20; Ephesians 6:12), and above them all the Most High. Praying for rulers (1 Timothy 2:1–2) is therefore no formality: it is engagement in the unseen realm that governs the seen."},
+  battle:{name:"Spiritual battle", unseen:"“Fear not: for they that be with us are more than they that be with them. ... And the LORD opened the eyes of the young man; and he saw: and, behold, the mountain was full of horses and chariots of fire round about Elisha” (2 Kings 6:16–17). The enemy is unseen, but so is the help. The servant’s problem was not too many enemies but too little sight."}
+};
+const AREA_SLUG = {marriage:"living-marriage",work:"living-work",parenting:"living-parenting",money:"living-money",singleness:"living-singleness",health:"living-health",relationships:"living-relationships",church:"living-church",suffering:"living-suffering",time:"living-time",mind:"living-mind",community:"living-community",battle:"living-battle"};
+
+/* Each link: one movement Scripture describes. v = KJV passages; m = what it shows; p = living it out. */
+const LINKS = [
+ {id:"rule", cat:"down", from:"throne", to:"nations", t:"The Most High rules the nations",
+  v:[["Daniel 4:17","to the intent that the living may know that the most High ruleth in the kingdom of men, and giveth it to whomsoever he will"]],
+  m:"Said to Nebuchadnezzar, the most powerful king on earth. Thrones, elections and borders are seen; the One who sets them up is not.",
+  p:"Hold news and politics loosely, and pray for those in authority rather than fear them.", th:["theme-kingdom","theme-counsel"], ar:["community"]},
+ {id:"provide", cat:"down", from:"throne", to:"work", t:"Provision from above",
+  v:[["Matthew 6:32","for your heavenly Father knoweth that ye have need of all these things"],["James 1:17","Every good gift and every perfect gift is from above, and cometh down from the Father of lights"]],
+  m:"Wages, food and housing arrive through ordinary channels, but Jesus traces them to a Father who already knows the need.",
+  p:"Work diligently, give thanks for each provision, and refuse anxiety (Matt. 6:31–33).", th:["theme-grace","theme-inheritance"], ar:["work","money"]},
+ {id:"intercede", cat:"down", from:"lamb", to:"believer", t:"Christ intercedes for His people",
+  v:[["Hebrews 7:25","Wherefore he is able also to save them to the uttermost that come unto God by him, seeing he ever liveth to make intercession for them."]],
+  m:"Right now, unseen, the risen Christ prays for those who come to God by Him. Our prayers are not the first word spoken on our behalf.",
+  p:"Come boldly when you feel weakest; your High Priest is already praying (Heb. 4:14–16).", th:["theme-priesthood","theme-lamb"], ar:["suffering","mind"]},
+ {id:"spirit", cat:"down", from:"lamb", to:"church", t:"The Spirit poured out",
+  v:[["Acts 2:33","Therefore being by the right hand of God exalted, and having received of the Father the promise of the Holy Ghost, he hath shed forth this, which ye now see and hear."],["1 Corinthians 6:19","know ye not that your body is the temple of the Holy Ghost which is in you"]],
+  m:"Peter explains Pentecost: the exalted Christ sent the Spirit, and the crowd could see and hear the effects. Each believer’s body is now His dwelling.",
+  p:"Treat your body and your church as places the Spirit lives.", th:["theme-spirit","theme-dwelling"], ar:["church","health"]},
+
+ {id:"obey", cat:"angels", from:"throne", to:"holy", t:"Angels do His commandments",
+  v:[["Psalm 103:20","Bless the LORD, ye his angels, that excel in strength, that do his commandments, hearkening unto the voice of his word."]],
+  m:"Angels act only at God’s word. Their strength is real, but it is always obedience, never independent power.",
+  p:"Look past the messenger to the One who sends.", th:["theme-counsel","theme-son"], ar:["battle"]},
+ {id:"minister", cat:"angels", from:"holy", to:"believer", t:"Sent to minister and to guard",
+  v:[["Hebrews 1:14","Are they not all ministering spirits, sent forth to minister for them who shall be heirs of salvation?"],["Psalm 34:7","The angel of the LORD encampeth round about them that fear him, and delivereth them."]],
+  m:"Hebrews says angels serve the heirs of salvation. Their help is usually unseen and unannounced.",
+  p:"Fear God rather than circumstances; His camp is closer than you think.", th:["theme-inheritance","theme-son"], ar:["battle","suffering"]},
+ {id:"sight", cat:"angels", from:"holy", to:"believer", t:"More with us than with them",
+  v:[["2 Kings 6:17","And the LORD opened the eyes of the young man; and he saw: and, behold, the mountain was full of horses and chariots of fire round about Elisha."]],
+  m:"Elisha’s servant saw only the Syrian army until God opened his eyes. Nothing changed in the situation, only in his sight.",
+  p:"Pray for opened eyes, for yourself and for anxious friends.", th:["theme-faith"], ar:["battle","mind"]},
+ {id:"deliver", cat:"angels", from:"holy", to:"trial", t:"Deliverance in the prison",
+  v:[["Acts 12:5","Peter therefore was kept in prison: but prayer was made without ceasing of the church unto God for him."],["Acts 12:7","And, behold, the angel of the Lord came upon him, and a light shined in the prison … And his chains fell off from his hands."]],
+  m:"The church prayed (seen); an angel opened the prison (unseen). God does not always deliver this way (James was killed in the same chapter, 12:2), but He is never absent.",
+  p:"Keep praying for believers in prison and under pressure.", th:["theme-redemption"], ar:["suffering","community"]},
+ {id:"little", cat:"angels", from:"holy", to:"home", t:"Little ones and their angels",
+  v:[["Matthew 18:10","Take heed that ye despise not one of these little ones; for I say unto you, That in heaven their angels do always behold the face of my Father which is in heaven."]],
+  m:"Jesus warns against despising the little ones who believe in Him. However small they seem on earth, heaven is paying attention.",
+  p:"Treat children and new believers as people heaven watches over.", th:["theme-love"], ar:["parenting"]},
+ {id:"guests", cat:"angels", from:"holy", to:"home", t:"Angels unawares",
+  v:[["Hebrews 13:2","Be not forgetful to entertain strangers: for thereby some have entertained angels unawares."]],
+  m:"Abraham welcomed three travellers (Genesis 18). Ordinary hospitality can stand closer to the unseen than we know.",
+  p:"Open your table to strangers, newcomers and those far from home.", th:["theme-love","theme-dwelling"], ar:["community","church","relationships"]},
+ {id:"messenger", cat:"angels", from:"holy", to:"believer", t:"Messengers from the presence of God",
+  v:[["Luke 1:19","I am Gabriel, that stand in the presence of God; and am sent to speak unto thee, and to shew thee these glad tidings."]],
+  m:"Gabriel came from God’s presence with news of the coming Christ. Now God “hath in these last days spoken unto us by his Son” (Heb. 1:2): His word to us is Christ and the Scriptures.",
+  p:"Test every voice by the written word (Gal. 1:8).", th:["theme-son","theme-mystery"], ar:["mind"]},
+ {id:"agony", cat:"angels", from:"holy", to:"trial", t:"Strength in agony, escort in death",
+  v:[["Luke 22:43","And there appeared an angel unto him from heaven, strengthening him."],["Luke 16:22","the beggar died, and was carried by the angels into Abraham’s bosom"]],
+  m:"Even the Son in Gethsemane was strengthened by an angel. And Jesus describes poor Lazarus, despised on earth, carried by angels at death.",
+  p:"Comfort the dying and the grieving with what Scripture says happens unseen.", th:["theme-lamb","theme-glorification"], ar:["suffering"]},
+ {id:"incense", cat:"angels", from:"believer", to:"holy", t:"Prayers carried up as incense",
+  v:[["Revelation 8:3–4","And another angel came and stood at the altar, having a golden censer … And the smoke of the incense, which came with the prayers of the saints, ascended up before God out of the angel’s hand."]],
+  m:"In John’s vision, an angel offers the saints’ prayers at the altar before the throne. Whispered prayers on earth rise into heaven’s worship.",
+  p:"Keep praying when it feels like nothing happens.", th:["theme-priesthood","theme-glory"], ar:["time","battle"]},
+ {id:"gather", cat:"angels", from:"holy", to:"nations", t:"The great gathering",
+  v:[["Matthew 24:31","And he shall send his angels with a great sound of a trumpet, and they shall gather together his elect from the four winds, from one end of heaven to the other."]],
+  m:"At Christ’s return the angels gather His people from every nation. The scattered church becomes one assembly.",
+  p:"Live now as one family with believers in every land.", th:["theme-headup","theme-judgment"], ar:["community","church"]},
+
+ {id:"heard", cat:"up", from:"believer", to:"throne", t:"Heard from the first day",
+  v:[["Daniel 10:12","Fear not, Daniel: for from the first day that thou didst set thine heart to understand, and to chasten thyself before thy God, thy words were heard, and I am come for thy words."]],
+  m:"Daniel prayed for three weeks with no visible answer. He learned his words were heard on the first day.",
+  p:"Delay is not denial. Keep humbling yourself and asking.", th:["theme-faith","theme-truth"], ar:["battle","time"]},
+ {id:"repent", cat:"up", from:"believer", to:"holy", t:"Joy over one who repents",
+  v:[["Luke 15:10","Likewise, I say unto you, there is joy in the presence of the angels of God over one sinner that repenteth."]],
+  m:"One person turning back to God is an event in heaven. Jesus told this to grumblers who despised the sinners He welcomed.",
+  p:"Celebrate every return; never treat a lost person as a lost cause.", th:["theme-mercy","theme-grace"], ar:["relationships","church"]},
+ {id:"wisdom", cat:"up", from:"church", to:"powers", t:"God’s wisdom on display",
+  v:[["Ephesians 3:10","To the intent that now unto the principalities and powers in heavenly places might be known by the church the manifold wisdom of God"]],
+  m:"Jew and Gentile made one body is God’s exhibit before the powers. How the church lives together is watched beyond the world.",
+  p:"Pursue unity across language, caste and culture; it preaches to the powers.", th:["theme-mystery","theme-bride"], ar:["church","marriage"]},
+ {id:"assembly", cat:"up", from:"church", to:"city", t:"Joining heaven’s assembly",
+  v:[["Hebrews 12:22–23","But ye are come unto mount Sion, and unto the city of the living God, the heavenly Jerusalem, and to an innumerable company of angels, To the general assembly and church of the firstborn, which are written in heaven"]],
+  m:"When believers gather to worship, they come to Mount Sion in the unseen, with angels and the church of the firstborn.",
+  p:"Come to worship expecting to join something larger than the room.", th:["theme-dwelling","theme-book"], ar:["church","singleness"]},
+ {id:"praise", cat:"up", from:"church", to:"throne", t:"Praise that pleases God",
+  v:[["Hebrews 13:15","By him therefore let us offer the sacrifice of praise to God continually, that is, the fruit of our lips giving thanks to his name."],["Revelation 5:8","golden vials full of odours, which are the prayers of saints"]],
+  m:"Praise is called a sacrifice. In heaven the prayers of saints are held before the Lamb like precious incense.",
+  p:"Give thanks out loud, daily, and especially when it costs something.", th:["theme-glory","theme-lamb"], ar:["time","church"]},
+ {id:"rulers", cat:"up", from:"church", to:"throne", t:"Prayer for those in authority",
+  v:[["1 Timothy 2:1–2","I exhort therefore, that, first of all, supplications, prayers, intercessions, and giving of thanks, be made for all men; For kings, and for all that are in authority"]],
+  m:"Paul puts prayer for rulers “first of all”. The church’s prayer reaches the throne that rules the nations.",
+  p:"Name your city, state and national leaders in prayer this week.", th:["theme-kingdom"], ar:["community"]},
+ {id:"treasure", cat:"up", from:"work", to:"city", t:"Treasure and reward in heaven",
+  v:[["Matthew 6:20","But lay up for yourselves treasures in heaven, where neither moth nor rust doth corrupt, and where thieves do not break through nor steal"],["Colossians 3:23–24","whatsoever ye do, do it heartily, as to the Lord … Knowing that of the Lord ye shall receive the reward of the inheritance: for ye serve the Lord Christ."]],
+  m:"Paul wrote Colossians 3 to bondservants: even the lowest work, done for Christ, is credited in heaven.",
+  p:"Do today’s work as service to Christ, and give generously.", th:["theme-inheritance"], ar:["work","money"]},
+ {id:"unhindered", cat:"up", from:"home", to:"throne", t:"Prayers not hindered",
+  v:[["1 Peter 3:7","Likewise, ye husbands, dwell with them according to knowledge, giving honour unto the wife … as being heirs together of the grace of life; that your prayers be not hindered."]],
+  m:"How a husband treats his wife affects whether his prayers get through. The home and the throne are connected.",
+  p:"Honour your spouse, and pray together as heirs of the same grace.", th:["theme-grace","theme-bride"], ar:["marriage"]},
+ {id:"remember", cat:"up", from:"believer", to:"books", t:"A book of remembrance",
+  v:[["Malachi 3:16","Then they that feared the LORD spake often one to another: and the LORD hearkened, and heard it, and a book of remembrance was written before him for them that feared the LORD"],["Luke 10:20","rejoice, because your names are written in heaven"]],
+  m:"Conversations between faithful friends were heard and recorded. Heaven keeps a record of what the world overlooks.",
+  p:"Speak often of the Lord with friends; it is heard.", th:["theme-book"], ar:["relationships","mind"]},
+ {id:"job", cat:"up", from:"trial", to:"throne", t:"Faithfulness spoken of in heaven",
+  v:[["Job 1:8","Hast thou considered my servant Job, that there is none like him in the earth, a perfect and an upright man, one that feareth God, and escheweth evil?"],["2 Corinthians 4:17","For our light affliction, which is but for a moment, worketh for us a far more exceeding and eternal weight of glory"]],
+  m:"Before any trouble came, God spoke of Job’s upright life in heaven’s court. Job never heard that conversation. Paul says affliction is producing a glory measured in the unseen.",
+  p:"In suffering, keep integrity even when no one on earth sees.", th:["theme-truth","theme-glorification"], ar:["suffering"]},
+ {id:"lookinto", cat:"up", from:"church", to:"holy", t:"Angels look into the gospel",
+  v:[["1 Peter 1:12","which are now reported unto you by them that have preached the gospel unto you with the Holy Ghost sent down from heaven; which things the angels desire to look into."]],
+  m:"Angels long to understand the salvation preached to ordinary believers. The gospel is a wonder even in heaven.",
+  p:"Never treat the gospel as ordinary.", th:["theme-mystery","theme-redemption"], ar:["church"]},
+ {id:"linen", cat:"up", from:"believer", to:"city", t:"Deeds that follow us",
+  v:[["Revelation 19:8","for the fine linen is the righteousness of saints."],["Revelation 14:13","Blessed are the dead which die in the Lord … that they may rest from their labours; and their works do follow them."]],
+  m:"Righteous acts become the bride’s wedding garment. Faithful works are not lost at death; they follow the believer.",
+  p:"Spend your days on what will still matter at the wedding of the Lamb.", th:["theme-bride","theme-rest"], ar:["time","singleness","work"]},
+
+ {id:"accuse", cat:"battle", kind:"against", from:"accuser", to:"throne", t:"The accuser before God",
+  v:[["Revelation 12:10","for the accuser of our brethren is cast down, which accused them before our God day and night."]],
+  m:"The devil’s work includes accusing believers before God, as with Job (Job 1:9–11). Heaven announces that the accuser is cast down.",
+  p:"Answer condemnation with the blood of Christ, not your record (Rom. 8:33–34).", th:["theme-judgment","theme-redemption"], ar:["mind","battle"]},
+ {id:"wrestle", cat:"battle", kind:"against", from:"powers", to:"believer", t:"We wrestle not against flesh and blood",
+  v:[["Ephesians 6:12","For we wrestle not against flesh and blood, but against principalities, against powers, against the rulers of the darkness of this world, against spiritual wickedness in high places."],["1 Peter 5:8","Be sober, be vigilant; because your adversary the devil, as a roaring lion, walketh about, seeking whom he may devour"]],
+  m:"The people who oppose us are not the real enemy. The struggle behind them is spiritual, and it calls for spiritual armour (Eph. 6:13–18).",
+  p:"Pray for the person in front of you; resist the powers behind them.", th:["theme-faith","theme-truth"], ar:["battle","mind","relationships"]},
+ {id:"persia", cat:"battle", kind:"against", from:"powers", to:"nations", t:"Powers behind nations",
+  v:[["Daniel 10:13","But the prince of the kingdom of Persia withstood me one and twenty days: but, lo, Michael, one of the chief princes, came to help me"]],
+  m:"The delay in Daniel’s answer was resistance in the unseen, tied to the kingdom of Persia. Earthly empires have spiritual dimensions.",
+  p:"Pray persistently for nations, including the lands your family came from.", th:["theme-kingdom"], ar:["community","battle"]},
+ {id:"place", cat:"battle", kind:"against", from:"powers", to:"home", t:"Ground given through anger",
+  v:[["Ephesians 4:26–27","Be ye angry, and sin not: let not the sun go down upon your wrath: Neither give place to the devil."]],
+  m:"Anger kept overnight gives the devil a foothold. Ordinary household conflict has an unseen side.",
+  p:"Settle quarrels before the day ends.", th:["theme-peace"], ar:["relationships","marriage"]},
+ {id:"blind", cat:"battle", kind:"against", from:"powers", to:"nations", t:"Minds blinded to the gospel",
+  v:[["2 Corinthians 4:4","In whom the god of this world hath blinded the minds of them which believe not, lest the light of the glorious gospel of Christ … should shine unto them."]],
+  m:"Unbelief is not only an argument to win; it is blindness to be prayed against. Only God can make the light shine (4:6).",
+  p:"Pray for unbelieving friends before you debate with them.", th:["theme-glory","theme-mystery"], ar:["community","mind"]},
+ {id:"michael", cat:"battle", kind:"victory", from:"holy", to:"powers", t:"Michael and his angels",
+  v:[["Revelation 12:7","And there was war in heaven: Michael and his angels fought against the dragon; and the dragon fought, and his angels"],["Daniel 10:13","Michael, one of the chief princes, came to help me"]],
+  m:"Holy angels contend with fallen ones. In Revelation the dragon “prevailed not” (12:8).",
+  p:"Take the battle seriously, and take its outcome as settled.", th:["theme-judgment"], ar:["battle"]},
+ {id:"cross", cat:"battle", kind:"victory", from:"lamb", to:"powers", t:"Triumph at the cross",
+  v:[["Colossians 2:15","And having spoiled principalities and powers, he made a shew of them openly, triumphing over them in it."]],
+  m:"At the cross, which looked like defeat on earth, Christ disarmed the powers and paraded His victory over them.",
+  p:"Face fear and accusation from the cross, not from your own strength.", th:["theme-lamb","theme-redemption"], ar:["battle","mind"]},
+ {id:"overcome", cat:"battle", kind:"victory", from:"believer", to:"accuser", t:"Overcome by the blood and the word",
+  v:[["Revelation 12:11","And they overcame him by the blood of the Lamb, and by the word of their testimony; and they loved not their lives unto the death."]],
+  m:"Ordinary believers defeat the accuser with Christ’s blood, their witness, and a life held loosely.",
+  p:"Tell what Christ has done for you; it is a weapon.", th:["theme-redemption","theme-faith"], ar:["battle","suffering"]},
+ {id:"resist", cat:"battle", kind:"victory", from:"believer", to:"powers", t:"Resist, and he will flee",
+  v:[["James 4:7","Submit yourselves therefore to God. Resist the devil, and he will flee from you."]],
+  m:"Resistance follows submission. A believer who has bowed to God can stand against the devil, and he retreats.",
+  p:"Submit first, then resist the specific temptation by name.", th:["theme-holiness","theme-faith"], ar:["mind","battle","health"]}
+];
+
+/* ---------- build ---------- */
+const $ = s => document.querySelector(s);
+const byId = Object.fromEntries(NODES.map(n => [n.id, n]));
+const linkById = Object.fromEntries(LINKS.map(l => [l.id, l]));
+const realmName = r => r === "heaven" ? "Heaven" : (r === "earth" ? "Earth" : "The heavenly places");
+const realmOf = id => ({holy:"mid",dark:"mid"})[byId[id].realm] || byId[id].realm;
+const cssVar = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const state = {cat:"all", area:"", sel:null, node:null};
+
+for (const n of NODES) {
+  const b = document.createElement("button");
+  b.className = "node"; b.dataset.id = n.id; b.type = "button";
+  b.innerHTML = `<strong>${esc(n.label)}</strong><small>${esc(n.sub)}</small>`;
+  b.addEventListener("click", () => selectNode(n.id));
+  ({heaven:"#n-heaven",holy:"#n-holy",dark:"#n-dark",earth:"#n-earth"})[n.realm] && $(({heaven:"#n-heaven",holy:"#n-holy",dark:"#n-dark",earth:"#n-earth"})[n.realm]).appendChild(b);
+}
+
+const catBox = $("#cats");
+const mkChip = (key, label, color) => {
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button"; b.dataset.cat = key;
+  b.innerHTML = (color ? `<i style="background:var(${color})"></i>` : "") + esc(label);
+  b.setAttribute("aria-pressed", key === state.cat);
+  b.addEventListener("click", () => { state.cat = key; state.sel = null; state.node = null; render(); });
+  catBox.appendChild(b);
+};
+mkChip("all", "All connections");
+for (const [k, c] of Object.entries(CATS)) mkChip(k, c.label, c.color);
+
+const areaSel = $("#area");
+for (const [k, a] of Object.entries(AREAS)) { const o = document.createElement("option"); o.value = k; o.textContent = a.name; areaSel.appendChild(o); }
+areaSel.addEventListener("change", () => { state.area = areaSel.value; state.sel = null; state.node = null; render(); });
+
+/* list view */
+const groups = $("#groups");
+for (const [k, c] of Object.entries(CATS)) {
+  const items = LINKS.filter(l => l.cat === k);
+  const d = document.createElement("div"); d.className = "group";
+  d.innerHTML = `<h3><i style="background:var(${c.color})"></i>${esc(c.label)} <span lang="te" style="font-family:var(--telugu);text-transform:none;letter-spacing:0;color:var(--muted)">· ${c.te}</span></h3><ol>` +
+    items.map(l => `<li><button type="button" data-link="${l.id}">${esc(l.t)}</button><span>${esc(byId[l.from].label)} → ${esc(byId[l.to].label)} · ${l.v.map(v => v[0]).join("; ")}</span></li>`).join("") + "</ol>";
+  groups.appendChild(d);
+}
+groups.addEventListener("click", e => {
+  const b = e.target.closest("[data-link]"); if (!b) return;
+  state.cat = "all"; state.area = ""; areaSel.value = ""; selectLink(b.dataset.link);
+  $("#stage").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+});
+
+/* ---------- wires ---------- */
+const svg = $("#wires");
+function visibleLinks() {
+  return LINKS.filter(l => (state.cat === "all" || l.cat === state.cat) && (!state.area || l.ar.includes(state.area)));
+}
+function drawWires() {
+  const stage = $("#stage").getBoundingClientRect();
+  const box = id => { const r = document.querySelector(`.node[data-id="${id}"]`).getBoundingClientRect(); return {x:r.left - stage.left, y:r.top - stage.top, w:r.width, h:r.height}; };
+  const shown = new Set(visibleLinks().map(l => l.id));
+  const order = {heaven:0, mid:1, earth:2};
+  // spread multiple links sharing an endpoint
+  const slots = {};
+  const slot = (node, side, id) => { const k = node + side; (slots[k] = slots[k] || []).push(id); };
+  const plan = LINKS.map(l => {
+    const a = order[realmOf(l.from)], b = order[realmOf(l.to)];
+    const sideFrom = a === b ? "s" : (a < b ? "b" : "t"), sideTo = a === b ? "s" : (a < b ? "t" : "b");
+    slot(l.from, sideFrom, l.id); slot(l.to, sideTo, l.id);
+    return {l, sideFrom, sideTo};
+  });
+  const pt = (node, side, id) => {
+    const r = box(node), arr = slots[node + side], i = arr.indexOf(id), n = arr.length;
+    const f = n === 1 ? .5 : .15 + .7 * i / (n - 1);
+    if (side === "t") return {x:r.x + r.w * f, y:r.y};
+    if (side === "b") return {x:r.x + r.w * f, y:r.y + r.h};
+    return {x:r.x + r.w / 2, y:r.y + r.h * (.25 + .5 * f), side:true, r};
+  };
+  let defs = "<defs>";
+  for (const [k, c] of Object.entries(CATS)) defs += `<marker id="ar-${k}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="${cssVar(c.color)}"/></marker>`;
+  defs += "</defs>";
+  let paths = "";
+  for (const {l, sideFrom, sideTo} of plan) {
+    const p1 = pt(l.from, sideFrom, l.id), p2 = pt(l.to, sideTo, l.id);
+    let d;
+    if (sideFrom === "s") { // same band: arc above
+      const a = box(l.from), b = box(l.to);
+      const x1 = a.x + a.w / 2, x2 = b.x + b.w / 2, y = Math.min(a.y, b.y);
+      d = `M${x1},${a.y} C${x1},${y - 34} ${x2},${y - 34} ${x2},${b.y}`;
+    } else {
+      const dy = (p2.y - p1.y) * .5;
+      d = `M${p1.x},${p1.y} C${p1.x},${p1.y + dy} ${p2.x},${p2.y - dy} ${p2.x},${p2.y}`;
+    }
+    const c = CATS[l.cat];
+    const dashed = l.cat === "battle" && l.kind === "against";
+    const cls = ["w", dashed ? "dash" : "", !shown.has(l.id) ? "dim" : "", state.sel === l.id ? "sel flow" : "",
+      state.node && (l.from === state.node || l.to === state.node) && shown.has(l.id) ? "hot" : "",
+      state.node && !(l.from === state.node || l.to === state.node) ? "dim" : "",
+      state.sel && state.sel !== l.id ? "dim" : ""].filter(Boolean).join(" ");
+    paths += `<path class="${cls}" d="${d}" stroke="${cssVar(c.color)}" marker-end="url(#ar-${l.cat})"/>`;
+    if (shown.has(l.id)) paths += `<path class="hit" d="${d}" data-link="${l.id}"><title>${esc(l.t)}</title></path>`;
+  }
+  svg.innerHTML = defs + paths;
+  // node emphasis
+  const active = new Set();
+  const cur = state.sel ? [linkById[state.sel]] : visibleLinks().filter(l => !state.node || l.from === state.node || l.to === state.node);
+  cur.forEach(l => { active.add(l.from); active.add(l.to); });
+  document.querySelectorAll(".node").forEach(el => {
+    el.classList.toggle("on", el.dataset.id === state.node || (state.sel && active.has(el.dataset.id)));
+    el.classList.toggle("dim", !active.has(el.dataset.id));
+  });
+}
+svg.addEventListener("click", e => { const p = e.target.closest("[data-link]"); if (p) selectLink(p.dataset.link, true); });
+svg.addEventListener("mouseover", e => { const p = e.target.closest("[data-link]"); if (p) p.previousElementSibling.classList.add("hot"); });
+svg.addEventListener("mouseout", e => { const p = e.target.closest("[data-link]"); if (p && state.sel !== p.dataset.link) p.previousElementSibling.classList.remove("hot"); });
+
+/* ---------- panel ---------- */
+const panel = $("#panel");
+const dot = cat => `<i style="background:var(${CATS[cat].color})"></i>`;
+const linkBtn = l => `<li><button type="button" data-link="${l.id}">${dot(l.cat)}<span>${esc(l.t)}<small>${esc(byId[l.from].label)} → ${esc(byId[l.to].label)}</small></span></button></li>`;
+const studyTag = s => `<a class="tag" href="${STUDY_SITE}${s}.html" target="_blank" rel="noopener">${esc(THEMES[s] || s)}</a>`;
+
+function panelIntro() {
+  const list = visibleLinks();
+  const leg = Object.entries(CATS).map(([k, c]) => `<div><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="var(${c.color})" stroke-width="3" ${c.dash ? 'stroke-dasharray="6 4"' : ""}/></svg><span><b>${esc(c.label)}</b> <span lang="te" style="color:var(--muted)">· ${c.te}</span><br><span style="color:var(--muted);font-size:14px">${esc(c.note)}</span></span></div>`).join("");
+  let h = `<span class="badge" style="color:var(--gold)">${dot("down")}How to read the map</span>
+  <h2>${state.area ? esc(AREAS[state.area].name) : "Two realms, one life"}</h2>`;
+  if (state.area) {
+    h += `<div class="unseen">${esc(AREAS[state.area].unseen)}</div>
+      <p><a class="tag" href="${STUDY_SITE}${AREA_SLUG[state.area]}.html" target="_blank" rel="noopener">Open the “${esc(AREAS[state.area].name)}” study</a></p>`;
+  } else {
+    h += `<div class="verse" style="--c:var(--gold)"><p>“While we look not at the things which are seen, but at the things which are not seen: for the things which are seen are temporal; but the things which are not seen are eternal.”</p><cite>2 Corinthians 4:18</cite></div>
+      <p>What we do on earth matters in heaven. Every line is a movement Scripture names. Tap one to read it.</p>`;
+  }
+  h += `<div class="legend">${leg}</div><h3>${list.length} connection${list.length === 1 ? "" : "s"} shown</h3><ul class="linklist">${list.map(linkBtn).join("")}</ul>`;
+  return h;
+}
+function panelLink(l) {
+  const c = CATS[l.cat];
+  const a = byId[l.from], b = byId[l.to];
+  const kind = l.cat === "battle" ? (l.kind === "against" ? " · opposition" : " · victory") : "";
+  return `<span class="badge" style="color:var(${c.color})">${dot(l.cat)}${esc(c.label)}${kind}</span>
+   <h2>${esc(l.t)}</h2>
+   <div class="route">${esc(a.label)} <span style="color:var(--faint)">(${realmName(realmOf(a.id))})</span> → ${esc(b.label)} <span style="color:var(--faint)">(${realmName(realmOf(b.id))})</span></div>
+   ${l.v.map(v => `<div class="verse" style="--c:var(${c.color})"><p>“${esc(v[1])}”</p><cite>${esc(v[0])} · KJV</cite></div>`).join("")}
+   <h3>What it shows</h3><p>${esc(l.m)}</p>
+   <h3>Living it</h3><p>${esc(l.p)}</p>
+   <h3>Theme studies</h3><div class="tags">${l.th.map(studyTag).join("")}</div>
+   <h3>Parts of life</h3><div class="tags">${l.ar.map(k => `<button type="button" class="tag" data-area="${k}">${esc(AREAS[k].name)}</button>`).join("")}</div>
+   <p style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="tag" data-back="1">← All connections</button><button type="button" class="tag toMap" data-map="1">↑ Back to the map</button></p>`;
+}
+function panelNode(id) {
+  const n = byId[id];
+  const list = visibleLinks().filter(l => l.from === id || l.to === id);
+  return `<span class="badge" style="color:var(--muted)">${esc(realmName(realmOf(id)))}</span><h2>${esc(n.label)}</h2><p style="color:var(--muted)">${esc(n.sub)}</p>
+   <h3>Into and out of this place</h3><ul class="linklist">${list.map(linkBtn).join("") || "<li>No connections in this view.</li>"}</ul>
+   <p style="margin-top:16px"><button type="button" class="tag" data-back="1">← All connections</button></p>`;
+}
+panel.addEventListener("click", e => {
+  const l = e.target.closest("[data-link]"); if (l) return selectLink(l.dataset.link);
+  const a = e.target.closest("[data-area]"); if (a) { state.area = a.dataset.area; areaSel.value = state.area; state.sel = null; state.node = null; return render(); }
+  if (e.target.closest("[data-map]")) { $("#stage").scrollIntoView({block:"start"}); return; }
+  if (e.target.closest("[data-back]")) { state.sel = null; state.node = null; render(); }
+});
+
+const narrow = () => matchMedia("(max-width: 980px)").matches;
+function selectLink(id, fromMap) { state.sel = id; state.node = null; const l = linkById[id]; if (state.cat !== "all" && state.cat !== l.cat) state.cat = "all"; render(); if (fromMap && narrow()) panel.scrollIntoView({block:"start"}); }
+function selectNode(id) { state.node = state.node === id ? null : id; state.sel = null; render(); }
+function render() {
+  document.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", b.dataset.cat === state.cat));
+  panel.innerHTML = state.sel ? panelLink(linkById[state.sel]) : (state.node ? panelNode(state.node) : panelIntro());
+  drawWires();
+  try { localStorage.setItem("asc-view", JSON.stringify({cat:state.cat, area:state.area})); } catch (e) {}
+}
+try { const v = JSON.parse(localStorage.getItem("asc-view") || "null"); if (v && (v.cat === "all" || CATS[v.cat])) { state.cat = v.cat; if (AREAS[v.area]) { state.area = v.area; areaSel.value = v.area; } } } catch (e) {}
+
+let raf;
+const redraw = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(drawWires); };
+new ResizeObserver(redraw).observe($("#stage"));
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redraw);
+new MutationObserver(redraw).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+document.fonts && document.fonts.ready.then(redraw);
+render();
+</script>
+
+</body>
+</html>

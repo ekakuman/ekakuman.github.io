@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="The Divine Blueprint of God: five stages (Purpose, Provision, People, Goal, Consummation) traced across Scripture, with themes and a guide for living the blueprint.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23B8862B' stroke-width='6'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23B8862B'/%3E%3C/svg%3E">
+<title>Divine Blueprint Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/mobile-fix.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: a drafting sheet — theme index on the left, one vertical thread from eternity to consummation on the right, full matrix below */
+:root{
+  --paper:#eef2f4; --paper-2:#e2e9ee; --sheet:#f7f9fa; --ink:#14233a; --ink-2:#4b5c72; --ink-3:#7a8a9d;
+  --line:#bccad6; --grid:rgba(43,95,138,.07); --cyan:#2b5f8a; --gold:#9c6f22; --gold-soft:rgba(156,111,34,.12);
+  --display:"Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --body:"Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0c1a29; --paper-2:#12253a; --sheet:#0f2033; --ink:#e7eef5; --ink-2:#a3b5c8; --ink-3:#6f86a0;
+  --line:#28425d; --grid:rgba(127,179,221,.06); --cyan:#86b9e3; --gold:#d9ae5e; --gold-soft:rgba(217,174,94,.14); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0c1a29; --paper-2:#12253a; --sheet:#0f2033; --ink:#e7eef5; --ink-2:#a3b5c8; --ink-3:#6f86a0;
+  --line:#28425d; --grid:rgba(127,179,221,.06); --cyan:#86b9e3; --gold:#d9ae5e; --gold-soft:rgba(217,174,94,.14); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background-color:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--cyan)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.top{padding-block:36px 20px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.eyebrow .heb{font-family:var(--body);letter-spacing:0;text-transform:none;font-size:15px;color:var(--gold)}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(40px,6vw,64px);line-height:1;margin:.25em 0 .2em;text-wrap:balance;letter-spacing:-.01em}
+.lead{max-width:62ch;color:var(--ink-2);margin:0}
+.studies{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-family:var(--mono);font-size:12.5px}
+.keytext{margin-top:18px;border-left:3px solid var(--gold);padding:4px 0 4px 16px;max-width:78ch}
+.keytext .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.keytext blockquote{margin:6px 0 8px;font-size:17px;line-height:1.55}
+.keytext .seg{border-bottom:1px solid var(--gold)}
+.keytext .tag{font-family:var(--mono);font-size:10.5px;color:var(--gold);vertical-align:super;margin-left:2px}
+.keytext cite{display:block}
+.keytext .legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:8px;font-family:var(--mono);font-size:11.5px;color:var(--ink-2)}
+.keytext .legend b{color:var(--gold);font-weight:500}
+.allstudies{margin-top:16px;border:1px solid var(--line);border-radius:6px;background:var(--sheet);padding:10px 14px}
+.allstudies summary{cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.sidx{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px 24px;margin-top:12px}
+.sidx h4{margin:0 0 4px;font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.sidx h4 b{color:var(--gold);font-weight:500}
+.sidx ol{list-style:none;margin:0;padding:0;display:grid;gap:3px}
+.sidx a{text-decoration:none;font-size:14.5px;display:flex;gap:8px}
+.sidx a:hover{text-decoration:underline}
+.sidx .n{font-family:var(--mono);font-size:11px;color:var(--ink-3);min-width:1.8em;padding-top:3px}
+
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start;padding-block:8px 32px}
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);max-height:calc(100vh - 24px);overflow:auto;padding-right:4px}
+.grp{margin-bottom:14px}
+.grp h4{margin:0 0 4px;font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.grp h4 b{color:var(--gold);font-weight:500}
+.tbtn{display:flex;gap:8px;width:100%;text-align:left;background:none;border:0;padding:5px 8px;border-radius:4px;cursor:pointer;font-size:14.5px;color:var(--ink-2)}
+.tbtn .n{font-family:var(--mono);font-size:11px;color:var(--ink-3);min-width:1.8em;padding-top:3px;font-variant-numeric:tabular-nums}
+.tbtn:hover{background:var(--paper-2);color:var(--ink)}
+.tbtn[aria-current="true"]{background:var(--gold-soft);color:var(--ink)}
+.tbtn[aria-current="true"] .n{color:var(--gold)}
+.tbtn.hit::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);margin:8px 0 0 auto;flex:none}
+
+.mobile-pick{display:none}
+.mobile-pick label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:4px}
+.mobile-pick select{width:100%;font:inherit;font-size:16px;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--sheet);color:var(--ink)}
+
+main{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:28px clamp(16px,3vw,36px) 32px;min-width:0}
+.th-head{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}
+.th-head h2{font-family:var(--display);font-weight:600;font-size:clamp(32px,4.4vw,46px);line-height:1.05;margin:.2em 0 .25em;text-wrap:balance}
+.gloss{margin:0;color:var(--ink-2);max-width:62ch}
+.pager{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}
+.chip{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:var(--paper);padding:6px 10px;border-radius:4px;cursor:pointer;text-decoration:none;color:var(--ink-2)}
+.chip:hover{border-color:var(--cyan);color:var(--ink)}
+.chip.study{border-color:var(--gold);color:var(--gold)}
+
+/* the thread */
+.thread{list-style:none;margin:0;padding:0;position:relative}
+.thread::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--gold),var(--cyan) 18%,var(--cyan) 82%,var(--gold))}
+.station{position:relative;display:grid;grid-template-columns:200px minmax(0,1fr);gap:8px 24px;padding:0 0 26px 34px}
+.station:last-child{padding-bottom:0}
+.station::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:50%;background:var(--sheet);border:2px solid var(--cyan)}
+.station.pole::before{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 4px var(--gold-soft)}
+.st-label h3{margin:0;font-family:var(--display);font-weight:700;font-size:22px;line-height:1.15}
+.st-label .sub{font-size:13px;color:var(--ink-3);margin-top:2px}
+.st-label .sub .orig{display:block;font-size:15px;color:var(--gold)}
+.passages{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.passages li{display:grid;gap:2px}
+.q{font-size:16.5px;line-height:1.5}
+.q::before{content:"\201C";color:var(--gold)}
+.q::after{content:"\201D";color:var(--gold)}
+.q.note{font-style:italic;color:var(--ink-2)}
+.q.note::before,.q.note::after{content:none}
+cite{font-style:normal;font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--cyan)}
+mark{background:var(--gold-soft);color:inherit;border-bottom:1px solid var(--gold)}
+
+/* stage view */
+.stage-list{display:grid;gap:0}
+.srow{display:grid;grid-template-columns:220px minmax(0,1fr);gap:6px 24px;padding:14px 0;border-top:1px solid var(--line)}
+.srow:first-child{border-top:0;padding-top:0}
+.srow .tbtn{padding:2px 0;font-family:var(--display);font-weight:600;font-size:19px;color:var(--ink)}
+.srow .tbtn:hover{background:none;color:var(--cyan)}
+.srow .tbtn .n{padding-top:6px}
+
+/* matrix */
+.matrix-sec{padding-block:8px 48px}
+.mx-head{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end;justify-content:space-between;margin-bottom:14px}
+.mx-head h2{font-family:var(--display);font-weight:600;font-size:34px;margin:0;line-height:1}
+.mx-head p{margin:4px 0 0;color:var(--ink-2);font-size:14.5px;max-width:60ch}
+.search{display:grid;gap:4px;min-width:min(100%,300px)}
+.search label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.search input{font:inherit;font-size:16px;padding:9px 12px;border:1px solid var(--line);border-radius:6px;background:var(--sheet);color:var(--ink)}
+.search .count{font-family:var(--mono);font-size:12px;color:var(--gold);min-height:1.2em}
+.mx-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--sheet)}
+table.matrix{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+.matrix th,.matrix td{border-bottom:1px solid var(--line);padding:0}
+.matrix thead th{position:sticky;top:0;background:var(--paper-2);z-index:1}
+.colbtn{width:100%;background:none;border:0;padding:10px 6px;cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.colbtn:hover,.colbtn[aria-current="true"]{color:var(--gold)}
+.corner{text-align:left;padding:10px 12px!important;font-family:var(--mono);font-weight:400;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.grow td{padding:8px 12px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);background:var(--paper)}
+.grow td b{color:var(--gold);font-weight:500}
+.rowbtn{display:flex;gap:8px;width:100%;text-align:left;background:none;border:0;padding:8px 12px;cursor:pointer;white-space:nowrap;color:var(--ink)}
+.rowbtn .n{font-family:var(--mono);font-size:11px;color:var(--ink-3);padding-top:2px;min-width:1.8em}
+.rowbtn:hover{color:var(--cyan)}
+tr.on .rowbtn{color:var(--gold)}
+tr.on td,tr.on th{background:var(--gold-soft)}
+td.colon{background:var(--gold-soft)}
+.cell{width:100%;min-height:38px;background:none;border:0;cursor:pointer;display:grid;place-items:center;padding:6px}
+.mk{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:11px;font-variant-numeric:tabular-nums;
+  background:var(--cyan);color:var(--sheet);transition:transform .15s}
+.cell.pole .mk{background:var(--gold)}
+.cell:hover .mk{transform:scale(1.15)}
+.dim .mk{opacity:.15}
+.match .mk{box-shadow:0 0 0 3px var(--gold-soft),0 0 0 4px var(--gold)}
+
+footer{padding-block:0 40px;color:var(--ink-3);font-size:13px}
+
+/* flow diagrams */
+:root{--gA:#9c6f22;--gB:#2b5f8a;--gC:#3d7a55;--gD:#7a4b8c;--gE:#a24d36}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--gA:#d9ae5e;--gB:#86b9e3;--gC:#7cc49a;--gD:#c29ad6;--gE:#e5977f}}
+:root[data-theme="dark"]{--gA:#d9ae5e;--gB:#86b9e3;--gC:#7cc49a;--gD:#c29ad6;--gE:#e5977f}
+.flow-sec{padding-block:8px 48px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 10px}
+.tab{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:var(--paper);padding:7px 12px;border-radius:4px;cursor:pointer;color:var(--ink-2)}
+.tab[aria-selected="true"]{border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.flow-info{min-height:3.2em;font-size:15px;color:var(--ink-2);margin:0 0 10px;max-width:80ch}
+.flow-info b{color:var(--ink);font-weight:600}
+.flow-info cite{margin-left:6px}
+.flow-box{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--sheet);padding:8px}
+.flow-box svg{display:block;width:100%;min-width:880px;height:auto}
+.flow-box text{font-family:var(--body);fill:var(--ink)}
+.flow-box .colh{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;fill:var(--ink-3)}
+.flow-box .lbl{font-size:12px;cursor:pointer;paint-order:stroke;stroke:var(--sheet);stroke-width:3px;stroke-linejoin:round}
+.flow-box .band{fill-opacity:.32;transition:fill-opacity .15s;cursor:pointer}
+.flow-box .band.on{fill-opacity:.8}
+.flow-box .band.off{fill-opacity:.07}
+.flow-box .node{cursor:pointer}
+.flow-legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-family:var(--mono);font-size:11.5px;color:var(--ink-2)}
+.flow-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+/* life layer */
+.life-sec{padding-block:8px 48px}
+.hinge{border-left:3px solid var(--gold);padding:2px 0 2px 14px;margin:10px 0 16px;max-width:78ch;font-size:16.5px}
+.hinge cite{display:block;margin-top:2px}
+.areas{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.area{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:var(--paper);padding:7px 11px;border-radius:4px;cursor:pointer;color:var(--ink-2)}
+.area:hover{border-color:var(--cyan);color:var(--ink)}
+.area[aria-pressed="true"]{border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.life-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:12px}
+.life-head h3{font-family:var(--display);font-weight:600;font-size:clamp(28px,3.6vw,38px);margin:0;line-height:1.05}
+.life-head p{margin:0;color:var(--ink-2);font-size:14.5px;max-width:70ch}
+.life-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.lcard{background:var(--sheet);border:1px solid var(--line);border-top:3px solid var(--gc);border-radius:6px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.lcard .gq{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--gc)}
+.lcard .ask{font-size:13.5px;color:var(--ink-3);font-style:italic;margin:0}
+.lcard .q{font-size:15.5px}
+.lcard .prac{font-size:14px;color:var(--ink-2);border-top:1px dashed var(--line);padding-top:8px;margin-top:auto}
+.lcard .prac b{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:2px}
+.lcard .ths{display:flex;flex-wrap:wrap;gap:6px}
+.lcard .ths .chip{font-size:11px;padding:4px 8px}
+.life-all{margin-top:22px}
+.life-all summary{cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.life-all .mx-scroll{margin-top:10px}
+table.lifegrid{border-collapse:collapse;width:100%;min-width:760px;font-size:13.5px}
+.lifegrid th,.lifegrid td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.lifegrid thead th{background:var(--paper-2);font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.lifegrid tbody th button{background:none;border:0;padding:0;cursor:pointer;font:inherit;font-family:var(--display);font-weight:600;font-size:17px;color:var(--ink);text-align:left}
+.lifegrid tbody th button:hover{color:var(--cyan)}
+.lifegrid td .t{color:var(--ink)}
+.lifegrid td cite{display:block;margin-top:2px}
+.lifegrid tr.on td,.lifegrid tr.on th{background:var(--gold-soft)}
+.walk-btn{font-family:var(--mono);font-size:12px;border:1px solid var(--gold);background:var(--gold-soft);color:var(--gold);padding:7px 12px;border-radius:4px;cursor:pointer;margin-left:auto}
+.walk{background:var(--sheet);border:1px solid var(--line);border-top:3px solid var(--gc);border-radius:6px;padding:20px clamp(16px,3vw,28px);max-width:820px}
+.steps{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.steps button{font-family:var(--mono);font-size:11px;border:1px solid var(--line);background:var(--paper);color:var(--ink-3);padding:5px 9px;border-radius:999px;cursor:pointer}
+.steps button[aria-current="true"]{border-color:var(--gc);color:var(--gc);background:var(--gold-soft)}
+.steps button.done::after{content:" \2713"}
+.walk .gq{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--gc)}
+.walk .vq{font-size:18px;margin:8px 0 2px}
+.walk label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);margin:16px 0 6px}
+.walk .prompt{font-size:16px;margin:14px 0 0;color:var(--ink)}
+.walk textarea,.walk input[type=text]{width:100%;font:inherit;font-size:16px;line-height:1.5;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+.walk textarea{min-height:110px;resize:vertical}
+.walk .small{min-height:60px}
+.walk .sugg{font-size:13.5px;color:var(--ink-3);margin-top:6px}
+.walk .sugg button{font:inherit;font-size:13px;background:none;border:0;color:var(--cyan);text-decoration:underline;cursor:pointer;padding:0}
+.walk-nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:18px}
+.walk-nav .chip{font-size:12.5px;padding:8px 12px}
+.walk-nav .primary{border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+.savestate{font-family:var(--mono);font-size:11.5px;color:var(--ink-3);margin-left:auto}
+.sum{display:grid;gap:12px;margin-top:10px}
+.sum section{border-left:3px solid var(--gc);padding:2px 0 2px 12px}
+.sum h4{margin:0;font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--gc)}
+.sum p{margin:4px 0 0;white-space:pre-wrap}
+.sum .ns{color:var(--ink-2)}
+.sum .ns b{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.past{margin-top:18px}
+.past summary{cursor:pointer;font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+.past .entry{border-top:1px dashed var(--line);padding:10px 0}
+.past .entry .d{font-family:var(--mono);font-size:11.5px;color:var(--gold)}
+.area.has::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-left:6px;vertical-align:1px}
+.privacy{font-size:13px;color:var(--ink-3);margin:8px 0 0}
+@media (max-width:1000px){.life-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.life-row{grid-template-columns:minmax(0,1fr)}}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  aside{display:none}
+  .mobile-pick{display:block;margin-bottom:6px}
+  .station{grid-template-columns:minmax(0,1fr);padding-left:30px}
+  .srow{grid-template-columns:minmax(0,1fr)}
+  main{padding-top:22px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<header class="top wrap">
+  <div class="eyebrow"><span class="heb">תַּבְנִית</span> · tabnit · the pattern shown in the mount</div>
+  <h1>The Divine Blueprint</h1>
+  <p class="lead">Thirty-three themes God planned before the foundation of the world, traced through the Torah, Prophets, Writings and New Testament to their completion. Pick a theme to follow its thread, or pick a column in the map below to see every theme at one stage.</p>
+  <div class="studies">
+  <a href="studies/index.html">All studies</a>
+    <a href="studies/master.html">Master document</a>
+    <a href="studies/before-the-foundation.html">Before the Foundation study</a>
+    <a href="studies/life-of-god.html">The Life of God study</a>
+    <a href="#lifeTitle">Living the blueprint ↓</a>
+  </div>
+  <div class="keytext">
+    <div class="k">Key text of the series</div>
+    <blockquote><span class="seg">Having made known unto us the mystery of his will, according to his good pleasure which he hath purposed in himself</span><span class="tag">A</span>: That in the dispensation of the fulness of times <span class="seg">he might gather together in one all things in Christ, both which are in heaven, and which are on earth; even in him</span><span class="tag">E</span>: <span class="seg">In whom</span><span class="tag">B</span> <span class="seg">also we</span><span class="tag">C</span> <span class="seg">have obtained an inheritance</span><span class="tag">D</span>, being predestinated according to the purpose of him who worketh all things after the counsel of his own will.</blockquote>
+    <cite>Ephesians 1:9–11</cite>
+    <div class="legend"><span><b>A</b> The purpose and its Author</span><span><b>B</b> The provision</span><span><b>C</b> The people</span><span><b>D</b> The goal</span><span><b>E</b> Consummation</span></div>
+  </div>
+  <details class="allstudies" open>
+    <summary>All 33 theme studies</summary>
+    <div id="studyIndex" class="sidx"></div>
+  </details>
+</header>
+
+<div class="wrap layout">
+  <aside id="list" aria-label="Themes"></aside>
+  <div style="min-width:0">
+    <div class="mobile-pick"><label for="themeSelect">Theme</label><select id="themeSelect"></select></div>
+    <main id="main" aria-live="polite"></main>
+  </div>
+</div>
+
+<section class="wrap matrix-sec" aria-labelledby="mxTitle">
+  <div class="mx-head">
+    <div>
+      <h2 id="mxTitle">The whole map</h2>
+      <p>Each mark counts the passages for a theme at one stage. Tap a theme to trace it, a column heading to read across all themes, or a mark to jump straight there.</p>
+    </div>
+    <div class="search">
+      <label for="q">Find a book or word</label>
+      <input id="q" type="search" placeholder="e.g. Ephesians, lamb, covenant" autocomplete="off">
+      <div class="count" id="qcount"></div>
+    </div>
+  </div>
+  <p class="swipe-hint">Swipe sideways to see every stage →</p><div class="mx-scroll"><table class="matrix" id="matrix"></table></div>
+</section>
+
+<section class="wrap flow-sec" aria-labelledby="flowTitle">
+  <div class="mx-head"><div>
+    <h2 id="flowTitle">How the plan flows</h2>
+    <p>Two ways to see the blueprint as one connected plan. Hover or tap a stream to read the verse behind it; tap a theme name to open it above.</p>
+  </div></div>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tabLinks" aria-selected="true" aria-controls="flowBox">Theme to theme</button>
+    <button class="tab" role="tab" id="tabCanon" aria-selected="false" aria-controls="flowBox">Through the canon</button>
+  </div>
+  <p class="flow-info" id="flowInfo" aria-live="polite"></p>
+  <p class="swipe-hint">Swipe sideways to follow the flow →</p><div class="flow-box" id="flowBox" role="tabpanel"></div>
+  <div class="flow-legend" id="flowLegend"></div>
+</section>
+
+<section class="wrap life-sec" aria-labelledby="lifeTitle">
+  <div class="mx-head"><div>
+    <h2 id="lifeTitle">Living the blueprint</h2>
+    <p>Ephesians spends three chapters on the plan and three on daily life. Pick an area of life to see how each part of the blueprint shapes it: the eternal purpose behind it and what it displays before the unseen, what He has provided, who He is making you, where it is heading, and how the end changes it now.</p>
+    <p><strong>Living the blueprint means living an ordinary life in the light of eternal, invisible realities, knowing that your ordinary life is itself part of how God displays His plan.</strong> It works both ways. The unseen shapes the seen: “we look not at the things which are seen, but at the things which are not seen” (2&nbsp;Corinthians 4:18). And the seen is on display before the unseen: through the church “now unto the principalities and powers in heavenly places” is “made known… the manifold wisdom of God” (Ephesians 3:10).</p>
+  </div></div>
+  <div class="hinge">I therefore, the prisoner of the Lord, beseech you that ye walk worthy of the vocation wherewith ye are called<cite>Ephesians 4:1</cite></div>
+  <div class="areas" id="areas" role="group" aria-label="Areas of life"></div>
+  <div id="lifeView" aria-live="polite"></div>
+  <details class="life-all">
+    <summary>See every area at once</summary>
+    <p class="swipe-hint">Swipe sideways to see every stage →</p><div class="mx-scroll"><table class="lifegrid" id="lifeGrid"></table></div>
+  </details>
+</section>
+
+<footer class="wrap">Scripture text: King James Version (public domain). Daniel is placed with the Writings, following the Hebrew canon.</footer>
+
+<script>
+const STAGES=[
+ {id:"eternity",name:"Before the foundation",short:"Eternity",orig:"πρὸ καταβολῆς κόσμου",sub:"Planned in eternity"},
+ {id:"torah",name:"Torah",short:"Torah",orig:"תּוֹרָה",sub:"Genesis – Deuteronomy"},
+ {id:"prophets",name:"Prophets",short:"Prophets",orig:"נְבִיאִים",sub:"Joshua – Kings, Isaiah – Malachi"},
+ {id:"writings",name:"Writings",short:"Writings",orig:"כְּתוּבִים",sub:"Psalms – Chronicles, with Daniel"},
+ {id:"nt",name:"New Testament",short:"NT",orig:"Καινὴ Διαθήκη",sub:"Matthew – Revelation"},
+ {id:"end",name:"Consummation",short:"End",orig:"πλήρωμα τῶν καιρῶν",sub:"The fulness of times"}
+];
+const GROUPS={A:"The purpose and its Author",B:"The provision",C:"The people",D:"The goal",E:"Consummation"};
+const STUDY={life:"studies/life-of-god.html",purpose:"studies/theme-purpose.html",counsel:"studies/theme-counsel.html",love:"studies/theme-love.html",glory:"studies/theme-glory.html",son:"studies/theme-son.html",mystery:"studies/theme-mystery.html",lamb:"studies/theme-lamb.html",grace:"studies/theme-grace.html",mercy:"studies/theme-mercy.html",redemption:"studies/theme-redemption.html",covenant:"studies/theme-covenant.html",seed:"studies/theme-seed.html",election:"studies/theme-election.html",sonship:"studies/theme-sonship.html",image:"studies/theme-image.html",holiness:"studies/theme-holiness.html",spirit:"studies/theme-spirit.html",dwelling:"studies/theme-dwelling.html",kingdom:"studies/theme-kingdom.html",bride:"studies/theme-bride.html",rest:"studies/theme-rest.html",inheritance:"studies/theme-inheritance.html",book:"studies/theme-book.html",headup:"studies/theme-headup.html",newcreation:"studies/theme-newcreation.html",glorification:"studies/theme-glorification.html",righteousness:"studies/theme-righteousness.html",truth:"studies/theme-truth.html",priesthood:"studies/theme-priesthood.html",faith:"studies/theme-faith.html",peace:"studies/theme-peace.html",judgment:"studies/theme-judgment.html"};
+const T=[
+{id:"purpose",g:"A",name:"The eternal purpose",gloss:"God's single, overarching plan for the ages, centered in Christ (prothesis).",s:[
+ [["the eternal purpose which he purposed in Christ Jesus","Ephesians 3:11"],["according to his own purpose and grace … before the world began","2 Timothy 1:9"]],
+ [["let them make me a sanctuary; that I may dwell among them","Exodus 25:8"],["in thee shall all families of the earth be blessed","Genesis 12:3"]],
+ [["I have purposed it, I will also do it","Isaiah 46:11"],["the LORD of hosts hath purposed, and who shall disannul it?","Isaiah 14:27"]],
+ [["The LORD will perfect that which concerneth me","Psalm 138:8"],["no thought can be withholden from thee","Job 42:2"]],
+ [["the called according to his purpose","Romans 8:28"],["the purpose of him who worketh all things after the counsel of his own will","Ephesians 1:11"]],
+ [["It is done. I am Alpha and Omega, the beginning and the end","Revelation 21:6"]]]},
+{id:"counsel",g:"A",name:"The counsel and will of God",gloss:"God's deliberate, settled decision-making (etsah, boulē) that governs history.",s:[
+ [["after the counsel of his own will","Ephesians 1:11"]],
+ [["God is not a man, that he should lie … hath he said, and shall he not do it?","Numbers 23:19"]],
+ [["My counsel shall stand, and I will do all my pleasure","Isaiah 46:10"],["wonderful in counsel, and excellent in working","Isaiah 28:29"]],
+ [["The counsel of the LORD standeth for ever","Psalm 33:11"],["the counsel of the LORD, that shall stand","Proverbs 19:21"]],
+ [["delivered by the determinate counsel and foreknowledge of God","Acts 2:23"],["the immutability of his counsel","Hebrews 6:17"]],
+ [["they shall reign for ever and ever","Revelation 22:5"]]]},
+{id:"love",g:"A",name:"The love of God",gloss:"The motive behind the plan: love that existed within God before creation.",s:[
+ [["thou lovedst me before the foundation of the world","John 17:24"],["chosen us in him … in love","Ephesians 1:4"]],
+ [["because the LORD loved you","Deuteronomy 7:8"],["Yea, he loved the people","Deuteronomy 33:3"]],
+ [["I have loved thee with an everlasting love","Jeremiah 31:3"],["I drew them with cords of a man, with bands of love","Hosea 11:4"]],
+ [["his banner over me was love","Song of Solomon 2:4"]],
+ [["For God so loved the world","John 3:16"],["God is love","1 John 4:8"],["able to separate us from the love of God","Romans 8:39"]],
+ [["hast loved them, as thou hast loved me","John 17:23"]]]},
+{id:"glory",g:"A",name:"The glory of God",gloss:"The goal of the plan: God's worth made visible and shared.",s:[
+ [["the glory which I had with thee before the world was","John 17:5"],["which God ordained before the world unto our glory","1 Corinthians 2:7"]],
+ [["the glory of the LORD filled the tabernacle","Exodus 40:34"],["I beseech thee, shew me thy glory","Exodus 33:18"]],
+ [["the whole earth is full of his glory","Isaiah 6:3"],["filled with the knowledge of the glory of the LORD","Habakkuk 2:14"]],
+ [["The heavens declare the glory of God","Psalm 19:1"],["the glory of the LORD filled the house","2 Chronicles 7:1"]],
+ [["we beheld his glory","John 1:14"],["to the praise of the glory of his grace","Ephesians 1:6"],["changed into the same image from glory to glory","2 Corinthians 3:18"]],
+ [["the glory of God did lighten it, and the Lamb is the light thereof","Revelation 21:23"]]]},
+{id:"son",g:"A",name:"The Son — Word and Wisdom",gloss:"The Person in whom, by whom and for whom the plan exists.",s:[
+ [["In the beginning was the Word","John 1:1"],["he is before all things","Colossians 1:17"]],
+ [["And God said, Let there be light","Genesis 1:3"],["the angel of the LORD called unto him out of heaven","Genesis 22:11"]],
+ [["whose goings forth have been from of old, from everlasting","Micah 5:2"],["The mighty God, The everlasting Father, The Prince of Peace","Isaiah 9:6"]],
+ [["I was set up from everlasting, from the beginning","Proverbs 8:23"],["Thou art my Son; this day have I begotten thee","Psalm 2:7"],["what is his son's name, if thou canst tell?","Proverbs 30:4"]],
+ [["all things were created by him, and for him","Colossians 1:16"],["whom he hath appointed heir of all things","Hebrews 1:2"]],
+ [["that God may be all in all","1 Corinthians 15:28"]]]},
+{id:"mystery",g:"A",name:"The mystery",gloss:"The plan's content, hidden in God and revealed in Christ and the church.",s:[
+ [["hath been hid in God, who created all things","Ephesians 3:9"],["kept secret since the world began","Romans 16:25"]],
+ [["The secret things belong unto the LORD our God","Deuteronomy 29:29"]],
+ [["he revealeth his secret unto his servants the prophets","Amos 3:7"]],
+ [["there is a God in heaven that revealeth secrets","Daniel 2:28"],["It is the glory of God to conceal a thing","Proverbs 25:2"]],
+ [["Christ in you, the hope of glory","Colossians 1:27"],["This is a great mystery: but I speak concerning Christ and the church","Ephesians 5:32"]],
+ [["the mystery of God should be finished","Revelation 10:7"]]]},
+{id:"lamb",g:"B",name:"The Lamb",gloss:"The sacrifice provided by God Himself, foreknown before creation and enthroned at the end.",s:[
+ [["a lamb without blemish … foreordained before the foundation of the world","1 Peter 1:19–20"],["the Lamb slain from the foundation of the world","Revelation 13:8"]],
+ [["God will provide himself a lamb","Genesis 22:8"],["they shall take to them every man a lamb","Exodus 12:3"],["two lambs of the first year day by day continually","Exodus 29:38"]],
+ [["he is brought as a lamb to the slaughter","Isaiah 53:7"],["like a lamb or an ox that is brought to the slaughter","Jeremiah 11:19"]],
+ [["in the volume of the book it is written of me","Psalm 40:7"]],
+ [["Behold the Lamb of God, which taketh away the sin of the world","John 1:29"],["Christ our passover is sacrificed for us","1 Corinthians 5:7"],["a Lamb as it had been slain","Revelation 5:6"]],
+ [["the marriage of the Lamb is come","Revelation 19:7"],["the throne of God and of the Lamb","Revelation 22:1"]]]},
+{id:"grace",g:"B",name:"Grace",gloss:"God's unearned favor and enabling power (chen, charis), given before we existed.",s:[
+ [["grace, which was given us in Christ Jesus before the world began","2 Timothy 1:9"],["the praise of the glory of his grace","Ephesians 1:6"]],
+ [["Noah found grace in the eyes of the LORD","Genesis 6:8"],["will be gracious to whom I will be gracious","Exodus 33:19"],["The LORD make his face shine upon thee, and be gracious unto thee","Numbers 6:25"]],
+ [["Grace, grace unto it","Zechariah 4:7"],["the spirit of grace and of supplications","Zechariah 12:10"]],
+ [["the LORD will give grace and glory","Psalm 84:11"],["he giveth grace unto the lowly","Proverbs 3:34"]],
+ [["full of grace and truth","John 1:14"],["by grace are ye saved through faith","Ephesians 2:8"],["the grace of God that bringeth salvation","Titus 2:11"]],
+ [["in the ages to come he might shew the exceeding riches of his grace","Ephesians 2:7"]]]},
+{id:"mercy",g:"B",name:"Mercy",gloss:"God's covenant loyalty and compassion (chesed, racham, eleos) toward the undeserving.",s:[
+ [["vessels of mercy, which he had afore prepared unto glory","Romans 9:23"],["the mercy of the LORD is from everlasting to everlasting","Psalm 103:17"]],
+ [["The LORD, The LORD God, merciful and gracious","Exodus 34:6"],["thou shalt make a mercy seat of pure gold","Exodus 25:17"]],
+ [["he delighteth in mercy","Micah 7:18"],["I desired mercy, and not sacrifice","Hosea 6:6"],["with everlasting kindness will I have mercy on thee","Isaiah 54:8"]],
+ [["for his mercy endureth for ever","Psalm 136:1"],["his compassions fail not. They are new every morning","Lamentations 3:22–23"]],
+ [["God, who is rich in mercy","Ephesians 2:4"],["according to his mercy he saved us","Titus 3:5"],["according to his abundant mercy hath begotten us again","1 Peter 1:3"]],
+ [["looking for the mercy of our Lord Jesus Christ unto eternal life","Jude 21"]]]},
+{id:"redemption",g:"B",name:"Redemption and the blood",gloss:"Buying back at a price; life given for life.",s:[
+ [["redeemed … with the precious blood of Christ … foreordained before the foundation","1 Peter 1:18–20"]],
+ [["when I see the blood, I will pass over you","Exodus 12:13"],["the life of the flesh is in the blood","Leviticus 17:11"],["if any of his kin come to redeem it","Leviticus 25:25"]],
+ [["I have redeemed thee, I have called thee by thy name","Isaiah 43:1"],["I will ransom them from the power of the grave","Hosea 13:14"]],
+ [["I know that my redeemer liveth","Job 19:25"],["with him is plenteous redemption","Psalm 130:7"],["~Boaz, the kinsman-redeemer, buys back Naomi's land and takes Ruth","Ruth 4"]],
+ [["In whom we have redemption through his blood","Ephesians 1:7"],["having obtained eternal redemption for us","Hebrews 9:12"]],
+ [["the redemption of our body","Romans 8:23"],["hast redeemed us to God by thy blood","Revelation 5:9"]]]},
+{id:"covenant",g:"B",name:"The everlasting covenant",gloss:"God binding Himself by oath to carry out the plan.",s:[
+ [["the blood of the everlasting covenant","Hebrews 13:20"],["eternal life, which God, that cannot lie, promised before the world began","Titus 1:2"]],
+ [["the everlasting covenant between God and every living creature","Genesis 9:16"],["for an everlasting covenant, to be a God unto thee","Genesis 17:7"],["Behold the blood of the covenant","Exodus 24:8"]],
+ [["an everlasting covenant, ordered in all things, and sure","2 Samuel 23:5"],["the sure mercies of David","Isaiah 55:3"],["I will make a new covenant","Jeremiah 31:31"]],
+ [["He hath remembered his covenant for ever","Psalm 105:8"],["my covenant shall stand fast with him","Psalm 89:28"]],
+ [["This cup is the new testament in my blood","Luke 22:20"],["the mediator of a better covenant","Hebrews 8:6"]],
+ [["they shall be his people, and God himself shall be with them","Revelation 21:3"]]]},
+{id:"seed",g:"B",name:"The Seed",gloss:"The promised Offspring through whom the plan reaches the world.",s:[
+ [["when the fulness of the time was come, God sent forth his Son","Galatians 4:4"]],
+ [["it shall bruise thy head, and thou shalt bruise his heel","Genesis 3:15"],["in thy seed shall all the nations of the earth be blessed","Genesis 22:18"]],
+ [["I will set up thy seed after thee","2 Samuel 7:12"],["a virgin shall conceive, and bear a son","Isaiah 7:14"],["he shall see his seed","Isaiah 53:10"]],
+ [["Thy seed will I establish for ever","Psalm 89:4"],["A seed shall serve him","Psalm 22:30"]],
+ [["to thy seed, which is Christ","Galatians 3:16"],["if ye be Christ's, then are ye Abraham's seed","Galatians 3:29"]],
+ [["I am the root and the offspring of David","Revelation 22:16"]]]},
+{id:"election",g:"C",name:"Election and foreknowledge",gloss:"God knowing and choosing a people for Himself, in Christ.",s:[
+ [["he hath chosen us in him before the foundation of the world","Ephesians 1:4"],["whom he did foreknow","Romans 8:29"],["Elect according to the foreknowledge of God the Father","1 Peter 1:2"]],
+ [["For I know him","Genesis 18:19"],["the LORD hath chosen thee to be a peculiar people","Deuteronomy 14:2"]],
+ [["Jacob whom I have chosen","Isaiah 41:8"],["mine elect, in whom my soul delighteth","Isaiah 42:1"],["Before I formed thee in the belly I knew thee","Jeremiah 1:5"]],
+ [["Blessed is the man whom thou choosest","Psalm 65:4"],["the LORD hath chosen Jacob unto himself","Psalm 135:4"]],
+ [["Ye have not chosen me, but I have chosen you","John 15:16"],["a chosen generation, a royal priesthood","1 Peter 2:9"]],
+ [["they that are with him are called, and chosen, and faithful","Revelation 17:14"]]]},
+{id:"sonship",g:"C",name:"Sonship and adoption",gloss:"God's intention to have a family of sons sharing the life and inheritance of His Son.",s:[
+ [["predestinated us unto the adoption of children","Ephesians 1:5"],["the firstborn among many brethren","Romans 8:29"]],
+ [["Israel is my son, even my firstborn","Exodus 4:22"],["Ye are the children of the LORD your God","Deuteronomy 14:1"]],
+ [["I will be his father, and he shall be my son","2 Samuel 7:14"],["called my son out of Egypt","Hosea 11:1"],["Ye are the sons of the living God","Hosea 1:10"]],
+ [["Thou art my Son; this day have I begotten thee","Psalm 2:7"],["Like as a father pitieth his children","Psalm 103:13"]],
+ [["the Spirit of adoption, whereby we cry, Abba, Father","Romans 8:15"],["that we might receive the adoption of sons","Galatians 4:5"],["now are we the sons of God","1 John 3:2"]],
+ [["the manifestation of the sons of God","Romans 8:19"],["I will be his God, and he shall be my son","Revelation 21:7"]]]},
+{id:"image",g:"C",name:"Image and likeness",gloss:"Man created to express God, and restored to the image of the Son.",s:[
+ [["to be conformed to the image of his Son","Romans 8:29"]],
+ [["Let us make man in our image, after our likeness","Genesis 1:26"],["in the image of God made he man","Genesis 9:6"]],
+ [["the likeness as the appearance of a man above upon it","Ezekiel 1:26"]],
+ [["hast crowned him with glory and honour","Psalm 8:5"],["I shall be satisfied, when I awake, with thy likeness","Psalm 17:15"]],
+ [["the image of the invisible God","Colossians 1:15"],["changed into the same image","2 Corinthians 3:18"],["renewed in knowledge after the image of him that created him","Colossians 3:10"]],
+ [["we shall be like him; for we shall see him as he is","1 John 3:2"],["we shall also bear the image of the heavenly","1 Corinthians 15:49"]]]},
+{id:"life",g:"C",name:"The life of God",gloss:"God's own uncreated life (zōē) offered, lost, regained and consummated.",s:[
+ [["eternal life, which God, that cannot lie, promised before the world began","Titus 1:2"]],
+ [["the tree of life also in the midst of the garden","Genesis 2:9"],["for he is thy life, and the length of thy days","Deuteronomy 30:20"]],
+ [["the fountain of living waters","Jeremiah 2:13"],["shall put my spirit in you, and ye shall live","Ezekiel 37:14"]],
+ [["with thee is the fountain of life","Psalm 36:9"],["whoso findeth me findeth life","Proverbs 8:35"]],
+ [["as the Father hath life in himself","John 5:26"],["alienated from the life of God","Ephesians 4:18"],["Christ, who is our life","Colossians 3:4"]],
+ [["a pure river of water of life … the tree of life","Revelation 22:1–2"]]]},
+{id:"holiness",g:"C",name:"Holiness",gloss:"Being set apart to God and sharing His character.",s:[
+ [["that we should be holy and without blame before him","Ephesians 1:4"]],
+ [["an holy nation","Exodus 19:6"],["Ye shall be holy: for I the LORD your God am holy","Leviticus 19:2"]],
+ [["Holy, holy, holy, is the LORD of hosts","Isaiah 6:3"],["it shall be called The way of holiness","Isaiah 35:8"],["HOLINESS UNTO THE LORD","Zechariah 14:20"]],
+ [["worship the LORD in the beauty of holiness","Psalm 29:2"],["holiness becometh thine house","Psalm 93:5"]],
+ [["Be ye holy; for I am holy","1 Peter 1:16"],["that we might be partakers of his holiness","Hebrews 12:10"]],
+ [["the holy city, new Jerusalem","Revelation 21:2"],["there shall in no wise enter into it any thing that defileth","Revelation 21:27"]]]},
+{id:"spirit",g:"C",name:"The Spirit",gloss:"God's own presence given to carry out the plan within His people.",s:[
+ [["who through the eternal Spirit offered himself","Hebrews 9:14"],["that holy Spirit of promise","Ephesians 1:13"]],
+ [["the Spirit of God moved upon the face of the waters","Genesis 1:2"],["I have filled him with the spirit of God","Exodus 31:3"],["would God that all the LORD's people were prophets","Numbers 11:29"]],
+ [["I will put my spirit within you","Ezekiel 36:27"],["I will pour out my spirit upon all flesh","Joel 2:28"]],
+ [["Thou sendest forth thy spirit, they are created","Psalm 104:30"],["take not thy holy spirit from me","Psalm 51:11"]],
+ [["they were all filled with the Holy Ghost","Acts 2:4"],["the earnest of our inheritance","Ephesians 1:14"],["the law of the Spirit of life","Romans 8:2"]],
+ [["the Spirit and the bride say, Come","Revelation 22:17"]]]},
+{id:"dwelling",g:"D",name:"God's dwelling place",gloss:"God's desire to live with and within His people, from Eden to the New Jerusalem.",s:[
+ [["a city which hath foundations, whose builder and maker is God","Hebrews 11:10"],["I go to prepare a place for you","John 14:2"]],
+ [["this is none other but the house of God","Genesis 28:17"],["that I may dwell among them","Exodus 25:8"],["the glory of the LORD filled the tabernacle","Exodus 40:34"]],
+ [["will God indeed dwell on the earth?","1 Kings 8:27"],["My tabernacle also shall be with them","Ezekiel 37:27"],["The LORD is there","Ezekiel 48:35"]],
+ [["he hath desired it for his habitation","Psalm 132:13"],["that I may dwell in the house of the LORD","Psalm 27:4"]],
+ [["the Word was made flesh, and dwelt among us","John 1:14"],["ye are the temple of God","1 Corinthians 3:16"],["an habitation of God through the Spirit","Ephesians 2:22"]],
+ [["the tabernacle of God is with men, and he will dwell with them","Revelation 21:3"]]]},
+{id:"kingdom",g:"D",name:"The kingdom and dominion",gloss:"God's rule over all things, shared with man through the Son.",s:[
+ [["the kingdom prepared for you from the foundation of the world","Matthew 25:34"]],
+ [["have dominion","Genesis 1:28"],["The sceptre shall not depart from Judah","Genesis 49:10"],["a kingdom of priests","Exodus 19:6"]],
+ [["thy throne shall be established for ever","2 Samuel 7:16"],["Of the increase of his government and peace there shall be no end","Isaiah 9:7"]],
+ [["Yet have I set my king upon my holy hill of Zion","Psalm 2:6"],["a kingdom, which shall never be destroyed","Daniel 2:44"]],
+ [["The kingdom of God is at hand","Mark 1:15"],["translated us into the kingdom of his dear Son","Colossians 1:13"]],
+ [["The kingdoms of this world are become the kingdoms of our Lord, and of his Christ","Revelation 11:15"]]]},
+{id:"bride",g:"D",name:"The bride",gloss:"A counterpart for the Son, prepared through love and sacrifice.",s:[
+ [["This is a great mystery: but I speak concerning Christ and the church","Ephesians 5:32"]],
+ [["the rib … made he a woman, and brought her unto the man","Genesis 2:22"],["~Rebekah sought and brought home as a bride for Isaac","Genesis 24"]],
+ [["thy Maker is thine husband","Isaiah 54:5"],["as the bridegroom rejoiceth over the bride","Isaiah 62:5"],["I will betroth thee unto me for ever","Hosea 2:19"]],
+ [["So shall the king greatly desire thy beauty","Psalm 45:11"],["~The Song of Songs; Ruth and Boaz","Song of Solomon; Ruth"]],
+ [["He that hath the bride is the bridegroom","John 3:29"],["a chaste virgin to Christ","2 Corinthians 11:2"],["Christ also loved the church, and gave himself for it","Ephesians 5:25"]],
+ [["his wife hath made herself ready","Revelation 19:7"],["the bride, the Lamb's wife","Revelation 21:9"]]]},
+{id:"rest",g:"D",name:"Rest",gloss:"God's finished work, entered and enjoyed with Him.",s:[
+ [["the works were finished from the foundation of the world","Hebrews 4:3"]],
+ [["he rested on the seventh day from all his work","Genesis 2:2"],["Remember the sabbath day, to keep it holy","Exodus 20:8"],["proclaim liberty throughout all the land","Leviticus 25:10"]],
+ [["his rest shall be glorious","Isaiah 11:10"],["ye shall find rest for your souls","Jeremiah 6:16"]],
+ [["This is my rest for ever: here will I dwell","Psalm 132:14"],["they should not enter into my rest","Psalm 95:11"]],
+ [["Come unto me … and I will give you rest","Matthew 11:28"],["There remaineth therefore a rest to the people of God","Hebrews 4:9"]],
+ [["that they may rest from their labours","Revelation 14:13"]]]},
+{id:"inheritance",g:"D",name:"Inheritance",gloss:"What God gives His heirs, and what He receives in them.",s:[
+ [["we have obtained an inheritance, being predestinated","Ephesians 1:11"]],
+ [["to thee will I give it, and to thy seed for ever","Genesis 13:15"],["I am thy part and thine inheritance","Numbers 18:20"],["the LORD's portion is his people","Deuteronomy 32:9"]],
+ [["~The land divided by lot among the tribes","Joshua 13–21"],["This is the heritage of the servants of the LORD","Isaiah 54:17"]],
+ [["The LORD is the portion of mine inheritance","Psalm 16:5"],["the meek shall inherit the earth","Psalm 37:11"]],
+ [["heirs of God, and joint-heirs with Christ","Romans 8:17"],["an inheritance incorruptible","1 Peter 1:4"],["the riches of the glory of his inheritance in the saints","Ephesians 1:18"]],
+ [["He that overcometh shall inherit all things","Revelation 21:7"]]]},
+{id:"book",g:"D",name:"The book of life",gloss:"The record of those who belong to God, written by Him.",s:[
+ [["written in the book of life from the foundation of the world","Revelation 17:8"],["your names are written in heaven","Luke 10:20"]],
+ [["blot me, I pray thee, out of thy book which thou hast written","Exodus 32:32"]],
+ [["every one that is written among the living in Jerusalem","Isaiah 4:3"],["a book of remembrance was written before him","Malachi 3:16"]],
+ [["Let them be blotted out of the book of the living","Psalm 69:28"],["in thy book all my members were written","Psalm 139:16"],["every one that shall be found written in the book","Daniel 12:1"]],
+ [["whose names are in the book of life","Philippians 4:3"],["I will not blot out his name out of the book of life","Revelation 3:5"]],
+ [["they which are written in the Lamb's book of life","Revelation 21:27"]]]},
+{id:"headup",g:"E",name:"All things headed up in Christ",gloss:"The final aim of the eternal purpose: one Head over a reconciled universe (anakephalaiōsis).",s:[
+ [["that in the dispensation of the fulness of times he might gather together in one all things in Christ","Ephesians 1:10"]],
+ [["in thee shall all families of the earth be blessed","Genesis 12:3"],["unto him shall the gathering of the people be","Genesis 49:10"]],
+ [["unto me every knee shall bow","Isaiah 45:23"],["the LORD shall be king over all the earth","Zechariah 14:9"]],
+ [["All the ends of the world shall remember and turn unto the LORD","Psalm 22:27"],["all nations shall serve him","Psalm 72:11"]],
+ [["every knee should bow … every tongue should confess","Philippians 2:10–11"],["by him to reconcile all things unto himself","Colossians 1:20"]],
+ [["that God may be all in all","1 Corinthians 15:28"],["~Every creature in heaven, on earth and under the earth gives praise to the Lamb","Revelation 5:13"]]]},
+{id:"newcreation",g:"E",name:"New creation",gloss:"God finishing what He began: a new man and a new heavens and earth.",s:[
+ [["the creature was made subject to vanity … in hope","Romans 8:20"],["we, according to his promise, look for new heavens and a new earth","2 Peter 3:13"]],
+ [["God saw every thing that he had made, and, behold, it was very good","Genesis 1:31"],["While the earth remaineth, seedtime and harvest … shall not cease","Genesis 8:22"]],
+ [["I create new heavens and a new earth","Isaiah 65:17"],["A new heart also will I give you","Ezekiel 36:26"]],
+ [["Create in me a clean heart, O God","Psalm 51:10"],["as a vesture shalt thou change them","Psalm 102:26"]],
+ [["if any man be in Christ, he is a new creature","2 Corinthians 5:17"],["to make in himself of twain one new man","Ephesians 2:15"]],
+ [["I saw a new heaven and a new earth","Revelation 21:1"],["Behold, I make all things new","Revelation 21:5"]]]},
+{id:"glorification",g:"E",name:"Glorification",gloss:"God's people brought into the glory the Son had before the world.",s:[
+ [["whom he justified, them he also glorified","Romans 8:30"],["which God ordained before the world unto our glory","1 Corinthians 2:7"]],
+ [["the skin of his face shone while he talked with him","Exodus 34:29"]],
+ [["Arise, shine; for thy light is come","Isaiah 60:1"]],
+ [["they that be wise shall shine as the brightness of the firmament","Daniel 12:3"],["the path of the just is as the shining light","Proverbs 4:18"]],
+ [["his face did shine as the sun","Matthew 17:2"],["fashioned like unto his glorious body","Philippians 3:21"],["then shall ye also appear with him in glory","Colossians 3:4"]],
+ [["in bringing many sons unto glory","Hebrews 2:10"],["Having the glory of God","Revelation 21:11"]]]},
+{id:"righteousness",g:"A",name:"Righteousness and justice",gloss:"The foundation of God's throne, and why the plan needed a Lamb: God just, and the justifier.",s:[
+ [["Justice and judgment are the habitation of thy throne","Psalm 89:14"],["Whom God hath set forth to be a propitiation","Romans 3:25"]],
+ [["he counted it to him for righteousness","Genesis 15:6"],["Shall not the Judge of all the earth do right?","Genesis 18:25"],["that will by no means clear the guilty","Exodus 34:7"]],
+ [["a just God and a Saviour","Isaiah 45:21"],["by his knowledge shall my righteous servant justify many","Isaiah 53:11"],["THE LORD OUR RIGHTEOUSNESS","Jeremiah 23:6"],["let judgment run down as waters","Amos 5:24"]],
+ [["how should man be just with God?","Job 9:2"],["righteousness and peace have kissed each other","Psalm 85:10"],["to bring in everlasting righteousness","Daniel 9:24"]],
+ [["that he might be just, and the justifier of him which believeth in Jesus","Romans 3:26"],["that we might be made the righteousness of God in him","2 Corinthians 5:21"]],
+ [["new heavens and a new earth, wherein dwelleth righteousness","2 Peter 3:13"],["in righteousness he doth judge and make war","Revelation 19:11"]]]},
+{id:"truth",g:"A",name:"Truth and faithfulness",gloss:"The reliability of the Architect: every promise holds because God cannot lie.",s:[
+ [["eternal life, which God, that cannot lie, promised before the world began","Titus 1:2"],["thy counsels of old are faithfulness and truth","Isaiah 25:1"]],
+ [["God is not a man, that he should lie","Numbers 23:19"],["the faithful God, which keepeth covenant","Deuteronomy 7:9"],["even the selfsame day it came to pass","Exodus 12:41"]],
+ [["not one thing hath failed","Joshua 23:14"],["the word of our God shall stand for ever","Isaiah 40:8"],["the God of truth","Isaiah 65:16"]],
+ [["great is thy faithfulness","Lamentations 3:23"],["For ever, O LORD, thy word is settled in heaven","Psalm 119:89"]],
+ [["grace and truth came by Jesus Christ","John 1:17"],["all the promises of God in him are yea, and in him Amen","2 Corinthians 1:20"],["the immutability of his counsel","Hebrews 6:17"]],
+ [["he that sat upon him was called Faithful and True","Revelation 19:11"],["these words are true and faithful","Revelation 21:5"]]]},
+{id:"priesthood",g:"B",name:"The priesthood",gloss:"The Mediator of the plan: a Priest sworn by oath who offers Himself and ever lives to intercede.",s:[
+ [["The LORD hath sworn, and will not repent, Thou art a priest for ever","Psalm 110:4"]],
+ [["he was the priest of the most high God","Genesis 14:18"],["Aaron shall bear their names before the LORD","Exodus 28:12"],["he stood between the dead and the living","Numbers 16:48"]],
+ [["he shall be a priest upon his throne","Zechariah 6:13"],["made intercession for the transgressors","Isaiah 53:12"]],
+ [["Neither is there any daysman betwixt us","Job 9:33"],["Moses his chosen stood before him in the breach","Psalm 106:23"]],
+ [["he ever liveth to make intercession for them","Hebrews 7:25"],["one mediator between God and men, the man Christ Jesus","1 Timothy 2:5"],["ye are … a royal priesthood","1 Peter 2:9"]],
+ [["they shall be priests of God and of Christ","Revelation 20:6"]]]},
+{id:"faith",g:"C",name:"Faith",gloss:"How the people receive the provision: leaning their whole weight on a faithful God.",s:[
+ [["by grace are ye saved through faith … it is the gift of God","Ephesians 2:8"],["according to the faith of God's elect","Titus 1:1"]],
+ [["And he believed in the LORD","Genesis 15:6"],["when he looketh upon it, shall live","Numbers 21:8"]],
+ [["the just shall live by his faith","Habakkuk 2:4"],["If ye will not believe, surely ye shall not be established","Isaiah 7:9"]],
+ [["Trust in the LORD with all thine heart","Proverbs 3:5"],["But if not","Daniel 3:18"],["because he believed in his God","Daniel 6:23"]],
+ [["whosoever believeth in him should not perish","John 3:16"],["Now faith is the substance of things hoped for","Hebrews 11:1"]],
+ [["Receiving the end of your faith, even the salvation of your souls","1 Peter 1:9"]]]},
+{id:"peace",g:"D",name:"Peace",gloss:"Shalom: wholeness restored with God, between people, within, and across creation.",s:[
+ [["the counsel of peace shall be between them both","Zechariah 6:13"],["having made peace through the blood of his cross","Colossians 1:20"]],
+ [["The LORD lift up his countenance upon thee, and give thee peace","Numbers 6:26"],["Behold, I give unto him my covenant of peace","Numbers 25:12"]],
+ [["The Prince of Peace","Isaiah 9:6"],["the chastisement of our peace was upon him","Isaiah 53:5"],["this man shall be the peace","Micah 5:5"]],
+ [["I will both lay me down in peace, and sleep","Psalm 4:8"],["Pray for the peace of Jerusalem","Psalm 122:6"]],
+ [["For he is our peace","Ephesians 2:14"],["we have peace with God","Romans 5:1"]],
+ [["Of the increase of his government and peace there shall be no end","Isaiah 9:7"]]]},
+{id:"judgment",g:"E",name:"The final judgment",gloss:"The appointed day when the Judge sets everything right, clearing the way for the new creation.",s:[
+ [["he hath appointed a day, in the which he will judge the world","Acts 17:31"],["he hath prepared his throne for judgment","Psalm 9:7"]],
+ [["But Noah found grace in the eyes of the LORD","Genesis 6:8"],["when I see the blood, I will pass over you","Exodus 12:13"]],
+ [["whosoever shall call on the name of the LORD shall be delivered","Joel 2:32"],["he is like a refiner's fire","Malachi 3:2"]],
+ [["the judgment was set, and the books were opened","Daniel 7:10"],["God shall bring every work into judgment","Ecclesiastes 12:14"]],
+ [["hath committed all judgment unto the Son","John 5:22"],["There is therefore now no condemnation","Romans 8:1"]],
+ [["I saw a great white throne","Revelation 20:11"],["death and hell were cast into the lake of fire","Revelation 20:14"]]]}
+];
+T.forEach((t,i)=>t.n=i+1);
+
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pad=n=>String(n).padStart(2,"0");
+(function renderStudyIndex(){
+  let h="";
+  for(const g of Object.keys(GROUPS)){
+    h+='<div><h4><b>'+g+'</b> · '+GROUPS[g]+'</h4><ol>'+T.filter(x=>x.g===g).map(t=>
+      STUDY[t.id]?'<li><a href="'+STUDY[t.id]+'"><span class="n">'+pad(t.n)+'</span><span>'+esc(t.name)+'</span></a></li>'
+                 :'<li><span class="n">'+pad(t.n)+'</span>'+esc(t.name)+'</li>').join("")+'</ol></div>';
+  }
+  $("#studyIndex").innerHTML=h;
+})();
+let state={mode:"theme",id:"purpose"};
+let query="";
+
+function hl(text){
+  const safe=esc(text);
+  if(!query) return safe;
+  const qx=query.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  return safe.replace(new RegExp("("+esc(qx)+")","gi"),"<mark>$1</mark>");
+}
+function matches(e){if(!query)return false;const q=query.toLowerCase();return e[0].toLowerCase().includes(q)||e[1].toLowerCase().includes(q)}
+function passageHTML(list){
+  return '<ul class="passages">'+list.map(e=>{
+    const note=e[0].startsWith("~");const txt=note?e[0].slice(1):e[0];
+    return '<li><span class="q'+(note?' note':'')+'">'+hl(txt)+'</span><cite>'+hl(e[1])+'</cite></li>';
+  }).join("")+'</ul>';
+}
+
+function renderList(){
+  let h="";
+  for(const g of Object.keys(GROUPS)){
+    h+='<div class="grp"><h4><b>'+g+'</b> · '+GROUPS[g]+'</h4>';
+    for(const t of T.filter(x=>x.g===g)){
+      const hit=query&&t.s.some(st=>st.some(matches));
+      h+='<button class="tbtn'+(hit?' hit':'')+'" data-theme="'+t.id+'" aria-current="'+(state.mode==="theme"&&state.id===t.id)+'"><span class="n">'+pad(t.n)+'</span><span>'+t.name+'</span></button>';
+    }
+    h+='</div>';
+  }
+  $("#list").innerHTML=h;
+  let o='<option value="">Choose a theme…</option>';
+  for(const g of Object.keys(GROUPS)){
+    o+='<optgroup label="'+g+' · '+GROUPS[g]+'">'+T.filter(x=>x.g===g).map(t=>'<option value="'+t.id+'"'+(state.mode==="theme"&&state.id===t.id?' selected':'')+'>'+pad(t.n)+' '+esc(t.name)+'</option>').join("")+'</optgroup>';
+  }
+  $("#themeSelect").innerHTML=o;
+}
+
+function renderTheme(t){
+  const prev=T[(t.n-2+T.length)%T.length], next=T[t.n%T.length];
+  let h='<header class="th-head"><div class="eyebrow">Theme '+pad(t.n)+' · Group '+t.g+' · '+GROUPS[t.g]+'</div>'+
+    '<h2>'+esc(t.name)+'</h2><p class="gloss">'+esc(t.gloss)+'</p><div class="pager">'+
+    '<button class="chip" data-theme="'+prev.id+'">← '+esc(prev.name)+'</button>'+
+    '<button class="chip" data-theme="'+next.id+'">'+esc(next.name)+' →</button>'+
+    (STUDY[t.id]?'<a class="chip study" href="'+STUDY[t.id]+'">Full study</a>':'')+
+    '</div></header><ol class="thread">';
+  STAGES.forEach((st,i)=>{
+    const pole=i===0||i===5;
+    h+='<li class="station'+(pole?' pole':'')+'"><div class="st-label"><h3>'+st.name+'</h3><div class="sub"><span class="orig">'+st.orig+'</span>'+st.sub+'</div></div><div>'+passageHTML(t.s[i])+'</div></li>';
+  });
+  return h+'</ol>';
+}
+function renderStage(si){
+  const st=STAGES[si];
+  let h='<header class="th-head"><div class="eyebrow">Stage '+(si+1)+' of 6 · every theme at this point</div><h2>'+st.name+'</h2><p class="gloss"><span style="color:var(--gold)">'+st.orig+'</span> · '+st.sub+'</p><div class="pager">'+
+    STAGES.map((s,j)=>'<button class="chip" data-stage="'+s.id+'"'+(j===si?' style="border-color:var(--gold);color:var(--gold)"':'')+'>'+s.short+'</button>').join("")+'</div></header><div class="stage-list">';
+  for(const t of T){
+    h+='<div class="srow"><div><button class="tbtn" data-theme="'+t.id+'"><span class="n">'+pad(t.n)+'</span><span>'+esc(t.name)+'</span></button></div><div>'+passageHTML(t.s[si])+'</div></div>';
+  }
+  return h+'</div>';
+}
+
+function renderMatrix(){
+  const si=state.mode==="stage"?STAGES.findIndex(s=>s.id===state.id):-1;
+  let h='<thead><tr><th class="corner" scope="col">Theme</th>'+STAGES.map((s,i)=>'<th scope="col"><button class="colbtn" data-stage="'+s.id+'" aria-current="'+(i===si)+'">'+s.short+'</button></th>').join("")+'</tr></thead><tbody>';
+  let total=0;
+  for(const g of Object.keys(GROUPS)){
+    h+='<tr class="grow"><td colspan="7"><b>'+g+'</b> · '+GROUPS[g]+'</td></tr>';
+    for(const t of T.filter(x=>x.g===g)){
+      const on=state.mode==="theme"&&state.id===t.id;
+      h+='<tr'+(on?' class="on"':'')+'><th scope="row"><button class="rowbtn" data-theme="'+t.id+'"><span class="n">'+pad(t.n)+'</span>'+esc(t.name)+'</button></th>';
+      t.s.forEach((list,i)=>{
+        const m=list.filter(matches).length;total+=m;
+        const cls=["cell"];if(i===0||i===5)cls.push("pole");if(query)cls.push(m?"match":"dim");
+        h+='<td'+(i===si?' class="colon"':'')+'><button class="'+cls.join(" ")+'" data-theme="'+t.id+'" aria-label="'+esc(t.name)+', '+STAGES[i].name+': '+list.length+' passages"><span class="mk">'+list.length+'</span></button></td>';
+      });
+      h+='</tr>';
+    }
+  }
+  $("#matrix").innerHTML=h+'</tbody>';
+  $("#qcount").textContent=query?(total+" passage"+(total===1?"":"s")+" match"):"";
+}
+
+function render(){
+  if(state.mode==="stage"){const si=STAGES.findIndex(s=>s.id===state.id);$("#main").innerHTML=renderStage(si<0?0:si);}
+  else{const t=T.find(x=>x.id===state.id)||T[0];$("#main").innerHTML=renderTheme(t);}
+  renderList();renderMatrix();
+}
+function go(mode,id,scroll){
+  const h="#"+(mode==="stage"?"s-":"t-")+id;
+  if(location.hash!==h){history.replaceState(null,"",h);}
+  state={mode,id};render();
+  if(scroll){const m=$("#main");const top=m.getBoundingClientRect().top+scrollY-16;if(top<scrollY||m.getBoundingClientRect().top>innerHeight*.6)scrollTo({top,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});}
+}
+function fromHash(){
+  const h=location.hash.slice(1);
+  if(h.startsWith("s-")&&STAGES.some(s=>s.id===h.slice(2)))state={mode:"stage",id:h.slice(2)};
+  else if(h.startsWith("t-")&&T.some(t=>t.id===h.slice(2)))state={mode:"theme",id:h.slice(2)};
+  render();
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-theme],[data-stage]");if(!b||b.tagName==="SELECT"||b.tagName==="OPTION")return;
+  const inMatrix=!!b.closest("#matrix")||!!b.closest(".pager")||!!b.closest(".srow")||!!b.closest(".life-sec");
+  if(b.dataset.theme)go("theme",b.dataset.theme,inMatrix);else go("stage",b.dataset.stage,inMatrix);
+});
+$("#themeSelect").addEventListener("change",e=>{if(e.target.value)go("theme",e.target.value,false)});
+$("#q").addEventListener("input",e=>{query=e.target.value.trim();render()});
+addEventListener("hashchange",fromHash);
+fromHash();
+
+/* ---------- Flow diagrams ---------- */
+const LINKS=[
+ ["purpose","lamb","who verily was foreordained before the foundation of the world","1 Peter 1:20"],
+ ["purpose","grace","according to his own purpose and grace, which was given us in Christ Jesus before the world began","2 Timothy 1:9"],
+ ["counsel","lamb","delivered by the determinate counsel and foreknowledge of God","Acts 2:23"],
+ ["counsel","covenant","the immutability of his counsel, confirmed it by an oath","Hebrews 6:17"],
+ ["love","lamb","God so loved the world, that he gave his only begotten Son","John 3:16"],
+ ["love","mercy","God, who is rich in mercy, for his great love wherewith he loved us","Ephesians 2:4"],
+ ["glory","grace","to the praise of the glory of his grace","Ephesians 1:6"],
+ ["son","seed","And to thy seed, which is Christ","Galatians 3:16"],
+ ["son","priesthood","Thou art my Son … Thou art a priest for ever","Hebrews 5:5–6"],
+ ["mystery","grace","the dispensation of the grace of God … he made known unto me the mystery","Ephesians 3:2–3"],
+ ["righteousness","redemption","justified freely by his grace through the redemption that is in Christ Jesus","Romans 3:24"],
+ ["righteousness","lamb","whom God hath set forth to be a propitiation through faith in his blood","Romans 3:25"],
+ ["truth","covenant","the faithful God, which keepeth covenant","Deuteronomy 7:9"],
+ ["truth","seed","the LORD did unto Sarah as he had spoken","Genesis 21:1"],
+ ["lamb","holiness","we are sanctified through the offering of the body of Jesus Christ once for all","Hebrews 10:10"],
+ ["lamb","sonship","washed us from our sins in his own blood, and hath made us kings and priests","Revelation 1:5–6"],
+ ["grace","election","a remnant according to the election of grace","Romans 11:5"],
+ ["grace","faith","by grace are ye saved through faith","Ephesians 2:8"],
+ ["mercy","life","rich in mercy … hath quickened us together with Christ","Ephesians 2:4–5"],
+ ["redemption","sonship","to redeem them that were under the law, that we might receive the adoption of sons","Galatians 4:5"],
+ ["redemption","holiness","that he might redeem us from all iniquity, and purify unto himself a peculiar people","Titus 2:14"],
+ ["covenant","spirit","able ministers of the new testament; not of the letter, but of the spirit","2 Corinthians 3:6"],
+ ["covenant","election","the LORD thy God hath chosen thee to be a special people","Deuteronomy 7:6"],
+ ["seed","faith","they which are of faith, the same are the children of Abraham","Galatians 3:7"],
+ ["seed","sonship","ye are all the children of God by faith … then are ye Abraham's seed","Galatians 3:26, 29"],
+ ["seed","image","we shall also bear the image of the heavenly","1 Corinthians 15:49"],
+ ["priesthood","faith","having an high priest … let us draw near … in full assurance of faith","Hebrews 10:21–22"],
+ ["election","inheritance","we have obtained an inheritance, being predestinated","Ephesians 1:11"],
+ ["election","book","written in the book of life from the foundation of the world","Revelation 17:8"],
+ ["sonship","inheritance","if children, then heirs; heirs of God","Romans 8:17"],
+ ["sonship","kingdom","it is your Father's good pleasure to give you the kingdom","Luke 12:32"],
+ ["image","kingdom","Let us make man in our image … and let them have dominion","Genesis 1:26"],
+ ["life","book","whose names are in the book of life","Philippians 4:3"],
+ ["holiness","dwelling","the temple of God is holy, which temple ye are","1 Corinthians 3:17"],
+ ["holiness","bride","that it should be holy and without blemish","Ephesians 5:27"],
+ ["spirit","dwelling","an habitation of God through the Spirit","Ephesians 2:22"],
+ ["spirit","inheritance","the earnest of our inheritance","Ephesians 1:14"],
+ ["faith","rest","we which have believed do enter into rest","Hebrews 4:3"],
+ ["faith","peace","being justified by faith, we have peace with God","Romans 5:1"],
+ ["dwelling","newcreation","the tabernacle of God is with men, and he will dwell with them","Revelation 21:3"],
+ ["kingdom","headup","when he shall have delivered up the kingdom to God … that God may be all in all","1 Corinthians 15:24, 28"],
+ ["kingdom","judgment","inherit the kingdom prepared for you from the foundation of the world","Matthew 25:34"],
+ ["bride","newcreation","prepared as a bride adorned for her husband","Revelation 21:2"],
+ ["bride","glorification","that he might present it to himself a glorious church","Ephesians 5:27"],
+ ["rest","newcreation","There remaineth therefore a rest to the people of God","Hebrews 4:9"],
+ ["inheritance","glorification","that we may be also glorified together","Romans 8:17"],
+ ["inheritance","newcreation","He that overcometh shall inherit all things","Revelation 21:7"],
+ ["book","judgment","another book was opened, which is the book of life","Revelation 20:12"],
+ ["peace","headup","having made peace through the blood of his cross, by him to reconcile all things","Colossians 1:20"]
+];
+const GK=Object.keys(GROUPS);
+const gcol=g=>"var(--g"+g+")";
+const byId=Object.fromEntries(T.map(t=>[t.id,t]));
+const NS="http://www.w3.org/2000/svg";
+const flowInfo=$("#flowInfo"), flowBox=$("#flowBox");
+let flowView="links";
+const linkDefault='Each stream is a verse that joins one theme to the next, from God’s purpose to the consummation. Hover or tap one to read it.';
+const canonDefault='Each band is one theme; its thickness at each stage is the number of passages the map traces there. Hover or tap a band to see its counts.';
+
+function bandPath(x0,y0a,y0b,x1,y1a,y1b){
+  const xm=(x0+x1)/2;
+  return "M"+x0+","+y0a+"C"+xm+","+y0a+" "+xm+","+y1a+" "+x1+","+y1a+"L"+x1+","+y1b+"C"+xm+","+y1b+" "+xm+","+y0b+" "+x0+","+y0b+"Z";
+}
+function legend(){
+  $("#flowLegend").innerHTML=GK.map(g=>'<span><i style="background:'+gcol(g)+'"></i>'+g+' · '+GROUPS[g]+'</span>').join("");
+}
+
+function drawLinks(){
+  const W=1000,top=40,H=760,nodeW=12,gap=10;
+  const cols=GK.map(g=>T.filter(t=>t.g===g).map(t=>({t,in:[],out:[]})));
+  const N={};cols.forEach(c=>c.forEach(n=>N[n.t.id]=n));
+  const L=LINKS.filter(l=>N[l[0]]&&N[l[1]]).map(l=>({s:N[l[0]],d:N[l[1]],q:l[2],r:l[3]}));
+  L.forEach(l=>{l.s.out.push(l);l.d.in.push(l)});
+  cols.forEach(c=>c.forEach(n=>n.v=Math.max(1,n.in.length,n.out.length)));
+  const unit=Math.min(...cols.map(c=>(H-gap*(c.length-1))/c.reduce((a,n)=>a+n.v,0)));
+  const place=c=>{let y=top+(H-(c.reduce((a,n)=>a+n.v*unit,0)+gap*(c.length-1)))/2;c.forEach(n=>{n.y=y;n.h=n.v*unit;y+=n.h+gap})};
+  cols.forEach(place);
+  // barycentre ordering, a few sweeps
+  for(let k=0;k<4;k++){
+    for(let i=1;i<cols.length;i++){cols[i].forEach(n=>n.b=n.in.length?n.in.reduce((a,l)=>a+l.s.y+l.s.h/2,0)/n.in.length:n.y);cols[i].sort((a,b)=>a.b-b.b);place(cols[i]);}
+    for(let i=cols.length-2;i>=0;i--){cols[i].forEach(n=>n.b=n.out.length?n.out.reduce((a,l)=>a+l.d.y+l.d.h/2,0)/n.out.length:n.y);cols[i].sort((a,b)=>a.b-b.b);place(cols[i]);}
+  }
+  const xs=GK.map((g,i)=>90+i*((W-260)/(GK.length-1)));
+  cols.forEach((c,i)=>c.forEach(n=>n.x=xs[i]));
+  cols.forEach(c=>c.forEach(n=>{
+    n.out.sort((a,b)=>a.d.y-b.d.y);n.in.sort((a,b)=>a.s.y-b.s.y);
+    let o=n.y+(n.h-n.out.length*unit)/2;n.out.forEach(l=>{l.y0=o;o+=unit});
+    let p=n.y+(n.h-n.in.length*unit)/2;n.in.forEach(l=>{l.y1=p;p+=unit});
+  }));
+  let s='<svg viewBox="0 0 '+W+' '+(H+top+20)+'" role="img" aria-label="Theme-to-theme flow diagram">';
+  GK.forEach((g,i)=>{s+='<text class="colh" x="'+xs[i]+'" y="18">'+g+' · '+GROUPS[g].replace(/^The /,"").replace(/ and its Author$/,"")+'</text>'});
+  L.forEach((l,i)=>{s+='<path class="band" data-li="'+i+'" fill="'+gcol(l.s.t.g)+'" d="'+bandPath(l.s.x+nodeW,l.y0,l.y0+unit-1,l.d.x,l.y1,l.y1+unit-1)+'"><title>'+esc(l.s.t.name+" → "+l.d.t.name+": "+l.q+" ("+l.r+")")+'</title></path>'});
+  cols.forEach((c,i)=>c.forEach(n=>{
+    const last=i===cols.length-1;
+    s+='<g class="node" data-sk="'+n.t.id+'"><rect x="'+n.x+'" y="'+n.y+'" width="'+nodeW+'" height="'+Math.max(2,n.h)+'" rx="2" fill="'+gcol(n.t.g)+'"/>'+
+      '<text class="lbl" x="'+(last?n.x+nodeW+6:n.x+nodeW+6)+'" y="'+(n.y+n.h/2+4)+'">'+esc(n.t.name)+'</text></g>';
+  }));
+  flowBox.innerHTML=s+'</svg>';
+  flowInfo.textContent=linkDefault;
+  const bands=[...flowBox.querySelectorAll(".band")];
+  const show=i=>{const l=L[i];bands.forEach((b,j)=>{b.classList.toggle("on",j===i);b.classList.toggle("off",j!==i)});
+    flowInfo.innerHTML='<b>'+esc(l.s.t.name)+' → '+esc(l.d.t.name)+'</b> · “'+esc(l.q)+'”<cite>'+esc(l.r)+'</cite>';};
+  const showNode=id=>{const set=new Set();L.forEach((l,j)=>{if(l.s.t.id===id||l.d.t.id===id)set.add(j)});
+    bands.forEach((b,j)=>{b.classList.toggle("on",set.has(j));b.classList.toggle("off",!set.has(j))});
+    const n=N[id];flowInfo.innerHTML='<b>'+esc(n.t.name)+'</b> · from '+(n.in.map(l=>esc(l.s.t.name)).join(", ")||"—")+' → into '+(n.out.map(l=>esc(l.d.t.name)).join(", ")||"—")+'. Tap the name again to open the theme.';};
+  const clear=()=>{bands.forEach(b=>b.classList.remove("on","off"));flowInfo.textContent=linkDefault};
+  bands.forEach((b,i)=>{b.addEventListener("mouseenter",()=>show(i));b.addEventListener("click",e=>{e.stopPropagation();show(i)})});
+  let armed=null;
+  flowBox.querySelectorAll(".node").forEach(g=>{
+    g.addEventListener("mouseenter",()=>showNode(g.dataset.sk));
+    g.addEventListener("click",e=>{e.stopPropagation();const id=g.dataset.sk;if(armed===id||matchMedia("(hover:hover)").matches){go("theme",id,true)}else{armed=id;showNode(id)}});
+  });
+  flowBox.querySelector("svg").addEventListener("mouseleave",clear);
+}
+
+function drawCanon(){
+  const W=1000,top=40,unit=13,gap=3,nodeW=6;
+  const order=GK.flatMap(g=>T.filter(t=>t.g===g));
+  const tot=STAGES.map((_,i)=>order.reduce((a,t)=>a+Math.max(1,t.s[i].length)*unit+gap,0));
+  const H=Math.max(...tot);
+  const xs=STAGES.map((_,i)=>200+i*((W-260)/(STAGES.length-1)));
+  const pos=STAGES.map((_,i)=>{let y=top+(H-tot[i])/2;return order.map(t=>{const h=Math.max(1,t.s[i].length)*unit;const p={y,h};y+=h+gap;return p})});
+  let s='<svg viewBox="0 0 '+W+' '+(H+top+20)+'" role="img" aria-label="Themes flowing through the canon, sized by passage count">';
+  STAGES.forEach((st,i)=>{s+='<text class="colh" x="'+xs[i]+'" y="18" text-anchor="middle">'+st.short+'</text>'});
+  order.forEach((t,k)=>{
+    let d="";
+    for(let i=0;i<STAGES.length-1;i++){const a=pos[i][k],b=pos[i+1][k];d+=bandPath(xs[i]+nodeW/2,a.y,a.y+a.h,xs[i+1]-nodeW/2,b.y,b.y+b.h)}
+    s+='<path class="band" data-k="'+k+'" fill="'+gcol(t.g)+'" d="'+d+'"><title>'+esc(t.name)+'</title></path>';
+  });
+  STAGES.forEach((st,i)=>order.forEach((t,k)=>{const p=pos[i][k];s+='<rect x="'+(xs[i]-nodeW/2)+'" y="'+p.y+'" width="'+nodeW+'" height="'+p.h+'" fill="'+gcol(t.g)+'"/>'}));
+  order.forEach((t,k)=>{const p=pos[0][k];s+='<text class="lbl" data-sk="'+t.id+'" x="'+(xs[0]-nodeW/2-6)+'" y="'+(p.y+p.h/2+4)+'" text-anchor="end">'+pad(t.n)+' '+esc(t.name)+'</text>'});
+  flowBox.innerHTML=s+'</svg>';
+  flowInfo.textContent=canonDefault;
+  const bands=[...flowBox.querySelectorAll(".band")];
+  const show=k=>{const t=order[k];bands.forEach((b,j)=>{b.classList.toggle("on",j===k);b.classList.toggle("off",j!==k)});
+    flowInfo.innerHTML='<b>'+pad(t.n)+' '+esc(t.name)+'</b> · '+STAGES.map((st,i)=>st.short+' '+t.s[i].length).join(' → ')+' passages';};
+  bands.forEach((b,k)=>{b.addEventListener("mouseenter",()=>show(k));b.addEventListener("click",e=>{e.stopPropagation();show(k)})});
+  let armed=null;
+  flowBox.querySelectorAll(".lbl").forEach(el=>{const k=order.findIndex(t=>t.id===el.dataset.sk);
+    el.addEventListener("mouseenter",()=>show(k));
+    el.addEventListener("click",e=>{e.stopPropagation();const id=el.dataset.sk;if(armed===id||matchMedia("(hover:hover)").matches)go("theme",id,true);else{armed=id;show(k)}});});
+  flowBox.querySelector("svg").addEventListener("mouseleave",()=>{bands.forEach(b=>b.classList.remove("on","off"));flowInfo.textContent=canonDefault});
+}
+function drawFlow(){
+  $("#tabLinks").setAttribute("aria-selected",flowView==="links");
+  $("#tabCanon").setAttribute("aria-selected",flowView==="canon");
+  flowView==="links"?drawLinks():drawCanon();
+  try{localStorage.setItem("bp-flow",flowView)}catch(e){}
+}
+try{const v=localStorage.getItem("bp-flow");if(v==="canon"||v==="links")flowView=v}catch(e){}
+$("#tabLinks").addEventListener("click",()=>{flowView="links";drawFlow()});
+$("#tabCanon").addEventListener("click",()=>{flowView="canon";drawFlow()});
+legend();drawFlow();
+
+/* ---------- Living the blueprint ---------- */
+const ASK={A:"What eternal purpose stands behind this, and what does it display before the unseen?",B:"What has God provided for it?",C:"Who is God making me in it?",D:"Where is it heading?",E:"How does the end change it now?"};
+// each cell: [theme ids, quote, reference, practice]
+const LIFE=[
+ {id:"marriage",name:"Marriage",note:"Ephesians 5:21–33",c:[
+  [["bride","love"],"This is a great mystery: but I speak concerning Christ and the church","Ephesians 5:32","See your marriage as a living picture of Christ and His church."],
+  [["covenant","grace"],"as being heirs together of the grace of life","1 Peter 3:7","Pray together for grace, not only for each other."],
+  [["image","holiness"],"Husbands, love your wives, even as Christ also loved the church, and gave himself for it","Ephesians 5:25","Choose one way to serve your spouse sacrificially this week."],
+  [["peace"],"Be ye angry, and sin not: let not the sun go down upon your wrath","Ephesians 4:26","Settle conflict before the day ends."],
+  [["bride","newcreation"],"the marriage of the Lamb is come, and his wife hath made herself ready","Revelation 19:7","Hold marriage as a signpost to the final wedding, not the destination itself."]]},
+ {id:"parenting",name:"Parenting and family",note:"Ephesians 6:1–4",c:[
+  [["purpose","righteousness"],"he will command his children and his household after him, and they shall keep the way of the LORD","Genesis 18:19","Write down what you most want your children to know about God."],
+  [["covenant"],"For the promise is unto you, and to your children","Acts 2:39","Teach your children God's promises by name."],
+  [["faith"],"the unfeigned faith that is in thee, which dwelt first in thy grandmother Lois, and thy mother Eunice","2 Timothy 1:5","Tell your children the story of your own faith."],
+  [["inheritance"],"Lo, children are an heritage of the LORD","Psalm 127:3","Treat children as God's trust, not your possession."],
+  [["judgment","headup"],"he shall turn the heart of the fathers to the children, and the heart of the children to their fathers","Malachi 4:6","Seek reconciliation across the generations in your family."]]},
+ {id:"singleness",name:"Singleness",note:"1 Corinthians 7:7–35",c:[
+  [["son","sonship"],"And ye are complete in him","Colossians 2:10","Rest your identity in Christ, not in your marital status."],
+  [["grace"],"every man hath his proper gift of God, one after this manner, and another after that","1 Corinthians 7:7","Thank God for the gifts of the season you are in."],
+  [["holiness"],"careth for the things of the Lord, that she may be holy both in body and in spirit","1 Corinthians 7:34","Give some of your undivided time to devotion and service."],
+  [["dwelling"],"God setteth the solitary in families","Psalm 68:6","Build deep belonging in your church family."],
+  [["bride","glorification"],"For in the resurrection they neither marry, nor are given in marriage","Matthew 22:30","Remember that every believer's final marriage is to Christ."]]},
+ {id:"work",name:"Work and vocation",note:"Ephesians 6:5–9",c:[
+  [["purpose","image"],"the LORD God took the man, and put him into the garden of Eden to dress it and to keep it","Genesis 2:15","See your job as part of God's design for humanity, from before the fall."],
+  [["grace"],"My grace is sufficient for thee","2 Corinthians 12:9","Ask for grace for the hardest task of your week."],
+  [["holiness","truth"],"whatsoever ye do, do it heartily, as to the Lord, and not unto men","Colossians 3:23","Do one unseen task with full integrity."],
+  [["rest","kingdom"],"Six days shalt thou labour, and do all thy work: But the seventh day is the sabbath","Exodus 20:9–10","Keep a weekly rhythm of rest from work."],
+  [["judgment","newcreation"],"your labour is not in vain in the Lord","1 Corinthians 15:58","Work as one whose faithful labour will be remembered."]]},
+ {id:"money",name:"Money and possessions",note:"1 Timothy 6:17–19",c:[
+  [["purpose","glory"],"The earth is the LORD's, and the fulness thereof","Psalm 24:1","Treat what you have as God's, held in trust."],
+  [["grace"],"though he was rich, yet for your sakes he became poor","2 Corinthians 8:9","Let the grace you've received shape your generosity."],
+  [["truth","faith"],"He that is faithful in that which is least is faithful also in much","Luke 16:10","Be scrupulously honest in small amounts: receipts, taxes, change."],
+  [["kingdom"],"But seek ye first the kingdom of God, and his righteousness","Matthew 6:33","Give first, before you spend."],
+  [["inheritance"],"But lay up for yourselves treasures in heaven","Matthew 6:20","Invest in what lasts: people and the kingdom."]]},
+ {id:"health",name:"Health and the body",note:"1 Corinthians 6:19–20",c:[
+  [["image"],"So God created man in his own image","Genesis 1:27","Honour your body as part of God's design."],
+  [["lamb","redemption"],"Himself took our infirmities, and bare our sicknesses","Matthew 8:17","Bring sickness to Christ in prayer, and ask others to pray (James 5:14)."],
+  [["spirit","holiness"],"your body is the temple of the Holy Ghost which is in you","1 Corinthians 6:19","Care for sleep, food and exercise as stewardship."],
+  [["rest"],"for so he giveth his beloved sleep","Psalm 127:2","Rest as an act of trust, not only of tiredness."],
+  [["glorification"],"Who shall change our vile body, that it may be fashioned like unto his glorious body","Philippians 3:21","Face illness and ageing with resurrection hope."]]},
+ {id:"relationships",name:"Friendships and conflict",note:"Ephesians 4:25–32",c:[
+  [["love"],"Beloved, if God so loved us, we ought also to love one another","1 John 4:11","Love others out of the love you have received."],
+  [["mercy","grace"],"forgiving one another, even as God for Christ's sake hath forgiven you","Ephesians 4:32","Forgive one specific offence this week."],
+  [["truth"],"Wherefore putting away lying, speak every man truth with his neighbour","Ephesians 4:25","Speak truthfully and kindly in one hard conversation."],
+  [["peace"],"If it be possible, as much as lieth in you, live peaceably with all men","Romans 12:18","Take the first step toward someone you are estranged from."],
+  [["judgment"],"Dearly beloved, avenge not yourselves … Vengeance is mine; I will repay, saith the Lord","Romans 12:19","Hand one grievance over to the Judge."]]},
+ {id:"church",name:"Church and fellowship",note:"Ephesians 4:1–16",c:[
+  [["purpose","mystery"],"that now unto the principalities and powers in heavenly places might be known by the church the manifold wisdom of God","Ephesians 3:10","See your local church as part of God's eternal purpose."],
+  [["priesthood"],"Ye also, as lively stones, are built up a spiritual house, an holy priesthood","1 Peter 2:5","Use your gift to serve someone in your church."],
+  [["spirit","peace"],"Endeavouring to keep the unity of the Spirit in the bond of peace","Ephesians 4:3","Guard unity: speak well of others, and refuse gossip."],
+  [["dwelling"],"In whom ye also are builded together for an habitation of God through the Spirit","Ephesians 2:22","Gather faithfully; God dwells among His people."],
+  [["judgment"],"Not forsaking the assembling of ourselves together … and so much the more, as ye see the day approaching","Hebrews 10:25","Let the coming day make fellowship more urgent."]]},
+ {id:"suffering",name:"Suffering and loss",note:"Romans 8:18–39",c:[
+  [["purpose","counsel"],"all things work together for good to them that love God, to them who are the called according to his purpose","Romans 8:28","Trust God's purpose when you cannot see it."],
+  [["priesthood"],"we have not an high priest which cannot be touched with the feeling of our infirmities","Hebrews 4:15","Bring your pain to the Priest who understands it."],
+  [["faith"],"the trial of your faith, being much more precious than of gold","1 Peter 1:7","Ask what God may be refining in you."],
+  [["rest"],"Return unto thy rest, O my soul","Psalm 116:7","Lament honestly, then rest in God."],
+  [["glorification"],"the sufferings of this present time are not worthy to be compared with the glory which shall be revealed in us","Romans 8:18","Weigh today's pain against the coming glory."]]},
+ {id:"time",name:"Time and rest",note:"Ephesians 5:15–17",c:[
+  [["counsel"],"My times are in thy hand","Psalm 31:15","Commit your schedule to God each morning."],
+  [["lamb","redemption"],"It is finished","John 19:30","Stop striving to earn God's favour; rest on a finished work."],
+  [["holiness"],"Redeeming the time, because the days are evil","Ephesians 5:16","Cut one time-waster and give that time to God or to people."],
+  [["rest"],"Come unto me, all ye that labour and are heavy laden, and I will give you rest","Matthew 11:28","Keep a weekly Sabbath rhythm."],
+  [["judgment"],"So teach us to number our days, that we may apply our hearts unto wisdom","Psalm 90:12","Live each day in light of eternity."]]},
+ {id:"mind",name:"Mind and speech",note:"Ephesians 4:17–32",c:[
+  [["son"],"In the beginning was the Word","John 1:1","Let your words reflect the God who speaks."],
+  [["truth"],"Thy word have I hid in mine heart, that I might not sin against thee","Psalm 119:11","Memorise one verse a week."],
+  [["image","holiness"],"be ye transformed by the renewing of your mind","Romans 12:2","Replace one anxious or bitter thought pattern with Scripture."],
+  [["peace","grace"],"Let no corrupt communication proceed out of your mouth, but that which is good to the use of edifying, that it may minister grace unto the hearers","Ephesians 4:29","Speak one word of encouragement every day."],
+  [["judgment"],"every idle word that men shall speak, they shall give account thereof in the day of judgment","Matthew 12:36","Speak as one who will give account."]]},
+ {id:"community",name:"Community and citizenship",note:"Jeremiah 29:7; Romans 13",c:[
+  [["purpose","image"],"hath made of one blood all nations of men for to dwell on all the face of the earth","Acts 17:26","See every neighbour as made by God."],
+  [["mercy","righteousness"],"the LORD … loveth the stranger, in giving him food and raiment","Deuteronomy 10:18","Show mercy to an outsider in your community."],
+  [["holiness","truth"],"Having your conversation honest among the Gentiles","1 Peter 2:12","Be known for honesty in public life."],
+  [["peace"],"seek the peace of the city … and pray unto the LORD for it","Jeremiah 29:7","Pray for and serve the welfare of your city."],
+  [["kingdom","inheritance"],"For our conversation is in heaven","Philippians 3:20","Hold earthly citizenship with heavenly loyalty."]]},
+ {id:"battle",name:"Spiritual battle",note:"Ephesians 6:10–20",c:[
+  [["son","purpose"],"For this purpose the Son of God was manifested, that he might destroy the works of the devil","1 John 3:8","Remember the war is already decided."],
+  [["lamb"],"they overcame him by the blood of the Lamb, and by the word of their testimony","Revelation 12:11","Answer accusation with the blood of the Lamb."],
+  [["faith","truth"],"Above all, taking the shield of faith, wherewith ye shall be able to quench all the fiery darts of the wicked","Ephesians 6:16","Pray through the armour of God (Ephesians 6:14–18) each morning."],
+  [["peace"],"your feet shod with the preparation of the gospel of peace","Ephesians 6:15","Stand in peace, not panic."],
+  [["judgment"],"the God of peace shall bruise Satan under your feet shortly","Romans 16:20","Fight from victory, toward victory."]]}
+];
+const LIFESTUDY={marriage:"studies/living-marriage.html",work:"studies/living-work.html",parenting:"studies/living-parenting.html",money:"studies/living-money.html",singleness:"studies/living-singleness.html",health:"studies/living-health.html",relationships:"studies/living-relationships.html",church:"studies/living-church.html",suffering:"studies/living-suffering.html",time:"studies/living-time.html",mind:"studies/living-mind.html",community:"studies/living-community.html",battle:"studies/living-battle.html"};
+let lifeId="marriage";
+try{const v=localStorage.getItem("bp-life");if(LIFE.some(a=>a.id===v))lifeId=v}catch(e){}
+function themeChips(ids){return ids.filter(id=>byId[id]).map(id=>'<button class="chip" data-theme="'+id+'">'+pad(byId[id].n)+' '+esc(byId[id].name)+'</button>').join("")}
+/* ----- personal walk-through (private notes) ----- */
+const NOUN={marriage:"marriage",parenting:"family",singleness:"singleness",work:"work",money:"money and possessions",health:"health and body",relationships:"friendships",church:"church life",suffering:"suffering",time:"time",mind:"thought life and speech",community:"life in your community",battle:"spiritual battles"};
+const PROMPT={
+ A:n=>"In light of this verse, why do you think God has given you your "+n+"? What does it show you of Him?",
+ B:n=>"Where do you most need God's provision in your "+n+" right now? What has He already supplied?",
+ C:n=>"What is God shaping in you through your "+n+"? Where is He asking you to grow?",
+ D:n=>"Where is your "+n+" heading? What would rest, peace or God's rule look like here?",
+ E:n=>"If you lived your "+n+" today in light of the end, what would change?"};
+let J={};               // areaId -> {cur:{r:[5],s:[5],p:[5]}, walks:[{d,r,s,p}]}
+let lifeMode="cards", step=0, store={kind:"local"}, saveNote="", dirty=new Set(), timers={}, chains={};
+let downloads=null;
+const blank=()=>({cur:{r:["","","","",""],s:["","","","",""],p:["","","","",""]},walks:[]});
+const ensure=id=>(J[id]=J[id]||blank());
+const hasNotes=id=>{const j=J[id];return !!j&&(j.walks.length>0||j.cur.r.some(Boolean)||j.cur.s.some(Boolean))};
+function loadLocal(){try{const v=JSON.parse(localStorage.getItem("bp-journal")||"{}");if(v&&typeof v==="object")J=v}catch(e){}}
+function saveLocal(){try{localStorage.setItem("bp-journal",JSON.stringify(J));return true}catch(e){return false}}
+function setNote(t){saveNote=t;const el=$("#saveState");if(el)el.textContent=t}
+function persist(id){
+  if(store.kind==="db"){
+    const body=JSON.parse(JSON.stringify(J[id]));
+    chains[id]=(chains[id]||Promise.resolve()).then(()=>store.col.doc("walk-"+id).set(body)).then(()=>{dirty.delete(id);setNote("Saved privately to your account")})
+      .catch(e=>{if(e&&e.code==="invalid_argument"){store={kind:"local"};saveLocal();setNote("Saved in this browser only")}else setNote("Couldn't save just now — your text is still here")});
+  }else{setNote(saveLocal()?"Saved in this browser only":"Couldn't save in this browser");dirty.delete(id)}
+}
+function queueSave(id){dirty.add(id);setNote("Saving…");clearTimeout(timers[id]);timers[id]=setTimeout(()=>persist(id),1200)}
+async function initStore(){
+  loadLocal();
+  const C=window.claude;
+  if(!C||typeof C.use!=="function"){renderLife();return}
+  try{downloads=await C.use("downloads")}catch(e){downloads=null}
+  let db=null,user=null,uid=null;
+  try{[db,user]=await Promise.all([C.use("db"),C.use("user")]);uid=user?await user.id():null}catch(e){}
+  if(!db||!uid){renderLife();return}
+  store={kind:"db",col:db.collection("data/users/"+uid)};
+  const local=J;J={};
+  const t=setTimeout(()=>{if(store.kind==="db")setNote("Your saved notes can't be reached yet")},10000);
+  let first=true;
+  store.col.onSnapshot(snap=>{
+    if(!snap.metadata.fromCache)clearTimeout(t);
+    snap.docs.forEach(d=>{if(d.id.startsWith("walk-")){const id=d.id.slice(5);if(!dirty.has(id))J[id]=JSON.parse(JSON.stringify(d.data()))}});
+    if(first&&!snap.metadata.fromCache){first=false;
+      // carry over anything written in this browser before sign-in storage was available
+      Object.keys(local).forEach(id=>{if(!J[id]&&LIFE.some(a=>a.id===id)){J[id]=local[id];persist(id)}});}
+    const typing=lifeMode==="walk"&&$("#lifeView").contains(document.activeElement)&&/TEXTAREA|INPUT/.test(document.activeElement.tagName);
+    if(!typing&&!(lifeMode==="walk"&&dirty.has(lifeId)))renderLife();
+  },e=>{clearTimeout(t);store={kind:"local"};J=local;setNote("Saved in this browser only");renderLife()});
+}
+function walkText(a){
+  const j=ensure(a.id);
+  return "My blueprint for "+a.name+"\n"+new Date().toLocaleDateString()+"\n\n"+GK.map((g,i)=>g+" · "+GROUPS[g]+"\n"+a.c[i][1]+" ("+a.c[i][2]+")\n\nReflection: "+(j.cur.r[i]||"—")+"\nNext step: "+(j.cur.s[i]||"—")+(j.cur.p[i]?"\nPrayer: "+j.cur.p[i]:"")).join("\n\n")+"\n";
+}
+function renderWalk(a){
+  const j=ensure(a.id), n=NOUN[a.id]||a.name.toLowerCase();
+  const stepBtns='<div class="steps">'+GK.map((g,i)=>'<button data-step="'+i+'" style="--gc:'+gcol(g)+'" aria-current="'+(i===step)+'" class="'+(j.cur.r[i]||j.cur.s[i]?"done":"")+'">'+g+' · '+GROUPS[g].replace(/^The /,"").replace(/ and its Author$/,"")+'</button>').join("")+'<button data-step="5" aria-current="'+(step===5)+'">Summary</button></div>';
+  if(step<5){
+    const g=GK[step],c=a.c[step];
+    return '<div class="walk" style="--gc:'+gcol(g)+'">'+stepBtns+'<div class="gq">Step '+(step+1)+' of 5 · '+g+' · '+GROUPS[g]+'</div>'+
+      '<p class="vq">“'+esc(c[1])+'”</p><cite>'+esc(c[2])+'</cite><div class="ths" style="margin-top:8px">'+themeChips(c[0])+'</div>'+
+      '<p class="prompt">'+esc(PROMPT[g](n))+'</p>'+
+      '<label for="wR">Your reflection</label><textarea id="wR" data-f="r">'+esc(j.cur.r[step]||"")+'</textarea>'+
+      '<label for="wS">My next step</label><input type="text" id="wS" data-f="s" value="'+esc(j.cur.s[step]||"")+'" placeholder="One concrete thing I will do">'+
+      '<div class="sugg">Suggested: '+esc(c[3])+' <button data-usesugg="1">Use this</button></div>'+
+      '<label for="wP">Prayer (optional)</label><textarea id="wP" class="small" data-f="p">'+esc(j.cur.p[step]||"")+'</textarea>'+
+      '<div class="walk-nav">'+(step>0?'<button class="chip" data-step="'+(step-1)+'">← Back</button>':'')+
+      '<button class="chip primary" data-step="'+(step+1)+'">'+(step<4?"Next →":"See summary →")+'</button>'+
+      '<button class="chip" data-exitwalk="1">Close</button><span class="savestate" id="saveState">'+esc(saveNote)+'</span></div></div>';
+  }
+  const sum=GK.map((g,i)=>'<section style="--gc:'+gcol(g)+'"><h4>'+g+' · '+GROUPS[g]+' · '+esc(a.c[i][2])+'</h4><p>'+(esc(j.cur.r[i])||'<span class="ns">Not written yet</span>')+'</p>'+(j.cur.s[i]?'<p class="ns"><b>Next step</b><br>'+esc(j.cur.s[i])+'</p>':'')+(j.cur.p[i]?'<p class="ns"><b>Prayer</b><br>'+esc(j.cur.p[i])+'</p>':'')+'</section>').join("");
+  const past=j.walks.length?'<details class="past"><summary>Earlier walks ('+j.walks.length+')</summary>'+j.walks.slice().reverse().map(w=>'<div class="entry"><div class="d">'+esc(w.d)+'</div>'+GK.map((g,i)=>(w.r[i]||w.s[i])?'<p><b>'+g+'</b> '+esc(w.r[i]||"")+(w.s[i]?' — <i>'+esc(w.s[i])+'</i>':'')+'</p>':'').join("")+'</div>').join("")+'</details>':'';
+  return '<div class="walk" style="--gc:var(--gold)">'+stepBtns+'<div class="gq">My blueprint for '+esc(a.name)+'</div><div class="sum">'+sum+'</div>'+
+    '<div class="walk-nav"><button class="chip" data-step="4">← Back</button><button class="chip primary" data-savewalk="1">Save this walk with today’s date</button>'+
+    '<button class="chip" data-dlwalk="1">Download as text</button>'+'<button class="chip" data-exitwalk="1">Close</button><span class="savestate" id="saveState">'+esc(saveNote)+'</span></div>'+past+
+    '<p class="privacy">'+(store.kind==="db"?"Your notes are saved privately to your account. No one else who opens this page can see them, including the person who shared it.":"Your notes are saved only in this browser on this device.")+'</p></div>';
+}
+document.addEventListener("input",e=>{const f=e.target.dataset&&e.target.dataset.f;if(!f||lifeMode!=="walk")return;const j=ensure(lifeId);j.cur[f][step]=e.target.value;queueSave(lifeId)});
+document.addEventListener("click",async e=>{
+  const t=e.target.closest("[data-walk],[data-step],[data-exitwalk],[data-usesugg],[data-savewalk],[data-dlwalk]");if(!t)return;
+  if(t.dataset.walk){lifeMode="walk";step=0;renderLife();$("#lifeView").scrollIntoView({block:"start"});return}
+  if(t.dataset.exitwalk){lifeMode="cards";renderLife();return}
+  if(t.dataset.step!=null){step=+t.dataset.step;renderLife();$("#lifeView").scrollIntoView({block:"start"});return}
+  const a=LIFE.find(x=>x.id===lifeId);
+  if(t.dataset.usesugg){const j=ensure(lifeId);j.cur.s[step]=a.c[step][3];$("#wS").value=j.cur.s[step];queueSave(lifeId);return}
+  if(t.dataset.savewalk){const j=ensure(lifeId);j.walks.push({d:new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"}),r:j.cur.r.slice(),s:j.cur.s.slice(),p:j.cur.p.slice()});if(j.walks.length>24)j.walks=j.walks.slice(-24);clearTimeout(timers[lifeId]);dirty.add(lifeId);persist(lifeId);renderLife();setNote("Walk saved");return}
+  if(t.dataset.dlwalk){const fn="My blueprint - "+a.name+".txt";if(downloads){try{await downloads.save({filename:fn,data:walkText(a)})}catch(err){if(err&&err.code!=="declined")setNote("Download isn't available here")}}else{try{const u=URL.createObjectURL(new Blob([walkText(a)],{type:"text/plain"}));const l=document.createElement("a");l.href=u;l.download=fn;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),1000)}catch(err){setNote("Download isn't available here")}}}
+});
+
+function renderLife(){
+  const a=LIFE.find(x=>x.id===lifeId)||LIFE[0];
+  $("#areas").innerHTML=LIFE.map(x=>'<button class="area'+(hasNotes(x.id)?' has':'')+'" data-area="'+x.id+'" aria-pressed="'+(x.id===a.id)+'">'+esc(x.name)+'</button>').join("");
+  if(lifeMode==="walk"){$("#lifeView").innerHTML='<div class="life-head"><h3>'+esc(a.name)+'</h3><p>A personal walk through the five lenses</p></div>'+renderWalk(a);renderLifeGrid(a);return}
+  $("#lifeView").innerHTML='<div class="life-head"><h3>'+esc(a.name)+'</h3><p>Key passage: '+esc(a.note)+(LIFESTUDY[a.id]?' \u00b7 <a href="'+LIFESTUDY[a.id]+'">Teaching study</a>':'')+'</p><button class="walk-btn" data-walk="1">'+(hasNotes(a.id)?"Continue my walk →":"Walk through this for my life →")+'</button></div><div class="life-row">'+
+    a.c.map((c,i)=>{const g=GK[i];return '<article class="lcard" style="--gc:'+gcol(g)+'"><div class="gq">'+g+' · '+GROUPS[g]+'</div><p class="ask">'+ASK[g]+'</p>'+
+      '<div><span class="q">'+esc(c[1])+'</span><cite style="display:block;margin-top:3px">'+esc(c[2])+'</cite></div>'+
+      '<div class="ths">'+themeChips(c[0])+'</div><div class="prac"><b>Practice</b>'+esc(c[3])+'</div></article>'}).join("")+'</div>';
+  renderLifeGrid(a);
+}
+function renderLifeGrid(a){
+  let h='<thead><tr><th scope="col">Area of life</th>'+GK.map(g=>'<th scope="col">'+g+' · '+GROUPS[g].replace(/^The /,"").replace(/ and its Author$/,"")+'</th>').join("")+'</tr></thead><tbody>';
+  for(const x of LIFE){h+='<tr'+(x.id===a.id?' class="on"':'')+'><th scope="row"><button data-area="'+x.id+'">'+esc(x.name)+'</button></th>'+
+    x.c.map(c=>'<td><span class="t">'+c[0].filter(id=>byId[id]).map(id=>esc(byId[id].name)).join(", ")+'</span><cite>'+esc(c[2])+'</cite></td>').join("")+'</tr>'}
+  $("#lifeGrid").innerHTML=h+'</tbody>';
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-area]");if(!b)return;lifeId=b.dataset.area;lifeMode="cards";try{localStorage.setItem("bp-life",lifeId)}catch(_){}
+  renderLife();if(b.closest("#lifeGrid")){const v=$("#lifeView");scrollTo({top:v.getBoundingClientRect().top+scrollY-80,behavior:"smooth"})}});
+renderLife();initStore();
+</script>
+
+</body>
+</html>
