@@ -2,7 +2,7 @@
 
 Bible studies (English + Telugu). Each study lives in its own folder and is listed on the home page (`index.html`):
 
-- `divineblueprint/` · `in-him/` · `thekingdomofgod/` · `ascending-and-descending/`
+- `divineblueprint/` · `in-him/` · `thekingdomofgod/` · `genesis-jubilees-enoch/` · `ascending-and-descending/`
 - `shadow-and-substance/` · `kings-prophets-priests/` · `genealogies-to-christ/`
 - `church-in-scripture/` · `churchtraditions/` · `family-yeilding/`
 - `angelsinscriptures/` · `body-soul-spirit/`
