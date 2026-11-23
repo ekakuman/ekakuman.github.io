@@ -5,7 +5,7 @@
   // ---------- UI strings ----------
   var UI = {
     en: {
-      brand: 'Prayers &amp; Promises', prayers: "Prayers", promises: "Promises",
+      brand: 'Prayers &amp; Promises', prayers: "Prayers", promises: "Promises", scripture: "Bible",
       short: "Short", detailed: "Detailed", both: "Both", textsize: "Text size", theme: "Theme", light: "Light", dark: "Dark", auto: "Auto",
       foot1: "Scripture quotations from the King James Version and the Telugu Bible (BSI), both public domain.",
       foot2: "\"Pray without ceasing.\" 1 Thessalonians 5:17",
@@ -29,7 +29,7 @@
       siteTitle: "Prayers & Promises for Every Occasion"
     },
     te: {
-      brand: 'ప్రార్థనలు &amp; వాగ్దానములు', prayers: "ప్రార్థనలు", promises: "వాగ్దానములు",
+      brand: 'ప్రార్థనలు &amp; వాగ్దానములు', prayers: "ప్రార్థనలు", promises: "వాగ్దానములు", scripture: "బైబిలు",
       short: "సంక్షిప్త", detailed: "వివరముగా", both: "రెండూ", textsize: "అక్షర పరిమాణము", theme: "రంగు", light: "లేత", dark: "ముదురు", auto: "స్వయంచాలక",
       foot1: "లేఖన వాక్యములు: తెలుగు బైబిలు (BSI) మరియు కింగ్ జేమ్స్ వర్షన్ (పబ్లిక్ డొమైన్).",
       foot2: "\"యెడతెగక ప్రార్థనచేయుడి.\" 1 థెస్సలొనీకయులకు 5:17",
@@ -206,7 +206,7 @@
       searchBox(ui.search) + '<div id="browse"><div class="features">';
     if (w) h += '<a class="feature" href="#/pr/worship"><div class="k">' + ui.begin + "</div><h2>" + ui.featH + "</h2><p>" + ui.featP + "</p></a>";
     if (t) h += '<a class="feature" href="#/pm/' + t.id + '" lang="' + tv.lang + '"><div class="k">' + ui.today + "</div><h2>" + esc(tv.title) + '</h2><div class="fv">' + esc(tv.verses[0].text) + '</div><div class="fr">' + esc(tv.verses[0].ref) + "</div></a>";
-    h += "</div>" + sectionHead(PR, true) + gridHTML(PR) + sectionHead(PM, true) + gridHTML(PM) + "</div>";
+    h += "</div>" + sectionHead(PR, true) + gridHTML(PR) + sectionHead(PM, true) + gridHTML(PM) + (window.SPV ? window.SPV.homeHTML() : "") + "</div>";
     app.innerHTML = h;
     wireSearch(null, false);
   }
@@ -245,8 +245,10 @@
       });
     });
     scored.sort(function (a, b) { return b.s - a.s; });
-    res.innerHTML = scored.length
-      ? '<div class="section-title">' + ui.results(scored.length) + '</div><ul class="list">' + scored.map(function (x) { return itemHTML(x.col, x.p, state.q.trim(), true); }).join("") + "</ul>"
+    var spHits = (!only && window.SPV) ? window.SPV.searchHits(state.q.trim()) : [];
+    var total = scored.length + spHits.length;
+    res.innerHTML = total
+      ? '<div class="section-title">' + ui.results(total) + '</div><ul class="list">' + scored.map(function (x) { return itemHTML(x.col, x.p, state.q.trim(), true); }).join("") + spHits.join("") + "</ul>"
       : '<p class="empty">' + ui.none(esc(state.q)) + "</p>";
   }
 
@@ -272,6 +274,7 @@
       if (!list.length) return; any = true;
       h += sectionHead(col, false) + '<ul class="list">' + list.map(function (p) { return itemHTML(col, p, "", true); }).join("") + "</ul>";
     });
+    if (window.SPV) { var sph = window.SPV.savedHTML(); if (sph) { h += sph; any = true; } }
     app.innerHTML = h + (any ? '<p class="page-sub" style="margin-top:1rem">' + ui.savedSub + "</p>" : '<p class="empty">' + ui.savedNone + "</p>");
   }
 
@@ -342,6 +345,8 @@
     document.body.removeChild(ta);
   }
 
+  window.PP = { app: app, state: state, L: L, uiLang: uiLang, esc: esc, toast: toast, fallbackCopy: fallbackCopy, setMode: setMode };
+
   // ---------- router ----------
   function route(keepScroll) {
     var parts = location.hash.replace(/^#\/?/, "").split("/"), y = window.scrollY, sec = "";
@@ -355,6 +360,7 @@
     }
     else if (parts[0] === "prayers") { sec = "pr"; viewSection(PR); }
     else if (parts[0] === "promises") { sec = "pm"; viewSection(PM); }
+    else if ((parts[0] === "scripture" || parts[0] === "sp") && window.SPV) { sec = "sp"; window.SPV.route(parts); }
     else if (parts[0] === "saved") viewSaved();
     else if (parts[0] === "search") { sec = "search"; viewSearch(); }
     // links from the old Prayers site (#/p/id, #/c/id)

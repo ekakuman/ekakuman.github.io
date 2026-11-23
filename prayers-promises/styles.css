@@ -1,5 +1,5 @@
-@font-face{font-family:"Noto Serif Telugu";src:url(fonts/notoseriftelugu.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0C00-0C7F,U+200C-200D,U+25CC}
-@font-face{font-family:"Noto Sans Telugu";src:url(fonts/notosanstelugu.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0C00-0C7F,U+200C-200D,U+25CC}
+@font-face{font-family:"Noto Serif Telugu";src:url(fonts/NotoSerifTelugu.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0C00-0C7F,U+200C-200D,U+25CC}
+@font-face{font-family:"Noto Sans Telugu";src:url(fonts/NotoSansTelugu.woff2) format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0C00-0C7F,U+200C-200D,U+25CC}
 :root{
   --bg:#f7f1e6; --surface:#fffaf1; --ink:#2b2118; --muted:#6f5f4e; --line:#e6d9c3;
   --accent:#7a4e1d; --accent-2:#b5832a; --accent-soft:#f1e3c8; --verse:#fbf3e2;
@@ -191,3 +191,28 @@ html[lang="te"] .sec-head h2{font-family:var(--te-serif)}
 
 .search-btn{display:inline-grid;place-items:center;text-decoration:none}
 .search-btn.on{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+
+/* ---- Prayers of Scripture tab ---- */
+.kind.sp{background:color-mix(in srgb,#5b4a9e 15%,transparent);color:#5b4a9e}
+:root[data-theme="dark"] .kind.sp{color:#c2b8f2}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]):not([data-theme="dark"]) .kind.sp{color:#c2b8f2} }
+.sp-filter{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.3rem;margin-bottom:.45rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.sp-filter::-webkit-scrollbar{display:none}
+.sp-filter .chip{flex:none;font:inherit;font-size:.85rem;white-space:nowrap}
+.sp-filter .chip.on{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+:root[data-theme="dark"] .sp-filter .chip.on{color:#17130f}
+.sp-sec{font-family:var(--serif);font-size:1.2rem;margin:1.5rem 0 .15rem}
+.sp-sec span{font-family:var(--sans);font-size:.8rem;color:var(--muted);font-weight:400}
+html[lang="te"] .sp-sec{font-family:var(--te-serif)}
+.sp-intro{font-size:.9rem;margin-bottom:.7rem}
+.sp-meta{color:var(--muted);font-size:.92rem;margin-top:.15rem}
+.passage{margin:0 0 1rem}
+.passage .text p{margin:0 0 .55rem}
+.passage sup{font-family:var(--sans);font-size:.62em;color:var(--muted);font-weight:600}
+.sp-feature{margin-bottom:.5rem}
+.sp-study .text ol,.sp-study .text ul{padding-left:1.25rem;margin-top:0}
+.sp-study .list{margin-bottom:1rem}
+.sp-study .item p{-webkit-line-clamp:unset}
+.sections{overflow-x:auto;scrollbar-width:none}
+.sections::-webkit-scrollbar{display:none}
+@media (max-width:420px){ .topbar-inner{gap:.35rem;padding:.55rem .6rem} .brand{display:none} .sections{gap:.05rem;margin-left:0} .sections a{padding:.3rem .45rem;font-size:.84rem} html[lang="te"] .sections a{font-size:.78rem;padding:.3rem .35rem} .tools{gap:.25rem} .icon-btn{width:2rem;height:2rem;font-size:.88rem} }
