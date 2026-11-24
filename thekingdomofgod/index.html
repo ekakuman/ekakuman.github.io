@@ -194,6 +194,14 @@ body.lens .lens-off-note { display: none; }
 .var .holders { font-family: var(--ui); font-size: .8rem; color: var(--muted); display: none; }
 body.lens .var .holders { display: block; }
 
+.companion { margin-top: 18px; display: flex; gap: 14px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 12px; padding: 12px 16px; text-decoration: none; color: inherit; max-width: 640px; }
+.companion:hover { border-color: var(--gold); }
+.companion:focus-visible { outline: 2px solid var(--royal); outline-offset: 2px; }
+.companion .ct { font-family: var(--ui); font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+.companion b { font-family: var(--display); font-size: 1.25rem; font-weight: 600; display: block; }
+.companion .cs { font-size: .92rem; color: var(--muted); }
+.companion .carrow { margin-left: auto; font-family: var(--ui); color: var(--gold); font-size: 1.3rem; }
+footer a { color: var(--royal); }
 footer { padding: 36px 0 48px; color: var(--muted); font-family: var(--ui); font-size: .82rem; border-top: 1px solid var(--line); margin-top: 40px; }
 
 @media (max-width: 820px) {
@@ -227,6 +235,10 @@ footer { padding: 36px 0 48px; color: var(--muted); font-family: var(--ui); font
       <label class="switch" for="lens"><input type="checkbox" id="lens"><span class="track" aria-hidden="true"></span>Show how traditions read these texts</label>
       <span>Off: Scripture only. On: adds the main readings of each hinge text.</span>
     </div>
+    <a class="companion" href="../kingdom-in-jesus-words/">
+      <div><span class="ct">Companion study</span><b>The Kingdom in the Words of Jesus</b><span class="cs">Every saying of Jesus on the kingdom, gathered into eleven themes, KJV.</span></div>
+      <span class="carrow" aria-hidden="true">→</span>
+    </a>
   </div>
 </header>
 
@@ -282,7 +294,7 @@ footer { padding: 36px 0 48px; color: var(--muted); font-family: var(--ui); font
 </main>
 
 <footer>
-  <div class="wrap">Scripture quotations: King James Version (public domain). Stage summaries and labels are descriptive aids. The verses are the primary text.</div>
+  <div class="wrap">Scripture quotations: King James Version (public domain). Stage summaries and labels are descriptive aids. The verses are the primary text. Companion study: <a href="../kingdom-in-jesus-words/">The Kingdom in the Words of Jesus</a>.</div>
 </footer>
 
 <script>
