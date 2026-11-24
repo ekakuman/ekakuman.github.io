@@ -194,6 +194,17 @@ body.lens .lens-off-note { display: none; }
 .var .holders { font-family: var(--ui); font-size: .8rem; color: var(--muted); display: none; }
 body.lens .var .holders { display: block; }
 
+nav.chapters { position: sticky; top: 0; z-index: 40; background: var(--bg); border-bottom: 1px solid var(--line); }
+@supports (backdrop-filter: blur(6px)) { nav.chapters { background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(6px); } }
+nav.chapters .wrap { display: flex; gap: 6px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; scrollbar-width: none; }
+nav.chapters .wrap::-webkit-scrollbar { display: none; }
+nav.chapters a { white-space: nowrap; text-decoration: none; color: var(--ink); font-family: var(--ui); font-size: .84rem; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid transparent; }
+nav.chapters a .k { color: var(--royal); font-weight: 600; margin-right: 5px; }
+nav.chapters a:hover, nav.chapters a.on { border-color: var(--line); background: var(--surface); }
+nav.chapters a.on { color: var(--royal); }
+nav.chapters a.out { margin-left: auto; color: var(--gold); }
+nav.chapters a:focus-visible { outline: 2px solid var(--royal); outline-offset: 1px; }
+section.block { scroll-margin-top: 60px; }
 .companion { margin-top: 18px; display: flex; gap: 14px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: 12px; padding: 12px 16px; text-decoration: none; color: inherit; max-width: 640px; }
 .companion:hover { border-color: var(--gold); }
 .companion:focus-visible { outline: 2px solid var(--royal); outline-offset: 2px; }
@@ -241,6 +252,16 @@ footer { padding: 36px 0 48px; color: var(--muted); font-family: var(--ui); font
     </a>
   </div>
 </header>
+
+<nav class="chapters" aria-label="Chapters"><div class="wrap">
+  <a href="#arc"><span class="k">1</span>The arc</a>
+  <a href="#pattern"><span class="k">2</span>The pattern</a>
+  <a href="#questions" data-q="when"><span class="k">3</span>When?</a>
+  <a href="#questions" data-q="who">Who?</a>
+  <a href="#questions" data-q="how">How?</a>
+  <a href="#variables"><span class="k">4</span>The variables</a>
+  <a class="out" href="../kingdom-in-jesus-words/">In Jesus’ words →</a>
+</div></nav>
 
 <main class="wrap">
   <section class="block" id="arc">
@@ -585,7 +606,21 @@ qtabs.addEventListener("keydown", ev => {
   showQ(n); $("#tab-" + n).focus();
 });
 qpanel.addEventListener("click", ev => { const b = ev.target.closest(".vbtn"); if (b) b.setAttribute("aria-expanded", b.getAttribute("aria-expanded") !== "true"); });
-document.querySelectorAll(".qchip").forEach(a => a.addEventListener("click", () => showQ(a.dataset.q)));
+document.querySelectorAll(".qchip, nav.chapters a[data-q]").forEach(a => a.addEventListener("click", () => showQ(a.dataset.q)));
+/* chapter bar: highlight the section in view, and the open question tab */
+const chapLinks = [...document.querySelectorAll("nav.chapters a[href^='#']")];
+function spy() {
+  let cur = "";
+  document.querySelectorAll("section.block").forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
+  const q = (qtabs.querySelector('[aria-selected="true"]') || {}).dataset?.k;
+  chapLinks.forEach(a => {
+    const on = a.getAttribute("href") === "#" + cur && (!a.dataset.q || a.dataset.q === q);
+    a.classList.toggle("on", on);
+    if (on) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+  });
+}
+addEventListener("scroll", spy, { passive: true });
+qtabs.addEventListener("click", () => setTimeout(spy, 0));
 
 /* ---------- variables ---------- */
 $("#vars").innerHTML = VARS.map((v, i) => `
@@ -621,6 +656,7 @@ applyLens();
 
 showEpoch(0);
 showQ("when");
+spy();
 </script>
 </body>
 </html>
