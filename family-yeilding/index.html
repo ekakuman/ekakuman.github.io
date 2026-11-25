@@ -455,6 +455,18 @@
             .print-header-label { display: block !important; }
         }
 
+        /* Chapter bar: jump between the parts of the tool, like the other studies */
+        nav.chapters { position: sticky; top: 0; z-index: 40; align-self: stretch; margin: 0 -15px 15px; background: var(--bg-color); border-bottom: 1px solid #dee2e6; }
+        nav.chapters .in { display: flex; gap: 6px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none; justify-content: center; }
+        nav.chapters .in::-webkit-scrollbar { display: none; }
+        nav.chapters a { white-space: nowrap; text-decoration: none; color: #333; font-size: .88rem; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid transparent; }
+        nav.chapters a .k { color: #6f42c1; font-weight: 700; margin-right: 5px; }
+        nav.chapters a:hover, nav.chapters a.on { border-color: #dee2e6; background: #fff; }
+        nav.chapters a:focus-visible { outline: 2px solid #6f42c1; outline-offset: 1px; }
+        nav.chapters a[hidden] { display: none; }
+        #family-grid, #result, #support-section, #generational-section, #pairs-section-container, #zones, #recommendations { scroll-margin-top: 70px; }
+        @media (max-width: 700px) { nav.chapters .in { justify-content: flex-start; } }
+        @media print { nav.chapters { display: none; } }
     </style>
 </head>
 <body>
@@ -466,6 +478,16 @@
         <p class="no-print">Adjust the slider for each family member to see how their choice affects harmony.</p>
     </header>
 
+    <nav class="chapters no-print" aria-label="Sections"><div class="in" id="chapters">
+        <a href="#family-grid"><span class="k">1</span>Family members</a>
+        <a href="#result"><span class="k">2</span>Overall result</a>
+        <a href="#support-section">Support network</a>
+        <a href="#generational-section">Generational impact</a>
+        <a href="#pairs-section-container">1-on-1 pairs</a>
+        <a href="#zones"><span class="k">3</span>The 4 zones</a>
+        <a href="#recommendations"><span class="k">4</span>Recommendations</a>
+    </div></nav>
+
     <div class="family-grid" id="family-grid">
         </div>
 
@@ -474,7 +496,7 @@
         <button class="action-btn export-btn" id="export-btn">💾 Save / Export to PDF</button>
     </div>
 
-    <div class="collective-panel">
+    <div class="collective-panel" id="result">
         <h2 id="collective-zone-title">Level 3: Growth Zone (50%)</h2>
         <p>The overall relational climate is a weighted average of individual choices to yield.</p>
         
@@ -509,7 +531,7 @@
 
     </div>
 
-    <div class="reference-section">
+    <div class="reference-section" id="zones">
         <h2>Reference Guide: The 4 Harmony Zones</h2>
         <div class="ref-grid">
             <div class="ref-card zone-1">
@@ -538,7 +560,7 @@
             </div>
         </div>
 
-        <div class="recommendations">
+        <div class="recommendations" id="recommendations">
             <h2>Recommendations to Reach Level 4 (Unity)</h2>
             <ul>
                 <li><strong>The 5-Second Pause (James 1:19):</strong> <em>“Everyone should be quick to listen, slow to speak and slow to become angry.”</em> When triggered, implement a family rule to take a mandatory 5-second breath before responding, creating space for the Spirit.</li>
@@ -948,6 +970,30 @@
             window.print();
         });
 
-    </script>
+    
+    /* chapter bar: hide links to parts not shown yet, and highlight the part in view */
+    (function () {
+        const bar = document.getElementById('chapters');
+        const links = [...bar.querySelectorAll('a')];
+        function spy() {
+            let cur = '';
+            links.forEach(a => {
+                const t = document.querySelector(a.getAttribute('href'));
+                a.hidden = !t || t.offsetParent === null;
+                if (t && !a.hidden && window.scrollY >= t.getBoundingClientRect().top + window.scrollY - 90) cur = a.getAttribute('href');
+            });
+            links.forEach(a => {
+                const on = a.getAttribute('href') === cur;
+                if (on && !a.classList.contains('on')) bar.scrollTo({ left: a.offsetLeft - bar.clientWidth / 2 + a.offsetWidth / 2, behavior: 'smooth' });
+                a.classList.toggle('on', on);
+                if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+            });
+        }
+        addEventListener('scroll', spy, { passive: true });
+        document.addEventListener('input', () => setTimeout(spy, 0));
+        document.addEventListener('click', () => setTimeout(spy, 0));
+        spy();
+    })();
+</script>
 </body>
 </html>

@@ -161,7 +161,7 @@
         /* 5-Column Grid Layout */
         .grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr); 
+            grid-template-columns: repeat(4, 1fr); 
             gap: 1.5rem;
         }
         @media (max-width: 1200px) {
@@ -246,6 +246,18 @@
             transition: color 0.2s;
         }
         .close-btn:hover { color: #ccc; }
+        /* Chapter bar: one stop per doctrine, like the other studies */
+        nav.chapters { position: sticky; top: 0; z-index: 40; background: var(--bg); border-bottom: 1px solid var(--input-border); }
+        nav.chapters .in { display: flex; gap: 6px; overflow-x: auto; padding: 10px 2rem; max-width: 1600px; margin: 0 auto; scrollbar-width: none; }
+        nav.chapters .in::-webkit-scrollbar { display: none; }
+        nav.chapters a { white-space: nowrap; text-decoration: none; color: var(--text-main); font-size: .88rem; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid transparent; }
+        nav.chapters a .k { color: var(--evangelical); font-weight: 700; margin-right: 5px; }
+        nav.chapters a:hover, nav.chapters a.on { border-color: var(--input-border); background: var(--card-bg); }
+        nav.chapters a:focus-visible { outline: 2px solid var(--evangelical); outline-offset: 1px; }
+        .topic-section { scroll-margin-top: 64px; margin-bottom: 2.5rem; }
+        .topic-section > h2 { margin: 0 0 1rem; font-size: 1.5rem; color: var(--text-main); border-bottom: 2px solid var(--input-border); padding-bottom: .4rem; }
+        #poster { scroll-margin-top: 64px; }
+        @media (max-width: 600px) { nav.chapters .in { padding: 10px 1rem; } }
         .no-results { text-align: center; font-size: 1.2rem; color: var(--text-muted); grid-column: 1 / -1; padding: 2rem; }
     </style>
 </head>
@@ -272,7 +284,9 @@
     <p>A Theological Comparison of Evangelical, LDS, Jehovah's Witness, and Roman Catholic Beliefs</p>
 </header>
 
-<div class="image-container">
+<nav class="chapters" aria-label="Doctrines"><div class="in" id="chapters"></div></nav>
+
+<div class="image-container" id="poster">
     <img src="poster.jpg" 
          alt="Theological Comparison Poster" 
          class="poster-img"
@@ -293,7 +307,7 @@
         <button class="btn btn-catholic" onclick="filterCards('Roman Catholicism')">Catholicism</button>
     </div>
 
-    <div class="grid" id="card-grid">
+    <div id="card-grid">
         <!-- Cards injected by JS -->
     </div>
 </div>
@@ -346,6 +360,29 @@
     const cardGrid = document.getElementById('card-grid');
     const buttons = document.querySelectorAll('.controls .btn');
     let currentTraditionFilter = 'All';
+    const TOPICS = [...new Set(data.map(d => d.topic))];
+    const slug = t => 'topic-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const chapters = document.getElementById('chapters');
+    chapters.innerHTML = `<a href="#poster">Poster</a>` + TOPICS.map((t, i) => `<a href="#${slug(t)}"><span class="k">${i + 1}</span>${t}</a>`).join('');
+    chapters.addEventListener('click', e => {
+        const a = e.target.closest('a'); if (!a) return;
+        if (!document.querySelector(a.getAttribute('href'))) {
+            /* that doctrine is hidden by the search or a filter: clear them so the link has somewhere to go */
+            document.getElementById('searchInput').value = '';
+            filterCards('All');
+        }
+    });
+    function spy() {
+        let cur = '';
+        document.querySelectorAll('#poster, .topic-section').forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
+        chapters.querySelectorAll('a').forEach(a => {
+            const on = a.getAttribute('href') === '#' + cur;
+            if (on && !a.classList.contains('on')) chapters.scrollTo({ left: a.offsetLeft - chapters.clientWidth / 2 + a.offsetWidth / 2, behavior: 'smooth' });
+            a.classList.toggle('on', on);
+            if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+        });
+    }
+    addEventListener('scroll', spy, { passive: true });
 
     function renderCards() {
         cardGrid.innerHTML = '';
@@ -362,8 +399,20 @@
         
         if (filteredData.length === 0) {
             cardGrid.innerHTML = '<div class="no-results">No doctrines or verses found matching your search.</div>';
+            spy();
             return;
         }
+
+        /* one section per doctrine, the four traditions side by side */
+        const grids = {};
+        TOPICS.forEach((t, i) => {
+            if (!filteredData.some(item => item.topic === t)) return;
+            const sec = document.createElement('section');
+            sec.className = 'topic-section'; sec.id = slug(t);
+            sec.innerHTML = `<h2>${i + 1}. ${t}</h2><div class="grid"></div>`;
+            cardGrid.appendChild(sec);
+            grids[t] = sec.querySelector('.grid');
+        });
 
         filteredData.forEach(item => {
             const card = document.createElement('div');
@@ -381,8 +430,9 @@
                     Source: <a href="${item.sourceUrl}" target="_blank" rel="noopener noreferrer">${item.sourceName}</a>
                 </div>
             `;
-            cardGrid.appendChild(card);
+            grids[item.topic].appendChild(card);
         });
+        spy();
     }
 
     window.filterCards = function(tradition) {
