@@ -155,6 +155,41 @@ footer{padding-block:24px 40px;font-size:14px;color:var(--faint)}
   .midrule{display:none}
   .cols,.guards{grid-template-columns:minmax(0,1fr)}
 }
+.ag{--ag-card:var(--panel);--ag-ink:var(--ink);--ag-muted:var(--muted);--ag-line:var(--line);--ag-accent:var(--gold);--ag-soft:var(--heaven-b);--ag-bg:var(--bg)}
+/* At a glance: the whole study on one page */
+.ag{--ag-gap:22px;--ag-c1:#7a3e1d;--ag-c2:#2d5f93;--ag-c3:#2f7a4b;--ag-c4:#8a6a12;--ag-c5:#6b4f94;--ag-c6:#a2362f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}}
+[data-theme="dark"] .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}
+.ag .ag-ref{display:inline-block;border:1px solid var(--ag-line);border-radius:999px;padding:1px 9px;font-size:.85em;font-weight:600;color:var(--ag-accent);background:var(--ag-card);white-space:nowrap}
+.ag .ag-k{font:600 12.5px/1.3 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ag-accent);text-align:center;margin:6px 0 4px}
+.ag .ag-t{text-align:center;margin:0 auto 6px;max-width:30ch;text-wrap:balance}
+.ag .ag-v{text-align:center;font-style:italic;color:var(--ag-muted);max-width:62ch;margin:0 auto 18px;line-height:1.55}
+.ag .ag-v .ag-r{font-style:normal;white-space:nowrap}
+.ag .ag-band{background:var(--ag-ink);color:var(--ag-card);border-radius:14px;padding:14px 18px;text-align:center;line-height:1.5}
+.ag .ag-band b{color:var(--ag-band-hi,var(--ag-card))}
+.ag .ag-band .ag-r, .ag .ag-band .ag-r *{color:inherit}
+.ag .ag-band button,.ag .ag-band a{background:transparent!important;color:inherit!important;border:1px solid currentColor!important;opacity:.9}
+.ag .ag-band .ag-ref{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.ag .ag-flow{position:relative;display:grid;gap:var(--ag-gap);margin:var(--ag-gap) 0}
+.ag .ag-flow::before{content:"";position:absolute;left:50%;top:-22px;bottom:-22px;width:2px;background:var(--ag-line);transform:translateX(-1px)}
+.ag .ag-b{position:relative;background:var(--ag-card);border:1px solid var(--ag-line);border-top:4px solid var(--c,var(--ag-accent));border-radius:14px;padding:16px 18px 14px 18px}
+.ag .ag-n{position:absolute;top:-15px;left:-12px;width:30px;height:30px;border-radius:50%;background:var(--c,var(--ag-accent));color:var(--ag-card);display:flex;align-items:center;justify-content:center;font:700 14px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 0 4px var(--ag-bg,var(--ag-card))}
+.ag .ag-bk{font:600 11.5px/1.3 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--ag-accent));margin:2px 0 4px}
+.ag .ag-b h3{margin:0 0 4px;font-size:1.2em;line-height:1.25;color:var(--ag-ink)}
+.ag .ag-b p{margin:0 0 8px;color:var(--ag-ink);line-height:1.5}
+.ag .ag-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px;padding:0;list-style:none}
+.ag .ag-chips li{border:1px solid var(--ag-line);background:var(--ag-soft);color:var(--ag-ink);border-radius:999px;padding:3px 10px;font-size:.86em;line-height:1.4}
+.ag .ag-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:8px 0}
+.ag .ag-col{border:1px solid var(--ag-line);border-top:4px solid var(--cc,var(--c,var(--ag-accent)));border-radius:12px;padding:12px 14px;background:var(--ag-soft)}
+.ag .ag-col h4{margin:0 0 2px;font-size:1.05em;color:var(--cc,var(--ag-ink))}
+.ag .ag-col .ag-sub{font-size:.88em;color:var(--ag-muted);margin:0 0 6px}
+.ag .ag-col .ag-chips li{background:var(--ag-card)}
+.ag .ag-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;justify-content:space-between;margin-top:4px}
+.ag .ag-refs{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.9em}
+.ag .ag-go{font:600 13px/1.3 system-ui,sans-serif;color:var(--c,var(--ag-accent));text-decoration:none;white-space:nowrap}
+.ag .ag-go:hover{text-decoration:underline}
+.ag .ag-n:focus-visible,.ag .ag-go:focus-visible{outline:2px solid var(--ag-accent);outline-offset:2px}
+@media (max-width:600px){.ag .ag-flow::before{left:16px}.ag .ag-n{left:-8px}}
 </style>
 </head>
 <body>
@@ -173,6 +208,16 @@ footer{padding-block:24px 40px;font-size:14px;color:var(--faint)}
   </blockquote>
 </header>
 
+<section class="wrap ag" id="glance"><p class="ag-k">The whole study on one page · ఒక్క చూపులో</p>
+<h2 class="ag-t">Heaven open over ordinary life</h2>
+<p class="ag-v">“Hereafter ye shall see heaven open, and the angels of God ascending and descending upon the Son of man.” <span class="ag-r"><span class="ag-ref">John 1:51</span></span></p>
+<div class="ag-flow">
+<div class="ag-b" style="--c:var(--gold)"><a class="ag-n" href="#stage" aria-label="Chapter 1: The map">1</a><div class="ag-bk">The map</div><h3>Three realms</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--down)"><h4>Heaven</h4><p class="ag-sub">Unseen and eternal</p><ul class="ag-chips"><li>The throne of God</li><li>The Lamb</li><li>The books</li><li>Mount Sion</li></ul></div><div class="ag-col" style="--cc:var(--angel)"><h4>The heavenly places</h4><p class="ag-sub">Angels and powers</p><ul class="ag-chips"><li>Holy angels</li><li>Principalities and powers</li><li>The accuser</li></ul></div><div class="ag-col" style="--cc:var(--up)"><h4>Earth</h4><p class="ag-sub">Seen and temporal</p><ul class="ag-chips"><li>The believer</li><li>The church gathered</li><li>Home and family</li><li>Work and money</li><li>Nations and rulers</li><li>Suffering and death</li></ul></div></div><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Gen 28:12</span> <span class="ag-ref">Eph 6:12</span></div><a class="ag-go" href="#stage">Open the map →</a></div></div>
+<div class="ag-b" style="--c:var(--angel)"><a class="ag-n" href="#all" aria-label="Chapter 2: Every connection">2</a><div class="ag-bk">Every connection</div><h3>35 movements in four directions</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--down)"><h4>From heaven</h4><p class="ag-sub">4 connections</p><ul class="ag-chips"><li>The Most High rules the nations</li><li>Provision from above</li><li>Christ intercedes</li><li>The Spirit poured out</li></ul></div><div class="ag-col" style="--cc:var(--angel)"><h4>Angels at work</h4><p class="ag-sub">10 connections</p><ul class="ag-chips"><li>Sent to minister and to guard</li><li>More with us than with them</li><li>Angels unawares</li><li>Strength in agony, escort in death</li></ul></div><div class="ag-col" style="--cc:var(--up)"><h4>To heaven</h4><p class="ag-sub">12 connections</p><ul class="ag-chips"><li>Heard from the first day</li><li>Joy over one who repents</li><li>God’s wisdom on display</li><li>A book of remembrance</li></ul></div><div class="ag-col" style="--cc:var(--battle)"><h4>Battle and victory</h4><p class="ag-sub">9 connections</p><ul class="ag-chips"><li>The accuser before God</li><li>We wrestle not against flesh and blood</li><li>Triumph at the cross</li><li>Resist, and he will flee</li></ul></div></div><div class="ag-foot"><span></span><a class="ag-go" href="#all">Read every connection →</a></div></div>
+<div class="ag-b" style="--c:var(--up)"><a class="ag-n" href="#stage" aria-label="Chapter 3: Parts of life">3</a><div class="ag-bk">Parts of life</div><h3>Thirteen parts of life, seen and unseen</h3><ul class="ag-chips"><li>Marriage</li><li>Parenting and family</li><li>Singleness</li><li>Work and vocation</li><li>Money and possessions</li><li>Health and the body</li><li>Friendships and conflict</li><li>Church and fellowship</li><li>Suffering and loss</li><li>Time and rest</li><li>Mind and speech</li><li>Community and citizenship</li><li>Spiritual battle</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Eph 3:10</span> <span class="ag-ref">Col 3:24</span></div><a class="ag-go" href="#stage">Pick a part of life on the map →</a></div></div>
+<div class="ag-b" style="--c:var(--battle)"><a class="ag-n" href="#guardrails" aria-label="Chapter 4: Reading this map well">4</a><div class="ag-bk">Reading this map well</div><h3>Three guardrails</h3><ul class="ag-chips"><li>Worship God alone</li><li>The enemy is real, and defeated</li><li>We see in part</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Rev 22:8-9</span> <span class="ag-ref">Col 2:15</span> <span class="ag-ref">Deut 29:29</span></div><a class="ag-go" href="#guardrails">Read the guardrails →</a></div></div>
+</div>
+<div class="ag-band">“Seek those things which are above, where Christ sitteth on the right hand of God.” <span class="ag-r"><span class="ag-ref">Col 3:1</span></span></div></section>
 <div class="wrap">
   <div class="controls" role="group" aria-label="Filters">
     <span class="ctl-label">Show</span>
@@ -211,7 +256,7 @@ footer{padding-block:24px 40px;font-size:14px;color:var(--faint)}
     <p>The same passages grouped by direction, for reading, teaching or printing notes. Choose one to see it on the map.</p>
     <div class="cols" id="groups"></div>
   </section>
-  <section class="sec">
+  <section class="sec" id="guardrails">
     <h2>Reading this map well</h2>
     <p>Scripture shows enough of the unseen to steady our faith, not to satisfy curiosity. Three guardrails keep the picture in proportion.</p>
     <div class="guards">

@@ -116,7 +116,55 @@ footer a { color: var(--royal); }
 }
 @media (max-width: 420px) { body { font-size: 16px; } .wrap { padding: 0 16px; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-</style>
+.ag{--ag-card:var(--surface);--ag-ink:var(--ink);--ag-muted:var(--muted);--ag-line:var(--line);--ag-accent:var(--royal);--ag-soft:var(--royal-soft);--ag-bg:var(--bg)}
+/* At a glance: the whole study on one page */
+.ag{--ag-gap:22px;--ag-c1:#7a3e1d;--ag-c2:#2d5f93;--ag-c3:#2f7a4b;--ag-c4:#8a6a12;--ag-c5:#6b4f94;--ag-c6:#a2362f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}}
+[data-theme="dark"] .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}
+.ag .ag-ref{display:inline-block;border:1px solid var(--ag-line);border-radius:999px;padding:1px 9px;font-size:.85em;font-weight:600;color:var(--ag-accent);background:var(--ag-card);white-space:nowrap}
+.ag .ag-k{font:600 12.5px/1.3 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ag-accent);text-align:center;margin:6px 0 4px}
+.ag .ag-t{text-align:center;margin:0 auto 6px;max-width:30ch;text-wrap:balance}
+.ag .ag-v{text-align:center;font-style:italic;color:var(--ag-muted);max-width:62ch;margin:0 auto 18px;line-height:1.55}
+.ag .ag-v .ag-r{font-style:normal;white-space:nowrap}
+.ag .ag-band{background:var(--ag-ink);color:var(--ag-card);border-radius:14px;padding:14px 18px;text-align:center;line-height:1.5}
+.ag .ag-band b{color:var(--ag-band-hi,var(--ag-card))}
+.ag .ag-band .ag-r, .ag .ag-band .ag-r *{color:inherit}
+.ag .ag-band button,.ag .ag-band a{background:transparent!important;color:inherit!important;border:1px solid currentColor!important;opacity:.9}
+.ag .ag-band .ag-ref{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.ag .ag-flow{position:relative;display:grid;gap:var(--ag-gap);margin:var(--ag-gap) 0}
+.ag .ag-flow::before{content:"";position:absolute;left:50%;top:-22px;bottom:-22px;width:2px;background:var(--ag-line);transform:translateX(-1px)}
+.ag .ag-b{position:relative;background:var(--ag-card);border:1px solid var(--ag-line);border-top:4px solid var(--c,var(--ag-accent));border-radius:14px;padding:16px 18px 14px 18px}
+.ag .ag-n{position:absolute;top:-15px;left:-12px;width:30px;height:30px;border-radius:50%;background:var(--c,var(--ag-accent));color:var(--ag-card);display:flex;align-items:center;justify-content:center;font:700 14px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 0 4px var(--ag-bg,var(--ag-card))}
+.ag .ag-bk{font:600 11.5px/1.3 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--ag-accent));margin:2px 0 4px}
+.ag .ag-b h3{margin:0 0 4px;font-size:1.2em;line-height:1.25;color:var(--ag-ink)}
+.ag .ag-b p{margin:0 0 8px;color:var(--ag-ink);line-height:1.5}
+.ag .ag-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px;padding:0;list-style:none}
+.ag .ag-chips li{border:1px solid var(--ag-line);background:var(--ag-soft);color:var(--ag-ink);border-radius:999px;padding:3px 10px;font-size:.86em;line-height:1.4}
+.ag .ag-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:8px 0}
+.ag .ag-col{border:1px solid var(--ag-line);border-top:4px solid var(--cc,var(--c,var(--ag-accent)));border-radius:12px;padding:12px 14px;background:var(--ag-soft)}
+.ag .ag-col h4{margin:0 0 2px;font-size:1.05em;color:var(--cc,var(--ag-ink))}
+.ag .ag-col .ag-sub{font-size:.88em;color:var(--ag-muted);margin:0 0 6px}
+.ag .ag-col .ag-chips li{background:var(--ag-card)}
+.ag .ag-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;justify-content:space-between;margin-top:4px}
+.ag .ag-refs{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.9em}
+.ag .ag-go{font:600 13px/1.3 system-ui,sans-serif;color:var(--c,var(--ag-accent));text-decoration:none;white-space:nowrap}
+.ag .ag-go:hover{text-decoration:underline}
+.ag .ag-n:focus-visible,.ag .ag-go:focus-visible{outline:2px solid var(--ag-accent);outline-offset:2px}
+@media (max-width:600px){.ag .ag-flow::before{left:16px}.ag .ag-n{left:-8px}}
+
+.ag .ag-chart{margin:18px 0 6px;background:var(--ag-card);border:1px solid var(--ag-line);border-radius:14px;padding:14px 16px}
+.ag .ag-chart figcaption{font:500 14px/1.4 var(--ui);color:var(--ag-muted);margin-bottom:8px}
+.ag .ag-chart figcaption b{color:var(--ag-ink)}
+.agc-key{display:flex;flex-wrap:wrap;gap:4px 14px;font:500 12.5px/1.3 var(--ui);color:var(--ag-muted);margin-bottom:10px}
+.agc-key i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.agc-row{display:grid;grid-template-columns:minmax(92px,150px) 1fr 28px;align-items:center;gap:8px;margin:5px 0;font:500 13px/1.2 var(--ui);color:var(--ag-ink);text-decoration:none}
+.agc-row:hover .agc-l{text-decoration:underline}
+.agc-bar{display:flex;height:16px;border-radius:4px;overflow:hidden;background:var(--ag-soft)}
+.agc-bar span{display:block;height:100%;border-right:2px solid var(--ag-card)}
+.agc-n{color:var(--ag-muted);text-align:right;font-variant-numeric:tabular-nums}
+.agc-c1{background:#5A2A6E}.agc-c2{background:#946B12}.agc-c3{background:#2D6E55}.agc-c4{background:#A8402A}.agc-c5{background:#5A6170}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .agc-c1{background:#C09AD6}:root:not([data-theme="light"]) .agc-c2{background:#D9B154}:root:not([data-theme="light"]) .agc-c3{background:#7FC4A6}:root:not([data-theme="light"]) .agc-c4{background:#E59A86}:root:not([data-theme="light"]) .agc-c5{background:#A3A8B3}}
+#glance{padding:0 14px}</style>
 </head>
 <body>
 <a class="site-home-strip" href="../" style="display:block;position:relative;z-index:30;margin:0;padding:7px 14px;background:#2a2420;color:#f1d9c4;font:600 13.5px/1.4 'Source Sans 3','Noto Sans Telugu',system-ui,sans-serif;text-decoration:none;letter-spacing:.01em;border-bottom:1px solid rgba(255,255,255,.12)">← All studies · అన్ని అధ్యయనములు</a>
@@ -129,7 +177,7 @@ footer a { color: var(--royal); }
       <div><span class="t">Companion study</span><b>The Kingdom: When, Who, How</b><span class="s">The kingdom traced from Eden to the new Jerusalem, with the questions where readings divide.</span></div>
       <span class="arrow" aria-hidden="true">→</span>
     </a>
-    <div class="glance" id="glance"></div>
+    <div class="glance" id="stats"></div>
   </div>
 </header>
 
@@ -144,6 +192,24 @@ footer a { color: var(--royal); }
 </div>
 
 <main class="wrap">
+  <section class="theme ag" id="glance"><p class="ag-k">The whole study on one page · ఒక్క చూపులో</p>
+<h2 class="ag-t">What Jesus said about the kingdom, in eleven themes</h2>
+<p class="ag-v">“The time is fulfilled, and the kingdom of God is at hand: repent ye, and believe the gospel.” <span class="ag-r"><span class="ag-ref">Mark 1:15</span></span></p>
+<figure class="ag-chart" aria-labelledby="agc-h"><figcaption id="agc-h"><b>Where each theme is found</b> · passages per theme, by book</figcaption><div class="agc-key" id="agc-key"></div><div id="agc"></div></figure>
+<div class="ag-flow">
+<div class="ag-b" style="--c:var(--royal)"><a class="ag-n" href="#t1" aria-label="Chapter 1: At hand">1</a><div class="ag-bk">At hand</div><h3>Announced, and already breaking in</h3><ul class="ag-chips"><li>At hand</li><li>Sent to preach it</li><li>Come upon you</li><li>Pressed into</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Mark 1:15</span> <span class="ag-ref">Matt 12:28</span></div><a class="ag-go" href="#t1">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--gold)"><a class="ag-n" href="#t2" aria-label="Chapter 2: Its nature">2</a><div class="ag-bk">Its nature</div><h3>Not of this world, not with observation</h3><ul class="ag-chips"><li>Within you</li><li>Not of this world</li><li>Mysteries given</li><li>The word of the kingdom</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Luke 17:20-21</span> <span class="ag-ref">John 18:36</span></div><a class="ag-go" href="#t2">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--royal)"><a class="ag-n" href="#t3" aria-label="Chapter 3: Parables">3</a><div class="ag-bk">Parables</div><h3>Small beginnings, hidden worth, a final harvest</h3><ul class="ag-chips"><li>Wheat and tares</li><li>Mustard seed</li><li>Leaven</li><li>Seed growing secretly</li><li>Treasure and pearl</li><li>The net</li><li>Unforgiving servant</li><li>Labourers</li><li>Marriage feast</li><li>Ten virgins</li><li>Talents</li><li>The nobleman</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Matt 13:31-33</span></div><a class="ag-go" href="#t3">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--gold)"><a class="ag-n" href="#t4" aria-label="Chapter 4: Who enters">4</a><div class="ag-bk">Who enters</div><h3>The poor in spirit, the born again, the childlike</h3><ul class="ag-chips"><li>Poor in spirit</li><li>Righteousness that exceeds</li><li>Doing the Father’s will</li><li>Born again</li><li>As a little child</li><li>Hard for the rich</li><li>No looking back</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">John 3:3</span> <span class="ag-ref">Matt 18:3</span></div><a class="ag-go" href="#t4">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--royal)"><a class="ag-n" href="#t5" aria-label="Chapter 5: Seek &amp; pray">5</a><div class="ag-bk">Seek &amp; pray</div><h3>Pray for it, seek it first, leave all for it</h3><ul class="ag-chips"><li>Thy kingdom come</li><li>Seek ye first</li><li>The Father’s good pleasure</li><li>Leaving all</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Matt 6:10</span> <span class="ag-ref">Matt 6:33</span></div><a class="ag-go" href="#t5">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--gold)"><a class="ag-n" href="#t6" aria-label="Chapter 6: Taken &amp; given">6</a><div class="ag-bk">Taken &amp; given</div><h3>Taken from some, given to others</h3><ul class="ag-chips"><li>Given to a fruitful nation</li><li>Many from east and west</li><li>Children of the kingdom cast out</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Matt 21:43</span> <span class="ag-ref">Matt 8:11-12</span></div><a class="ag-go" href="#t6">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--royal)"><a class="ag-n" href="#t7" aria-label="Chapter 7: Keys &amp; thrones">7</a><div class="ag-bk">Keys &amp; thrones</div><h3>A kingdom appointed to the disciples</h3><ul class="ag-chips"><li>The keys</li><li>Twelve thrones</li><li>Eat and drink at my table</li><li>Places prepared</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Matt 16:19</span> <span class="ag-ref">Luke 22:29-30</span></div><a class="ag-go" href="#t7">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--gold)"><a class="ag-n" href="#t8" aria-label="Chapter 8: Yet to come">8</a><div class="ag-bk">Yet to come</div><h3>Coming in power and glory</h3><ul class="ag-chips"><li>Seen before death</li><li>Gospel to all nations</li><li>Nigh at hand</li><li>Inherit the kingdom</li><li>Drink it new</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Matt 25:34</span> <span class="ag-ref">Matt 26:29</span></div><a class="ag-go" href="#t8">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--royal)"><a class="ag-n" href="#t9" aria-label="Chapter 9: The King">9</a><div class="ag-bk">The King</div><h3>Jesus speaks of himself as King</h3><ul class="ag-chips"><li>City of the great King</li><li>The King shall answer</li><li>Thou sayest</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">John 18:37</span> <span class="ag-ref">Matt 25:40</span></div><a class="ag-go" href="#t9">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--gold)"><a class="ag-n" href="#t10" aria-label="Chapter 10: Other kingdoms">10</a><div class="ag-bk">Other kingdoms</div><h3>Satan’s kingdom and the nations’</h3><ul class="ag-chips"><li>Worship God only</li><li>A kingdom divided</li><li>Not so among you</li><li>Kingdom against kingdom</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Matt 12:25-26</span> <span class="ag-ref">Luke 22:25-26</span></div><a class="ag-go" href="#t10">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--royal)"><a class="ag-n" href="#t11" aria-label="Chapter 11: After the resurrection">11</a><div class="ag-bk">After the resurrection</div><h3>The risen King speaks</h3><ul class="ag-chips"><li>Not for you to know the times</li><li>Power over the nations</li><li>In my throne</li><li>Root of David</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Acts 1:7-8</span> <span class="ag-ref">Rev 3:21</span></div><a class="ag-go" href="#t11">Open this chapter →</a></div></div>
+</div>
+<div class="ag-band">“Fear not, little flock; for it is your Father’s good pleasure to give you the kingdom.” <span class="ag-r"><span class="ag-ref">Luke 12:32</span></span></div></section>
   <div id="themes"></div>
   <p class="empty" id="empty">No verses match. Clear the search or choose All.</p>
 
@@ -184,7 +250,7 @@ const BOOKS = [["all", "All"], ["Matthew", "Matthew"], ["Mark", "Mark"], ["Luke"
 let book = "all", query = "";
 
 /* glance tiles */
-$("#glance").innerHTML = [
+$("#stats").innerHTML = [
   [STATS.total, "verses of Jesus' words on the kingdom"],
   [STATS.withWord, "of them use the word kingdom"],
   [STATS.groups, "sayings and parables in 11 themes"],
@@ -202,7 +268,7 @@ $("#idx").innerHTML = "<tr><th>Book</th><th>References</th></tr>" +
 /* filter chips and jump menu */
 $("#books").innerHTML = BOOKS.map(([k, l]) => `<button class="chip" data-b="${k}" aria-pressed="${k === "all"}">${l}</button>`).join(" ");
 const SHORT = ["At hand", "Its nature", "Parables", "Who enters", "Seek & pray", "Taken & given", "Keys & thrones", "Yet to come", "The King", "Other kingdoms", "After the resurrection"];
-$("#chapters").innerHTML = DATA.map((s, i) => `<a href="#t${i + 1}" title="${esc(s.title)}"><span class="k">${i + 1}</span>${SHORT[i] || esc(s.title)}</a>`).join("") +
+$("#chapters").innerHTML = `<a href="#glance">✦ At a glance</a>` + DATA.map((s, i) => `<a href="#t${i + 1}" title="${esc(s.title)}"><span class="k">${i + 1}</span>${SHORT[i] || esc(s.title)}</a>`).join("") +
   `<a href="#glance-table">Names</a><a href="#index">Index</a><a href="#method">About</a>`;
 $("#chapters").addEventListener("click", e => {
   const a = e.target.closest("a"); if (!a) return;
@@ -262,6 +328,26 @@ $("#books").addEventListener("click", e => {
 });
 let timer;
 $("#q").addEventListener("input", e => { clearTimeout(timer); timer = setTimeout(() => { query = e.target.value; render(); }, 150); });
+/* At a glance: passages per theme, by book, counted from DATA */
+(function () {
+  const BK = [["Matthew", "Matthew"], ["Mark", "Mark"], ["Luke", "Luke"], ["John", "John"], ["risen", "Acts & Revelation"]];
+  $("#agc-key").innerHTML = BK.map(([k, l], j) => `<span><i class="agc-c${j + 1}"></i>${l}</span>`).join("");
+  const rows = DATA.map(s => BK.map(([k]) => s.groups.reduce((n, g) => n + g.v.filter(v => v.b === k).length, 0)));
+  const max = Math.max(...rows.map(r => r.reduce((a, b) => a + b, 0)));
+  $("#agc").innerHTML = rows.map((r, i) => {
+    const tot = r.reduce((a, b) => a + b, 0);
+    const parts = r.map((n, j) => n ? `<span class="agc-c${j + 1}" style="width:${(100 * n / max).toFixed(2)}%" title="${BK[j][1]}: ${n}"></span>` : "").join("");
+    const tip = BK.map(([, l], j) => r[j] ? `${l} ${r[j]}` : "").filter(Boolean).join(", ");
+    return `<a class="agc-row" href="#t${i + 1}" aria-label="${esc(DATA[i].title)}: ${tot} passages (${tip})"><span class="agc-l">${i + 1}. ${SHORT[i]}</span><span class="agc-bar">${parts}</span><span class="agc-n">${tot}</span></a>`;
+  }).join("");
+})();
+/* links in the glance page reach a theme even when a filter hides it */
+document.getElementById("glance").addEventListener("click", e => {
+  const a = e.target.closest("a[href^='#t']"); if (!a || document.querySelector(a.getAttribute("href"))) return;
+  book = "all"; query = ""; $("#q").value = "";
+  document.querySelectorAll("#books .chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.b === "all"));
+  render();
+});
 render();
 spy();
 </script>

@@ -304,6 +304,41 @@ input[type=range]{width:100%;accent-color:var(--ink)}
 footer{padding:36px 0 60px;text-align:center;color:var(--muted);font-size:.85rem}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:8px 16px;border-radius:99px;font-size:.85rem;opacity:0;transition:.3s;pointer-events:none}
 .toast.show{opacity:1}
+.ag{--ag-card:var(--paper);--ag-ink:var(--ink);--ag-muted:var(--muted);--ag-line:var(--line);--ag-accent:var(--heaven);--ag-soft:var(--bg);--ag-bg:var(--bg)}
+/* At a glance: the whole study on one page */
+.ag{--ag-gap:22px;--ag-c1:#7a3e1d;--ag-c2:#2d5f93;--ag-c3:#2f7a4b;--ag-c4:#8a6a12;--ag-c5:#6b4f94;--ag-c6:#a2362f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}}
+[data-theme="dark"] .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}
+.ag .ag-ref{display:inline-block;border:1px solid var(--ag-line);border-radius:999px;padding:1px 9px;font-size:.85em;font-weight:600;color:var(--ag-accent);background:var(--ag-card);white-space:nowrap}
+.ag .ag-k{font:600 12.5px/1.3 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ag-accent);text-align:center;margin:6px 0 4px}
+.ag .ag-t{text-align:center;margin:0 auto 6px;max-width:30ch;text-wrap:balance}
+.ag .ag-v{text-align:center;font-style:italic;color:var(--ag-muted);max-width:62ch;margin:0 auto 18px;line-height:1.55}
+.ag .ag-v .ag-r{font-style:normal;white-space:nowrap}
+.ag .ag-band{background:var(--ag-ink);color:var(--ag-card);border-radius:14px;padding:14px 18px;text-align:center;line-height:1.5}
+.ag .ag-band b{color:var(--ag-band-hi,var(--ag-card))}
+.ag .ag-band .ag-r, .ag .ag-band .ag-r *{color:inherit}
+.ag .ag-band button,.ag .ag-band a{background:transparent!important;color:inherit!important;border:1px solid currentColor!important;opacity:.9}
+.ag .ag-band .ag-ref{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.ag .ag-flow{position:relative;display:grid;gap:var(--ag-gap);margin:var(--ag-gap) 0}
+.ag .ag-flow::before{content:"";position:absolute;left:50%;top:-22px;bottom:-22px;width:2px;background:var(--ag-line);transform:translateX(-1px)}
+.ag .ag-b{position:relative;background:var(--ag-card);border:1px solid var(--ag-line);border-top:4px solid var(--c,var(--ag-accent));border-radius:14px;padding:16px 18px 14px 18px}
+.ag .ag-n{position:absolute;top:-15px;left:-12px;width:30px;height:30px;border-radius:50%;background:var(--c,var(--ag-accent));color:var(--ag-card);display:flex;align-items:center;justify-content:center;font:700 14px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 0 4px var(--ag-bg,var(--ag-card))}
+.ag .ag-bk{font:600 11.5px/1.3 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--ag-accent));margin:2px 0 4px}
+.ag .ag-b h3{margin:0 0 4px;font-size:1.2em;line-height:1.25;color:var(--ag-ink)}
+.ag .ag-b p{margin:0 0 8px;color:var(--ag-ink);line-height:1.5}
+.ag .ag-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px;padding:0;list-style:none}
+.ag .ag-chips li{border:1px solid var(--ag-line);background:var(--ag-soft);color:var(--ag-ink);border-radius:999px;padding:3px 10px;font-size:.86em;line-height:1.4}
+.ag .ag-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:8px 0}
+.ag .ag-col{border:1px solid var(--ag-line);border-top:4px solid var(--cc,var(--c,var(--ag-accent)));border-radius:12px;padding:12px 14px;background:var(--ag-soft)}
+.ag .ag-col h4{margin:0 0 2px;font-size:1.05em;color:var(--cc,var(--ag-ink))}
+.ag .ag-col .ag-sub{font-size:.88em;color:var(--ag-muted);margin:0 0 6px}
+.ag .ag-col .ag-chips li{background:var(--ag-card)}
+.ag .ag-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;justify-content:space-between;margin-top:4px}
+.ag .ag-refs{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.9em}
+.ag .ag-go{font:600 13px/1.3 system-ui,sans-serif;color:var(--c,var(--ag-accent));text-decoration:none;white-space:nowrap}
+.ag .ag-go:hover{text-decoration:underline}
+.ag .ag-n:focus-visible,.ag .ag-go:focus-visible{outline:2px solid var(--ag-accent);outline-offset:2px}
+@media (max-width:600px){.ag .ag-flow::before{left:16px}.ag .ag-n{left:-8px}}
 </style>
 </head>
 <body>
@@ -320,6 +355,7 @@ footer{padding:36px 0 60px;text-align:center;color:var(--muted);font-size:.85rem
 </header>
 
 <nav class="top"><div class="wrap">
+  <a href="#glance"><b>✦ At a glance</b></a>
   <a href="#story"><b>Study Journey</b></a>
   <a href="#explorer">Combination Explorer</a>
   <a href="#larkin">Larkin's Chart</a>
@@ -349,6 +385,19 @@ footer{padding:36px 0 60px;text-align:center;color:var(--muted);font-size:.85rem
 </div></nav>
 
 
+<section id="glance" class="ag"><div class="wrap"><p class="ag-k">The whole study on one page · ఒక్క చూపులో</p>
+<h2 class="ag-t">From dust to the heavenly places</h2>
+<p class="ag-v">“And the LORD God formed man of the dust of the ground, and breathed into his nostrils the breath of life; and man became a living soul.” <span class="ag-r"><span class="ag-ref">Gen 2:7</span></span></p>
+<div class="ag-flow">
+<div class="ag-b" style="--c:var(--earth)"><a class="ag-n" href="#story" aria-label="Chapter 1: Study journey">1</a><div class="ag-bk">Study journey</div><h3>One story in twelve chapters</h3><ul class="ag-chips"><li>Formed for two realms</li><li>The gates opened</li><li>Two men, two origins</li><li>Born from above</li><li>Who sits on the throne</li><li>War at the gates</li><li>Seated in heavenly places</li><li>Impact into the heavenlies</li><li>Treasure in clay</li><li>Sowing for eternity</li><li>From tent to house</li><li>The whole man preserved</li></ul><div class="ag-foot"><span></span><a class="ag-go" href="#story">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--soul)"><a class="ag-n" href="#larkin" aria-label="Chapter 2: The three circles">2</a><div class="ag-bk">The three circles</div><h3>Spirit, soul and body</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--body)"><h4>Body</h4><p class="ag-sub">Meets the world through five gates</p></div><div class="ag-col" style="--cc:var(--soul)"><h4>Soul</h4><p class="ag-sub">Imagination, conscience, memory, reason, affections</p></div><div class="ag-col" style="--cc:var(--spirit)"><h4>Spirit</h4><p class="ag-sub">Faith, hope, reverence, prayer, worship</p></div></div><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">1 Thess 5:23</span> <span class="ag-ref">Heb 4:12</span></div><a class="ag-go" href="#larkin">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--spirit)"><a class="ag-n" href="#throne" aria-label="Chapter 3: Who rules the man?">3</a><div class="ag-bk">Who rules the man?</div><h3>Natural, spiritual and carnal</h3><p>Whichever part sits on top governs the other two. The order is a teaching model built from these passages.</p><ul class="ag-chips"><li>The natural man</li><li>The spiritual man</li><li>The carnal man</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">1 Cor 2:14-15</span> <span class="ag-ref">1 Cor 3:1-3</span></div><a class="ag-go" href="#throne">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--heaven)"><a class="ag-n" href="#salvation" aria-label="Chapter 4: Salvation in three tenses">4</a><div class="ag-bk">Salvation in three tenses</div><h3>Has been, being, shall be saved</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--spirit)"><h4>Spirit</h4><p class="ag-sub">Past: regenerated</p><div class="ag-refs"><span class="ag-ref">John 3:6</span></div></div><div class="ag-col" style="--cc:var(--soul)"><h4>Soul</h4><p class="ag-sub">Present: being transformed</p><div class="ag-refs"><span class="ag-ref">Jas 1:21</span></div></div><div class="ag-col" style="--cc:var(--body)"><h4>Body</h4><p class="ag-sub">Future: redeemed</p><div class="ag-refs"><span class="ag-ref">Rom 8:23</span></div></div></div><div class="ag-foot"><span></span><a class="ag-go" href="#salvation">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--body)"><a class="ag-n" href="#adams" aria-label="Chapter 5: Two Adams at the gates">5</a><div class="ag-bk">Two Adams at the gates</div><h3>Eve fell where Christ stood</h3><ul class="ag-chips"><li>The lust of the flesh</li><li>The lust of the eyes</li><li>The pride of life</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">1 John 2:16</span> <span class="ag-ref">Gen 3:6</span></div><a class="ag-go" href="#adams">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--heaven)"><a class="ag-n" href="#realms" aria-label="Chapter 6: More to see">6</a><div class="ag-bk">More to see</div><h3>Pictures across Scripture</h3><ul class="ag-chips"><li>Candle of the LORD</li><li>Death and resurrection</li><li>The Man Christ Jesus</li><li>Four states of man</li><li>Dividing asunder</li><li>Heaven and earth</li><li>Mansoul</li><li>Waters rising</li><li>Earthen vessels</li><li>Tent and house</li><li>Two fields</li><li>Glory to glory</li><li>Breath of God</li></ul><div class="ag-foot"><span></span><a class="ag-go" href="#realms">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--earth)"><a class="ag-n" href="#views" aria-label="Chapter 7: Other perspectives">7</a><div class="ag-bk">Other perspectives</div><h3>Views from outside Scripture, kept separate</h3><div class="ag-foot"><span></span><a class="ag-go" href="#views">Open this chapter →</a></div></div>
+</div>
+<div class="ag-band">“And the very God of peace sanctify you wholly; and I pray God your whole spirit and soul and body be preserved blameless unto the coming of our Lord Jesus Christ.” <span class="ag-r"><span class="ag-ref">1 Thess 5:23</span></span></div></div></section>
 <!-- ================= STORY ================= -->
 <section id="story"><div class="wrap">
   <h2>Study Journey: From Dust to the Heavenly Places</h2>

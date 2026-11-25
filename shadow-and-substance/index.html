@@ -195,6 +195,41 @@ header .htext{flex:1 1 520px}
 .langsw button{border:0;background:none;padding:7px 13px;font-size:13px;font-weight:600}
 .langsw button.on{background:var(--pro);color:#fff}
 .langsw .k2{display:none}
+.ag{--ag-card:var(--card);--ag-ink:var(--ink);--ag-muted:var(--muted);--ag-line:var(--line);--ag-accent:var(--eter);--ag-soft:var(--soft);--ag-bg:var(--bg)}
+/* At a glance: the whole study on one page */
+.ag{--ag-gap:22px;--ag-c1:#7a3e1d;--ag-c2:#2d5f93;--ag-c3:#2f7a4b;--ag-c4:#8a6a12;--ag-c5:#6b4f94;--ag-c6:#a2362f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}}
+[data-theme="dark"] .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}
+.ag .ag-ref{display:inline-block;border:1px solid var(--ag-line);border-radius:999px;padding:1px 9px;font-size:.85em;font-weight:600;color:var(--ag-accent);background:var(--ag-card);white-space:nowrap}
+.ag .ag-k{font:600 12.5px/1.3 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ag-accent);text-align:center;margin:6px 0 4px}
+.ag .ag-t{text-align:center;margin:0 auto 6px;max-width:30ch;text-wrap:balance}
+.ag .ag-v{text-align:center;font-style:italic;color:var(--ag-muted);max-width:62ch;margin:0 auto 18px;line-height:1.55}
+.ag .ag-v .ag-r{font-style:normal;white-space:nowrap}
+.ag .ag-band{background:var(--ag-ink);color:var(--ag-card);border-radius:14px;padding:14px 18px;text-align:center;line-height:1.5}
+.ag .ag-band b{color:var(--ag-band-hi,var(--ag-card))}
+.ag .ag-band .ag-r, .ag .ag-band .ag-r *{color:inherit}
+.ag .ag-band button,.ag .ag-band a{background:transparent!important;color:inherit!important;border:1px solid currentColor!important;opacity:.9}
+.ag .ag-band .ag-ref{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.ag .ag-flow{position:relative;display:grid;gap:var(--ag-gap);margin:var(--ag-gap) 0}
+.ag .ag-flow::before{content:"";position:absolute;left:50%;top:-22px;bottom:-22px;width:2px;background:var(--ag-line);transform:translateX(-1px)}
+.ag .ag-b{position:relative;background:var(--ag-card);border:1px solid var(--ag-line);border-top:4px solid var(--c,var(--ag-accent));border-radius:14px;padding:16px 18px 14px 18px}
+.ag .ag-n{position:absolute;top:-15px;left:-12px;width:30px;height:30px;border-radius:50%;background:var(--c,var(--ag-accent));color:var(--ag-card);display:flex;align-items:center;justify-content:center;font:700 14px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 0 4px var(--ag-bg,var(--ag-card))}
+.ag .ag-bk{font:600 11.5px/1.3 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--ag-accent));margin:2px 0 4px}
+.ag .ag-b h3{margin:0 0 4px;font-size:1.2em;line-height:1.25;color:var(--ag-ink)}
+.ag .ag-b p{margin:0 0 8px;color:var(--ag-ink);line-height:1.5}
+.ag .ag-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px;padding:0;list-style:none}
+.ag .ag-chips li{border:1px solid var(--ag-line);background:var(--ag-soft);color:var(--ag-ink);border-radius:999px;padding:3px 10px;font-size:.86em;line-height:1.4}
+.ag .ag-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:8px 0}
+.ag .ag-col{border:1px solid var(--ag-line);border-top:4px solid var(--cc,var(--c,var(--ag-accent)));border-radius:12px;padding:12px 14px;background:var(--ag-soft)}
+.ag .ag-col h4{margin:0 0 2px;font-size:1.05em;color:var(--cc,var(--ag-ink))}
+.ag .ag-col .ag-sub{font-size:.88em;color:var(--ag-muted);margin:0 0 6px}
+.ag .ag-col .ag-chips li{background:var(--ag-card)}
+.ag .ag-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;justify-content:space-between;margin-top:4px}
+.ag .ag-refs{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.9em}
+.ag .ag-go{font:600 13px/1.3 system-ui,sans-serif;color:var(--c,var(--ag-accent));text-decoration:none;white-space:nowrap}
+.ag .ag-go:hover{text-decoration:underline}
+.ag .ag-n:focus-visible,.ag .ag-go:focus-visible{outline:2px solid var(--ag-accent);outline-offset:2px}
+@media (max-width:600px){.ag .ag-flow::before{left:16px}.ag .ag-n{left:-8px}}
 </style>
 </head>
 <body class="l-both lang-both">
@@ -205,7 +240,21 @@ header .htext{flex:1 1 520px}
 </header>
 <nav class="tabs"><div class="in"><div class="tabrow"></div><div class="lens" aria-label="Lens"></div></div></nav>
 <main>
-  <section class="view" id="v-offices"><p class="intro" data-intro="offices"></p><div class="diagram" id="diagram"></div><div class="christbar" id="christbar"></div><div class="colfilter" id="offfilter"></div><div class="cols" id="cols"></div></section>
+  <section class="view ag" id="v-glance"><p class="ag-k">The whole study on one page · ఒక్క చూపులో</p>
+<h2 class="ag-t">The office that fell, the Christ it pointed to</h2>
+<p class="ag-v">“Which are a shadow of things to come; but the body is of Christ.” <span class="ag-r"><span class="ag-ref">Col 2:17</span></span></p>
+<div class="ag-flow">
+<div class="ag-b" style="--c:var(--christ)"><a class="ag-n" href="#offices" aria-label="Chapter 1: Three offices">1</a><div class="ag-bk">Three offices</div><h3>Kept apart in Israel, joined in Christ</h3><p>Only Melchizedek and the promised Branch join offices with God’s approval.</p><div class="ag-cols"><div class="ag-col" style="--cc:var(--pro)"><h4>Prophet</h4><p class="ag-sub">Spoke for God to the people</p></div><div class="ag-col" style="--cc:var(--pri)"><h4>Priest</h4><p class="ag-sub">Went to God for the people</p></div><div class="ag-col" style="--cc:var(--jud)"><h4>King</h4><p class="ag-sub">Ruled the people under God</p></div></div><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Gen 14:18</span> <span class="ag-ref">Zech 6:13</span></div><a class="ag-go" href="#offices">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--earth)"><a class="ag-n" href="#timeline" aria-label="Chapter 2: Timeline">2</a><div class="ag-bk">Timeline</div><h3>Samuel to Malachi on one axis</h3><p>As the earthly throne narrows and falls, the promises of a King, Priest and Prophet who will not fail grow clearer.</p><ul class="ag-chips"><li>Temporal events above</li><li>Eternal promises below</li><li>Gold dot: a type the New Testament names</li></ul><div class="ag-foot"><span></span><a class="ag-go" href="#timeline">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--eter)"><a class="ag-n" href="#types" aria-label="Chapter 3: Types of Christ">3</a><div class="ag-bk">Types of Christ</div><h3>25 types, each from a New Testament text</h3><ul class="ag-chips"><li>Adam and the last Adam</li><li>The Passover lamb</li><li>The brass serpent</li><li>Melchizedek</li><li>Manna</li><li>The smitten rock</li><li>Sabbath rest</li><li>Noah’s ark</li><li>Isaac offered</li><li>The tabernacle</li><li>The high priest</li><li>The veil</li><li>The Day of Atonement</li><li>The temple</li><li>Jonah</li><li>The Prophet like Moses</li><li>Jacob’s ladder</li><li>The rejected cornerstone</li><li>Bridegroom and bride</li><li>Greater than Solomon</li><li>David the shepherd-king</li><li>The blood of the covenant</li><li>The mercy seat</li><li>The end of the sacrifices</li><li>Israel, God’s son</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">1 Cor 5:7</span> <span class="ag-ref">John 3:14</span></div><a class="ag-go" href="#types">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--earth)"><a class="ag-n" href="#contrast" aria-label="Chapter 4: Two kingdoms">4</a><div class="ag-bk">Two kingdoms</div><h3>As the earthly throne fell, the eternal promises grew</h3><ul class="ag-chips"><li>Kingdom</li><li>Throne</li><li>Prophet’s word</li><li>Priesthood</li><li>Sacrifice</li><li>Temple</li><li>Covenant</li><li>Jerusalem</li><li>Rest and land</li><li>Anointing</li></ul><div class="ag-foot"><span></span><a class="ag-go" href="#contrast">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--isr)"><a class="ag-n" href="#metro" aria-label="Chapter 5: All lines to Christ">5</a><div class="ag-bk">All lines to Christ</div><h3>Every thread runs to one station</h3><ul class="ag-chips"><li>Objects</li><li>Offices</li><li>People</li><li>Promises</li><li>→ Christ</li><li>→ The Church</li><li>→ The final gathering</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Luke 24:27</span></div><a class="ag-go" href="#metro">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--eter)"><a class="ag-n" href="#seed" aria-label="Chapter 6: The Seed">6</a><div class="ag-bk">The Seed</div><h3>Narrowed to one, opened to all</h3><ul class="ag-chips"><li>Adam</li><li>Seth</li><li>Noah</li><li>Shem</li><li>Abraham</li><li>Isaac</li><li>Jacob</li><li>Judah</li><li>David</li><li>Solomon and Nathan</li><li>Zerubbabel</li><li>Christ</li><li>Every nation and tongue</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Gal 3:16</span> <span class="ag-ref">Gal 3:29</span></div><a class="ag-go" href="#seed">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--good)"><a class="ag-n" href="#restore" aria-label="Chapter 7: Restoration">7</a><div class="ag-bk">Restoration</div><h3>What sin broke, Christ repairs: already and not yet</h3><ul class="ag-chips"><li>Tongues</li><li>Jew and Gentile</li><li>Israel and Judah</li><li>God’s presence</li><li>Eden and the tree of life</li><li>The curse</li><li>Death</li><li>Dominion</li><li>Sonship</li><li>Man and woman</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Rev 22:3</span></div><a class="ag-go" href="#restore">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--christ)"><a class="ag-n" href="#gather" aria-label="Chapter 8: Final gathering">8</a><div class="ag-bk">Final gathering</div><h3>All things gathered in Christ</h3><ul class="ag-chips"><li>All creation made new</li><li>Things in heaven and on earth</li><li>Every nation, tribe and tongue</li><li>Jew and Gentile, one new man</li><li>The Church, His body and bride</li><li>Christ the Head</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Col 1:18</span></div><a class="ag-go" href="#gather">Open this chapter →</a></div></div>
+</div>
+<div class="ag-band">“That in the dispensation of the fulness of times he might gather together in one all things in Christ, both which are in heaven, and which are on earth” <span class="ag-r"><span class="ag-ref">Eph 1:10</span></span></div></section>
+<section class="view" id="v-offices"><p class="intro" data-intro="offices"></p><div class="diagram" id="diagram"></div><div class="christbar" id="christbar"></div><div class="colfilter" id="offfilter"></div><div class="cols" id="cols"></div></section>
   <section class="view" id="v-timeline"><p class="intro" data-intro="timeline"></p><div class="legend" id="legend"></div><div class="toolbar"><span id="zoomlab"></span><button id="zout">−</button><button id="zin">+</button><span id="zlab"></span></div><div class="tlwrap" id="tlwrap"><div class="tl" id="tl"></div></div><p class="tlnote" id="tlnote"></p></section>
   <section class="view" id="v-types"><p class="intro" data-intro="types"></p><div class="colfilter" id="typefilter"></div><div class="grid" id="tgrid"></div></section>
   <section class="view" id="v-contrast"><p class="intro" data-intro="contrast"></p><div class="chartbox" id="chartbox"></div><div class="ctable" id="ctable"></div></section>
@@ -937,7 +986,7 @@ const INTRO_EN={
  restore:"What sin broke, Christ is putting back together. Each row follows one break through to its repair. The green “already” cell is what Christ has begun in the Church now; the gold “not yet” cell waits for His return.",
  gather:"“That in the dispensation of the fulness of times he might gather together in one all things in Christ, both which are in heaven, and which are on earth” (Eph 1:10). Tap a ring."
 };
-const TABS=[["offices","Three offices","మూడు పదవులు"],["timeline","Timeline","కాలరేఖ"],["types","Types of Christ","క్రీస్తు సాదృశ్యములు"],["contrast","Two kingdoms","రెండు రాజ్యములు"],["metro","All lines to Christ","క్రీస్తులో కలిసే మార్గములు"],["seed","The Seed","వాగ్దాన సంతానము"],["restore","Restoration","పునరుద్ధరణ"],["gather","Final gathering","అంతిమ సమకూర్పు"]];
+const TABS=[["glance","✦ At a glance","✦ ఒక్క చూపులో"],["offices","Three offices","మూడు పదవులు"],["timeline","Timeline","కాలరేఖ"],["types","Types of Christ","క్రీస్తు సాదృశ్యములు"],["contrast","Two kingdoms","రెండు రాజ్యములు"],["metro","All lines to Christ","క్రీస్తులో కలిసే మార్గములు"],["seed","The Seed","వాగ్దాన సంతానము"],["restore","Restoration","పునరుద్ధరణ"],["gather","Final gathering","అంతిమ సమకూర్పు"]];
 const LENS=[["earthly","Earthly","భూలోకము"],["both","Both","రెండూ"],["eternal","Eternal","నిత్యము"]];
 const LEG=[["var(--uni)","United kingdom","ఐక్య రాజ్యము",""],["var(--isr)","Israel (north)","ఇశ్రాయేలు (ఉత్తర)",""],["var(--jud)","Judah (south)","యూదా (దక్షిణ)",""],["var(--pro)","Prophet","ప్రవక్త",""],["var(--pri)","Priest","యాజకుడు",""],["var(--eter)","Eternal promise","నిత్య వాగ్దానము",""],["#f1c94a","NT-named type","క్రొ.ని. పేర్కొనిన సాదృశ్యము","50%"]];
 function two(en,te,cls){ // for tab-like buttons: both = en + small te
@@ -1216,9 +1265,9 @@ function openChrist(o){track(openChrist,o);
  show(hd,bd)}
 
 /* ================= ROUTING, LENS, LANGUAGE ================= */
-const VIEWS=["offices","timeline","types","contrast","metro","seed","restore","gather"];
-let CUR="offices";
-function go(v){if(!VIEWS.includes(v))v="offices";CUR=v;
+const VIEWS=["glance","offices","timeline","types","contrast","metro","seed","restore","gather"];
+let CUR="glance";
+function go(v){if(!VIEWS.includes(v))v="glance";CUR=v;
  document.querySelectorAll(".view").forEach(s=>s.classList.toggle("on",s.id==="v-"+v));
  document.querySelectorAll(".tabrow button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));
  if(v==="timeline")renderTimeline();
@@ -1233,7 +1282,7 @@ function setLang(l){LANG=l;document.body.classList.remove("lang-en","lang-both",
  renderAll();if(CUR==="timeline")renderTimeline();if(lastOpen&&$("#sheet").classList.contains("on"))lastOpen[0](lastOpen[1])}
 document.querySelectorAll(".langsw button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
 try{LENSV=localStorage.getItem("ss-lens")||"both";LANG=localStorage.getItem("ss-lang")||"both"}catch(e){}
-CUR=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):"offices";
+CUR=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):"glance";
 setLang(LANG);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{if(CUR==="timeline")renderTimeline();renderSeed()});
 

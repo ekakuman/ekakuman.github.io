@@ -130,6 +130,41 @@ details.vv .v{margin-top:6px}
 .count{text-align:center;color:var(--faint);font-size:13px;margin-bottom:10px}
 footer{color:var(--faint);font-size:12.5px;text-align:center;margin-top:40px;line-height:1.7}
 footer a{color:var(--dim)}
+.ag{--ag-card:#151d38;--ag-ink:var(--ink);--ag-muted:var(--dim);--ag-line:var(--line);--ag-accent:var(--gold);--ag-soft:rgba(255,255,255,.06);--ag-bg:var(--night);--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}
+/* At a glance: the whole study on one page */
+.ag{--ag-gap:22px;--ag-c1:#7a3e1d;--ag-c2:#2d5f93;--ag-c3:#2f7a4b;--ag-c4:#8a6a12;--ag-c5:#6b4f94;--ag-c6:#a2362f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}}
+[data-theme="dark"] .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}
+.ag .ag-ref{display:inline-block;border:1px solid var(--ag-line);border-radius:999px;padding:1px 9px;font-size:.85em;font-weight:600;color:var(--ag-accent);background:var(--ag-card);white-space:nowrap}
+.ag .ag-k{font:600 12.5px/1.3 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ag-accent);text-align:center;margin:6px 0 4px}
+.ag .ag-t{text-align:center;margin:0 auto 6px;max-width:30ch;text-wrap:balance}
+.ag .ag-v{text-align:center;font-style:italic;color:var(--ag-muted);max-width:62ch;margin:0 auto 18px;line-height:1.55}
+.ag .ag-v .ag-r{font-style:normal;white-space:nowrap}
+.ag .ag-band{background:var(--ag-ink);color:var(--ag-card);border-radius:14px;padding:14px 18px;text-align:center;line-height:1.5}
+.ag .ag-band b{color:var(--ag-band-hi,var(--ag-card))}
+.ag .ag-band .ag-r, .ag .ag-band .ag-r *{color:inherit}
+.ag .ag-band button,.ag .ag-band a{background:transparent!important;color:inherit!important;border:1px solid currentColor!important;opacity:.9}
+.ag .ag-band .ag-ref{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.ag .ag-flow{position:relative;display:grid;gap:var(--ag-gap);margin:var(--ag-gap) 0}
+.ag .ag-flow::before{content:"";position:absolute;left:50%;top:-22px;bottom:-22px;width:2px;background:var(--ag-line);transform:translateX(-1px)}
+.ag .ag-b{position:relative;background:var(--ag-card);border:1px solid var(--ag-line);border-top:4px solid var(--c,var(--ag-accent));border-radius:14px;padding:16px 18px 14px 18px}
+.ag .ag-n{position:absolute;top:-15px;left:-12px;width:30px;height:30px;border-radius:50%;background:var(--c,var(--ag-accent));color:var(--ag-card);display:flex;align-items:center;justify-content:center;font:700 14px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 0 4px var(--ag-bg,var(--ag-card))}
+.ag .ag-bk{font:600 11.5px/1.3 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--ag-accent));margin:2px 0 4px}
+.ag .ag-b h3{margin:0 0 4px;font-size:1.2em;line-height:1.25;color:var(--ag-ink)}
+.ag .ag-b p{margin:0 0 8px;color:var(--ag-ink);line-height:1.5}
+.ag .ag-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px;padding:0;list-style:none}
+.ag .ag-chips li{border:1px solid var(--ag-line);background:var(--ag-soft);color:var(--ag-ink);border-radius:999px;padding:3px 10px;font-size:.86em;line-height:1.4}
+.ag .ag-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:8px 0}
+.ag .ag-col{border:1px solid var(--ag-line);border-top:4px solid var(--cc,var(--c,var(--ag-accent)));border-radius:12px;padding:12px 14px;background:var(--ag-soft)}
+.ag .ag-col h4{margin:0 0 2px;font-size:1.05em;color:var(--cc,var(--ag-ink))}
+.ag .ag-col .ag-sub{font-size:.88em;color:var(--ag-muted);margin:0 0 6px}
+.ag .ag-col .ag-chips li{background:var(--ag-card)}
+.ag .ag-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;justify-content:space-between;margin-top:4px}
+.ag .ag-refs{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.9em}
+.ag .ag-go{font:600 13px/1.3 system-ui,sans-serif;color:var(--c,var(--ag-accent));text-decoration:none;white-space:nowrap}
+.ag .ag-go:hover{text-decoration:underline}
+.ag .ag-n:focus-visible,.ag .ag-go:focus-visible{outline:2px solid var(--ag-accent);outline-offset:2px}
+@media (max-width:600px){.ag .ag-flow::before{left:16px}.ag .ag-n{left:-8px}}
 </style>
 </head>
 <body>
@@ -144,12 +179,24 @@ footer a{color:var(--dim)}
   </div>
 </header>
 <nav class="tabs" id="tabs">
+  <a href="#glance" data-v="glance">✦ At a glance</a>
   <a href="#cosmos" data-v="cosmos">Cosmos map</a>
   <a href="#timeline" data-v="timeline">Timeline</a>
   <a href="#themes" data-v="themes">Study by theme</a>
   <a href="#passages" data-v="passages">All passages</a>
 </nav>
 
+<section class="view ag" id="v-glance"><p class="ag-k">The whole study on one page · ఒక్క చూపులో</p>
+<h2 class="ag-t">The host of heaven, sent and fallen</h2>
+<p class="ag-v">“Are they not all ministering spirits, sent forth to minister for them who shall be heirs of salvation?” <span class="ag-r"><span class="ag-ref">Heb 1:14</span></span></p>
+<div class="ag-flow">
+<div class="ag-b" style="--c:var(--ag-c4)"><a class="ag-n" href="#cosmos" aria-label="Chapter 1: Cosmos map">1</a><div class="ag-bk">Cosmos map</div><h3>Four levels, one throne</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--ag-c4)"><h4>Heaven</h4><ul class="ag-chips"><li>The throne of God</li><li>Seraphim</li><li>Cherubim and living creatures</li><li>Angels of the presence</li><li>Michael and the armies</li><li>Gabriel the messenger</li><li>The innumerable host</li><li>The heavenly council</li></ul></div><div class="ag-col" style="--cc:var(--ag-c5)"><h4>The heavenly places</h4><ul class="ag-chips"><li>Thrones, dominions, principalities, powers</li><li>The watchers</li><li>The conflict</li><li>Satan, the adversary</li><li>The princes of Persia and Grecia</li></ul></div><div class="ag-col" style="--cc:var(--ag-c3)"><h4>Earth</h4><ul class="ag-chips"><li>The nations</li><li>Israel and Jerusalem</li><li>God’s people</li><li>The church</li><li>Jacob’s ladder</li></ul></div><div class="ag-col" style="--cc:var(--ag-c6)"><h4>Below</h4><ul class="ag-chips"><li>The bottomless pit</li><li>Chains of darkness</li><li>The lake of fire</li></ul></div></div><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Isa 6:1-3</span> <span class="ag-ref">Eph 6:12</span></div><a class="ag-go" href="#cosmos">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--ag-c2)"><a class="ag-n" href="#cosmos" aria-label="Chapter 2: Influence lines">2</a><div class="ag-bk">Influence lines</div><h3>Eleven ways heaven touches earth</h3><ul class="ag-chips"><li>Worship rises</li><li>Prayers rise as incense</li><li>Sent to minister and protect</li><li>Messages and understanding</li><li>Judgments on the nations</li><li>The most High rules</li><li>Resistance, 21 days</li><li>Deception of the nations</li><li>Accusation day and night</li><li>Cast down</li><li>Bound 1,000 years</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Rev 8:3-4</span> <span class="ag-ref">Dan 10:13</span></div><a class="ag-go" href="#cosmos">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--ag-c1)"><a class="ag-n" href="#timeline" aria-label="Chapter 3: Timeline">3</a><div class="ag-bk">Timeline</div><h3>63 appearances, creation to the New Jerusalem</h3><p>Holy angels, the Angel of the LORD, and fallen angels, in the order Scripture tells them.</p><ul class="ag-chips"><li>Creation and Fall</li><li>Patriarchs</li><li>Exodus and Wilderness</li><li>Conquest and Judges</li><li>Kingdom</li><li>Prophets and Exile</li><li>Return</li><li>Christ</li><li>The Church</li><li>The End</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Job 38:4-7</span> <span class="ag-ref">Rev 21:12</span></div><a class="ag-go" href="#timeline">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--ag-c3)"><a class="ag-n" href="#themes" aria-label="Chapter 4: Study by theme">4</a><div class="ag-bk">Study by theme</div><h3>Ten themes, Torah to New Testament</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--ag-c4)"><h4>Who they are</h4><ul class="ag-chips"><li>What angels are</li><li>Orders and ranks</li><li>Named angels and the Angel of the LORD</li></ul></div><div class="ag-col" style="--cc:var(--ag-c2)"><h4>What they do</h4><ul class="ag-chips"><li>In heaven: worship and council</li><li>Messengers</li><li>Angels and the nations</li><li>Among God’s people</li></ul></div><div class="ag-col" style="--cc:var(--ag-c3)"><h4>Christ and the end</h4><ul class="ag-chips"><li>Angels and Christ</li><li>At the end of the age</li></ul></div><div class="ag-col" style="--cc:var(--ag-c6)"><h4>The fallen</h4><ul class="ag-chips"><li>Satan, the angels that sinned, and devils</li></ul></div></div><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Heb 1:6</span> <span class="ag-ref">Jude 1:6</span></div><a class="ag-go" href="#themes">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--ag-c5)"><a class="ag-n" href="#passages" aria-label="Chapter 5: All passages">5</a><div class="ag-bk">All passages</div><h3>285 passages in canonical order</h3><ul class="ag-chips"><li>Torah</li><li>Prophets</li><li>Writings</li><li>New Testament</li></ul><div class="ag-foot"><span></span><a class="ag-go" href="#passages">Open this chapter →</a></div></div>
+</div>
+<div class="ag-band">“Bless the LORD, ye his angels, that excel in strength, that do his commandments, hearkening unto the voice of his word.” <span class="ag-r"><span class="ag-ref">Ps 103:20</span></span></div></section>
 <section class="view" id="v-cosmos">
   <p class="lead">Tap any part of the picture to read what Scripture says about it. The faint lines show how the heavenly realm touches the earth; tap or hover a box to light up its own lines.</p>
   <div class="controls"><div class="seg" id="flowtoggle"><button class="on" data-f="1">Show influence lines</button><button data-f="0">Hide lines</button></div></div>
@@ -215,8 +262,8 @@ try{ if(localStorage.getItem('ang-tel')==='0') setTel(false) }catch(e){}
 
 /* tabs */
 function route(){
-  const h = (location.hash||'#cosmos').slice(1);
-  const v = ['cosmos','timeline','themes','passages'].includes(h) ? h : 'cosmos';
+  const h = (location.hash||'#glance').slice(1);
+  const v = ['glance','cosmos','timeline','themes','passages'].includes(h) ? h : 'glance';
   document.querySelectorAll('section.view').forEach(s=>s.classList.toggle('on', s.id==='v-'+v));
   document.querySelectorAll('#tabs a').forEach(a=>a.classList.toggle('on', a.dataset.v===v));
   if(v==='cosmos') requestAnimationFrame(drawFlows);

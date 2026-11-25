@@ -259,7 +259,42 @@
         #poster { scroll-margin-top: 64px; }
         @media (max-width: 600px) { nav.chapters .in { padding: 10px 1rem; } }
         .no-results { text-align: center; font-size: 1.2rem; color: var(--text-muted); grid-column: 1 / -1; padding: 2rem; }
-    </style>
+    .ag{--ag-card:var(--card-bg);--ag-ink:var(--text-main);--ag-muted:var(--text-muted);--ag-line:var(--input-border);--ag-accent:var(--text-main);--ag-soft:var(--scripture-bg);--ag-bg:var(--bg)}
+/* At a glance: the whole study on one page */
+.ag{--ag-gap:22px;--ag-c1:#7a3e1d;--ag-c2:#2d5f93;--ag-c3:#2f7a4b;--ag-c4:#8a6a12;--ag-c5:#6b4f94;--ag-c6:#a2362f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}}
+[data-theme="dark"] .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}
+.ag .ag-ref{display:inline-block;border:1px solid var(--ag-line);border-radius:999px;padding:1px 9px;font-size:.85em;font-weight:600;color:var(--ag-accent);background:var(--ag-card);white-space:nowrap}
+.ag .ag-k{font:600 12.5px/1.3 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ag-accent);text-align:center;margin:6px 0 4px}
+.ag .ag-t{text-align:center;margin:0 auto 6px;max-width:30ch;text-wrap:balance}
+.ag .ag-v{text-align:center;font-style:italic;color:var(--ag-muted);max-width:62ch;margin:0 auto 18px;line-height:1.55}
+.ag .ag-v .ag-r{font-style:normal;white-space:nowrap}
+.ag .ag-band{background:var(--ag-ink);color:var(--ag-card);border-radius:14px;padding:14px 18px;text-align:center;line-height:1.5}
+.ag .ag-band b{color:var(--ag-band-hi,var(--ag-card))}
+.ag .ag-band .ag-r, .ag .ag-band .ag-r *{color:inherit}
+.ag .ag-band button,.ag .ag-band a{background:transparent!important;color:inherit!important;border:1px solid currentColor!important;opacity:.9}
+.ag .ag-band .ag-ref{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.ag .ag-flow{position:relative;display:grid;gap:var(--ag-gap);margin:var(--ag-gap) 0}
+.ag .ag-flow::before{content:"";position:absolute;left:50%;top:-22px;bottom:-22px;width:2px;background:var(--ag-line);transform:translateX(-1px)}
+.ag .ag-b{position:relative;background:var(--ag-card);border:1px solid var(--ag-line);border-top:4px solid var(--c,var(--ag-accent));border-radius:14px;padding:16px 18px 14px 18px}
+.ag .ag-n{position:absolute;top:-15px;left:-12px;width:30px;height:30px;border-radius:50%;background:var(--c,var(--ag-accent));color:var(--ag-card);display:flex;align-items:center;justify-content:center;font:700 14px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 0 4px var(--ag-bg,var(--ag-card))}
+.ag .ag-bk{font:600 11.5px/1.3 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--ag-accent));margin:2px 0 4px}
+.ag .ag-b h3{margin:0 0 4px;font-size:1.2em;line-height:1.25;color:var(--ag-ink)}
+.ag .ag-b p{margin:0 0 8px;color:var(--ag-ink);line-height:1.5}
+.ag .ag-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px;padding:0;list-style:none}
+.ag .ag-chips li{border:1px solid var(--ag-line);background:var(--ag-soft);color:var(--ag-ink);border-radius:999px;padding:3px 10px;font-size:.86em;line-height:1.4}
+.ag .ag-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:8px 0}
+.ag .ag-col{border:1px solid var(--ag-line);border-top:4px solid var(--cc,var(--c,var(--ag-accent)));border-radius:12px;padding:12px 14px;background:var(--ag-soft)}
+.ag .ag-col h4{margin:0 0 2px;font-size:1.05em;color:var(--cc,var(--ag-ink))}
+.ag .ag-col .ag-sub{font-size:.88em;color:var(--ag-muted);margin:0 0 6px}
+.ag .ag-col .ag-chips li{background:var(--ag-card)}
+.ag .ag-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;justify-content:space-between;margin-top:4px}
+.ag .ag-refs{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.9em}
+.ag .ag-go{font:600 13px/1.3 system-ui,sans-serif;color:var(--c,var(--ag-accent));text-decoration:none;white-space:nowrap}
+.ag .ag-go:hover{text-decoration:underline}
+.ag .ag-n:focus-visible,.ag .ag-go:focus-visible{outline:2px solid var(--ag-accent);outline-offset:2px}
+@media (max-width:600px){.ag .ag-flow::before{left:16px}.ag .ag-n{left:-8px}}
+#glance{padding:0 16px;max-width:1200px;margin:0 auto;scroll-margin-top:64px}</style>
 </head>
 <body>
 <a class="site-home-strip" href="../" style="display:block;position:relative;z-index:30;margin:0;padding:7px 14px;background:#2a2420;color:#f1d9c4;font:600 13.5px/1.4 'Source Sans 3','Noto Sans Telugu',system-ui,sans-serif;text-decoration:none;letter-spacing:.01em;border-bottom:1px solid rgba(255,255,255,.12)">← All studies · అన్ని అధ్యయనములు</a>
@@ -286,6 +321,16 @@
 
 <nav class="chapters" aria-label="Doctrines"><div class="in" id="chapters"></div></nav>
 
+<section id="glance" class="ag"><p class="ag-k">The whole study on one page · ఒక్క చూపులో</p>
+<h2 class="ag-t">One question, four answers</h2>
+<p class="ag-v">“They received the word with all readiness of mind, and searched the scriptures daily, whether those things were so.” <span class="ag-r"><span class="ag-ref">Acts 17:11</span></span></p>
+<div class="ag-flow">
+<div class="ag-b" style="--c:var(--text-main)"><a class="ag-n" href="#topic-nature-of-god" aria-label="Chapter 1: Nature of God">1</a><div class="ag-bk">Nature of God</div><h3>Who is God?</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--evangelical)"><h4>Evangelical</h4><p class="ag-sub">One God in three co-equal persons</p></div><div class="ag-col" style="--cc:var(--lds)"><h4>Latter-day Saints</h4><p class="ag-sub">Three separate beings; Father and Son have bodies</p></div><div class="ag-col" style="--cc:var(--jw)"><h4>Jehovah’s Witnesses</h4><p class="ag-sub">Jehovah alone is God; Jesus his first creation</p></div><div class="ag-col" style="--cc:var(--catholic)"><h4>Roman Catholic</h4><p class="ag-sub">One God in three co-equal, co-eternal persons</p></div></div><div class="ag-foot"><span></span><a class="ag-go" href="#topic-nature-of-god">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--text-main)"><a class="ag-n" href="#topic-ultimate-authority" aria-label="Chapter 2: Ultimate Authority">2</a><div class="ag-bk">Ultimate Authority</div><h3>What has the final word?</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--evangelical)"><h4>Evangelical</h4><p class="ag-sub">The 66-book Bible alone</p></div><div class="ag-col" style="--cc:var(--lds)"><h4>Latter-day Saints</h4><p class="ag-sub">Bible, Book of Mormon, D&amp;C, Pearl of Great Price, prophets</p></div><div class="ag-col" style="--cc:var(--jw)"><h4>Jehovah’s Witnesses</h4><p class="ag-sub">The Bible (NWT) as interpreted by the Governing Body</p></div><div class="ag-col" style="--cc:var(--catholic)"><h4>Roman Catholic</h4><p class="ag-sub">Scripture, Sacred Tradition and the Magisterium</p></div></div><div class="ag-foot"><span></span><a class="ag-go" href="#topic-ultimate-authority">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--text-main)"><a class="ag-n" href="#topic-salvation" aria-label="Chapter 3: Salvation">3</a><div class="ag-bk">Salvation</div><h3>How is a person saved?</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--evangelical)"><h4>Evangelical</h4><p class="ag-sub">By grace alone, through faith alone</p></div><div class="ag-col" style="--cc:var(--lds)"><h4>Latter-day Saints</h4><p class="ag-sub">Grace for resurrection; exaltation needs faith, repentance, ordinances</p></div><div class="ag-col" style="--cc:var(--jw)"><h4>Jehovah’s Witnesses</h4><p class="ag-sub">Faith in Christ’s ransom, kept by obedience and ministry</p></div><div class="ag-col" style="--cc:var(--catholic)"><h4>Roman Catholic</h4><p class="ag-sub">Grace through the Church, faith, works and sacraments</p></div></div><div class="ag-foot"><span></span><a class="ag-go" href="#topic-salvation">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--text-main)"><a class="ag-n" href="#topic-the-afterlife" aria-label="Chapter 4: The Afterlife">4</a><div class="ag-bk">The Afterlife</div><h3>What comes after death?</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--evangelical)"><h4>Evangelical</h4><p class="ag-sub">Heaven with God or eternal separation</p></div><div class="ag-col" style="--cc:var(--lds)"><h4>Latter-day Saints</h4><p class="ag-sub">Three degrees of glory</p></div><div class="ag-col" style="--cc:var(--jw)"><h4>Jehovah’s Witnesses</h4><p class="ag-sub">144,000 in heaven, others on a paradise earth; the wicked annihilated</p></div><div class="ag-col" style="--cc:var(--catholic)"><h4>Roman Catholic</h4><p class="ag-sub">Heaven (after purification in Purgatory) or eternal Hell</p></div></div><div class="ag-foot"><span></span><a class="ag-go" href="#topic-the-afterlife">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--text-main)"><a class="ag-n" href="#topic-eschatology" aria-label="Chapter 5: Eschatology">5</a><div class="ag-bk">Eschatology</div><h3>How does history end?</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--evangelical)"><h4>Evangelical</h4><p class="ag-sub">Rapture, Tribulation, Armageddon, 1,000-year reign</p></div><div class="ag-col" style="--cc:var(--lds)"><h4>Latter-day Saints</h4><p class="ag-sub">Second Coming, then a 1,000-year Millennium</p></div><div class="ag-col" style="--cc:var(--jw)"><h4>Jehovah’s Witnesses</h4><p class="ag-sub">Armageddon, then a restored earth</p></div><div class="ag-col" style="--cc:var(--catholic)"><h4>Roman Catholic</h4><p class="ag-sub">Amillennial: return, final judgment, new creation</p></div></div><div class="ag-foot"><span></span><a class="ag-go" href="#topic-eschatology">Open this chapter →</a></div></div>
+</div></section>
 <div class="image-container" id="poster">
     <img src="poster.jpg" 
          alt="Theological Comparison Poster" 
@@ -363,7 +408,7 @@
     const TOPICS = [...new Set(data.map(d => d.topic))];
     const slug = t => 'topic-' + t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     const chapters = document.getElementById('chapters');
-    chapters.innerHTML = `<a href="#poster">Poster</a>` + TOPICS.map((t, i) => `<a href="#${slug(t)}"><span class="k">${i + 1}</span>${t}</a>`).join('');
+    chapters.innerHTML = `<a href="#glance">✦ At a glance</a><a href="#poster">Poster</a>` + TOPICS.map((t, i) => `<a href="#${slug(t)}"><span class="k">${i + 1}</span>${t}</a>`).join('');
     chapters.addEventListener('click', e => {
         const a = e.target.closest('a'); if (!a) return;
         if (!document.querySelector(a.getAttribute('href'))) {
@@ -374,7 +419,7 @@
     });
     function spy() {
         let cur = '';
-        document.querySelectorAll('#poster, .topic-section').forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
+        document.querySelectorAll('#glance, #poster, .topic-section').forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
         chapters.querySelectorAll('a').forEach(a => {
             const on = a.getAttribute('href') === '#' + cur;
             if (on && !a.classList.contains('on')) chapters.scrollTo({ left: a.offsetLeft - chapters.clientWidth / 2 + a.offsetWidth / 2, behavior: 'smooth' });

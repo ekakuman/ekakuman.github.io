@@ -152,6 +152,41 @@ svg.layers text{pointer-events:none;font-family:Inter,sans-serif;font-weight:600
 .closing h2{font-size:clamp(28px,5vw,44px);color:var(--gold2)}
 footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 16px 40px;max-width:820px;margin:auto}
 @media print{.bar,.filters,#stars{display:none}.flip{height:auto}.flip-in{transform:none!important}.face{position:static;backface-visibility:visible}.back{transform:none;margin-top:6px}}
+.ag{--ag-card:var(--card);--ag-ink:var(--ink);--ag-muted:var(--muted);--ag-line:var(--line);--ag-accent:var(--gold);--ag-soft:var(--parch);--ag-bg:var(--parch)}
+/* At a glance: the whole study on one page */
+.ag{--ag-gap:22px;--ag-c1:#7a3e1d;--ag-c2:#2d5f93;--ag-c3:#2f7a4b;--ag-c4:#8a6a12;--ag-c5:#6b4f94;--ag-c6:#a2362f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}}
+[data-theme="dark"] .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}
+.ag .ag-ref{display:inline-block;border:1px solid var(--ag-line);border-radius:999px;padding:1px 9px;font-size:.85em;font-weight:600;color:var(--ag-accent);background:var(--ag-card);white-space:nowrap}
+.ag .ag-k{font:600 12.5px/1.3 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ag-accent);text-align:center;margin:6px 0 4px}
+.ag .ag-t{text-align:center;margin:0 auto 6px;max-width:30ch;text-wrap:balance}
+.ag .ag-v{text-align:center;font-style:italic;color:var(--ag-muted);max-width:62ch;margin:0 auto 18px;line-height:1.55}
+.ag .ag-v .ag-r{font-style:normal;white-space:nowrap}
+.ag .ag-band{background:var(--ag-ink);color:var(--ag-card);border-radius:14px;padding:14px 18px;text-align:center;line-height:1.5}
+.ag .ag-band b{color:var(--ag-band-hi,var(--ag-card))}
+.ag .ag-band .ag-r, .ag .ag-band .ag-r *{color:inherit}
+.ag .ag-band button,.ag .ag-band a{background:transparent!important;color:inherit!important;border:1px solid currentColor!important;opacity:.9}
+.ag .ag-band .ag-ref{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.ag .ag-flow{position:relative;display:grid;gap:var(--ag-gap);margin:var(--ag-gap) 0}
+.ag .ag-flow::before{content:"";position:absolute;left:50%;top:-22px;bottom:-22px;width:2px;background:var(--ag-line);transform:translateX(-1px)}
+.ag .ag-b{position:relative;background:var(--ag-card);border:1px solid var(--ag-line);border-top:4px solid var(--c,var(--ag-accent));border-radius:14px;padding:16px 18px 14px 18px}
+.ag .ag-n{position:absolute;top:-15px;left:-12px;width:30px;height:30px;border-radius:50%;background:var(--c,var(--ag-accent));color:var(--ag-card);display:flex;align-items:center;justify-content:center;font:700 14px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 0 4px var(--ag-bg,var(--ag-card))}
+.ag .ag-bk{font:600 11.5px/1.3 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--ag-accent));margin:2px 0 4px}
+.ag .ag-b h3{margin:0 0 4px;font-size:1.2em;line-height:1.25;color:var(--ag-ink)}
+.ag .ag-b p{margin:0 0 8px;color:var(--ag-ink);line-height:1.5}
+.ag .ag-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px;padding:0;list-style:none}
+.ag .ag-chips li{border:1px solid var(--ag-line);background:var(--ag-soft);color:var(--ag-ink);border-radius:999px;padding:3px 10px;font-size:.86em;line-height:1.4}
+.ag .ag-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:8px 0}
+.ag .ag-col{border:1px solid var(--ag-line);border-top:4px solid var(--cc,var(--c,var(--ag-accent)));border-radius:12px;padding:12px 14px;background:var(--ag-soft)}
+.ag .ag-col h4{margin:0 0 2px;font-size:1.05em;color:var(--cc,var(--ag-ink))}
+.ag .ag-col .ag-sub{font-size:.88em;color:var(--ag-muted);margin:0 0 6px}
+.ag .ag-col .ag-chips li{background:var(--ag-card)}
+.ag .ag-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;justify-content:space-between;margin-top:4px}
+.ag .ag-refs{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.9em}
+.ag .ag-go{font:600 13px/1.3 system-ui,sans-serif;color:var(--c,var(--ag-accent));text-decoration:none;white-space:nowrap}
+.ag .ag-go:hover{text-decoration:underline}
+.ag .ag-n:focus-visible,.ag .ag-go:focus-visible{outline:2px solid var(--ag-accent);outline-offset:2px}
+@media (max-width:600px){.ag .ag-flow::before{left:16px}.ag .ag-n{left:-8px}}
 </style>
 </head>
 <body>
@@ -160,6 +195,7 @@ footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 16px 40p
   <div class="bar-in">
     <a class="home-link" href="../"><span class="en hasTe">← All studies</span><span class="te">← అన్ని అధ్యయనములు</span></a>
     <nav id="nav">
+      <a href="#glance"><span class="en hasTe">✦ At a glance</span><span class="te">✦ ఒక్క చూపులో</span></a>
       <a href="#plan"><span class="en hasTe">1 · The Plan</span><span class="te">1 · ప్రణాళిక</span></a>
       <a href="#text"><span class="en hasTe">2 · The Text</span><span class="te">2 · వాక్యము</span></a>
       <a href="#myths"><span class="en hasTe">3 · Myths</span><span class="te">3 · అపోహలు</span></a>
@@ -186,6 +222,18 @@ footer{font-size:12px;color:var(--muted);text-align:center;padding:20px 16px 40p
   </div>
 </header>
 
+<section id="glance" class="ag"><p class="ag-k">The whole study on one page · ఒక్క చూపులో</p>
+<h2 class="ag-t">The plan before the manger</h2>
+<p class="ag-v">“But when the fulness of the time was come, God sent forth his Son, made of a woman, made under the law.” <span class="ag-r"><span class="ag-ref">Gal 4:4</span></span></p>
+<div class="ag-flow">
+<div class="ag-b" style="--c:var(--gold)"><a class="ag-n" href="#plan" aria-label="Chapter 1: The Plan">1</a><div class="ag-bk">The Plan</div><h3>Promised from Genesis 3:15 to Bethlehem</h3><ul class="ag-chips"><li>The Lamb foreordained</li><li>The seed of the woman</li><li>The seed of Abraham</li><li>The sceptre of Judah</li><li>A Star out of Jacob</li><li>The throne of David</li><li>Born of a virgin</li><li>Out of Bethlehem</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">1 Pet 1:20</span> <span class="ag-ref">Gen 3:15</span> <span class="ag-ref">Mic 5:2</span></div><a class="ag-go" href="#plan">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--blue)"><a class="ag-n" href="#text" aria-label="Chapter 2: The Text">2</a><div class="ag-bk">The Text</div><h3>What Matthew and Luke actually record</h3><ul class="ag-chips"><li>Gabriel to Zacharias</li><li>Gabriel to Mary</li><li>Mary visits Elizabeth</li><li>Joseph’s dream</li><li>Nazareth to Bethlehem</li><li>Laid in a manger</li><li>Shepherds and the heavenly host</li><li>The magi</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Luke 2:7</span> <span class="ag-ref">Matt 2:11</span></div><a class="ag-go" href="#text">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--red)"><a class="ag-n" href="#myths" aria-label="Chapter 3: Myths">3</a><div class="ag-bk">Myths</div><h3>Familiar details the text doesn’t say</h3><ul class="ag-chips"><li>Three kings</li><li>Magi at the manger</li><li>A cruel innkeeper</li><li>Born on December 25</li><li>A snowy night</li><li>The angels sang</li><li>The star led the shepherds</li></ul><div class="ag-foot"><span></span><a class="ag-go" href="#myths">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--plum)"><a class="ag-n" href="#history" aria-label="Chapter 4: History">4</a><div class="ag-bk">History</div><h3>How the tradition took shape</h3><ul class="ag-chips"><li>No birthday feast (AD 30–200)</li><li>Sol Invictus (274)</li><li>First Dec 25 record (336/354)</li><li>The nativity scene (1223)</li><li>Banned in England (1647–1660)</li><li>A Christmas Carol (1843)</li><li>U.S. federal holiday (1870)</li></ul><div class="ag-foot"><span></span><a class="ag-go" href="#history">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--green)"><a class="ag-n" href="#entangled" aria-label="Chapter 5: Entangled">5</a><div class="ag-bk">Entangled</div><h3>Why we are entangled</h3><ul class="ag-chips"><li>Commerce</li><li>Tradition can displace the Word</li><li>Shadow and substance</li><li>Liberty, not license or legalism</li><li>Read verses in context</li><li>Redeem the open door</li><li>Everything to his glory</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Col 2:16-17</span> <span class="ag-ref">Rom 14:5-6</span></div><a class="ag-go" href="#entangled">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--gold)"><a class="ag-n" href="#practice" aria-label="Chapter 6: Practice">6</a><div class="ag-bk">Practice</div><h3>Living it out</h3><ul class="ag-chips"><li>Worship</li><li>Proclaim</li><li>Ponder</li><li>Wait</li><li>Obey</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Matt 2:11</span> <span class="ag-ref">Luke 2:17</span> <span class="ag-ref">Luke 2:19</span></div><a class="ag-go" href="#practice">Open this chapter →</a></div></div>
+</div>
+<div class="ag-band">“And the Word was made flesh, and dwelt among us.” <span class="ag-r"><span class="ag-ref">John 1:14</span></span></div></section>
 <!-- 1 PLAN -->
 <section id="plan">
   <div class="sec-head"><div class="num">1</div><div>
