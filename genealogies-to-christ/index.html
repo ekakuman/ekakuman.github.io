@@ -157,6 +157,41 @@ h3.sec{font-family:"Cormorant Garamond",serif;font-size:24px;margin:20px 2px 8px
 #alive .pill{margin:0 5px 5px 0;display:inline-block;cursor:pointer}
 footer{max-width:900px;margin:0 auto;padding:0 16px 40px;font-size:12px;color:var(--muted)}
 @media(min-width:760px){header h1{font-size:42px}#sheet{border-radius:18px;bottom:20px}}
+.ag{--ag-card:var(--card);--ag-ink:var(--ink);--ag-muted:var(--muted);--ag-line:var(--line);--ag-accent:var(--king);--ag-soft:var(--soft);--ag-bg:var(--bg)}
+/* At a glance: the whole study on one page */
+.ag{--ag-gap:22px;--ag-c1:#7a3e1d;--ag-c2:#2d5f93;--ag-c3:#2f7a4b;--ag-c4:#8a6a12;--ag-c5:#6b4f94;--ag-c6:#a2362f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}}
+[data-theme="dark"] .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}
+.ag .ag-ref{display:inline-block;border:1px solid var(--ag-line);border-radius:999px;padding:1px 9px;font-size:.85em;font-weight:600;color:var(--ag-accent);background:var(--ag-card);white-space:nowrap}
+.ag .ag-k{font:600 12.5px/1.3 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ag-accent);text-align:center;margin:6px 0 4px}
+.ag .ag-t{text-align:center;margin:0 auto 6px;max-width:30ch;text-wrap:balance}
+.ag .ag-v{text-align:center;font-style:italic;color:var(--ag-muted);max-width:62ch;margin:0 auto 18px;line-height:1.55}
+.ag .ag-v .ag-r{font-style:normal;white-space:nowrap}
+.ag .ag-band{background:var(--ag-ink);color:var(--ag-card);border-radius:14px;padding:14px 18px;text-align:center;line-height:1.5}
+.ag .ag-band b{color:var(--ag-band-hi,var(--ag-card))}
+.ag .ag-band .ag-r, .ag .ag-band .ag-r *{color:inherit}
+.ag .ag-band button,.ag .ag-band a{background:transparent!important;color:inherit!important;border:1px solid currentColor!important;opacity:.9}
+.ag .ag-band .ag-ref{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.ag .ag-flow{position:relative;display:grid;gap:var(--ag-gap);margin:var(--ag-gap) 0}
+.ag .ag-flow::before{content:"";position:absolute;left:50%;top:-22px;bottom:-22px;width:2px;background:var(--ag-line);transform:translateX(-1px)}
+.ag .ag-b{position:relative;background:var(--ag-card);border:1px solid var(--ag-line);border-top:4px solid var(--c,var(--ag-accent));border-radius:14px;padding:16px 18px 14px 18px}
+.ag .ag-n{position:absolute;top:-15px;left:-12px;width:30px;height:30px;border-radius:50%;background:var(--c,var(--ag-accent));color:var(--ag-card);display:flex;align-items:center;justify-content:center;font:700 14px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 0 4px var(--ag-bg,var(--ag-card))}
+.ag .ag-bk{font:600 11.5px/1.3 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--ag-accent));margin:2px 0 4px}
+.ag .ag-b h3{margin:0 0 4px;font-size:1.2em;line-height:1.25;color:var(--ag-ink)}
+.ag .ag-b p{margin:0 0 8px;color:var(--ag-ink);line-height:1.5}
+.ag .ag-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px;padding:0;list-style:none}
+.ag .ag-chips li{border:1px solid var(--ag-line);background:var(--ag-soft);color:var(--ag-ink);border-radius:999px;padding:3px 10px;font-size:.86em;line-height:1.4}
+.ag .ag-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:8px 0}
+.ag .ag-col{border:1px solid var(--ag-line);border-top:4px solid var(--cc,var(--c,var(--ag-accent)));border-radius:12px;padding:12px 14px;background:var(--ag-soft)}
+.ag .ag-col h4{margin:0 0 2px;font-size:1.05em;color:var(--cc,var(--ag-ink))}
+.ag .ag-col .ag-sub{font-size:.88em;color:var(--ag-muted);margin:0 0 6px}
+.ag .ag-col .ag-chips li{background:var(--ag-card)}
+.ag .ag-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;justify-content:space-between;margin-top:4px}
+.ag .ag-refs{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.9em}
+.ag .ag-go{font:600 13px/1.3 system-ui,sans-serif;color:var(--c,var(--ag-accent));text-decoration:none;white-space:nowrap}
+.ag .ag-go:hover{text-decoration:underline}
+.ag .ag-n:focus-visible,.ag .ag-go:focus-visible{outline:2px solid var(--ag-accent);outline-offset:2px}
+@media (max-width:600px){.ag .ag-flow::before{left:16px}.ag .ag-n{left:-8px}}
 </style>
 </head>
 <body>
@@ -167,7 +202,8 @@ footer{max-width:900px;margin:0 auto;padding:0 16px 40px;font-size:12px;color:va
   <a class="xlink" id="kingsLink" href="#">Companion: Kings, Prophets &amp; Priests →</a>
 </header>
 <nav class="tabs"><div class="in">
-  <button data-v="vl" class="on">The Line</button>
+  <button data-v="glance" class="on">✦ At a glance</button>
+  <button data-v="vl">The Line</button>
   <button data-v="vv">Visuals</button>
   <button data-v="vm">Matthew &amp; Luke</button>
   <button data-v="vp">Priestly line</button>
@@ -176,7 +212,20 @@ footer{max-width:900px;margin:0 auto;padding:0 16px 40px;font-size:12px;color:va
   <button data-v="vs">OT sources</button>
 </div></nav>
 <main>
-  <section id="vl" class="view on">
+  <section id="glance" class="view on ag"><p class="ag-k">The whole study on one page · ఒక్క చూపులో</p>
+<h2 class="ag-t">One promised Seed, carried through real families</h2>
+<p class="ag-v">“I will put enmity between thee and the woman, and between thy seed and her seed; it shall bruise thy head, and thou shalt bruise his heel.” <span class="ag-r"><span class="ag-ref">Gen 3:15</span></span></p>
+<div class="ag-flow">
+<div class="ag-b" style="--c:var(--king)"><a class="ag-n" href="#vl" aria-label="Chapter 1: The line">1</a><div class="ag-bk">The line</div><h3>Adam to Jesus in ten eras</h3><ul class="ag-chips"><li>Creation to the Flood</li><li>The Flood to Abraham</li><li>The Patriarchs</li><li>Egypt, the Wilderness and the Judges</li><li>Toward the Throne</li><li>The Kings of Judah</li><li>Nathan’s Line</li><li>Exile and Return</li><li>The Silent Centuries</li><li>The Fullness of Time</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Gal 4:4</span></div><a class="ag-go" href="#vl">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--pri)"><a class="ag-n" href="#vv" aria-label="Chapter 2: Visuals">2</a><div class="ag-bk">Visuals</div><h3>A route map and the lifespans</h3><p>Gold is the royal line, splitting at David and rejoining at Joseph. Teal is the priestly line, ending after the exile; Melchizedek’s order reaches Christ.</p><div class="ag-foot"><span></span><a class="ag-go" href="#vv">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--king)"><a class="ag-n" href="#vm" aria-label="Chapter 3: Matthew &amp; Luke">3</a><div class="ag-bk">Matthew &amp; Luke</div><h3>The same from Abraham to David, then two sons of David</h3><div class="ag-cols"><div class="ag-col" style="--cc:var(--king)"><h4>Matthew 1</h4><p class="ag-sub">Forward from Abraham, through Solomon, in three sets of fourteen</p><div class="ag-refs"><span class="ag-ref">Matt 1:17</span></div></div><div class="ag-col" style="--cc:var(--pro)"><h4>Luke 3</h4><p class="ag-sub">Backward to Adam, through Nathan, “the son of God”</p><div class="ag-refs"><span class="ag-ref">Luke 3:38</span></div></div></div><div class="ag-foot"><span></span><a class="ag-go" href="#vm">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--pri)"><a class="ag-n" href="#vp" aria-label="Chapter 4: Priestly line">4</a><div class="ag-bk">Priestly line</div><h3>Aaron to the exile, and a priest for ever</h3><ul class="ag-chips"><li>Levi</li><li>Aaron</li><li>Zadok</li><li>Ends at the exile</li><li>Melchizedek’s order</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Heb 7:14</span> <span class="ag-ref">Heb 7:17</span></div><a class="ag-go" href="#vp">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--threat)"><a class="ag-n" href="#vn" aria-label="Chapter 5: Near breaks">5</a><div class="ag-bk">Near breaks</div><h3>Fifteen times the line came down to one life</h3><ul class="ag-chips"><li>Cain murders Abel</li><li>The flood</li><li>Sarah barren</li><li>Rebekah barren</li><li>Esau vows to kill Jacob</li><li>Judah’s sons die</li><li>Famine in Canaan</li><li>Hebrew boys drowned</li><li>Naomi’s husband and sons die</li><li>Saul hunts David</li><li>Jehoram’s brothers murdered</li><li>Athaliah destroys the royal seed</li><li>Haman’s decree</li><li>Exile, and a curse on Jeconiah</li><li>Herod kills Bethlehem’s boys</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Rev 12:4-5</span></div><a class="ag-go" href="#vn">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--wom)"><a class="ag-n" href="#vw" aria-label="Chapter 6: Women">6</a><div class="ag-bk">Women</div><h3>The women Matthew names</h3><ul class="ag-chips"><li>Tamar</li><li>Rahab</li><li>Ruth</li><li>The wife of Urias</li><li>Mary</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Matt 1:3</span> <span class="ag-ref">Matt 1:5-6</span> <span class="ag-ref">Matt 1:16</span></div><a class="ag-go" href="#vw">Open this chapter →</a></div></div>
+<div class="ag-b" style="--c:var(--gen)"><a class="ag-n" href="#vs" aria-label="Chapter 7: OT sources">7</a><div class="ag-bk">OT sources</div><h3>Every Old Testament genealogy, and why it is there</h3><ul class="ag-chips"><li>Genesis</li><li>Exodus to Ruth</li><li>Samuel and Kings</li><li>1 Chronicles 1–9</li><li>Ezra and Nehemiah</li><li>New Testament</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Gen 5:1</span> <span class="ag-ref">Matt 1:1</span></div><a class="ag-go" href="#vs">Open this chapter →</a></div></div>
+</div>
+<div class="ag-band">“Now to Abraham and his seed were the promises made. He saith not, And to seeds, as of many; but as of one, And to thy seed, which is Christ.” <span class="ag-r"><span class="ag-ref">Gal 3:16</span></span></div></section>
+<section id="vl" class="view">
     <p class="intro">From Adam to Jesus. At each gold marker God narrowed the line and attached a new promise; each red marker is a moment the line nearly broke. After David you can follow Solomon's royal line (Matthew) or Nathan's line (Luke).</p>
     <div class="seg" id="mode"><button data-m="M" class="on">Via Solomon · Matthew</button><button data-m="L">Via Nathan · Luke</button></div>
     <div class="legend"><span><span class="tg K">King</span> reigned</span><span><span class="tg R">Prophet</span> called a prophet</span><span><span class="tg G">Gentile</span></span><span><span class="tg W">Woman</span></span></div>
@@ -747,5 +796,6 @@ document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>tab(b.data
 
 renderLine();renderCmp();renderPriests();renderNB();renderWomen();renderSrc();renderMap();renderIns();
 </script>
+<script>document.getElementById("glance").addEventListener("click",e=>{const a=e.target.closest("a[href^='#v']");if(!a)return;const b=document.querySelector('nav.tabs button[data-v="'+a.getAttribute("href").slice(1)+'"]');if(b){e.preventDefault();b.click()}});</script>
 </body>
 </html>

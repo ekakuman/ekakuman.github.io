@@ -243,6 +243,41 @@ table.lifegrid{border-collapse:collapse;width:100%;min-width:760px;font-size:13.
   main{padding-top:22px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.ag{--ag-card:var(--sheet);--ag-ink:var(--ink);--ag-muted:var(--ink-2);--ag-line:var(--line);--ag-accent:var(--cyan);--ag-soft:var(--gold-soft);--ag-bg:var(--paper)}
+/* At a glance: the whole study on one page */
+.ag{--ag-gap:22px;--ag-c1:#7a3e1d;--ag-c2:#2d5f93;--ag-c3:#2f7a4b;--ag-c4:#8a6a12;--ag-c5:#6b4f94;--ag-c6:#a2362f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}}
+[data-theme="dark"] .ag{--ag-c1:#e0a37c;--ag-c2:#8db8e6;--ag-c3:#7fcf9b;--ag-c4:#e3c46a;--ag-c5:#c3a8ea;--ag-c6:#ee9a92}
+.ag .ag-ref{display:inline-block;border:1px solid var(--ag-line);border-radius:999px;padding:1px 9px;font-size:.85em;font-weight:600;color:var(--ag-accent);background:var(--ag-card);white-space:nowrap}
+.ag .ag-k{font:600 12.5px/1.3 system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--ag-accent);text-align:center;margin:6px 0 4px}
+.ag .ag-t{text-align:center;margin:0 auto 6px;max-width:30ch;text-wrap:balance}
+.ag .ag-v{text-align:center;font-style:italic;color:var(--ag-muted);max-width:62ch;margin:0 auto 18px;line-height:1.55}
+.ag .ag-v .ag-r{font-style:normal;white-space:nowrap}
+.ag .ag-band{background:var(--ag-ink);color:var(--ag-card);border-radius:14px;padding:14px 18px;text-align:center;line-height:1.5}
+.ag .ag-band b{color:var(--ag-band-hi,var(--ag-card))}
+.ag .ag-band .ag-r, .ag .ag-band .ag-r *{color:inherit}
+.ag .ag-band button,.ag .ag-band a{background:transparent!important;color:inherit!important;border:1px solid currentColor!important;opacity:.9}
+.ag .ag-band .ag-ref{background:transparent;color:inherit;border-color:currentColor;opacity:.9}
+.ag .ag-flow{position:relative;display:grid;gap:var(--ag-gap);margin:var(--ag-gap) 0}
+.ag .ag-flow::before{content:"";position:absolute;left:50%;top:-22px;bottom:-22px;width:2px;background:var(--ag-line);transform:translateX(-1px)}
+.ag .ag-b{position:relative;background:var(--ag-card);border:1px solid var(--ag-line);border-top:4px solid var(--c,var(--ag-accent));border-radius:14px;padding:16px 18px 14px 18px}
+.ag .ag-n{position:absolute;top:-15px;left:-12px;width:30px;height:30px;border-radius:50%;background:var(--c,var(--ag-accent));color:var(--ag-card);display:flex;align-items:center;justify-content:center;font:700 14px/1 system-ui,sans-serif;text-decoration:none;box-shadow:0 0 0 4px var(--ag-bg,var(--ag-card))}
+.ag .ag-bk{font:600 11.5px/1.3 system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--ag-accent));margin:2px 0 4px}
+.ag .ag-b h3{margin:0 0 4px;font-size:1.2em;line-height:1.25;color:var(--ag-ink)}
+.ag .ag-b p{margin:0 0 8px;color:var(--ag-ink);line-height:1.5}
+.ag .ag-chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 8px;padding:0;list-style:none}
+.ag .ag-chips li{border:1px solid var(--ag-line);background:var(--ag-soft);color:var(--ag-ink);border-radius:999px;padding:3px 10px;font-size:.86em;line-height:1.4}
+.ag .ag-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:8px 0}
+.ag .ag-col{border:1px solid var(--ag-line);border-top:4px solid var(--cc,var(--c,var(--ag-accent)));border-radius:12px;padding:12px 14px;background:var(--ag-soft)}
+.ag .ag-col h4{margin:0 0 2px;font-size:1.05em;color:var(--cc,var(--ag-ink))}
+.ag .ag-col .ag-sub{font-size:.88em;color:var(--ag-muted);margin:0 0 6px}
+.ag .ag-col .ag-chips li{background:var(--ag-card)}
+.ag .ag-foot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;justify-content:space-between;margin-top:4px}
+.ag .ag-refs{display:flex;flex-wrap:wrap;gap:4px 8px;font-size:.9em}
+.ag .ag-go{font:600 13px/1.3 system-ui,sans-serif;color:var(--c,var(--ag-accent));text-decoration:none;white-space:nowrap}
+.ag .ag-go:hover{text-decoration:underline}
+.ag .ag-n:focus-visible,.ag .ag-go:focus-visible{outline:2px solid var(--ag-accent);outline-offset:2px}
+@media (max-width:600px){.ag .ag-flow::before{left:16px}.ag .ag-n{left:-8px}}
 </style>
 </head>
 <body>
@@ -258,6 +293,7 @@ table.lifegrid{border-collapse:collapse;width:100%;min-width:760px;font-size:13.
     <a href="studies/master.html">Master document</a>
     <a href="studies/before-the-foundation.html">Before the Foundation study</a>
     <a href="studies/life-of-god.html">The Life of God study</a>
+    <a href="#glance">✦ At a glance ↓</a>
     <a href="#lifeTitle">Living the blueprint ↓</a>
   </div>
   <div class="keytext">
@@ -272,6 +308,21 @@ table.lifegrid{border-collapse:collapse;width:100%;min-width:760px;font-size:13.
   </details>
 </header>
 
+<section class="wrap ag" id="glance"><p class="ag-k">The whole study on one page · ఒక్క చూపులో</p>
+<h2 class="ag-t">Thirty-three themes, one plan in Christ</h2>
+<p class="ag-v">“That in the dispensation of the fulness of times he might gather together in one all things in Christ” <span class="ag-r"><span class="ag-ref">Eph 1:10</span></span></p>
+<div class="ag-flow">
+<div class="ag-b" style="--c:var(--gA)"><a class="ag-n" href="#t-purpose" aria-label="Chapter 1: A · The purpose and its Author">1</a><div class="ag-bk">A · The purpose and its Author</div><h3>Eight themes</h3><ul class="ag-chips"><li>The eternal purpose</li><li>The counsel and will of God</li><li>The love of God</li><li>The glory of God</li><li>The Son — Word and Wisdom</li><li>The mystery</li><li>Righteousness and justice</li><li>Truth and faithfulness</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Eph 3:11</span></div><a class="ag-go" href="#t-purpose">Start with the eternal purpose →</a></div></div>
+<div class="ag-b" style="--c:var(--gB)"><a class="ag-n" href="#t-lamb" aria-label="Chapter 2: B · The provision">2</a><div class="ag-bk">B · The provision</div><h3>Seven themes</h3><ul class="ag-chips"><li>The Lamb</li><li>Grace</li><li>Mercy</li><li>Redemption and the blood</li><li>The everlasting covenant</li><li>The Seed</li><li>The priesthood</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">1 Pet 1:19-20</span></div><a class="ag-go" href="#t-lamb">Start with the Lamb →</a></div></div>
+<div class="ag-b" style="--c:var(--gC)"><a class="ag-n" href="#t-election" aria-label="Chapter 3: C · The people">3</a><div class="ag-bk">C · The people</div><h3>Seven themes</h3><ul class="ag-chips"><li>Election and foreknowledge</li><li>Sonship and adoption</li><li>Image and likeness</li><li>The life of God</li><li>Holiness</li><li>The Spirit</li><li>Faith</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Eph 1:4-5</span></div><a class="ag-go" href="#t-election">Start with election →</a></div></div>
+<div class="ag-b" style="--c:var(--gD)"><a class="ag-n" href="#t-dwelling" aria-label="Chapter 4: D · The goal">4</a><div class="ag-bk">D · The goal</div><h3>Seven themes</h3><ul class="ag-chips"><li>God’s dwelling place</li><li>The kingdom and dominion</li><li>The bride</li><li>Rest</li><li>Inheritance</li><li>The book of life</li><li>Peace</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Exod 25:8</span> <span class="ag-ref">Rev 21:3</span></div><a class="ag-go" href="#t-dwelling">Start with God’s dwelling place →</a></div></div>
+<div class="ag-b" style="--c:var(--gE)"><a class="ag-n" href="#t-headup" aria-label="Chapter 5: E · Consummation">5</a><div class="ag-bk">E · Consummation</div><h3>Four themes</h3><ul class="ag-chips"><li>All things headed up in Christ</li><li>New creation</li><li>Glorification</li><li>The final judgment</li></ul><div class="ag-foot"><span></span><a class="ag-go" href="#t-headup">Start with all things in Christ →</a></div></div>
+<div class="ag-b" style="--c:var(--cyan)"><a class="ag-n" href="#mxTitle" aria-label="Chapter 6: The whole map">6</a><div class="ag-bk">The whole map</div><h3>Every theme at six stages</h3><ul class="ag-chips"><li>Before the foundation</li><li>Torah</li><li>Prophets</li><li>Writings</li><li>New Testament</li><li>Consummation</li></ul><div class="ag-foot"><span></span><a class="ag-go" href="#mxTitle">Open the whole map →</a></div></div>
+<div class="ag-b" style="--c:var(--cyan)"><a class="ag-n" href="#flowTitle" aria-label="Chapter 7: How the plan flows">7</a><div class="ag-bk">How the plan flows</div><h3>Theme to theme, and through the canon</h3><p>Each stream is a verse that joins one theme to the next, from God’s purpose to the consummation.</p><div class="ag-foot"><span></span><a class="ag-go" href="#flowTitle">See how the plan flows →</a></div></div>
+<div class="ag-b" style="--c:var(--gold)"><a class="ag-n" href="#lifeTitle" aria-label="Chapter 8: Living the blueprint">8</a><div class="ag-bk">Living the blueprint</div><h3>The plan in ordinary life</h3><ul class="ag-chips"><li>Marriage</li><li>Parenting and family</li><li>Singleness</li><li>Work and vocation</li><li>Money and possessions</li><li>Health and the body</li><li>Friendships and conflict</li><li>Church and fellowship</li><li>Suffering and loss</li><li>Time and rest</li><li>Mind and speech</li><li>Community and citizenship</li><li>Spiritual battle</li></ul><div class="ag-foot"><div class="ag-refs"><span class="ag-ref">Eph 4:1</span></div><a class="ag-go" href="#lifeTitle">Open living the blueprint →</a></div></div>
+<div class="ag-b" style="--c:var(--gold)"><div class="ag-bk">Theme studies</div><h3>A full study for each theme</h3><p>Each theme has its own study, with the master document and the Before the Foundation and Life of God studies.</p><div class="ag-foot"><span></span><a class="ag-go" href="studies/index.html">Open the blueprint studies →</a></div></div>
+</div>
+<div class="ag-band">“For of him, and through him, and to him, are all things: to whom be glory for ever. Amen.” <span class="ag-r"><span class="ag-ref">Rom 11:36</span></span></div></section>
 <div class="wrap layout">
   <aside id="list" aria-label="Themes"></aside>
   <div style="min-width:0">
