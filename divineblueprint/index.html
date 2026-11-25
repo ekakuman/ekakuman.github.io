@@ -251,7 +251,7 @@ table.lifegrid{border-collapse:collapse;width:100%;min-width:760px;font-size:13.
 <header class="top wrap">
   <div class="eyebrow"><span class="heb">תַּבְנִית</span> · tabnit · the pattern shown in the mount</div>
   <h1>The Divine Blueprint</h1>
-  <p class="lead">Thirty-three themes God planned before the foundation of the world, traced through the Torah, Prophets, Writings and New Testament to their completion. Pick a theme to follow its thread, or pick a column in the map below to see every theme at one stage.</p>
+  <p class="lead">Thirty-six themes God planned before the foundation of the world, traced through the Torah, Prophets, Writings and New Testament to their completion. Pick a theme to follow its thread, or pick a column in the map below to see every theme at one stage.</p>
   <div class="studies">
   <a href="../">← All Bible studies</a>
   <a href="studies/index.html">Blueprint studies</a>
@@ -267,7 +267,7 @@ table.lifegrid{border-collapse:collapse;width:100%;min-width:760px;font-size:13.
     <div class="legend"><span><b>A</b> The purpose and its Author</span><span><b>B</b> The provision</span><span><b>C</b> The people</span><span><b>D</b> The goal</span><span><b>E</b> Consummation</span></div>
   </div>
   <details class="allstudies" open>
-    <summary>All 33 theme studies</summary>
+    <summary>All 36 theme studies</summary>
     <div id="studyIndex" class="sidx"></div>
   </details>
 </header>
@@ -336,7 +336,7 @@ const STAGES=[
  {id:"end",name:"Consummation",short:"End",orig:"πλήρωμα τῶν καιρῶν",sub:"The fulness of times"}
 ];
 const GROUPS={A:"The purpose and its Author",B:"The provision",C:"The people",D:"The goal",E:"Consummation"};
-const STUDY={life:"studies/life-of-god.html",purpose:"studies/theme-purpose.html",counsel:"studies/theme-counsel.html",love:"studies/theme-love.html",glory:"studies/theme-glory.html",son:"studies/theme-son.html",mystery:"studies/theme-mystery.html",lamb:"studies/theme-lamb.html",grace:"studies/theme-grace.html",mercy:"studies/theme-mercy.html",redemption:"studies/theme-redemption.html",covenant:"studies/theme-covenant.html",seed:"studies/theme-seed.html",election:"studies/theme-election.html",sonship:"studies/theme-sonship.html",image:"studies/theme-image.html",holiness:"studies/theme-holiness.html",spirit:"studies/theme-spirit.html",dwelling:"studies/theme-dwelling.html",kingdom:"studies/theme-kingdom.html",bride:"studies/theme-bride.html",rest:"studies/theme-rest.html",inheritance:"studies/theme-inheritance.html",book:"studies/theme-book.html",headup:"studies/theme-headup.html",newcreation:"studies/theme-newcreation.html",glorification:"studies/theme-glorification.html",righteousness:"studies/theme-righteousness.html",truth:"studies/theme-truth.html",priesthood:"studies/theme-priesthood.html",faith:"studies/theme-faith.html",peace:"studies/theme-peace.html",judgment:"studies/theme-judgment.html"};
+const STUDY={life:"studies/life-of-god.html",purpose:"studies/theme-purpose.html",counsel:"studies/theme-counsel.html",love:"studies/theme-love.html",glory:"studies/theme-glory.html",son:"studies/theme-son.html",mystery:"studies/theme-mystery.html",lamb:"studies/theme-lamb.html",grace:"studies/theme-grace.html",mercy:"studies/theme-mercy.html",redemption:"studies/theme-redemption.html",covenant:"studies/theme-covenant.html",seed:"studies/theme-seed.html",election:"studies/theme-election.html",sonship:"studies/theme-sonship.html",image:"studies/theme-image.html",holiness:"studies/theme-holiness.html",spirit:"studies/theme-spirit.html",dwelling:"studies/theme-dwelling.html",kingdom:"studies/theme-kingdom.html",bride:"studies/theme-bride.html",rest:"studies/theme-rest.html",inheritance:"studies/theme-inheritance.html",book:"studies/theme-book.html",headup:"studies/theme-headup.html",newcreation:"studies/theme-newcreation.html",glorification:"studies/theme-glorification.html",righteousness:"studies/theme-righteousness.html",truth:"studies/theme-truth.html",priesthood:"studies/theme-priesthood.html",faith:"studies/theme-faith.html",peace:"studies/theme-peace.html",judgment:"studies/theme-judgment.html",names:"studies/theme-names.html",character:"studies/theme-character.html",knowledge:"studies/theme-knowledge.html"};
 const T=[
 {id:"purpose",g:"A",name:"The eternal purpose",gloss:"God's single, overarching plan for the ages, centered in Christ (prothesis).",s:[
  [["the eternal purpose which he purposed in Christ Jesus","Ephesians 3:11"],["according to his own purpose and grace … before the world began","2 Timothy 1:9"]],
@@ -568,7 +568,28 @@ const T=[
  [["whosoever shall call on the name of the LORD shall be delivered","Joel 2:32"],["he is like a refiner's fire","Malachi 3:2"]],
  [["the judgment was set, and the books were opened","Daniel 7:10"],["God shall bring every work into judgment","Ecclesiastes 12:14"]],
  [["hath committed all judgment unto the Son","John 5:22"],["There is therefore now no condemnation","Romans 8:1"]],
- [["I saw a great white throne","Revelation 20:11"],["death and hell were cast into the lake of fire","Revelation 20:14"]]]}
+ [["I saw a great white throne","Revelation 20:11"],["death and hell were cast into the lake of fire","Revelation 20:14"]]]},
+{id:"names",g:"A",name:"The names of God",gloss:"God's self-revelation: each name shows more of His character as He carries out the plan.",s:[
+ [["the high and lofty One that inhabiteth eternity, whose name is Holy","Isaiah 57:15"],["from everlasting to everlasting, thou art God","Psalm 90:2"]],
+ [["Jehovah-jireh","Genesis 22:14"],["I AM THAT I AM","Exodus 3:14"],["The LORD, The LORD God, merciful and gracious","Exodus 34:6"]],
+ [["Jehovah-shalom","Judges 6:24"],["THE LORD OUR RIGHTEOUSNESS","Jeremiah 23:6"],["The LORD is there","Ezekiel 48:35"]],
+ [["The LORD is my shepherd","Psalm 23:1"],["The name of the LORD is a strong tower","Proverbs 18:10"]],
+ [["Before Abraham was, I am","John 8:58"],["I have declared unto them thy name","John 17:26"],["a name which is above every name","Philippians 2:9"]],
+ [["his name shall be in their foreheads","Revelation 22:4"],["I am Alpha and Omega","Revelation 22:13"]]]},
+{id:"character",g:"A",name:"The character of God",gloss:"Justice, righteousness, mercy, steadfast love, grace, holiness, truth, patience, goodness and wrath: one God, every attribute satisfied at once at the cross.",s:[
+ [["the Lamb slain from the foundation of the world","Revelation 13:8"],["grace, which was given us in Christ Jesus before the world began","2 Timothy 1:9"],["that we should be holy and without blame before him in love","Ephesians 1:4"]],
+ [["merciful and gracious, longsuffering, and abundant in goodness and truth","Exodus 34:6"],["and that will by no means clear the guilty","Exodus 34:7"],["there I will meet with thee … from above the mercy seat","Exodus 25:22"],["Ye shall be holy: for I the LORD your God am holy","Leviticus 19:2"]],
+ [["to do justly, and to love mercy, and to walk humbly with thy God","Micah 6:8"],["How shall I give thee up, Ephraim?","Hosea 11:8"],["the LORD hath laid on him the iniquity of us all","Isaiah 53:6"],["in wrath remember mercy","Habakkuk 3:2"]],
+ [["Mercy and truth are met together; righteousness and peace have kissed each other","Psalm 85:10"],["He hath not dealt with us after our sins","Psalm 103:10"],["Great is thy faithfulness","Lamentations 3:23"]],
+ [["that he might be just, and the justifier of him which believeth in Jesus","Romans 3:26"],["Behold therefore the goodness and severity of God","Romans 11:22"],["full of grace and truth","John 1:14"],["he is faithful and just to forgive us our sins","1 John 1:9"]],
+ [["Just and true are thy ways, thou King of saints","Revelation 15:3"],["true and righteous are his judgments","Revelation 19:2"]]]},
+{id:"knowledge",g:"A",name:"The knowledge of God",gloss:"The goal of revelation: God making Himself known, and His people knowing Him (yada, epignōsis) as eternal life.",s:[
+ [["according as he hath chosen us in him before the foundation of the world","Ephesians 1:4"],["having made known unto us the mystery of his will","Ephesians 1:9"]],
+ [["For I know him","Genesis 18:19"],["ye shall know that I am the LORD your God","Exodus 6:7"],["shew me now thy way, that I may know thee","Exodus 33:13"]],
+ [["the knowledge of God more than burnt offerings","Hosea 6:6"],["he understandeth and knoweth me","Jeremiah 9:24"],["they shall all know me","Jeremiah 31:34"],["the spirit of wisdom and understanding","Isaiah 11:2"]],
+ [["find the knowledge of God. For the LORD giveth wisdom","Proverbs 2:5–6"],["now mine eye seeth thee","Job 42:5"],["the people that do know their God shall be strong","Daniel 11:32"]],
+ [["the spirit of wisdom and revelation in the knowledge of him","Ephesians 1:17"],["This is life eternal, that they might know thee","John 17:3"],["the knowledge of the glory of God in the face of Jesus Christ","2 Corinthians 4:6"],["That I may know him","Philippians 3:10"]],
+ [["then shall I know even as also I am known","1 Corinthians 13:12"],["the earth shall be full of the knowledge of the LORD","Isaiah 11:9"]]]}
 ];
 T.forEach((t,i)=>t.n=i+1);
 
