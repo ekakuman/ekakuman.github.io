@@ -6,6 +6,7 @@ Bible studies (English + Telugu). Each study lives in its own folder and is list
 - `fullness-of-time/` · `shadow-and-substance/` · `kings-prophets-priests/` · `genealogies-to-christ/` · `life-of-isaac/` · `firstborn/` · `road-to-emmaus/`
 - `church-in-scripture/` · `churchtraditions/` · `family-yeilding/` · `things-above/` · `agape-love/` · `parenting-in-genesis/`
 - `angelsinscriptures/` · `camp-of-angels/` · `body-soul-spirit/`
+- `character-studies/`
 - `prayers-promises/`
 
 To add a study: create a new folder with an `index.html`, then add a card for it on the home page.
