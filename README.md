@@ -10,6 +10,7 @@ Bible studies (English + Telugu). Each study lives in its own folder and is list
 - `cross-references/` (chart data in `cross-references/data.json`)
 - `places/` (journeys and places; Scripture layer vs human-knowledge layer; data in `places/places.json`, `places/basemap.json`, `places/verses/`)
 - `prayers-promises/`
+- `how-to-read/` (public guide to how the studies are written; linked under the home page title)
 
 To add a study: create a new folder with an `index.html`, then add a card for it on the home page.
 
