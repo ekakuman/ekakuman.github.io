@@ -61,8 +61,22 @@ button{cursor:pointer}
 .empty{color:var(--muted);font-size:15px}
 .help{font-size:14px;color:var(--muted)}
 .help li{margin:0 0 4px}
-.layers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 0}
-@media (max-width:760px){.layers{grid-template-columns:1fr}}
+.layers{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;margin:16px 0 0}
+.switch{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;font-size:14.5px;user-select:none}
+.switch input{appearance:none;width:44px;height:26px;border-radius:13px;background:var(--line);position:relative;cursor:pointer;flex:none;margin:0;padding:0;border:0}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--card);transition:left .15s}
+.switch input:checked{background:var(--hum)}.switch input:checked::after{left:21px}
+.switch input:focus-visible{outline:2px solid var(--hum);outline-offset:2px}
+.cite{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:9px 11px;margin:0 0 8px;background:var(--bg)}
+.cite .hd{display:flex;justify-content:space-between;gap:8px;font-size:14px;font-weight:600}
+.cite .hd a{cursor:pointer;text-decoration:none}
+.cite .nm{color:var(--accent);font-size:13.5px;margin-top:2px}
+.cite p{margin:4px 0 0;font-size:14.5px}.cite p.tl{font-family:"Noto Sans Telugu",sans-serif;font-size:14px}
+.humbox{border:1.5px dashed var(--hum);background:var(--hum-soft);border-radius:9px;padding:7px 10px;font-size:13.5px;margin-top:8px}
+.humbox .h{color:var(--hum);font-weight:600}
+.humbox p{border:0!important;padding-left:0!important}
+#minw:disabled{opacity:.35}
+@media (max-width:900px){.layers{grid-template-columns:1fr}}
 .lay{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:14.5px}
 .lay b{display:block;font-size:15px}
 .lay.s{border-left:5px solid var(--accent)}.lay.s b{color:var(--accent)}
@@ -77,10 +91,11 @@ footer{color:var(--muted);font-size:13.5px;margin-top:26px;line-height:1.6}
 <main>
 <a class="back" href="../">← Bible Studies · బైబిలు అధ్యయనములు</a>
 <h1 style="margin-top:8px">Cross References of the Whole Bible<span class="te">బైబిలు అంతటా వచన సంబంధములు</span></h1>
-<p class="sub">Each bar along the bottom is one chapter, Genesis 1 to Revelation 22. Each arc joins two chapters that cross-reference each other. Tap a chapter or pick a book to see what it connects to, with KJV and Telugu text side by side.</p>
+<p class="sub">Each bar along the bottom is one chapter, Genesis 1 to Revelation 22. Each arc joins two chapters that readers have linked. Switch off human knowledge to see only the links the text itself makes. Tap a chapter or pick a book to see what it connects to, with KJV and Telugu text side by side.</p>
 <div class="layers">
-  <div class="lay s"><b>Scripture · లేఖనము</b>The verses themselves, in the KJV and the Telugu Bible.</div>
+  <div class="lay s"><b>Scripture · లేఖనము</b>The verses themselves, in the KJV and the Telugu Bible, and the places where a verse names its own source, such as “spoken by Esaias the prophet”.</div>
   <div class="lay h"><b>Human knowledge · మానవ జ్ఞానము</b>Which verses are linked. Readers of OpenBible.info chose and voted on these links; Scripture does not list them. Every arc and every vote count is their judgment.</div>
+  <label class="switch"><input type="checkbox" id="human" checked><span>Show human knowledge<br><span class="te" style="font-size:13px;color:var(--muted)">మానవ జ్ఞానము చూపుము</span></span></label>
 </div>
 
 <div class="toolbar">
@@ -116,13 +131,13 @@ The layout follows Chris Harrison &amp; Christoph Römhild's 2007 cross-referenc
 const SECS=[["Law","ధర్మశాస్త్రము","#b5562c"],["History","చరిత్ర","#c98a2e"],["Poetry","కావ్యములు","#7f9637"],["Major Prophets","ప్రధాన ప్రవక్తలు","#2f8f73"],["Minor Prophets","చిన్న ప్రవక్తలు","#2f7ea8"],["Gospels","సువార్తలు","#a23b5d"],["Acts","కార్యములు","#c4607a"],["Paul's Letters","పౌలు పత్రికలు","#6b5aa8"],["General Letters","సాధారణ పత్రికలు","#4b67b0"],["Revelation","ప్రకటన","#2e3d80"]];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let D,NC,arcs,maxW,state={ch:-1,book:-1,book2:-1,minw:40,scope:"all",lang:"both",hover:-1};
+let D,NC,arcs,maxW,state={ch:-1,book:-1,book2:-1,minw:40,scope:"all",lang:"both",hover:-1,human:true};let S,CITES=[];
 const dark=matchMedia("(prefers-color-scheme:dark)");
 let geo={};
 const stage=$("#stage"),bg=document.createElement("canvas"),fg=document.createElement("canvas");
 const ctxB=bg.getContext("2d"),ctxF=fg.getContext("2d");
 
-fetch("data.json").then(r=>r.json()).then(d=>{D=d;init();}).catch(e=>{$("#loading").textContent="Could not load data.json ("+e+")";});
+Promise.all([fetch("data.json").then(r=>r.json()),fetch("scripture.json").then(r=>r.json())]).then(([d,s])=>{D=d;S=s;Object.assign(D.texts,S.texts);init();}).catch(e=>{$("#loading").textContent="Could not load the data ("+e+")";});
 
 function init(){
   $("#loading").remove();
@@ -131,6 +146,9 @@ function init(){
   NC=D.chapters.length;
   arcs=[];for(let i=0;i<D.arcs.length;i+=3)arcs.push([D.arcs[i],D.arcs[i+1],D.arcs[i+2]]);
   maxW=arcs[0][2];
+  const span=(lo,hi)=>[D.books[lo][5],D.books[hi][5]+D.books[hi][3]-1];
+  CITES=S.cites.map(x=>({...x,c:vChap(x.v),named:x.named.map(([code,phrase,lo,hi])=>({code,phrase,lo,hi,r:span(lo,hi)}))}));
+  $("#human").onchange=e=>{state.human=e.target.checked;$("#minw").disabled=!state.human;legend();drawBg();drawFg();renderPanel();};
   const sel=$("#book");
   D.books.forEach((b,i)=>{const o=document.createElement("option");o.value=i;o.textContent=b[1]+" · "+b[2];sel.appendChild(o);});
   sel.onchange=()=>{state.book=sel.value===""?-1:+sel.value;state.book2=-1;state.ch=-1;update(true);};
@@ -150,6 +168,7 @@ function init(){
 }
 function seg(id,fn){document.querySelectorAll(id+" button").forEach(b=>b.onclick=()=>{document.querySelectorAll(id+" button").forEach(x=>x.classList.toggle("on",x===b));fn(b.dataset.v);});}
 function legend(){
+  if(!state.human){$("#legend").innerHTML=`<span><i style="background:var(--accent);height:3px;vertical-align:3px"></i>arc: a verse names a book or writer of Scripture → that book</span><span><i style="background:var(--accent);width:2px;height:10px"></i>tick: the verse cites Scripture (“it is written”) without naming where</span>`;return;}
   $("#legend").innerHTML=SECS.map(s=>`<span><i style="background:${s[2]}"></i>${s[0]}</span>`).join("")+
   `<span style="margin-left:auto">arc distance: near<span class="grad" style="background:linear-gradient(90deg,${arcColor(0,1)},${arcColor(.5,1)},${arcColor(1,1)})"></span>far</span>`;
 }
@@ -174,6 +193,7 @@ function arcPath(ctx,a,b){const x1=cx(a),x2=cx(b),r=(x2-x1)/2,ry=Math.min(geo.ar
 
 function drawBg(){
   if(!geo.W)return;const ctx=ctxB,{W,H,base}=geo;ctx.clearRect(0,0,W,H);
+  if(!state.human){drawScripture(ctx);return;}
   const th=threshold(),focus=state.ch>=0||state.book>=0;
   const list=arcs.filter(a=>a[2]>=th&&passScope(a[0],a[1]));const focusList=focus?list.filter((a,i)=>i%3===0):list;
   ctx.lineWidth=geo.small?.6:.8;
@@ -187,21 +207,46 @@ function drawBg(){
   ctx.globalAlpha=1;
   // book ticks + labels
   const css=getComputedStyle(document.body),muted=css.getPropertyValue("--muted").trim(),ink=css.getPropertyValue("--ink").trim();
-  ctx.textBaseline="top";
+  bookLabels(ctx,css,muted,ink);
+  ctx.fillStyle=muted;ctx.font='11px "Source Sans 3",sans-serif';ctx.textAlign="left";
+  ctx.fillText(`${geo.shown.toLocaleString()} links shown`,geo.pad,4);
+}
+function citeArcs(){const out=[];CITES.forEach(x=>x.named.forEach(n=>{const m=Math.round((n.r[0]+n.r[1])/2);if(passScope(x.c,m))out.push({x,n,a:Math.min(x.c,m),b:Math.max(x.c,m)});}));return out;}
+function drawScripture(ctx){const {W,H,base}=geo,css=getComputedStyle(document.body),acc=css.getPropertyValue("--accent").trim(),muted=css.getPropertyValue("--muted").trim(),ink=css.getPropertyValue("--ink").trim();
+  const focus=state.ch>=0||state.book>=0,list=citeArcs();
+  ctx.strokeStyle=acc;ctx.globalAlpha=focus?.12:.5;ctx.lineWidth=1.3;
+  list.forEach(({a,b})=>{ctx.beginPath();arcPath(ctx,a,b);ctx.stroke();});
+  ctx.globalAlpha=focus?.25:.8;ctx.fillStyle=acc;
+  const seen=new Set();list.forEach(({n})=>{const k=n.r.join();if(seen.has(k))return;seen.add(k);ctx.fillRect(geo.pad+n.r[0]*geo.cw,base-3,(n.r[1]-n.r[0]+1)*geo.cw,3);});
+  CITES.filter(x=>!x.named.length).forEach(x=>{ctx.fillRect(cx(x.c)-.75,base-12,1.5,9);});
+  ctx.globalAlpha=1;
+  for(let c=0;c<NC;c++){const b=D.chapters[c][0];ctx.fillStyle=SECS[D.books[b][4]][2];ctx.globalAlpha=focus?.4:.75;ctx.fillRect(geo.pad+c*geo.cw,base+2,Math.max(.6,geo.cw-.15),geo.barH*.3);}
+  ctx.globalAlpha=1;bookLabels(ctx,css,muted,ink);
+  const named=CITES.filter(x=>x.named.length).length;
+  ctx.fillStyle=muted;ctx.font='11px "Source Sans 3",sans-serif';ctx.textAlign="left";ctx.textBaseline="top";
+  ctx.fillText(`${named} verses name their source · ${CITES.length-named} cite Scripture without naming where`,geo.pad,4);
+}
+function bookLabels(ctx,css,muted,ink){const base=geo.base;ctx.textBaseline="top";
   const y0=base+geo.barH+4;let lastX=-99;
   D.books.forEach((bk,i)=>{const x=geo.pad+bk[5]*geo.cw,wd=bk[3]*geo.cw;
     ctx.fillStyle=muted;ctx.fillRect(x,base+2,.6,geo.barH+2);
     const big=wd>(geo.small?22:16);if(!big&&x-lastX<(geo.small?13:10))return;
     ctx.save();ctx.translate(x+wd/2,y0);ctx.rotate(big?0:Math.PI/2.4);ctx.textAlign=big?"center":"left";ctx.textBaseline=big?"top":"middle";
     ctx.font=(geo.small?"10px":"11px")+' "Source Sans 3",sans-serif';ctx.fillStyle=i===state.book?css.getPropertyValue("--hl").trim():ink;
-    ctx.fillText(bk[0],0,0);ctx.restore();lastX=x;});ctx.textBaseline="top";
-  ctx.fillStyle=muted;ctx.font='11px "Source Sans 3",sans-serif';ctx.textAlign="left";
-  ctx.fillText(`${geo.shown.toLocaleString()} links shown`,geo.pad,4);
-}
+    ctx.fillText(bk[0],0,0);ctx.restore();lastX=x;});ctx.textBaseline="top";}
 function drawFg(){
   if(!geo.W)return;const ctx=ctxF,{W,H,base}=geo;ctx.clearRect(0,0,W,H);
   const hl=getComputedStyle(document.body).getPropertyValue("--hl").trim();
   let pick=null;
+  if(!state.human){const acc=getComputedStyle(document.body).getPropertyValue("--accent").trim();
+    const inR=(c,r)=>c>=r[0]&&c<=r[1];let sel=null;
+    if(state.ch>=0){const c=state.ch;sel=({x,n})=>x.c===c||inR(c,n.r);}
+    else if(state.book>=0){const bk=D.books[state.book],r=[bk[5],bk[5]+bk[3]-1];sel=({x,n})=>inR(x.c,r)||(n.lo<=state.book&&state.book<=n.hi);}
+    if(sel){ctx.strokeStyle=acc;ctx.lineWidth=2.2;citeArcs().filter(sel).forEach(({a,b})=>{ctx.beginPath();arcPath(ctx,a,b);ctx.stroke();});
+      let c0,c1;if(state.ch>=0){c0=c1=state.ch;}else{const bk=D.books[state.book];c0=bk[5];c1=bk[5]+bk[3]-1;}
+      ctx.fillStyle=hl;ctx.fillRect(geo.pad+c0*geo.cw-1,base,Math.max(3,(c1-c0+1)*geo.cw+2),3);}
+    if(state.hover>=0){const x=cx(state.hover);ctx.strokeStyle=hl;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,8);ctx.lineTo(x,base+geo.barH);ctx.stroke();}
+    return;}
   if(state.ch>=0){const c=state.ch;pick=a=>a[0]===c||a[1]===c;}
   else if(state.book>=0){const b=state.book,b2=state.book2;const bc=c=>D.chapters[c][0];
     pick=b2>=0?a=>(bc(a[0])===b&&bc(a[1])===b2)||(bc(a[0])===b2&&bc(a[1])===b):a=>bc(a[0])===b||bc(a[1])===b;}
@@ -242,12 +287,52 @@ function connectedChapters(c){const m=[];arcs.forEach(a=>{if(a[0]===c)m.push([a[
 function bookLinks(b){const m=new Array(66).fill(0);D.bookm.forEach(([x,y,w])=>{if(x===b)m[y]+=w;else if(y===b)m[x]+=w;});
   return m.map((w,i)=>[i,w]).filter(x=>x[1]>0).sort((x,y)=>y[1]-x[1]);}
 
+const TN={LAW:["the Law of Moses (Genesis–Deuteronomy)","మోషే ధర్మశాస్త్రము"]};
+function tname(n,l){if(TN[n.code])return TN[n.code][l==="te"?1:0];const b=D.books[n.lo];return l==="te"?b[2]:b[1];}
+function citeCard(x){const named=x.named.length;
+  let h=`<div class="cite"><div class="hd"><a data-go="${x.c}">${esc(vLabel(x.v))}</a><span class="te" style="font-weight:400;color:var(--muted);font-size:13px">${esc(vLabel(x.v,"te"))}</span></div>
+  <div class="nm">${named?x.named.map(n=>`names “${esc(n.phrase)}” → ${esc(tname(n))}`).join("<br>"):`“${esc(x.phrase)}”, no book named`}</div>${vText(x.v)}`;
+  if(state.human){h+=`<div class="humbox"><span class="h">Human knowledge:</span> `;
+    if(x.top){h+=`readers' strongest link is <a data-go="${vChap(x.top[0])}">${esc(rangeLabel(x.top[0],x.top[1]))}</a> (${x.top[2]} reader votes)${vText(x.top[0])}`;}else h+="readers give no link from this verse.";
+    x.named.forEach(n=>{const r=x.into[n.code];if(r&&x.top&&r[0]===x.top[0])return;
+      h+=r?`<div style="margin-top:6px">Strongest reader link into ${esc(tname(n))}: <a data-go="${vChap(r[0])}">${esc(rangeLabel(r[0],r[1]))}</a> (${r[2]} votes)</div>${vText(r[0])}`
+        :`<div style="margin-top:6px">Readers give no link from this verse into ${esc(tname(n))}.</div>`;});
+    h+=`</div>`;}
+  return h+`</div>`;}
+function scripturePanel(P){
+  const bookOf=c=>D.chapters[c][0];
+  if(state.ch>=0){const c=state.ch,b=bookOf(c),own=CITES.filter(x=>x.c===c),inc=CITES.filter(x=>x.named.some(n=>n.lo<=b&&b<=n.hi));
+    P.innerHTML=`<h2>${esc(chName(c))}<span class="te">${esc(chName(c,"te"))}</span></h2>
+    <p class="stat">Scripture only: what the text itself says about where it is drawing from.</p>
+    <h3>In this chapter<span class="te">ఈ అధ్యాయములో</span></h3>${own.length?own.map(citeCard).join(""):'<p class="empty">No verse here names or cites another part of Scripture.</p>'}
+    <h3>Verses elsewhere that name ${esc(D.books[b][1])}<span class="te">${esc(D.books[b][2])}</span></h3>
+    ${inc.length?`<p class="stat">${inc.length} verse${inc.length>1?"s":""}. The text names the book or its writer, not this chapter.</p>`+inc.slice(0,12).map(citeCard).join("")+(inc.length>12?`<p class="stat">and ${inc.length-12} more; pick the book to see them all.</p>`:""):'<p class="empty">None.</p>'}`;
+  } else if(state.book>=0){const b=state.book,bk=D.books[b],r=[bk[5],bk[5]+bk[3]-1];
+    const own=CITES.filter(x=>x.c>=r[0]&&x.c<=r[1]),inc=CITES.filter(x=>x.named.some(n=>n.lo<=b&&b<=n.hi));
+    P.innerHTML=`<h2>${esc(bk[1])}<span class="te">${esc(bk[2])}</span></h2>
+    <p class="stat">Scripture only. ${own.filter(x=>x.named.length).length} verses in ${esc(bk[1])} name a source; ${own.filter(x=>!x.named.length).length} cite Scripture without naming where. ${inc.length} verses elsewhere name ${esc(bk[1])}.</p>
+    <h3>Named by<span class="te">దీనిని పేర్కొనునవి</span></h3>${inc.length?inc.map(citeCard).join(""):'<p class="empty">No verse elsewhere names this book or its writer.</p>'}
+    <h3>Its own citations<span class="te">దీనిలోని ఉల్లేఖనములు</span></h3>${own.length?own.map(citeCard).join(""):'<p class="empty">None.</p>'}`;
+  } else {const cnt={};CITES.forEach(x=>x.named.forEach(n=>{const k=n.code;cnt[k]=cnt[k]||{n,v:0};cnt[k].v++;}));
+    const rows=Object.values(cnt).sort((a,b)=>b.v-a.v),m=rows[0].v,named=CITES.filter(x=>x.named.length).length;
+    P.innerHTML=`<h2>Scripture only<span class="te">లేఖనము మాత్రమే</span></h2>
+    <p class="stat">The reader-voted links are hidden. What remains is what the text says about its own sources.</p>
+    <ul class="help"><li><b>${named}</b> verses name a book or writer, such as Esaias, Jeremy, David, Moses or the Law. Each arc runs to that book.</li>
+    <li><b>${CITES.length-named}</b> say “it is written”, “the scripture saith” or “the prophet” without naming where. They show as ticks.</li>
+    <li>A name points to a book, not a verse. Which verse is meant is a human judgment, and switching human knowledge back on shows it.</li></ul>
+    <h3>Books named most<span class="te">ఎక్కువగా పేర్కొనబడినవి</span></h3>
+    ${rows.map(({n,v})=>`<div class="bk" data-pick="${n.lo}"><span class="nm">${esc(n.code==="LAW"?"The Law":D.books[n.lo][1])}</span><span class="bar" style="width:${Math.max(4,100*v/m)}%"></span><span class="n">${v}</span></div>`).join("")}`;
+    P.querySelectorAll("[data-pick]").forEach(a=>a.onclick=()=>{state.book=+a.dataset.pick;state.ch=-1;$("#book").value=state.book;update(true);});
+  }
+}
 function renderPanel(){
   const P=$("#panel");
-  if(state.ch>=0){const c=state.ch,[o,i]=D.crefs[c],con=connectedChapters(c).slice(0,8);
+  if(!state.human){scripturePanel(P);}
+  else if(state.ch>=0){const c=state.ch,[o,i]=D.crefs[c],con=connectedChapters(c).slice(0,8);
     const tot=con.length?connectedChapters(c).length:0;
     P.innerHTML=`<h2>${esc(chName(c))}<span class="te">${esc(chName(c,"te"))}</span></h2>
     <p class="stat">Linked to ${tot} other chapters among the strongest links. Thicker arcs mean more reader votes.</p>
+    ${(()=>{const own=CITES.filter(x=>x.c===c);return own.length?`<h3>Where the text names its source<span class="te">లేఖనము తన మూలమును పేర్కొనుట</span></h3>`+own.map(citeCard).join(""):"";})()}
     <h3>Most-linked chapters<span class="te">ఎక్కువ సంబంధమున్న అధ్యాయములు</span></h3>
     ${barList(con.map(([cc,w])=>[cc,w,chName(cc),"ch"]))}
     <h3>From this chapter<span class="te">ఈ అధ్యాయము నుండి</span></h3>
