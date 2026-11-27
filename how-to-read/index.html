@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Read These Studies</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Source+Sans+3:wght@400;600&family=Noto+Sans+Telugu:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, reverent, plain; a guide for readers, not a manual
+   IDEA: a reader's preface at the front of a study Bible
+   PICTURE: four streams (Torah, Prophets, Writings, NT) meeting in Christ, then three steps
+   COLOUR and TYPE: the site's own palette and fonts (Fraunces, Source Sans 3, Noto Sans Telugu)
+   LAYOUT: single column, max 980px, matching the site home page */
+:root{--bg:#f7f3ec;--card:#fffdf9;--ink:#2a2420;--muted:#6d6259;--line:#e3d9cc;--accent:#7a3e1d;--soft:#efe3d3}
+@media (prefers-color-scheme:dark){:root{--bg:#1a1715;--card:#24201d;--ink:#efe8df;--muted:#b3a89c;--line:#3a332d;--accent:#e0a37c;--soft:#2e2723}}
+:root[data-theme=light]{--bg:#f7f3ec;--card:#fffdf9;--ink:#2a2420;--muted:#6d6259;--line:#e3d9cc;--accent:#7a3e1d;--soft:#efe3d3}
+:root[data-theme=dark]{--bg:#1a1715;--card:#24201d;--ink:#efe8df;--muted:#b3a89c;--line:#3a332d;--accent:#e0a37c;--soft:#2e2723}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Source Sans 3","Noto Sans Telugu",system-ui,sans-serif;overflow-x:clip}
+main{max-width:980px;margin:0 auto;padding:40px 20px 60px}
+a{color:var(--accent)}
+.back{font-size:15px;text-decoration:none}
+h1{font-family:Fraunces,Georgia,serif;font-size:clamp(30px,5vw,44px);line-height:1.1;margin:14px 0 4px;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;font-size:22px;line-height:1.25;margin:44px 0 6px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h2 span,.te{font-family:"Noto Sans Telugu",sans-serif}
+h2 span{display:block;font-size:15px;color:var(--muted);font-weight:600;margin-top:2px}
+.sub{color:var(--muted);margin:0;font-size:18px}
+.sub .te{color:var(--accent);font-weight:600}
+p{max-width:70ch}
+.lead{font-size:18px;margin-top:22px}
+.fig{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:26px 0 8px;padding:10px}
+.fig svg{display:block;width:100%;height:auto}
+.fig svg text{font-family:"Source Sans 3","Noto Sans Telugu",sans-serif;fill:var(--ink)}
+.fig .t{fill:var(--muted)}
+.fig .narrow{display:none}
+@media(max-width:600px){.fig .wide{display:none}.fig .narrow{display:block;max-width:420px;margin:0 auto}}
+.fig .k{fill:var(--accent);font-weight:600}
+.cap{color:var(--muted);font-size:15px;margin:6px 4px 0}
+blockquote{margin:16px 0;padding:12px 18px;border-left:3px solid var(--accent);background:var(--soft);border-radius:0 10px 10px 0;max-width:70ch}
+blockquote cite{display:block;font-style:normal;color:var(--muted);font-size:14.5px;margin-top:4px}
+.steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));margin-top:18px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.step h3{font-family:Fraunces,Georgia,serif;font-size:20px;margin:0;line-height:1.2}
+.step .te{color:var(--accent);font-weight:600;font-size:15px}
+.step .q{color:var(--muted);font-size:15.5px;margin:10px 0 0}
+.step p{margin:8px 0 0}
+.layers{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:16px}
+.layer{border-radius:14px;padding:16px 18px;border:1px solid var(--line);background:var(--card)}
+.layer.h{border-style:dashed;background:transparent}
+.layer h3{font-size:17px;margin:0 0 4px}
+.layer p{margin:0;color:var(--muted);font-size:15.5px}
+ul.use{padding-left:20px;max-width:70ch}
+ul.use li{margin:6px 0}
+footer{color:var(--muted);font-size:13.5px;text-align:center;margin-top:48px}
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../">← All studies · <span class="te">అన్ని అధ్యయనములు</span></a>
+  <h1>How to Read These Studies</h1>
+  <p class="sub"><span class="te">ఈ అధ్యయనములను ఎలా చదవాలి</span> · Scripture explaining Scripture</p>
+
+  <p class="lead">Each study on this site lets the Bible speak for itself. A theme is followed through the whole of Scripture, from the Law to the New Testament, until it arrives at Christ. Then we ask what it shows, what is true, and how we are to live.</p>
+
+  <div class="fig" role="img" aria-label="Four parts of Scripture, the Law, the Prophets, the Writings and the New Testament, meet in Christ. From there each study moves through patterns, principles and practice.">
+    <svg class="wide" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker>
+      </defs>
+      <g fill="none" stroke="var(--line)" stroke-width="3">
+        <path d="M200,52 C300,52 330,180 430,180"/>
+        <path d="M200,128 C300,128 330,180 430,180"/>
+        <path d="M200,204 C300,204 330,180 430,180"/>
+        <path d="M200,280 C300,280 330,180 430,180"/>
+      </g>
+      <g>
+        <rect x="20" y="28" width="180" height="48" rx="12" fill="var(--card)" stroke="var(--line)"/>
+        <text x="110" y="50" text-anchor="middle" font-size="17" font-weight="600">Law (Torah)</text>
+        <text x="110" y="68" text-anchor="middle" font-size="13" class="t">ధర్మశాస్త్రము</text>
+        <rect x="20" y="104" width="180" height="48" rx="12" fill="var(--card)" stroke="var(--line)"/>
+        <text x="110" y="126" text-anchor="middle" font-size="17" font-weight="600">Prophets</text>
+        <text x="110" y="144" text-anchor="middle" font-size="13" class="t">ప్రవక్తలు</text>
+        <rect x="20" y="180" width="180" height="48" rx="12" fill="var(--card)" stroke="var(--line)"/>
+        <text x="110" y="202" text-anchor="middle" font-size="17" font-weight="600">Writings</text>
+        <text x="110" y="220" text-anchor="middle" font-size="13" class="t">కీర్తనలు, గ్రంథములు</text>
+        <rect x="20" y="256" width="180" height="48" rx="12" fill="var(--card)" stroke="var(--line)"/>
+        <text x="110" y="278" text-anchor="middle" font-size="17" font-weight="600">New Testament</text>
+        <text x="110" y="296" text-anchor="middle" font-size="13" class="t">క్రొత్త నిబంధన</text>
+      </g>
+      <circle cx="480" cy="180" r="52" fill="var(--accent)"/>
+      <text x="480" y="178" text-anchor="middle" font-size="22" font-weight="600" style="fill:var(--bg)">Christ</text>
+      <text x="480" y="200" text-anchor="middle" font-size="14" style="fill:var(--bg)">క్రీస్తు</text>
+      <path d="M536,180 L590,180" stroke="var(--accent)" stroke-width="3" marker-end="url(#ar)"/>
+      <g>
+        <rect x="600" y="70" width="270" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/>
+        <text x="618" y="95" font-size="17" font-weight="600">1 · Patterns</text>
+        <text x="618" y="115" font-size="13.5" class="t">What does the text show? · నమూనాలు</text>
+        <rect x="600" y="152" width="270" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/>
+        <text x="618" y="177" font-size="17" font-weight="600">2 · Principles</text>
+        <text x="618" y="197" font-size="13.5" class="t">What is true? · సూత్రములు</text>
+        <rect x="600" y="234" width="270" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/>
+        <text x="618" y="259" font-size="17" font-weight="600">3 · Practice</text>
+        <text x="618" y="279" font-size="13.5" class="t">How shall we live? · ఆచరణ</text>
+        <path d="M735,126 L735,150" stroke="var(--accent)" stroke-width="2" marker-end="url(#ar)"/>
+        <path d="M735,208 L735,232" stroke="var(--accent)" stroke-width="2" marker-end="url(#ar)"/>
+      </g>
+      <text x="450" y="340" text-anchor="middle" font-size="14" class="t">Luke 24:27, 44 · John 5:39</text>
+    </svg>
+    <svg class="narrow" viewBox="0 0 360 640" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>
+      <g fill="none" stroke="var(--line)" stroke-width="3">
+        <path d="M45,64 C45,140 180,120 180,200"/><path d="M135,64 C135,140 180,140 180,200"/>
+        <path d="M225,64 C225,140 180,140 180,200"/><path d="M315,64 C315,140 180,120 180,200"/>
+      </g>
+      <g font-size="13" text-anchor="middle">
+        <rect x="6" y="10" width="78" height="54" rx="10" fill="var(--card)" stroke="var(--line)"/>
+        <text x="45" y="34" font-weight="600">Law</text><text x="45" y="52" font-size="10" class="t">ధర్మశాస్త్రము</text>
+        <rect x="96" y="10" width="78" height="54" rx="10" fill="var(--card)" stroke="var(--line)"/>
+        <text x="135" y="34" font-weight="600">Prophets</text><text x="135" y="52" font-size="11" class="t">ప్రవక్తలు</text>
+        <rect x="186" y="10" width="78" height="54" rx="10" fill="var(--card)" stroke="var(--line)"/>
+        <text x="225" y="34" font-weight="600">Writings</text><text x="225" y="52" font-size="11" class="t">గ్రంథములు</text>
+        <rect x="276" y="10" width="78" height="54" rx="10" fill="var(--card)" stroke="var(--line)"/>
+        <text x="315" y="34" font-weight="600">NT</text><text x="315" y="52" font-size="9.5" class="t">క్రొత్త నిబంధన</text>
+      </g>
+      <circle cx="180" cy="248" r="50" fill="var(--accent)"/>
+      <text x="180" y="246" text-anchor="middle" font-size="21" font-weight="600" style="fill:var(--bg)">Christ</text>
+      <text x="180" y="268" text-anchor="middle" font-size="13" style="fill:var(--bg)">క్రీస్తు</text>
+      <path d="M180,300 L180,330" stroke="var(--accent)" stroke-width="3" marker-end="url(#ar2)"/>
+      <g>
+        <rect x="30" y="340" width="300" height="60" rx="12" fill="var(--card)" stroke="var(--line)"/>
+        <text x="48" y="366" font-size="17" font-weight="600">1 · Patterns</text><text x="48" y="388" font-size="13.5" class="t">What does the text show? · నమూనాలు</text>
+        <rect x="30" y="430" width="300" height="60" rx="12" fill="var(--card)" stroke="var(--line)"/>
+        <text x="48" y="456" font-size="17" font-weight="600">2 · Principles</text><text x="48" y="478" font-size="13.5" class="t">What is true? · సూత్రములు</text>
+        <rect x="30" y="520" width="300" height="60" rx="12" fill="var(--card)" stroke="var(--line)"/>
+        <text x="48" y="546" font-size="17" font-weight="600">3 · Practice</text><text x="48" y="568" font-size="13.5" class="t">How shall we live? · ఆచరణ</text>
+        <path d="M180,400 L180,428" stroke="var(--accent)" stroke-width="2" marker-end="url(#ar2)"/>
+        <path d="M180,490 L180,518" stroke="var(--accent)" stroke-width="2" marker-end="url(#ar2)"/>
+      </g>
+      <text x="180" y="616" text-anchor="middle" font-size="13" class="t">Luke 24:27, 44 · John 5:39</text>
+    </svg>
+  </div>
+  <p class="cap">Every theme is traced through the whole Bible to Christ, then read in three steps.</p>
+
+  <h2>Scripture explains Scripture<span>లేఖనమే లేఖనమును వివరించును</span></h2>
+  <p>The Bible is its own best commentary. A hard passage is read in light of clearer ones on the same subject, and a teaching is built on the whole counsel of God rather than on one verse alone.</p>
+  <blockquote>“Which things also we speak, not in the words which man's wisdom teacheth, but which the Holy Ghost teacheth; comparing spiritual things with spiritual.”<cite>1 Corinthians 2:13 (KJV)</cite></blockquote>
+  <p>Notes on Hebrew, Greek or Telugu words appear where they help, but the passage and Scripture's own use of a word decide its meaning.</p>
+
+  <h2>The whole Bible, start to finish<span>సంపూర్ణ లేఖనము</span></h2>
+  <p>Jesus taught from every part of the Scriptures. So each theme is followed through four parts: the Law (Torah), the Prophets, the Writings (Psalms, Proverbs and the other books), and the New Testament. A theme that appears as a seed in Genesis is watched as it grows, is foreshadowed and is finally fulfilled.</p>
+  <blockquote>“And he said unto them, These are the words which I spake unto you, while I was yet with you, that all things must be fulfilled, which were written in the law of Moses, and in the prophets, and in the psalms, concerning me.”<cite>Luke 24:44 (KJV)</cite></blockquote>
+
+  <h2>Three steps in every study<span>మూడు మెట్లు</span></h2>
+  <div class="steps">
+    <div class="step">
+      <h3>Patterns</h3><div class="te">నమూనాలు</div>
+      <p>We look closely at what the text says: its setting, movement, repeated words, contrasts, and how the theme connects across the Bible.</p>
+      <p class="q">What is happening? What is repeated? Where does this theme begin and end?</p>
+    </div>
+    <div class="step">
+      <h3>Principles</h3><div class="te">సూత్రములు</div>
+      <p>We state what the passage reveals about God, His purpose and His work, and how it is fulfilled in Christ. These truths hold across every age.</p>
+      <p class="q">What does this show about God? How is it fulfilled in Christ?</p>
+    </div>
+    <div class="step">
+      <h3>Practice</h3><div class="te">ఆచరణ</div>
+      <p>We ask how these truths shape our thinking, worship, homes and witness. God acts first; we respond in faith; what we do on earth matters in heaven.</p>
+      <p class="q">How does this call us to respond? What is the next faithful step?</p>
+    </div>
+  </div>
+
+  <h2>Everything points to Christ<span>అన్నియు క్రీస్తును చూపును</span></h2>
+  <p>God's purpose was set before the foundation of the world and is carried out and completed in His Son. Every study follows its theme until it reaches Him: as Prophet, Priest and King, and in the types and shadows that foretold Him.</p>
+  <blockquote>“Search the scriptures; for in them ye think ye have eternal life: and they are they which testify of me.”<cite>John 5:39 (KJV)</cite></blockquote>
+
+  <h2>Every verse in its place<span>సందర్భము ముఖ్యము</span></h2>
+  <p>A verse means what it means where it stands. Before a verse is used, we ask what came before and after it in the story, who is speaking, to whom, and under which covenant. We also keep apart what Scripture <em>describes</em> (what happened) from what it <em>commands</em> (what we are to do).</p>
+
+  <h2>Scripture and human knowledge<span>లేఖనము, మానవ జ్ఞానము</span></h2>
+  <p>These studies aim to be purely scriptural. Where outside information helps (historical dates, map locations, scholars' views, church traditions, or books outside the Bible), it is clearly marked so that you can always tell the two apart.</p>
+  <div class="layers">
+    <div class="layer"><h3>What Scripture says</h3><p>The text itself, quoted from the King James Version, with Telugu alongside. This is the foundation of every study.</p></div>
+    <div class="layer h"><h3>Added human knowledge</h3><p>Shown separately (a marked section, a dashed panel, or a layer you can turn on and off). Helpful, but never the authority.</p></div>
+  </div>
+  <blockquote>“Beware lest any man spoil you through philosophy and vain deceit, after the tradition of men, after the rudiments of the world, and not after Christ.”<cite>Colossians 2:8 (KJV)</cite></blockquote>
+
+  <h2>Where believers differ<span>అభిప్రాయ భేదములు</span></h2>
+  <p>On some questions sincere believers read Scripture differently. Where that happens, the main views are set out fairly with the passages each one rests on. You are encouraged to weigh them against the Word yourself.</p>
+
+  <h2>Using each study<span>ప్రతి అధ్యయనమును ఎలా ఉపయోగించాలి</span></h2>
+  <ul class="use">
+    <li><strong>Read with your own Bible open.</strong> Check every reference and read the verses around it.</li>
+    <li><strong>Start with the overview</strong> to see where the theme fits in God's larger purpose, then follow it through the four parts of Scripture.</li>
+    <li><strong>Use the one-page summary image</strong> to review or share the whole theme at a glance.</li>
+    <li><strong>Use the slides</strong> for group study or teaching.</li>
+    <li><strong>End with practice.</strong> Ask what the next faithful step is for you, your home and your church.</li>
+  </ul>
+  <blockquote>“These were more noble than those in Thessalonica, in that they received the word with all readiness of mind, and searched the scriptures daily, whether those things were so.”<cite>Acts 17:11 (KJV)</cite></blockquote>
+
+  <footer>Scripture quotations are from the King James Version (public domain). · <a href="../">Back to all studies</a></footer>
+</main>
+</body>
+</html>
