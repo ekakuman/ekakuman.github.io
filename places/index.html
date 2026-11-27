@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Places of Scripture · లేఖనములలోని స్థలములు</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=Noto+Sans+Telugu:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Two layers, never mixed: Scripture (solid, brown ink) and human knowledge (dashed, blue).
+   The human layer can be switched off; what remains is only what the text says. */
+:root{--bg:#f7f3ec;--card:#fffdf9;--ink:#2a2420;--muted:#6d6259;--line:#e3d9cc;--accent:#7a3e1d;
+  --hum:#2f679e;--hum-soft:#dbe7f3;--land:#ebe2d2;--landline:#d6c8b2;--sea:#dfe8ee;--river:#8fb0c8}
+@media (prefers-color-scheme:dark){:root{--bg:#1a1715;--card:#24201d;--ink:#efe8df;--muted:#b3a89c;--line:#3a332d;--accent:#e0a37c;
+  --hum:#8dbbe8;--hum-soft:#1f2d3b;--land:#38312a;--landline:#51473d;--sea:#161d24;--river:#3d5a72}}
+*{box-sizing:border-box;min-width:0}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Source Sans 3","Noto Sans Telugu",system-ui,sans-serif;overflow-x:clip}
+main{max-width:1320px;margin:0 auto;padding:28px 18px 50px}
+a{color:var(--accent)}
+.te{font-family:"Noto Sans Telugu",sans-serif}
+.back{font-size:14px;text-decoration:none;color:var(--muted)}
+h1{font-family:Fraunces,Georgia,serif;font-size:clamp(26px,4.5vw,38px);margin:8px 0 0;line-height:1.15}
+h1 .te{display:block;font-size:.55em;color:var(--accent);font-weight:600;margin-top:4px}
+.sub{color:var(--muted);margin:8px 0 0;max-width:800px}
+.layers{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;margin:18px 0 12px;align-items:stretch}
+@media (max-width:760px){.layers{grid-template-columns:1fr}}
+.lay{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:14.5px}
+.lay b{display:block;font-size:15px}
+.lay.s{border-left:5px solid var(--accent)}
+.lay.h{border:1.5px dashed var(--hum);border-left:5px dashed var(--hum);background:var(--hum-soft)}
+.lay.h b{color:var(--hum)}.lay.s b{color:var(--accent)}
+.switch{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;font-size:14.5px;user-select:none}
+.switch input{appearance:none;width:44px;height:26px;border-radius:13px;background:var(--line);position:relative;cursor:pointer;flex:none;margin:0}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--card);transition:left .15s}
+.switch input:checked{background:var(--hum)}.switch input:checked::after{left:21px}
+.switch input:focus-visible{outline:2px solid var(--hum);outline-offset:2px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin:0 0 12px}
+.tabs,.seg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--card)}
+.tabs button,.seg button{border:0;border-radius:0;background:transparent}
+.tabs button.on,.seg button.on{background:var(--accent);color:var(--card)}
+button,select{font:inherit;font-size:14.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:9px;padding:7px 11px;cursor:pointer;min-height:38px}
+button:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.jbtn.on{background:var(--accent);color:var(--card);border-color:var(--accent)}
+.row{display:flex;flex-wrap:wrap;gap:6px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:16px;align-items:start}
+@media (max-width:980px){.layout{grid-template-columns:1fr}}
+.figcard{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative}
+.fig{position:relative;height:min(68vh,640px);min-height:380px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.fig.map{background:var(--sea)}
+.figfoot{display:flex;flex-wrap:wrap;gap:6px 16px;padding:8px 12px;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+.figfoot .k{display:inline-flex;align-items:center;gap:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:14px;padding:16px;max-height:calc(100vh - 32px);overflow:auto;position:sticky;top:16px}
+@media (max-width:980px){.panel{position:static;max-height:none}}
+.panel h2{font-family:Fraunces,Georgia,serif;font-size:22px;margin:0;line-height:1.2}
+.panel h2 .te{display:block;font-size:15px;color:var(--accent);font-weight:600}
+.stat{font-size:14px;color:var(--muted);margin:6px 0 0}
+.hum{color:var(--hum)}
+.humbox{border:1.5px dashed var(--hum);background:var(--hum-soft);border-radius:9px;padding:7px 10px;font-size:13.5px;margin-top:7px}
+.humbox b{font-weight:600}
+.stop{display:grid;grid-template-columns:30px 1fr;gap:4px 10px;padding:10px 0;border-top:1px solid var(--line);cursor:pointer}
+.stop:first-of-type{border-top:0}
+.stop .n{width:26px;height:26px;border-radius:50%;border:2px solid var(--accent);color:var(--accent);display:grid;place-items:center;font-size:12.5px;font-weight:600;margin-top:1px}
+.stop.sel .n{background:var(--accent);color:var(--card)}
+.stop .nm{font-weight:600;font-size:16px}
+.stop .rf{font-size:13.5px;color:var(--accent);margin-left:6px;white-space:nowrap}
+.stop .how{font-style:italic;font-size:14px;color:var(--muted)}
+.vt{grid-column:2;font-size:14.5px;margin:4px 0 0;padding:8px 10px;border-left:3px solid var(--accent);background:var(--bg);border-radius:0 8px 8px 0}
+.vt p{margin:0}.vt p+p{margin-top:5px}
+.vt .tl{font-family:"Noto Sans Telugu",sans-serif;font-size:14px}
+.conf{display:inline-block;font-size:12px;font-weight:600;padding:0 7px;border-radius:9px;border:1.5px solid var(--hum);color:var(--hum);margin-left:4px;white-space:nowrap}
+.conf.c3{background:var(--hum);color:var(--card)}.conf.c0{border-style:dashed}
+.empty{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+footer{color:var(--muted);font-size:13.5px;margin-top:24px;line-height:1.6}
+.zoom{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:4px;z-index:2}
+.zoom button{width:38px;height:38px;padding:0;font-size:18px;line-height:1}
+svg text{font-family:"Source Sans 3","Noto Sans Telugu",sans-serif}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="../">← Bible Studies · బైబిలు అధ్యయనములు</a>
+<h1>Places of Scripture<span class="te">లేఖనములలోని స్థలములు</span></h1>
+<p class="sub">Scripture names the places and the order of travel. Putting those names on a modern map is human work, and some of it is far from certain. This page keeps the two apart, so you can always see which is which.</p>
+
+<div class="layers">
+  <div class="lay s"><b>Scripture · లేఖనము</b>The place names as the KJV writes them, the order the text gives, the verse, and how the text says they travelled.</div>
+  <div class="lay h"><b>Human knowledge · మానవ జ్ఞానము</b>Where scholars place each name on a modern map, how sure they are, other proposed sites, and the lines joining the stops.</div>
+  <label class="switch"><input type="checkbox" id="human" checked><span>Show human knowledge<br><span class="te" style="font-size:13px;color:var(--muted)">మానవ జ్ఞానము చూపుము</span></span></label>
+</div>
+
+<div class="toolbar">
+  <span class="tabs" id="mode"><button data-v="j" class="on">Journeys · ప్రయాణములు</button><button data-v="c">Places in a chapter · అధ్యాయములోని స్థలములు</button></span>
+  <span id="jpick" class="row"></span>
+  <span id="cpick" class="row" hidden><select id="cbook" aria-label="Book"></select><select id="cchap" aria-label="Chapter"></select></span>
+  <span class="seg" id="lang" style="margin-left:auto"><button data-v="both" class="on">KJV + తెలుగు</button><button data-v="en">KJV</button><button data-v="te">తెలుగు</button></span>
+</div>
+
+<div class="layout">
+  <div class="figcard">
+    <div class="fig" id="fig"><div class="empty" style="padding:60px;text-align:center">Loading…</div></div>
+    <div class="figfoot" id="figfoot"></div>
+  </div>
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<footer>
+Scripture layer: King James Version (public domain) and the Bible Society of India's public-domain Telugu Bible (via godlytalias/Bible-Database). Journeys follow the verses cited; each stop's name was checked against its KJV verse.<br>
+Human layer: <a href="https://github.com/openbibleinfo/Bible-Geocoding-Data">OpenBible.info Bible Geocoding Data</a> (CC-BY 4.0), which gathers the proposals of more than seventy atlases, dictionaries and commentaries and scores how far they agree. Coastlines and rivers: Natural Earth (public domain), drawn as they are today; modern reservoirs are left out.
+</footer>
+</main>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const st={mode:"j",j:"paul2",book:"Acts",ch:16,human:true,lang:"both",sel:-1,zoom:1,cx:null,cy:null};
+let D,B,VC={};
+const fig=$("#fig");
+Promise.all([fetch("places.json").then(r=>r.json()),fetch("basemap.json").then(r=>r.json())]).then(([d,b])=>{D=d;B=b;init();})
+ .catch(e=>{fig.innerHTML=`<div class="empty" style="padding:40px">Could not load data (${esc(e)})</div>`;});
+
+const TIERS=[["very uncertain","చాలా అనిశ్చితము"],["uncertain","అనిశ్చితము"],["likely","బహుశా"],["settled","నిశ్చయము"]];
+const tier=s=>s>=900?3:s>=500?2:s>=150?1:0;
+const AREA=new Set(["region","natural area","mountain range","people group"]);
+const rel=d=>/^(within|another name for|along|about)/.test(d);
+
+function init(){
+  D.journeys.forEach(j=>{const b=document.createElement("button");b.className="jbtn";b.dataset.j=j.id;b.textContent=j.en;b.onclick=()=>{st.j=j.id;st.sel=-1;resetView();go();};$("#jpick").appendChild(b);});
+  const cb=$("#cbook");D.books.forEach(([o,en,te])=>{if(!Object.keys(D.chapters).some(k=>k.startsWith(o+".")))return;const op=document.createElement("option");op.value=o;op.textContent=en+" · "+te;cb.appendChild(op);});
+  cb.onchange=()=>{st.book=cb.value;st.ch=chaps(st.book)[0];st.sel=-1;fillCh();resetView();go();};
+  $("#cchap").onchange=e=>{st.ch=+e.target.value;st.sel=-1;resetView();go();};
+  seg("#mode",v=>{st.mode=v;st.sel=-1;resetView();go();});
+  seg("#lang",v=>{st.lang=v;panel();});
+  $("#human").onchange=e=>{st.human=e.target.checked;draw();panel();};
+  new ResizeObserver(()=>draw()).observe(fig);
+  matchMedia("(prefers-color-scheme:dark)").addEventListener("change",draw);
+  window.addEventListener("hashchange",()=>{fromHash();st.sel=-1;resetView();go(true);});
+  fromHash();go(true);
+}
+function seg(id,fn){document.querySelectorAll(id+" button").forEach(b=>b.onclick=()=>{fn(b.dataset.v);});}
+function syncButtons(){
+  document.querySelectorAll("#mode button").forEach(b=>b.classList.toggle("on",b.dataset.v===st.mode));
+  document.querySelectorAll("#lang button").forEach(b=>b.classList.toggle("on",b.dataset.v===st.lang));
+  document.querySelectorAll(".jbtn").forEach(b=>b.classList.toggle("on",b.dataset.j===st.j));
+  $("#jpick").hidden=st.mode!=="j";$("#cpick").hidden=st.mode!=="c";
+  $("#cbook").value=st.book;fillCh();
+}
+const chaps=b=>Object.keys(D.chapters).filter(k=>k.startsWith(b+".")).map(k=>+k.split(".")[1]).sort((a,b)=>a-b);
+function fillCh(){const s=$("#cchap"),cs=chaps(st.book);s.innerHTML=cs.map(c=>`<option value="${c}">Chapter ${c}</option>`).join("");if(!cs.includes(st.ch))st.ch=cs[0];s.value=st.ch;}
+function fromHash(){const h=location.hash.slice(1);
+  if(D.journeys.some(j=>j.id===h)){st.mode="j";st.j=h;}
+  else{const m=h.match(/^ch-([0-9A-Za-z]+)-(\d+)$/);if(m&&D.chapters[m[1]+"."+m[2]]){st.mode="c";st.book=m[1];st.ch=+m[2];}}}
+function resetView(){st.zoom=1;st.cx=st.cy=null;}
+function go(noHash){syncButtons();
+  if(!noHash){const h=st.mode==="j"?"#"+st.j:`#ch-${st.book}-${st.ch}`;if(location.hash!==h)history.replaceState(null,"",h);}
+  if(st.mode==="c"&&!VC[st.book]){fetch(`verses/${st.book}.json`).then(r=>r.json()).then(v=>{VC[st.book]=v;panel();});}
+  draw();panel();}
+
+/* ---------- items for the current view ---------- */
+function items(){
+  if(st.mode==="j"){const j=D.journeys.find(x=>x.id===st.j);
+    return j.stops.map(([name,osis,how,pid],i)=>({i,name,osis,how,pid,p:D.places[pid]}));}
+  const lst=D.chapters[st.book+"."+st.ch]||[];const by=new Map();
+  lst.forEach(([pid,v,kn])=>{if(!by.has(pid))by.set(pid,{pid,p:D.places[pid],verses:[],kn});by.get(pid).verses.push(v);});
+  return [...by.values()].map((x,i)=>({...x,i,name:x.kn,osis:x.verses[0]}))
+    .sort((a,b)=>vnum(a.osis)-vnum(b.osis)).map((x,i)=>({...x,i}));
+}
+const vnum=o=>+o.split(".")[2];
+function readable(o,l){if(D.readable[o])return D.readable[o][l==="te"?1:0];const [b,c,v]=o.split(".");const bk=D.books.find(x=>x[0]===b);return `${l==="te"?bk[2]:bk[1]} ${c}:${v}`;}
+function vtext(o){const t=D.texts[o]||(VC[o.split(".")[0]]||{})[o];if(!t)return '<p class="empty">Loading verse…</p>';let h="";
+  if(st.lang!=="te")h+=`<p>${esc(t[0])}</p>`;if(st.lang!=="en"&&t[1])h+=`<p class="tl">${esc(t[1])}</p>`;return h;}
+
+/* ---------- drawing ---------- */
+function css(v){return getComputedStyle(document.body).getPropertyValue(v).trim();}
+function draw(){if(!D)return;fig.classList.toggle("map",st.human);st.human?drawMap():drawSchematic();foot();}
+
+function drawSchematic(){
+  const W=fig.clientWidth,H=fig.clientHeight,its=items(),acc=css("--accent"),ink=css("--ink"),mut=css("--muted"),bg=css("--card");
+  if(!its.length){fig.innerHTML='<div class="empty" style="padding:40px">No places named in this chapter.</div>';return;}
+  const narrow=W<560,cols=Math.max(2,Math.min(st.mode==="j"?6:5,Math.floor(W/(narrow?120:150)))),rows=Math.ceil(its.length/cols);
+  const cw=(W-40)/cols,rh=Math.min(92,Math.max(58,(H-60)/rows));const totalH=Math.max(H,rows*rh+60);
+  const pos=its.map((_,i)=>{const r=Math.floor(i/cols),c0=i%cols,c=r%2?cols-1-c0:c0;return [20+cw*(c+.5),40+rh*r];});
+  let line="";if(st.mode==="j"){pos.forEach(([x,y],i)=>{line+=(i?"L":"M")+x+" "+y;});}
+  const nodes=its.map((it,i)=>{const [x,y]=pos[i],sel=i===st.sel;
+    return `<g data-i="${i}" style="cursor:pointer"><circle cx="${x}" cy="${y}" r="${sel?15:13}" fill="${sel?acc:bg}" stroke="${acc}" stroke-width="2.5"/>
+    <text x="${x}" y="${y+4.5}" text-anchor="middle" font-size="12" font-weight="600" fill="${sel?bg:acc}">${i+1}</text>
+    <text x="${x}" y="${y+31}" text-anchor="middle" font-size="${narrow?12:13.5}" font-weight="600" fill="${ink}">${esc(clip(it.name,narrow?14:20))}</text>
+    <text x="${x}" y="${y+46}" text-anchor="middle" font-size="11.5" fill="${mut}">${esc(shortBook(it.osis))}</text></g>`;}).join("");
+  fig.innerHTML=`<svg viewBox="0 0 ${W} ${totalH}" style="height:${totalH}px" role="img" aria-label="Stops in the order Scripture gives them">
+   <text x="20" y="18" font-size="12.5" fill="${mut}">${st.mode==="j"?"In the order the text gives. Scripture alone does not place these on a map.":"Places named in this chapter, in verse order."}</text>
+   ${line?`<path d="${line}" fill="none" stroke="${acc}" stroke-width="3" stroke-linejoin="round" opacity=".55"/>`:""}${nodes}</svg>`;
+  fig.style.overflowY=totalH>H?"auto":"";
+  fig.querySelectorAll("[data-i]").forEach(g=>g.onclick=()=>select(+g.dataset.i));
+}
+const clip=(s,n)=>s.length>n?s.slice(0,n-1)+"…":s;
+function shortBook(o){const b=o.split(".")[0];const [,c,v]=o.split(".");return `${b} ${c}:${v}`;}
+
+function drawMap(){
+  fig.style.overflowY="";
+  const W=fig.clientWidth,H=fig.clientHeight,its=items();
+  const hum=css("--hum"),land=css("--land"),ll=css("--landline"),sea=css("--sea"),riv=css("--river"),ink=css("--ink"),card=css("--card"),acc=css("--accent");
+  const pts=its.filter(it=>it.p&&it.p[2].length).map(it=>it.p[2][0]);
+  if(!pts.length){fig.innerHTML='<div class="empty" style="padding:40px">No locations for this view.</div>';return;}
+  let x0=Math.min(...pts.map(p=>p[0])),x1=Math.max(...pts.map(p=>p[0])),y0=Math.min(...pts.map(p=>p[1])),y1=Math.max(...pts.map(p=>p[1]));
+  const minSpan=st.mode==="j"?2.5:1.6;
+  if(x1-x0<minSpan){const m=(x0+x1)/2;x0=m-minSpan/2;x1=m+minSpan/2;}if(y1-y0<minSpan*.7){const m=(y0+y1)/2;y0=m-minSpan*.35;y1=m+minSpan*.35;}
+  const lat0=(y0+y1)/2,kx=Math.cos(lat0*Math.PI/180),pad=W<560?34:56;
+  let s=Math.min((W-2*pad)/((x1-x0)*kx),(H-2*pad)/(y1-y0))*st.zoom;
+  if(st.cx==null){st.cx=(x0+x1)/2;st.cy=lat0;}
+  const P=(lon,lat)=>[W/2+(lon-st.cx)*kx*s,H/2-(lat-st.cy)*s];
+  const path=rs=>rs.map(r=>"M"+r.map(([a,b])=>P(a,b).map(v=>v.toFixed(1)).join(" ")).join("L")+"Z").join("");
+  const lpath=ls=>ls.map(r=>"M"+r.map(([a,b])=>P(a,b).map(v=>v.toFixed(1)).join(" ")).join("L")).join("");
+  // group stops by place so a revisited place gets one pin with several numbers
+  const groups=new Map();its.forEach(it=>{if(!it.p||!it.p[2].length)return;if(!groups.has(it.pid))groups.set(it.pid,[]);groups.get(it.pid).push(it);});
+  let alt="",pins="",labels="",route="";
+  if(st.mode==="j"){const seq=its.filter(it=>it.p&&it.p[2].length).map(it=>P(it.p[2][0][0],it.p[2][0][1]));
+    route=`<path d="M${seq.map(p=>p.map(v=>v.toFixed(1)).join(" ")).join("L")}" fill="none" stroke="${hum}" stroke-width="2" stroke-dasharray="6 5" stroke-linejoin="round" opacity=".8"/>`;}
+  const boxes=[];const selPid=st.sel>=0&&its[st.sel]?its[st.sel].pid:null;
+  const order=[...groups.entries()].sort((a,b)=>(a[0]===selPid)-(b[0]===selPid));
+  order.forEach(([pid,g])=>{const p=g[0].p,c=p[2],[x,y]=P(c[0][0],c[0][1]),t=tier(c[0][2]),area=AREA.has(p[1]),sel=pid===selPid;
+    if(sel)c.slice(1).forEach(a=>{const [ax,ay]=P(a[0],a[1]);alt+=`<line x1="${x}" y1="${y}" x2="${ax}" y2="${ay}" stroke="${hum}" stroke-width="1" stroke-dasharray="2 3" opacity="${sel?.9:.45}"/><circle cx="${ax}" cy="${ay}" r="${sel?5:4}" fill="none" stroke="${hum}" stroke-width="1.5" opacity="${sel?1:.6}"><title>${esc(g[0].name)}: also proposed at ${esc(a[3])}</title></circle>`;
+      if(sel)labels+=lbl(ax+7,ay+4,a[3],11,hum,true);});
+    const r=area?16:(sel?11:9);
+    const fill=area?"none":t>=3?hum:t===2?hum:card,fo=t===2?.55:1,dash=t===0||area?' stroke-dasharray="3 3"':"";
+    pins+=`<g data-pid="${pid}" style="cursor:pointer">${area?`<circle cx="${x}" cy="${y}" r="${r}" fill="${hum}" fill-opacity=".12" stroke="${hum}" stroke-width="1.5"${dash}/>`:
+      `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}" fill-opacity="${fo}" stroke="${sel?acc:hum}" stroke-width="${sel?3:2}"${dash}/>`}
+      <title>${esc(g[0].name)} · ${TIERS[t][0]}</title></g>`;
+    const nums=st.mode==="j"?g.map(it=>it.i+1).join(","):"";
+    if(nums)pins+=`<text x="${x}" y="${y+3.5}" text-anchor="middle" font-size="${nums.length>3?8.5:10}" font-weight="600" fill="${t>=2&&!area?card:hum}" pointer-events="none">${nums.length>5?g[0].i+1+"…":nums}</text>`;
+    const label=g[0].name,fs=sel?14:12.5,w=label.length*fs*.52,bx=[x+r+3,y-fs*.6,x+r+3+w,y+fs*.5];
+    if(sel||!boxes.some(b=>!(bx[2]<b[0]||bx[0]>b[2]||bx[3]<b[1]||bx[1]>b[3]))){boxes.push(bx);labels+=lbl(x+r+3,y+4,label,fs,ink,area,sel);}
+  });
+  // scale bar (100 km or 20 km)
+  const kmPx=s/111*kx,km=[500,200,100,50,20,10].find(k=>k*kmPx<W*.22)||10,bw=km*kmPx;
+  fig.innerHTML=`<div class="zoom"><button data-z="in" aria-label="Zoom in">+</button><button data-z="out" aria-label="Zoom out">−</button><button data-z="fit" aria-label="Fit to view" style="font-size:13px">fit</button></div>
+  <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Map of the places, as scholars locate them today">
+  <rect width="${W}" height="${H}" fill="${sea}"/>
+  <path d="${path(B.land)}" fill="${land}" stroke="${ll}" stroke-width=".8" fill-rule="evenodd"/>
+  <path d="${path(B.lakes)}" fill="${sea}" stroke="${ll}" stroke-width=".6"/>
+  <path d="${lpath(B.rivers)}" fill="none" stroke="${riv}" stroke-width="1.2"/>
+  ${route}${alt}${pins}${labels}
+  <g transform="translate(14,${H-18})"><rect x="0" y="-3" width="${bw}" height="4" fill="${ink}" opacity=".6"/><text x="0" y="-8" font-size="11.5" fill="${ink}" opacity=".8">${km} km</text></g>
+  </svg>`;
+  fig.querySelectorAll("[data-pid]").forEach(g=>g.onclick=()=>{const i=its.findIndex(it=>it.pid===g.dataset.pid);select(i,true);});
+  fig.querySelectorAll("[data-z]").forEach(b=>b.onclick=()=>{const z=b.dataset.z;if(z==="fit")resetView();else st.zoom*=z==="in"?1.6:1/1.6;
+    if(z!=="fit"&&st.sel>=0&&its[st.sel]&&its[st.sel].p&&its[st.sel].p[2].length){st.cx=its[st.sel].p[2][0][0];st.cy=its[st.sel].p[2][0][1];}draw();});
+  enablePan(s,kx);
+}
+function lbl(x,y,t,fs,col,it,bold){const halo=css("--land");
+  return `<text x="${x}" y="${y}" font-size="${fs}" fill="${col}" ${it?'font-style="italic"':""} ${bold?'font-weight="600"':""} stroke="${halo}" stroke-width="3.5" paint-order="stroke" stroke-linejoin="round" pointer-events="none">${esc(t)}</text>`;}
+function enablePan(s,kx){const svg=fig.querySelector("svg");let drag=null;
+  svg.onpointerdown=e=>{if(e.target.closest("[data-pid]"))return;drag=[e.clientX,e.clientY,st.cx,st.cy];svg.setPointerCapture(e.pointerId);};
+  svg.onpointermove=e=>{if(!drag)return;st.cx=drag[2]-(e.clientX-drag[0])/(s*kx);st.cy=drag[3]+(e.clientY-drag[1])/s;
+    clearTimeout(svg._t);svg._t=setTimeout(draw,10);};
+  svg.onpointerup=()=>{drag=null;};svg.style.touchAction="pan-y";}
+
+function foot(){const hum=st.human;
+  $("#figfoot").innerHTML=hum?`<span class="k"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="var(--hum)" stroke="var(--hum)" stroke-width="2"/></svg>settled</span>
+  <span class="k"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="var(--hum)" fill-opacity=".55" stroke="var(--hum)" stroke-width="2"/></svg>likely</span>
+  <span class="k"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="var(--card)" stroke="var(--hum)" stroke-width="2"/></svg>uncertain</span>
+  <span class="k"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="var(--card)" stroke="var(--hum)" stroke-width="2" stroke-dasharray="3 3"/></svg>very uncertain</span>
+  <span class="k"><svg width="16" height="16"><circle cx="8" cy="8" r="4" fill="none" stroke="var(--hum)" stroke-width="1.5"/></svg>other proposed sites (tap a place)</span>
+  ${st.mode==="j"?`<span class="k"><svg width="26" height="10"><line x1="0" y1="5" x2="26" y2="5" stroke="var(--hum)" stroke-width="2" stroke-dasharray="6 5"/></svg>stops joined in order; the text gives no roads or sea lanes</span>`:""}`
+  :`<span>Scripture only: names, order and verses. Switch on human knowledge to place them on a map.</span>`;}
+
+/* ---------- panel ---------- */
+function humLine(it){if(!st.human)return "";if(!it.p||!it.p[2].length)return `<div class="humbox">No proposed location.</div>`;
+  const c=it.p[2],t=tier(c[0][2]);
+  return `<div class="humbox"><span class="hum">Placed at</span> <b>${esc(c[0][3])}</b><span class="conf c${t}">${TIERS[t][0]}</span>${rel(c[0][3])?`<br><span class="hum">Placed relative to another place, not found on its own.</span>`:""}
+  ${c.length>1?`<br><span class="hum">Also proposed:</span> ${c.slice(1).map(a=>esc(a[3])).join("; ")}`:""}</div>`;}
+function panel(){if(!D)return;const P=$("#panel"),its=items();
+  let head="";
+  if(st.mode==="j"){const j=D.journeys.find(x=>x.id===st.j);
+    const counts=[0,0,0,0];its.forEach(it=>{if(it.p&&it.p[2].length)counts[tier(it.p[2][0][2])]++;});
+    head=`<h2>${esc(j.en)}<span class="te">${esc(j.te)}</span></h2><p class="stat">${esc(j.ref)} · ${its.length} stops named in the text</p>
+    ${st.human?`<div class="humbox">How sure scholars are of the locations: <b>${counts[3]}</b> settled, <b>${counts[2]}</b> likely, <b>${counts[1]}</b> uncertain, <b>${counts[0]}</b> very uncertain.</div>`:""}`;}
+  else{const bk=D.books.find(x=>x[0]===st.book);
+    head=`<h2>${esc(bk[1])} ${st.ch}<span class="te">${esc(bk[2])} ${st.ch}</span></h2><p class="stat">${its.length} place${its.length===1?"":"s"} named in this chapter (KJV)</p>`;}
+  const list=its.map((it,i)=>{const sel=i===st.sel;
+    const refs=st.mode==="j"?`<span class="rf">${esc(readable(it.osis))}</span>`:`<span class="rf">${it.verses.map(v=>"v"+vnum(v)).join(", ")}</span>`;
+    const count=it.p?`<span class="stat" style="font-size:12.5px"> · named ${it.p[3]}× in the KJV</span>`:"";
+    const vt=sel?(st.mode==="j"?[it.osis]:it.verses).map(o=>`<div class="vt"><div class="stat" style="margin:0 0 3px;font-size:12.5px">${esc(readable(o))} · ${esc(readable(o,"te"))}</div>${vtext(o)}</div>`).join(""):"";
+    return `<div class="stop${sel?" sel":""}" data-i="${i}" id="stop${i}"><span class="n">${i+1}</span><div><span class="nm">${esc(it.name)}</span>${refs}${count}
+      ${it.how?`<div class="how">“${esc(it.how)}”</div>`:""}${humLine(it)}</div>${vt}</div>`;}).join("");
+  P.innerHTML=head+`<div style="margin-top:12px">${list||'<p class="empty">No places named here.</p>'}</div>
+   <p class="stat" style="margin-top:14px">Tap a stop to read its verse${st.human?" and see it on the map":""}.</p>`;
+  P.querySelectorAll(".stop").forEach(s=>s.onclick=()=>select(+s.dataset.i));
+}
+function select(i,scroll){st.sel=st.sel===i&&!scroll?-1:i;draw();panel();
+  if(st.sel>=0){const el=$("#stop"+st.sel);if(el&&scroll!==false)el.scrollIntoView({block:"nearest",behavior:"smooth"});}}
+}
+</script>
+</body>
+</html>

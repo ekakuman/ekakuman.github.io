@@ -8,6 +8,7 @@ Bible studies (English + Telugu). Each study lives in its own folder and is list
 - `angelsinscriptures/` · `camp-of-angels/` · `body-soul-spirit/`
 - `character-studies/`
 - `cross-references/` (chart data in `cross-references/data.json`)
+- `places/` (journeys and places; Scripture layer vs human-knowledge layer; data in `places/places.json`, `places/basemap.json`, `places/verses/`)
 - `prayers-promises/`
 
 To add a study: create a new folder with an `index.html`, then add a card for it on the home page.
