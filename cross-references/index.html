@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cross References · వచన సంబంధములు</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Source+Sans+3:wght@400;600&family=Noto+Sans+Telugu:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f3ec;--card:#fffdf9;--ink:#2a2420;--muted:#6d6259;--line:#e3d9cc;--accent:#7a3e1d;--hl:#c2410c}
+@media (prefers-color-scheme:dark){:root{--bg:#1a1715;--card:#24201d;--ink:#efe8df;--muted:#b3a89c;--line:#3a332d;--accent:#e0a37c;--hl:#fb923c}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Source Sans 3","Noto Sans Telugu",system-ui,sans-serif}
+main{max-width:1320px;margin:0 auto;padding:28px 18px 50px}
+a{color:var(--accent)}
+h1{font-family:Fraunces,Georgia,serif;font-size:clamp(26px,4.5vw,38px);margin:0;line-height:1.15}
+h1 .te,.te{font-family:"Noto Sans Telugu",sans-serif}
+h1 .te{display:block;font-size:.55em;color:var(--accent);font-weight:600;margin-top:4px}
+.sub{color:var(--muted);margin:8px 0 0;max-width:780px}
+.back{font-size:14px;text-decoration:none;color:var(--muted)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:18px 0 10px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.toolbar label{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:6px}
+input,select,button{font:inherit;font-size:14.5px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px}
+input[type=range]{padding:0;accent-color:var(--accent)}
+button{cursor:pointer}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;border-radius:0;background:transparent;padding:6px 10px}
+.seg button.on{background:var(--accent);color:var(--card)}
+#search{width:170px}
+.toolbar label{min-width:0;max-width:100%}
+#book{max-width:min(320px,62vw)}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;align-items:start}
+@media (max-width:980px){.layout{grid-template-columns:1fr}}
+.vizcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 10px 6px;position:relative}
+#stage{position:relative;width:100%}
+#stage canvas{position:absolute;left:0;top:0;display:block}
+#tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:13px;padding:4px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-130%);opacity:0;transition:opacity .1s}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted);padding:6px 4px 2px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.grad{display:inline-block;width:90px;height:8px;border-radius:4px;vertical-align:0;margin:0 6px}
+.panel{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:14px;padding:16px 16px 10px;max-height:calc(100vh - 40px);overflow:auto;position:sticky;top:16px}
+@media (max-width:980px){.panel{position:static;max-height:none}}
+.panel h2{font-family:Fraunces,Georgia,serif;font-size:22px;margin:0;line-height:1.2}
+.panel h2 .te{display:block;font-size:15px;color:var(--accent);font-weight:600}
+.panel h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:18px 0 8px;font-weight:600}
+.panel h3 .te{text-transform:none;letter-spacing:0;margin-left:6px}
+.stat{color:var(--muted);font-size:14px;margin:6px 0 0}
+.ref{border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin:0 0 8px;background:var(--bg)}
+.ref .hd{display:flex;justify-content:space-between;gap:8px;font-size:14px;font-weight:600}
+.ref .hd a{cursor:pointer;text-decoration:none}
+.ref .hd a:hover{text-decoration:underline}
+.ref .votes{color:var(--muted);font-weight:400;font-size:12.5px;white-space:nowrap}
+.ref p{margin:4px 0 0;font-size:14.5px}
+.ref p.tl{font-family:"Noto Sans Telugu",sans-serif;font-size:14px}
+.ref .arrow{color:var(--muted);font-size:12px;margin:6px 0 0}
+.bk{display:grid;grid-template-columns:92px 1fr 50px;gap:8px;align-items:center;font-size:14px;margin:0 0 5px;cursor:pointer}
+.bk:hover .nm{text-decoration:underline}
+.bk .bar{height:10px;border-radius:5px;background:var(--accent);opacity:.8}
+.bk .n{color:var(--muted);font-size:12.5px;text-align:right}
+.bk.on .nm{color:var(--hl);font-weight:600}
+.empty{color:var(--muted);font-size:15px}
+.help{font-size:14px;color:var(--muted)}
+.help li{margin:0 0 4px}
+footer{color:var(--muted);font-size:13.5px;margin-top:26px;line-height:1.6}
+#loading{padding:80px 0;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="../">← Bible Studies · బైబిలు అధ్యయనములు</a>
+<h1 style="margin-top:8px">Cross References of the Whole Bible<span class="te">బైబిలు అంతటా వచన సంబంధములు</span></h1>
+<p class="sub">Each bar along the bottom is one chapter, Genesis 1 to Revelation 22. Each arc joins two chapters that cross-reference each other. Tap a chapter or pick a book to see what it connects to, with KJV and Telugu text side by side.</p>
+
+<div class="toolbar">
+  <label>Book · గ్రంథము <select id="book"><option value="">All books</option></select></label>
+  <input id="search" placeholder="e.g. Isa 53, John 3:16" aria-label="Go to chapter">
+  <label>Only strong links <input id="minw" type="range" min="0" max="100" value="40"></label>
+  <span class="seg" id="scope" role="group" aria-label="Scope">
+    <button data-v="all" class="on">All</button><button data-v="otnt">OT ↔ NT</button><button data-v="within">Within OT/NT</button>
+  </span>
+  <span class="seg" id="lang" role="group" aria-label="Verse language">
+    <button data-v="both" class="on">KJV + తెలుగు</button><button data-v="en">KJV</button><button data-v="te">తెలుగు</button>
+  </span>
+  <button id="reset">Reset</button>
+</div>
+
+<div class="layout">
+  <div class="vizcard">
+    <div id="stage"><div id="loading">Loading 340,000 cross references…</div><div id="tip"></div></div>
+    <div class="legend" id="legend"></div>
+  </div>
+  <aside class="panel" id="panel"></aside>
+</div>
+
+<footer>
+Cross-reference data: <a href="https://www.openbible.info/labs/cross-references/">OpenBible.info</a> (CC-BY), about 340,000 references with reader votes. Arcs show the strongest chapter-to-chapter links, scored by adding up votes.
+KJV text public domain. Telugu text: Bible Society of India's public-domain Telugu Bible (via godlytalias/Bible-Database).
+The layout follows Chris Harrison &amp; Christoph Römhild's 2007 cross-reference arc chart.
+</footer>
+</main>
+
+<script>
+(function(){
+const SECS=[["Law","ధర్మశాస్త్రము","#b5562c"],["History","చరిత్ర","#c98a2e"],["Poetry","కావ్యములు","#7f9637"],["Major Prophets","ప్రధాన ప్రవక్తలు","#2f8f73"],["Minor Prophets","చిన్న ప్రవక్తలు","#2f7ea8"],["Gospels","సువార్తలు","#a23b5d"],["Acts","కార్యములు","#c4607a"],["Paul's Letters","పౌలు పత్రికలు","#6b5aa8"],["General Letters","సాధారణ పత్రికలు","#4b67b0"],["Revelation","ప్రకటన","#2e3d80"]];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let D,NC,arcs,maxW,state={ch:-1,book:-1,book2:-1,minw:40,scope:"all",lang:"both",hover:-1};
+const dark=matchMedia("(prefers-color-scheme:dark)");
+let geo={};
+const stage=$("#stage"),bg=document.createElement("canvas"),fg=document.createElement("canvas");
+const ctxB=bg.getContext("2d"),ctxF=fg.getContext("2d");
+
+fetch("data.json").then(r=>r.json()).then(d=>{D=d;init();}).catch(e=>{$("#loading").textContent="Could not load data.json ("+e+")";});
+
+function init(){
+  $("#loading").remove();
+  stage.prepend(fg);stage.prepend(bg);
+  D.books.forEach(b=>{b[2]=b[2].replace(/ /g," ");});
+  NC=D.chapters.length;
+  arcs=[];for(let i=0;i<D.arcs.length;i+=3)arcs.push([D.arcs[i],D.arcs[i+1],D.arcs[i+2]]);
+  maxW=arcs[0][2];
+  const sel=$("#book");
+  D.books.forEach((b,i)=>{const o=document.createElement("option");o.value=i;o.textContent=b[1]+" · "+b[2];sel.appendChild(o);});
+  sel.onchange=()=>{state.book=sel.value===""?-1:+sel.value;state.book2=-1;state.ch=-1;update(true);};
+  $("#minw").oninput=e=>{state.minw=+e.target.value;drawBg();drawFg();};
+  seg("#scope",v=>{state.scope=v;drawBg();drawFg();});
+  seg("#lang",v=>{state.lang=v;renderPanel();});
+  $("#reset").onclick=()=>{state.ch=-1;state.book=-1;state.book2=-1;sel.value="";update(true);};
+  $("#search").addEventListener("keydown",e=>{if(e.key==="Enter")go(e.target.value);});
+  legend();
+  new ResizeObserver(()=>layout()).observe(stage);
+  dark.addEventListener("change",()=>{drawBg();drawFg();});
+  fg.addEventListener("mousemove",e=>{const c=hit(e);if(c!==state.hover){state.hover=c;drawFg();}tip(e,c);});
+  fg.addEventListener("mouseleave",()=>{state.hover=-1;drawFg();tip(null,-1);});
+  fg.addEventListener("click",e=>{const c=hit(e);if(c<0)return;state.ch=c;state.book=-1;state.book2=-1;$("#book").value="";update(true);});
+  window.addEventListener("hashchange",fromHash);
+  layout();fromHash();if(state.ch<0&&state.book<0)renderPanel();
+}
+function seg(id,fn){document.querySelectorAll(id+" button").forEach(b=>b.onclick=()=>{document.querySelectorAll(id+" button").forEach(x=>x.classList.toggle("on",x===b));fn(b.dataset.v);});}
+function legend(){
+  $("#legend").innerHTML=SECS.map(s=>`<span><i style="background:${s[2]}"></i>${s[0]}</span>`).join("")+
+  `<span style="margin-left:auto">arc distance: near<span class="grad" style="background:linear-gradient(90deg,${arcColor(0,1)},${arcColor(.5,1)},${arcColor(1,1)})"></span>far</span>`;
+}
+function arcColor(t,a){const h=32+t*228,l=dark.matches?66:44;return `hsla(${h},62%,${l}%,${a})`;}
+function threshold(){const p=state.minw/100;return Math.max(13,Math.round(13*Math.pow(maxW/13,p*p*.85)));}
+function isNT(c){return D.chapters[c][0]>=39;}
+function passScope(a,b){if(state.scope==="all")return true;const x=isNT(a)!==isNT(b);return state.scope==="otnt"?x:!x;}
+
+function layout(){
+  const W=stage.clientWidth;if(!W)return;
+  const small=W<640,top=8,arcH=Math.round(W*(small?.48:.40)),barH=small?34:46,lab=small?44:40;
+  const H=top+arcH+barH+lab;
+  stage.style.height=H+"px";
+  const dpr=Math.min(2,window.devicePixelRatio||1);
+  [bg,fg].forEach(c=>{c.width=W*dpr;c.height=H*dpr;c.style.width=W+"px";c.style.height=H+"px";c.getContext("2d").setTransform(dpr,0,0,dpr,0,0);});
+  const pad=6;geo={W,H,pad,base:top+arcH,arcH,barH,small,cw:(W-2*pad)/NC};
+  let m=0;for(const v of D.cw)m=Math.max(m,v);geo.maxCw=Math.sqrt(m);
+  drawBg();drawFg();
+}
+const cx=c=>geo.pad+(c+.5)*geo.cw;
+function arcPath(ctx,a,b){const x1=cx(a),x2=cx(b),r=(x2-x1)/2,ry=Math.min(geo.arcH-2,r*(geo.arcH/(geo.W/2))*1.0);ctx.moveTo(x1,geo.base);ctx.ellipse(x1+r,geo.base,r,Math.max(1,ry),0,Math.PI,2*Math.PI);}
+
+function drawBg(){
+  if(!geo.W)return;const ctx=ctxB,{W,H,base}=geo;ctx.clearRect(0,0,W,H);
+  const th=threshold(),focus=state.ch>=0||state.book>=0;
+  const list=arcs.filter(a=>a[2]>=th&&passScope(a[0],a[1]));const focusList=focus?list.filter((a,i)=>i%3===0):list;
+  ctx.lineWidth=geo.small?.6:.8;
+  for(let i=focusList.length-1;i>=0;i--){const [a,b,w]=focusList[i];const t=(b-a)/NC;
+    const al=focus?.012:Math.min(.5,.035+.42*Math.sqrt(w/maxW));
+    ctx.strokeStyle=arcColor(Math.sqrt(t),al);ctx.beginPath();arcPath(ctx,a,b);ctx.stroke();}
+  geo.shown=list.length;
+  // chapter bars
+  for(let c=0;c<NC;c++){const b=D.chapters[c][0],h=3+(geo.barH-6)*Math.sqrt(D.cw[c])/geo.maxCw;
+    ctx.fillStyle=SECS[D.books[b][4]][2];ctx.globalAlpha=focus?.45:.9;ctx.fillRect(geo.pad+c*geo.cw,base+2,Math.max(.6,geo.cw-.15),h);}
+  ctx.globalAlpha=1;
+  // book ticks + labels
+  const css=getComputedStyle(document.body),muted=css.getPropertyValue("--muted").trim(),ink=css.getPropertyValue("--ink").trim();
+  ctx.textBaseline="top";
+  const y0=base+geo.barH+4;let lastX=-99;
+  D.books.forEach((bk,i)=>{const x=geo.pad+bk[5]*geo.cw,wd=bk[3]*geo.cw;
+    ctx.fillStyle=muted;ctx.fillRect(x,base+2,.6,geo.barH+2);
+    const big=wd>(geo.small?22:16);if(!big&&x-lastX<(geo.small?13:10))return;
+    ctx.save();ctx.translate(x+wd/2,y0);ctx.rotate(big?0:Math.PI/2.4);ctx.textAlign=big?"center":"left";ctx.textBaseline=big?"top":"middle";
+    ctx.font=(geo.small?"10px":"11px")+' "Source Sans 3",sans-serif';ctx.fillStyle=i===state.book?css.getPropertyValue("--hl").trim():ink;
+    ctx.fillText(bk[0],0,0);ctx.restore();lastX=x;});ctx.textBaseline="top";
+  ctx.fillStyle=muted;ctx.font='11px "Source Sans 3",sans-serif';ctx.textAlign="left";
+  ctx.fillText(`${geo.shown.toLocaleString()} links shown`,geo.pad,4);
+}
+function drawFg(){
+  if(!geo.W)return;const ctx=ctxF,{W,H,base}=geo;ctx.clearRect(0,0,W,H);
+  const hl=getComputedStyle(document.body).getPropertyValue("--hl").trim();
+  let pick=null;
+  if(state.ch>=0){const c=state.ch;pick=a=>a[0]===c||a[1]===c;}
+  else if(state.book>=0){const b=state.book,b2=state.book2;const bc=c=>D.chapters[c][0];
+    pick=b2>=0?a=>(bc(a[0])===b&&bc(a[1])===b2)||(bc(a[0])===b2&&bc(a[1])===b):a=>bc(a[0])===b||bc(a[1])===b;}
+  if(pick){const th=state.ch>=0?13:Math.max(13,threshold()*.6);
+    const list=arcs.filter(a=>a[2]>=th&&passScope(a[0],a[1])&&pick(a));
+    let m=1;list.forEach(a=>m=Math.max(m,a[2]));
+    for(let i=list.length-1;i>=0;i--){const [a,b,w]=list[i];const k=Math.sqrt(w/m);
+      ctx.strokeStyle=arcColor(Math.sqrt((b-a)/NC),.25+.7*k);ctx.lineWidth=.7+2.2*k;ctx.beginPath();arcPath(ctx,a,b);ctx.stroke();}
+    geo.pickN=list.length;
+    // range highlight
+    let c0,c1;if(state.ch>=0){c0=c1=state.ch;}else{const bk=D.books[state.book];c0=bk[5];c1=bk[5]+bk[3]-1;}
+    ctx.fillStyle=hl;ctx.fillRect(geo.pad+c0*geo.cw-1,base,Math.max(3,(c1-c0+1)*geo.cw+2),3);
+    if(state.book2>=0){const bk=D.books[state.book2];ctx.fillRect(geo.pad+bk[5]*geo.cw-1,base,Math.max(3,bk[3]*geo.cw+2),3);}
+  }
+  if(state.hover>=0){const x=cx(state.hover);ctx.strokeStyle=hl;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,8);ctx.lineTo(x,base+geo.barH);ctx.stroke();}
+}
+function hit(e){const r=fg.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+  const c=Math.floor((x-geo.pad)/geo.cw);if(c<0||c>=NC||y<geo.base-geo.arcH*.98)return -1;return c;}
+function tip(e,c){const t=$("#tip");if(c<0||!e){t.style.opacity=0;return;}
+  const r=fg.getBoundingClientRect();t.textContent=chName(c)+" · "+chName(c,"te");
+  t.style.left=Math.min(geo.W-80,Math.max(80,e.clientX-r.left))+"px";t.style.top=(e.clientY-r.top)+"px";t.style.opacity=1;}
+
+function chName(c,l){const [b,n]=D.chapters[c];const bk=D.books[b];return (l==="te"?bk[2]:bk[1])+" "+n;}
+function vChap(id){let lo=0,hi=NC-1;while(lo<hi){const m=(lo+hi+1)>>1;if(D.vstart[m]<=id)lo=m;else hi=m-1;}return lo;}
+function vLabel(id,l){const c=vChap(id);return chName(c,l)+":"+(id-D.vstart[c]+1);}
+function rangeLabel(s,e,l){if(s===e)return vLabel(s,l);const cs=vChap(s),ce=vChap(e);
+  return cs===ce?vLabel(s,l)+"–"+(e-D.vstart[ce]+1):vLabel(s,l)+" – "+vLabel(e,l).replace(/^.*? (\d+:\d+)$/,"$1");}
+function vText(id){const t=D.texts[id];if(!t)return "";let h="";
+  if(state.lang!=="te")h+=`<p>${esc(t[0])}</p>`;if(state.lang!=="en"&&t[1])h+=`<p class="tl">${esc(t[1])}</p>`;return h;}
+
+function refCard(r,dir){const [a,s,e,v]=r;
+  const other=dir==="out"?s:a,oc=vChap(other);
+  const from=`<a data-go="${vChap(a)}">${esc(vLabel(a))}</a>`,to=`<a data-go="${vChap(s)}">${esc(rangeLabel(s,e))}</a>`;
+  return `<div class="ref"><div class="hd"><span>${from} → ${to}</span><span class="votes">${v} votes</span></div>
+  ${vText(a)}<div class="arrow">↳ ${esc(rangeLabel(s,e,"te"))}${e>s?" (first verse)":""}</div>${vText(s)}</div>`;}
+
+function connectedChapters(c){const m=[];arcs.forEach(a=>{if(a[0]===c)m.push([a[1],a[2]]);else if(a[1]===c)m.push([a[0],a[2]]);});return m.sort((x,y)=>y[1]-x[1]);}
+function bookLinks(b){const m=new Array(66).fill(0);D.bookm.forEach(([x,y,w])=>{if(x===b)m[y]+=w;else if(y===b)m[x]+=w;});
+  return m.map((w,i)=>[i,w]).filter(x=>x[1]>0).sort((x,y)=>y[1]-x[1]);}
+
+function renderPanel(){
+  const P=$("#panel");
+  if(state.ch>=0){const c=state.ch,[o,i]=D.crefs[c],con=connectedChapters(c).slice(0,8);
+    const tot=con.length?connectedChapters(c).length:0;
+    P.innerHTML=`<h2>${esc(chName(c))}<span class="te">${esc(chName(c,"te"))}</span></h2>
+    <p class="stat">Linked to ${tot} other chapters among the strongest links. Thicker arcs mean more votes.</p>
+    <h3>Most-linked chapters<span class="te">ఎక్కువ సంబంధమున్న అధ్యాయములు</span></h3>
+    ${barList(con.map(([cc,w])=>[cc,w,chName(cc),"ch"]))}
+    <h3>From this chapter<span class="te">ఈ అధ్యాయము నుండి</span></h3>
+    ${o.length?o.map(r=>refCard(r,"out")).join(""):'<p class="empty">No outgoing references.</p>'}
+    ${i.length?`<h3>Pointing here<span class="te">ఇక్కడికి సూచించునవి</span></h3>`+i.map(r=>refCard(r,"in")).join(""):""}`;
+  } else if(state.book>=0){const b=state.book,bk=D.books[b],bl=bookLinks(b),tot=bl.reduce((s,x)=>s+x[1],0);
+    P.innerHTML=`<h2>${esc(bk[1])}<span class="te">${esc(bk[2])}</span></h2>
+    <p class="stat">${bk[3]} chapters · ${SECS[bk[4]][0]} · ${SECS[bk[4]][1]}. Tap a book below to show only the links between the two.</p>
+    <h3>Most-connected books<span class="te">ఎక్కువ సంబంధమున్న గ్రంథములు</span></h3>
+    ${barList(bl.slice(0,15).map(([i,w])=>[i,w,D.books[i][1],"bk",Math.round(100*w/tot)]))}
+    <h3>Chapters<span class="te">అధ్యాయములు</span></h3>
+    <p class="help">Tap any chapter of ${esc(bk[1])} on the chart to read its references.</p>`;
+  } else {
+    P.innerHTML=`<h2>How to read this<span class="te">దీనిని ఎలా చదువవలెను</span></h2>
+    <ul class="help">
+    <li>The <b>bars</b> along the bottom are all 1,189 chapters, coloured by section. Taller bars have more cross references.</li>
+    <li>Each <b>arc</b> joins two chapters. The colour shifts from gold to indigo as the distance between them grows.</li>
+    <li><b>Tap a chapter</b> to see its strongest references, with KJV and Telugu text.</li>
+    <li><b>Pick a book</b> to see which books it is most tied to.</li>
+    <li>Use “OT ↔ NT” to see only the links between the Old and New Testaments.</li></ul>
+    <h3>Try<span class="te">ప్రయత్నించండి</span></h3>
+    ${["Isa 53","Ps 22","Gen 3","Dan 7","Heb 1","Rev 21"].map(q=>`<button data-q="${q}" style="margin:0 6px 6px 0">${q}</button>`).join("")}
+    <p class="stat" style="margin-top:12px">${D.nrefs.toLocaleString()} verse references in all.</p>`;
+  }
+  P.querySelectorAll("[data-go]").forEach(a=>a.onclick=()=>{state.ch=+a.dataset.go;update(true);P.scrollTop=0;});
+  P.querySelectorAll("[data-q]").forEach(a=>a.onclick=()=>go(a.dataset.q));
+  P.querySelectorAll("[data-bk]").forEach(a=>a.onclick=()=>{const x=+a.dataset.bk;state.book2=state.book2===x?-1:x;drawFg();renderPanel();});
+}
+function barList(rows){if(!rows.length)return '<p class="empty">None above the cut-off.</p>';const m=rows[0][1];
+  return rows.map(([id,w,nm,kind,pct])=>`<div class="bk${kind==="bk"&&state.book2===id?" on":""}" ${kind==="bk"?`data-bk="${id}"`:`data-go="${id}"`}>
+  <span class="nm">${esc(nm)}</span><span class="bar" style="width:${Math.max(4,100*w/m)}%;background:${SECS[D.books[kind==="bk"?id:D.chapters[id][0]][4]][2]}"></span><span class="n">${pct!=null?pct+"%":w}</span></div>`).join("");}
+
+function update(push){drawBg();drawFg();renderPanel();
+  if(push){const h=state.ch>=0?"#"+D.books[D.chapters[state.ch][0]][0]+"."+D.chapters[state.ch][1]:state.book>=0?"#"+D.books[state.book][0]:"";
+    if(location.hash!==h)history.replaceState(null,"",h||location.pathname);}}
+const ALIAS={ps:"psa",psalm:"psa",psalms:"psa",song:"sng",sos:"sng",mark:"mrk",mk:"mrk",john:"jhn",jn:"jhn",jud:"jud",jude:"jud",judg:"jdg",phil:"php",philem:"phm",ezek:"eze",eze:"eze",prov:"pro",eccl:"ecc",rev:"rev",matt:"mat",mt:"mat",lk:"luk",luke:"luk",acts:"act",rom:"rom",jas:"jas",james:"jas",heb:"heb",gen:"gen",ex:"exo",exod:"exo",deut:"deu",josh:"jos",ruth:"rut",ezra:"ezr",esth:"est",isa:"isa",jer:"jer",lam:"lam",dan:"dan",hos:"hos",joel:"joe",amos:"amo",obad:"oba",jonah:"jon",mic:"mic",nah:"nah",hab:"hab",zeph:"zep",hag:"hag",zech:"zec",mal:"mal",gal:"gal",eph:"eph",col:"col",titus:"tit",lev:"lev",num:"num",job:"job",neh:"neh"};
+function findBook(q){q=q.toLowerCase().replace(/\s+/g,"").replace(/\.$/,"");if(!q)return -1;
+  const al=ALIAS[q]||q;let i=D.books.findIndex(b=>b[0].toLowerCase()===al);if(i>=0)return i;
+  i=D.books.findIndex(b=>b[1].toLowerCase().replace(/\s+/g,"").startsWith(q));if(i>=0)return i;
+  return D.books.findIndex(b=>b[2].replace(/\s+/g,"").startsWith(q));}
+function go(q){const m=q.trim().match(/^(.+?)\s*(\d+)?(?::\d+)?$/);if(!m)return;
+  let name=m[1],ch=m[2];const m2=q.trim().match(/^([1-3]?\s*[^\d:]+?)\s*(\d+)(?::\d+)?$/);if(m2){name=m2[1];ch=m2[2];}
+  const b=findBook(name);if(b<0){$("#search").style.borderColor="var(--hl)";return;}$("#search").style.borderColor="";
+  if(ch&&+ch>=1&&+ch<=D.books[b][3]){state.ch=D.books[b][5]+(+ch)-1;state.book=-1;$("#book").value="";}else{state.book=b;state.ch=-1;$("#book").value=b;}
+  state.book2=-1;update(true);}
+function fromHash(){const h=decodeURIComponent(location.hash.slice(1));if(!h)return;const [b,c]=h.split(".");const bi=D.books.findIndex(x=>x[0]===b);if(bi<0)return;
+  if(c&&+c<=D.books[bi][3]){state.ch=D.books[bi][5]+(+c)-1;state.book=-1;}else{state.book=bi;state.ch=-1;$("#book").value=bi;}update(false);}
+})();
+</script>
+</body>
+</html>
